@@ -135,6 +135,75 @@ p {
   background: #73593a;
 }
 
+/* ---------- Promo Banner ---------- */
+.promo-banner {
+  background: #C17B74;
+  color: #FBF7F0;
+  text-align: center;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  position: relative;
+  z-index: 1001;
+}
+
+.promo-banner .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.promo-banner p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.promo-banner .btn-banner {
+  display: inline-block;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.8rem;
+  padding: 0.35rem 1.2rem;
+  border-radius: 50px;
+  background: #FBF7F0;
+  color: #C17B74;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.promo-banner .btn-banner:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.promo-banner .banner-close {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #FBF7F0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  padding: 0.2rem 0.4rem;
+  line-height: 1;
+}
+
+.promo-banner .banner-close:hover {
+  opacity: 1;
+}
+
+.promo-banner.hidden {
+  display: none;
+}
+
 /* ---------- Navigation ---------- */
 .navbar {
   position: sticky;
@@ -843,6 +912,223 @@ p {
   background: #fff;
 }
 
+/* ---------- Mood Tags ---------- */
+.mood-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.mood-tag {
+  font-size: 0.75rem;
+  color: #8B6E5A;
+  background: rgba(139, 110, 90, 0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+}
+
+/* ---------- Pricing Cards ---------- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.pricing-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 16px rgba(45, 32, 32, 0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(45, 32, 32, 0.1);
+}
+
+.pricing-card.highlighted {
+  border-color: #C17B74;
+  transform: scale(1.03);
+  box-shadow: 0 4px 24px rgba(193, 123, 116, 0.15);
+}
+
+.pricing-card.highlighted:hover {
+  transform: scale(1.03) translateY(-4px);
+}
+
+.pricing-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.9rem;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.badge-flexible {
+  background: rgba(139, 110, 90, 0.1);
+  color: #8B6E5A;
+}
+
+.badge-value {
+  background: rgba(193, 123, 116, 0.12);
+  color: #C17B74;
+}
+
+.badge-popular {
+  background: #C17B74;
+  color: #FBF7F0;
+}
+
+.badge-gift {
+  background: rgba(139, 110, 90, 0.08);
+  color: #8B6E5A;
+}
+
+.pricing-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+}
+
+.pricing-card .price {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  color: #C17B74;
+  margin-bottom: 0.2rem;
+}
+
+.pricing-card .price-period {
+  font-size: 0.85rem;
+  color: #8B6E5A;
+}
+
+.pricing-card .price-desc {
+  font-size: 0.88rem;
+  color: #8B6E5A;
+  margin: 0.8rem 0 1.4rem;
+  line-height: 1.5;
+}
+
+.pricing-card .btn {
+  width: 100%;
+}
+
+/* Ribbon for featured gift card */
+.ribbon-wrap {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ribbon {
+  position: absolute;
+  top: 18px;
+  right: -28px;
+  width: 130px;
+  padding: 0.3rem 0;
+  background: #C17B74;
+  color: #FBF7F0;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 6px rgba(45, 32, 32, 0.15);
+  font-weight: 600;
+}
+
+/* ---------- Mother's Day Section ---------- */
+.mothers-day-section {
+  background: linear-gradient(180deg, #f5ede3 0%, #FBF7F0 100%);
+}
+
+.mothers-day-section .section-title {
+  color: #C17B74;
+}
+
+.md-gift-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.md-gift-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 16px rgba(45, 32, 32, 0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 2px solid transparent;
+}
+
+.md-gift-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(45, 32, 32, 0.1);
+}
+
+.md-gift-card.md-featured {
+  border-color: #C17B74;
+}
+
+.md-gift-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.md-gift-card .price {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.6rem;
+  color: #C17B74;
+  margin-bottom: 0.3rem;
+}
+
+.md-gift-card .price-desc {
+  font-size: 0.88rem;
+  color: #8B6E5A;
+  margin-bottom: 1.2rem;
+}
+
+.md-gift-card .btn {
+  width: 100%;
+}
+
+.md-notice {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.md-notice p {
+  font-size: 0.92rem;
+  color: #8B6E5A;
+  font-style: italic;
+}
+
+.md-deadline {
+  display: inline-block;
+  background: rgba(193, 123, 116, 0.1);
+  color: #C17B74;
+  font-weight: 600;
+  font-style: normal;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .nav-links {
@@ -910,6 +1196,32 @@ p {
 
   .newsletter-form {
     flex-direction: column;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .pricing-card.highlighted {
+    transform: none;
+  }
+
+  .pricing-card.highlighted:hover {
+    transform: translateY(-4px);
+  }
+
+  .md-gift-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promo-banner .container {
+    padding-right: 2rem;
+  }
+
+  .promo-banner .banner-close {
+    right: 0.5rem;
   }
 }
 

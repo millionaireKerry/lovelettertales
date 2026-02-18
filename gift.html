@@ -4,13 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gift a Subscription — Love Letter Tales</title>
-  <meta name="description" content="Give the gift of a story. Monthly or annual gift subscriptions — beautifully written fiction delivered by post across the UK.">
+  <meta name="description" content="Give the gift of a story. Gift subscriptions from 3 to 12 months — beautifully written fiction delivered by post across the UK.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- Mother's Day Promo Banner -->
+  <div class="promo-banner" id="promoBanner">
+    <div class="container">
+      <p>&#127800; Perfect Mother's Day Gift — Order by 10th March for delivery before Sunday 15th March &#127800;</p>
+      <a href="mothers-day.html" class="btn-banner">Shop Gifts</a>
+    </div>
+    <button class="banner-close" id="bannerClose" aria-label="Dismiss banner">&times;</button>
+  </div>
 
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
@@ -22,10 +31,11 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="stories.html">Stories</a></li>
         <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
         <li><a href="gift.html">Gift</a></li>
+        <li><a href="mothers-day.html">Mother's Day</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#subscribe" class="btn btn-primary">Subscribe Now</a></li>
+        <li><a href="#stripe" class="btn btn-primary">Subscribe Now</a></li>
       </ul>
     </div>
   </nav>
@@ -42,40 +52,39 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title">Choose a Gift Plan</h2>
-      <p class="section-subtitle">Both plans include free UK delivery, eco-friendly packaging, and the option to include a personalised gift note with the first letter.</p>
+      <p class="section-subtitle">All gift plans include free UK delivery, eco-friendly packaging, and a printable gift card sent to you by email.</p>
 
-      <div class="gift-grid">
+      <div class="pricing-grid" style="max-width:900px;margin:0 auto;">
 
-        <!-- Monthly Gift -->
-        <div class="gift-card">
-          <div class="gift-icon">&#9993;</div>
-          <h3>Monthly Gift</h3>
-          <div class="price">&pound;12.99<span style="font-size:0.9rem;color:#8B6E5A;">/month</span></div>
-          <p class="price-note">Renews monthly. Cancel anytime.</p>
-          <ul>
-            <li>2 beautifully crafted story letters per month</li>
-            <li>Delivered by Royal Mail</li>
-            <li>Personalised gift note included</li>
-            <li>Recipient chooses their story collection</li>
-            <li>Free UK delivery</li>
-          </ul>
-          <a href="#subscribe" class="btn btn-outline">Gift Monthly Plan</a>
+        <!-- Gift 3 Months -->
+        <div class="pricing-card highlighted">
+          <div class="ribbon-wrap"><div class="ribbon">Most Popular</div></div>
+          <span class="pricing-badge badge-popular">Most Popular Gift</span>
+          <h3>Gift 3 Months</h3>
+          <div class="price">&pound;34.99</div>
+          <div class="price-period">one-off payment</div>
+          <p class="price-desc">The perfect gift. 6 beautifully crafted letters.</p>
+          <a href="#stripe" class="btn btn-primary">Buy Gift</a>
         </div>
 
-        <!-- Annual Gift -->
-        <div class="gift-card featured">
-          <div class="gift-icon">&#9829;</div>
-          <h3>Annual Gift</h3>
-          <div class="price">&pound;119.99<span style="font-size:0.9rem;color:#8B6E5A;">/year</span></div>
-          <p class="price-note">Save over &pound;35 compared to monthly. One payment, a full year of stories.</p>
-          <ul>
-            <li>24 story letters over 12 months</li>
-            <li>A complete story collection from start to finish</li>
-            <li>Personalised gift note included</li>
-            <li>Recipient chooses their story collection</li>
-            <li>Free UK delivery</li>
-          </ul>
-          <a href="#subscribe" class="btn btn-primary">Gift Annual Plan</a>
+        <!-- Gift 6 Months -->
+        <div class="pricing-card">
+          <span class="pricing-badge badge-gift">Gift</span>
+          <h3>Gift 6 Months</h3>
+          <div class="price">&pound;64.99</div>
+          <div class="price-period">one-off payment</div>
+          <p class="price-desc">Six months of stories. A truly memorable gift.</p>
+          <a href="#stripe" class="btn btn-outline">Buy Gift</a>
+        </div>
+
+        <!-- Gift 12 Months -->
+        <div class="pricing-card">
+          <span class="pricing-badge badge-gift">Gift</span>
+          <h3>Gift 12 Months</h3>
+          <div class="price">&pound;109.99</div>
+          <div class="price-period">one-off payment</div>
+          <p class="price-desc">A full year of letters. The ultimate gift for someone special.</p>
+          <a href="#stripe" class="btn btn-outline">Buy Gift</a>
         </div>
 
       </div>
@@ -87,21 +96,33 @@
   <!-- How Gifting Works -->
   <section class="section">
     <div class="container">
+      <h2 class="section-title">How Gifting Works</h2>
+      <p class="section-subtitle">Three simple steps to give someone a gift they'll treasure.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>You Choose</h3>
+          <p>Pick a story and gift length — 3, 6, or 12 months — and complete your purchase.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>We Email You</h3>
+          <p>We send you a beautiful printable gift card immediately — perfect for tucking into a birthday card or placing under the tree.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>They Receive Letters</h3>
+          <p>Your recipient chooses their story and enters their address. The first letters arrive within 7 days, then 2 every month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Is It For -->
+  <section class="section" style="background:#f5ede3;">
+    <div class="container">
       <div class="content-block">
-        <h2>How Gifting Works</h2>
-        <p>Gifting a Love Letter Tales subscription is simple and thoughtful. Here's what happens when you place a gift order:</p>
-
-        <div class="highlight-box">
-          <p><strong>Step 1:</strong> Choose a monthly or annual plan and complete your purchase.</p>
-        </div>
-        <div class="highlight-box">
-          <p><strong>Step 2:</strong> We'll send you a beautiful printable gift card (by email) that you can give to your recipient — perfect for tucking into a birthday card or placing under the tree.</p>
-        </div>
-        <div class="highlight-box">
-          <p><strong>Step 3:</strong> Your recipient uses the gift card to choose their story collection and enter their delivery address. The first letter arrives within a week.</p>
-        </div>
-
-        <h2>Who Is It For?</h2>
+        <h2 class="text-center">Who Is It For?</h2>
         <p>Love Letter Tales makes a wonderful gift for anyone who loves reading, history, beautiful stationery, or simply receiving something lovely in the post. It's especially perfect for:</p>
         <ul style="padding-left:1.4rem;margin-bottom:1.5rem;">
           <li style="padding:0.3rem 0;color:#8B6E5A;">&#8226; Book lovers and literary fiction fans</li>
@@ -110,16 +131,17 @@
           <li style="padding:0.3rem 0;color:#8B6E5A;">&#8226; Hard-to-buy-for family members</li>
           <li style="padding:0.3rem 0;color:#8B6E5A;">&#8226; Birthday, Christmas, Mother's Day, or anniversary gifts</li>
         </ul>
+        <p class="text-center"><a href="mothers-day.html" class="btn btn-primary">Looking for a Mother's Day gift?</a></p>
       </div>
     </div>
   </section>
 
   <!-- CTA Banner -->
-  <section class="cta-banner" id="subscribe">
+  <section class="cta-banner">
     <div class="container">
       <h2>Give a Gift They'll Treasure</h2>
       <p>A subscription that arrives at their door, again and again — filled with beautiful words and the quiet magic of a real letter.</p>
-      <a href="#subscribe" class="btn">Choose a Gift Plan</a>
+      <a href="#stripe" class="btn">Choose a Gift Plan</a>
     </div>
   </section>
 
@@ -140,7 +162,9 @@
           <h4>Explore</h4>
           <a href="stories.html">Stories</a>
           <a href="how-it-works.html">How It Works</a>
+          <a href="pricing.html">Pricing</a>
           <a href="gift.html">Gift a Subscription</a>
+          <a href="mothers-day.html">Mother's Day</a>
           <a href="faq.html">FAQ</a>
           <a href="contact.html">Contact</a>
         </div>
@@ -160,7 +184,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Love Letter Tales. All rights reserved. Made with love in the UK.</p>
+        <p>Lovingly made in the UK &#127468;&#127463; | Delivered by Royal Mail | &copy; 2026 Love Letter Tales</p>
       </div>
     </div>
   </footer>

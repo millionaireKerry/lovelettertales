@@ -4,8 +4,8 @@
   'use strict';
 
   // ---- Mobile Navigation Toggle ----
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
 
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', function () {
@@ -23,7 +23,7 @@
   }
 
   // ---- Navbar scroll shadow ----
-  const navbar = document.getElementById('navbar');
+  var navbar = document.getElementById('navbar');
 
   if (navbar) {
     window.addEventListener('scroll', function () {
@@ -35,11 +35,27 @@
     });
   }
 
+  // ---- Dismissible Promo Banner ----
+  var promoBanner = document.getElementById('promoBanner');
+  var bannerClose = document.getElementById('bannerClose');
+
+  if (promoBanner && bannerClose) {
+    // Check if already dismissed this session
+    if (sessionStorage.getItem('promoBannerDismissed') === 'true') {
+      promoBanner.classList.add('hidden');
+    }
+
+    bannerClose.addEventListener('click', function () {
+      promoBanner.classList.add('hidden');
+      sessionStorage.setItem('promoBannerDismissed', 'true');
+    });
+  }
+
   // ---- FAQ Accordion ----
   document.querySelectorAll('.faq-question').forEach(function (button) {
     button.addEventListener('click', function () {
-      const item = this.closest('.faq-item');
-      const isOpen = item.classList.contains('active');
+      var item = this.closest('.faq-item');
+      var isOpen = item.classList.contains('active');
 
       // Close all other items
       document.querySelectorAll('.faq-item').forEach(function (el) {
@@ -53,11 +69,11 @@
     });
   });
 
-  // ---- Smooth scroll for anchor links (fallback for browsers without CSS scroll-behavior) ----
+  // ---- Smooth scroll for anchor links ----
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
       var targetId = this.getAttribute('href');
-      if (targetId === '#' || targetId === '#subscribe') return; // placeholder links
+      if (targetId === '#' || targetId === '#stripe') return; // placeholder links
       var target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();

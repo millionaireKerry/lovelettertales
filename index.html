@@ -12,6 +12,15 @@
 </head>
 <body>
 
+  <!-- Mother's Day Promo Banner -->
+  <div class="promo-banner" id="promoBanner">
+    <div class="container">
+      <p>&#127800; Perfect Mother's Day Gift — Order by 10th March for delivery before Sunday 15th March &#127800;</p>
+      <a href="mothers-day.html" class="btn-banner">Shop Gifts</a>
+    </div>
+    <button class="banner-close" id="bannerClose" aria-label="Dismiss banner">&times;</button>
+  </div>
+
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="container">
@@ -22,9 +31,10 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="stories.html">Stories</a></li>
         <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
         <li><a href="gift.html">Gift</a></li>
+        <li><a href="mothers-day.html">Mother's Day</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html">Contact</a></li>
         <li><a href="#subscribe" class="btn btn-primary">Subscribe Now</a></li>
       </ul>
     </div>
@@ -65,36 +75,37 @@
       <p class="section-subtitle">Each collection is a continuing tale, delivered in beautiful handwritten-style letters. Pick the world you want to step into.</p>
       <div class="story-grid">
 
-        <!-- Story 1 -->
+        <!-- Story 1: Rose Ashworth -->
         <div class="story-card">
           <div class="story-card-image">&#9993;</div>
           <div class="story-card-body">
             <span class="story-tag">Regency Romance</span>
-            <h3>Eleanor Ashford</h3>
-            <p>A spirited young woman navigates love, society, and secrets in the drawing rooms of 1812 Bath. Her letters reveal a world of longing and quiet rebellion.</p>
-            <a href="#subscribe" class="btn btn-primary">Subscribe to This Story</a>
+            <h3>Rose Ashworth</h3>
+            <p style="font-style:italic;font-size:0.82rem;color:#C17B74;margin-bottom:0.5rem;">A Regency Romance &middot; Bath, 1814</p>
+            <p>Rose is witty, clever, and entirely without fortune. When an anonymous letter arrives, she has no idea it will change everything. Follow her story through intimate correspondence with family, friends, and a mysterious admirer — told entirely in letters, delivered to your door.</p>
+            <div class="mood-tags">
+              <span class="mood-tag">Romantic</span>
+              <span class="mood-tag">Witty</span>
+              <span class="mood-tag">Jane Austen Era</span>
+            </div>
+            <a href="#stripe" class="btn btn-primary">Subscribe to Rose's Story</a>
           </div>
         </div>
 
-        <!-- Story 2 -->
+        <!-- Story 2: Clara Wren -->
         <div class="story-card">
           <div class="story-card-image">&#9993;</div>
           <div class="story-card-body">
             <span class="story-tag">Wartime Britain</span>
-            <h3>Violet Wren</h3>
-            <p>London, 1942. A young nurse writes letters filled with courage, heartbreak, and unexpected tenderness during the darkest days of the Blitz.</p>
-            <a href="#subscribe" class="btn btn-primary">Subscribe to This Story</a>
-          </div>
-        </div>
-
-        <!-- Story 3 -->
-        <div class="story-card">
-          <div class="story-card-image">&#9993;</div>
-          <div class="story-card-body">
-            <span class="story-tag">Victorian Mystery</span>
-            <h3>Clara Nightingale</h3>
-            <p>A governess in a crumbling Yorkshire manor unravels a decades-old mystery through letters hidden in the walls. Nothing is quite as it seems.</p>
-            <a href="#subscribe" class="btn btn-primary">Subscribe to This Story</a>
+            <h3>Clara Wren</h3>
+            <p style="font-style:italic;font-size:0.82rem;color:#C17B74;margin-bottom:0.5rem;">Letters from Wartime Britain &middot; London &amp; the Countryside, 1940</p>
+            <p>Clara writes home from an England on the edge of war. Her letters to her mother, her sweetheart, and a new friend carry love, courage, and secrets she can barely put into words. An emotional, deeply human story told through the post.</p>
+            <div class="mood-tags">
+              <span class="mood-tag">Emotional</span>
+              <span class="mood-tag">Historical</span>
+              <span class="mood-tag">Courageous</span>
+            </div>
+            <a href="#stripe" class="btn btn-primary">Subscribe to Clara's Story</a>
           </div>
         </div>
 
@@ -129,6 +140,122 @@
     </div>
   </section>
 
+  <!-- Pricing -->
+  <section class="section" id="pricing" style="background: #f5ede3;">
+    <div class="container">
+      <h2 class="section-title">Choose Your Plan</h2>
+      <p class="section-subtitle">Subscribe for yourself or give the gift of a story. All plans include free UK delivery and eco-friendly packaging.</p>
+      <div class="pricing-grid">
+
+        <!-- Monthly -->
+        <div class="pricing-card">
+          <span class="pricing-badge badge-flexible">Most Flexible</span>
+          <h3>Monthly</h3>
+          <div class="price">&pound;12.99</div>
+          <div class="price-period">per month</div>
+          <p class="price-desc">2 letters delivered every month. Cancel anytime.</p>
+          <a href="#stripe" class="btn btn-outline">Subscribe Monthly</a>
+        </div>
+
+        <!-- Annual -->
+        <div class="pricing-card">
+          <span class="pricing-badge badge-value">Best Value</span>
+          <h3>Annual</h3>
+          <div class="price">&pound;119.99</div>
+          <div class="price-period">per year</div>
+          <p class="price-desc">2 letters per month, paid annually. Save over &pound;35.</p>
+          <a href="#stripe" class="btn btn-primary">Subscribe Annually</a>
+        </div>
+
+        <!-- Gift 3 Months -->
+        <div class="pricing-card highlighted">
+          <div class="ribbon-wrap"><div class="ribbon">Most Popular</div></div>
+          <span class="pricing-badge badge-popular">Most Popular Gift</span>
+          <h3>Gift 3 Months</h3>
+          <div class="price">&pound;34.99</div>
+          <div class="price-period">one-off payment</div>
+          <p class="price-desc">The perfect gift. 6 beautifully crafted letters.</p>
+          <a href="#stripe" class="btn btn-primary">Buy Gift</a>
+        </div>
+
+        <!-- Gift 6 Months -->
+        <div class="pricing-card">
+          <span class="pricing-badge badge-gift">Gift</span>
+          <h3>Gift 6 Months</h3>
+          <div class="price">&pound;64.99</div>
+          <div class="price-period">one-off payment</div>
+          <p class="price-desc">Six months of stories. A truly memorable gift.</p>
+          <a href="#stripe" class="btn btn-outline">Buy Gift</a>
+        </div>
+
+        <!-- Gift 12 Months -->
+        <div class="pricing-card">
+          <span class="pricing-badge badge-gift">Gift</span>
+          <h3>Gift 12 Months</h3>
+          <div class="price">&pound;109.99</div>
+          <div class="price-period">one-off payment</div>
+          <p class="price-desc">A full year of letters. The ultimate gift for someone special.</p>
+          <a href="#stripe" class="btn btn-outline">Buy Gift</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Mother's Day Gift Section -->
+  <section class="section mothers-day-section" id="mothers-day">
+    <div class="container">
+      <h2 class="section-title">Give Mum Something She'll Look Forward To Every Month</h2>
+      <p class="section-subtitle">A Love Letter Tales gift subscription means she'll receive a beautiful letter in her post twice a month — a little moment of magic, just for her.</p>
+
+      <div class="md-gift-grid">
+        <div class="md-gift-card md-featured">
+          <h3>3 Months</h3>
+          <div class="price">&pound;34.99</div>
+          <p class="price-desc">6 beautiful story letters. The perfect taster.</p>
+          <a href="#stripe" class="btn btn-primary">Gift 3 Months</a>
+        </div>
+        <div class="md-gift-card">
+          <h3>6 Months</h3>
+          <div class="price">&pound;64.99</div>
+          <p class="price-desc">12 letters. Half a year of stories.</p>
+          <a href="#stripe" class="btn btn-outline">Gift 6 Months</a>
+        </div>
+        <div class="md-gift-card">
+          <h3>12 Months</h3>
+          <div class="price">&pound;109.99</div>
+          <p class="price-desc">24 letters. A full year of magic in her letterbox.</p>
+          <a href="#stripe" class="btn btn-outline">Gift 12 Months</a>
+        </div>
+      </div>
+
+      <!-- How the Gift Works -->
+      <h3 class="section-title" style="margin-top:2.5rem;">How the Gift Works</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>You Choose</h3>
+          <p>Pick a story and gift length — 3, 6, or 12 months.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>We Email You</h3>
+          <p>We send you a printable gift card immediately — something lovely to give on the day.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Mum Receives Her Letters</h3>
+          <p>Her first letters arrive within 7 days, then 2 every month after that.</p>
+        </div>
+      </div>
+
+      <div class="md-notice" style="margin-top:2rem;">
+        <p>We'll send you a beautiful printable gift card by email so you have something to give on the day — even if you order last minute.</p>
+        <span class="md-deadline">Order by 10th March to guarantee delivery of your welcome pack before Mother's Day</span>
+      </div>
+    </div>
+  </section>
+
   <!-- Testimonials -->
   <section class="section" style="background: #f5ede3;">
     <div class="container">
@@ -137,7 +264,7 @@
       <div class="testimonials-grid">
         <div class="testimonial">
           <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>Opening my letter each fortnight has become my favourite ritual. It feels like receiving a message from another century. I'm completely hooked on Eleanor's story.</p>
+          <p>Opening my letter each fortnight has become my favourite ritual. It feels like receiving a message from another century. I'm completely hooked on Rose's story.</p>
           <span class="testimonial-author">— Sarah M., Edinburgh</span>
         </div>
         <div class="testimonial">
@@ -180,7 +307,9 @@
           <h4>Explore</h4>
           <a href="stories.html">Stories</a>
           <a href="how-it-works.html">How It Works</a>
+          <a href="pricing.html">Pricing</a>
           <a href="gift.html">Gift a Subscription</a>
+          <a href="mothers-day.html">Mother's Day</a>
           <a href="faq.html">FAQ</a>
           <a href="contact.html">Contact</a>
         </div>
@@ -200,7 +329,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Love Letter Tales. All rights reserved. Made with love in the UK.</p>
+        <p>Lovingly made in the UK &#127468;&#127463; | Delivered by Royal Mail | &copy; 2026 Love Letter Tales</p>
       </div>
     </div>
   </footer>
