@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — Love Letter Tales</title>
+  <meta name="description" content="Choose your Love Letter Tales plan — monthly, annual, or gift subscriptions. Beautifully written fiction delivered by post.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Mother's Day Promo Banner -->
+  <div class="promo-banner" id="promoBanner">
+    <div class="container">
+      <p>&#127800; Perfect Mother's Day Gift — Order by 10th March for delivery before Sunday 15th March &#127800;</p>
+      <a href="mothers-day.html" class="btn-banner">Shop Gifts</a>
+    </div>
+    <button class="banner-close" id="bannerClose" aria-label="Dismiss banner">&times;</button>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Love Letter <span>Tales</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="gift.html">Gift</a></li>
+        <li><a href="mothers-day.html">Mother's Day</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="#subscribe" class="btn btn-primary">Subscribe Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Pricing</h1>
+      <p>Simple, honest pricing. Every plan includes free UK delivery, eco-friendly packaging, and 2 beautifully crafted story letters per month.</p>
+    </div>
+  </section>
+
+  <!-- Pricing Grid -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Subscribe for Yourself</h2>
+      <p class="section-subtitle">Pick a plan and start receiving stories. No contracts, no hidden costs — just beautiful letters in your letterbox.</p>
+
+      <div class="pricing-grid" style="max-width:700px;margin:0 auto 4rem;">
+
+        <!-- Monthly -->
+        <div class="pricing-card">
+          <span class="pricing-badge badge-flexible">Most Flexible</span>
+          <h3>Monthly</h3>
+          <div class="price">&pound;12.99</div>
+          <div class="price-period">per month</div>
+          <p class="price-desc">2 letters delivered every month. Cancel anytime.</p>
+          <a href="#stripe" class="btn btn-outline">Subscribe Monthly</a>
+        </div>
+
+        <!-- Annual -->
+        <div class="pricing-card highlighted">
+          <span class="pricing-badge badge-value">Best Value</span>
+          <h3>Annual</h3>
+          <div class="price">&pound;119.99</div>
+          <div class="price-period">per year</div>
+          <p class="price-desc">2 letters per month, paid annually. Save over &pound;35.</p>
+          <a href="#stripe" class="btn btn-primary">Subscribe Annually</a>
+        </div>
+
+      </div>
+
+      <h2 class="section-title">Gift a Subscription</h2>
+      <p class="section-subtitle">Give the gift of a story — choose a one-off gift plan for someone special.</p>
+
+      <div class="pricing-grid" style="max-width:900px;margin:0 auto;">
+
+        <!-- Gift 3 Months -->
+        <div class="pricing-card highlighted">
+          <div class="ribbon-wrap"><div class="ribbon">Most Popular</div></div>
+          <span class="pricing-badge badge-popular">Most Popular Gift</span>
+          <h3>Gift 3 Months</h3>
+          <div class="price">&pound;34.99</div>
+          <div class="price-period">one-off payment</div>
+          <p class="price-desc">The perfect gift. 6 beautifully crafted letters.</p>
+          <a href="#stripe" class="btn btn-primary">Buy Gift</a>
+        </div>
+
+        <!-- Gift 6 Months -->
+        <div class="pricing-card">
+          <span class="pricing-badge badge-gift">Gift</span>
+          <h3>Gift 6 Months</h3>
+          <div class="price">&pound;64.99</div>
+          <div class="price-period">one-off payment</div>
+          <p class="price-desc">Six months of stories. A truly memorable gift.</p>
+          <a href="#stripe" class="btn btn-outline">Buy Gift</a>
+        </div>
+
+        <!-- Gift 12 Months -->
+        <div class="pricing-card">
+          <span class="pricing-badge badge-gift">Gift</span>
+          <h3>Gift 12 Months</h3>
+          <div class="price">&pound;109.99</div>
+          <div class="price-period">one-off payment</div>
+          <p class="price-desc">A full year of letters. The ultimate gift for someone special.</p>
+          <a href="#stripe" class="btn btn-outline">Buy Gift</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">&#10043; &#10043; &#10043;</div>
+
+  <!-- What's Included -->
+  <section class="section">
+    <div class="container">
+      <div class="content-block text-center">
+        <h2>What Every Plan Includes</h2>
+        <p>&#10003; 2 beautifully written story letters per month &nbsp;&middot;&nbsp; &#10003; Free UK delivery by Royal Mail &nbsp;&middot;&nbsp; &#10003; Eco-friendly packaging &nbsp;&middot;&nbsp; &#10003; Heavyweight, luxurious paper &nbsp;&middot;&nbsp; &#10003; Cancel anytime (subscriptions)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner" id="subscribe">
+    <div class="container">
+      <h2>Not Sure Which Plan?</h2>
+      <p>Start with a monthly subscription — you can cancel anytime, and upgrade or gift whenever you like.</p>
+      <a href="stories.html" class="btn">Choose Your Story First</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h4>Love Letter Tales</h4>
+          <p>We believe in the beauty of slow storytelling. Every letter is crafted with care, printed on luxurious paper, and sent with love from the UK. Because some stories deserve to be held, not scrolled.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Pinterest">PIN</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <a href="stories.html">Stories</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="gift.html">Gift a Subscription</a>
+          <a href="mothers-day.html">Mother's Day</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Refund Policy</a>
+        </div>
+        <div>
+          <h4>Stay in the Story</h4>
+          <p style="font-size:0.9rem;color:rgba(251,247,240,0.7);margin-bottom:0.8rem;">Join our mailing list for writing news, sneak peeks, and the occasional love letter.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Your email address" aria-label="Email address" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Lovingly made in the UK &#127468;&#127463; | Delivered by Royal Mail | &copy; 2026 Love Letter Tales</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

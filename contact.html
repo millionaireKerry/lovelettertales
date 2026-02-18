@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Love Letter Tales</title>
+  <meta name="description" content="Get in touch with Love Letter Tales. We'd love to hear from you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Mother's Day Promo Banner -->
+  <div class="promo-banner" id="promoBanner">
+    <div class="container">
+      <p>&#127800; Perfect Mother's Day Gift — Order by 10th March for delivery before Sunday 15th March &#127800;</p>
+      <a href="mothers-day.html" class="btn-banner">Shop Gifts</a>
+    </div>
+    <button class="banner-close" id="bannerClose" aria-label="Dismiss banner">&times;</button>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Love Letter <span>Tales</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="gift.html">Gift</a></li>
+        <li><a href="mothers-day.html">Mother's Day</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="#stripe" class="btn btn-primary">Subscribe Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p>Whether you have a question, a suggestion, or simply want to say hello — we'd love to hear from you. We reply to every message personally.</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="section">
+    <div class="container">
+      <form class="contact-form" id="contactForm" onsubmit="event.preventDefault(); document.getElementById('formSuccess').style.display='block'; this.reset();">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Rose Ashworth" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Send Your Message</button>
+        <p id="formSuccess" style="display:none;text-align:center;margin-top:1.2rem;color:#8B6E5A;font-style:italic;">Thank you for writing to us. We'll reply as soon as we can.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Extra Info -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="content-block text-center">
+        <p style="color:#8B6E5A;">You can also reach us by email at <strong style="color:#C17B74;">hello@lovelettertales.com</strong></p>
+        <p style="color:#8B6E5A;">We aim to respond within 48 hours. In the meantime, you might find your answer on our <a href="faq.html" style="color:#C17B74;">FAQ page</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h4>Love Letter Tales</h4>
+          <p>We believe in the beauty of slow storytelling. Every letter is crafted with care, printed on luxurious paper, and sent with love from the UK. Because some stories deserve to be held, not scrolled.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Pinterest">PIN</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <a href="stories.html">Stories</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="gift.html">Gift a Subscription</a>
+          <a href="mothers-day.html">Mother's Day</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Refund Policy</a>
+        </div>
+        <div>
+          <h4>Stay in the Story</h4>
+          <p style="font-size:0.9rem;color:rgba(251,247,240,0.7);margin-bottom:0.8rem;">Join our mailing list for writing news, sneak peeks, and the occasional love letter.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Your email address" aria-label="Email address" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Lovingly made in the UK &#127468;&#127463; | Delivered by Royal Mail | &copy; 2026 Love Letter Tales</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
