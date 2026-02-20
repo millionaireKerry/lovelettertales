@@ -7,7 +7,7 @@
   <meta name="description" content="Receive 2 beautifully written story letters every month. Immersive fiction delivered by post across the UK.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -40,13 +40,96 @@
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- ============ HERO — Dark, Atmospheric ============ -->
   <section class="hero" id="home">
-    <div class="container">
+    <!-- Pulsing radial glow -->
+    <div class="hero-glow"></div>
+
+    <!-- Botanical SVG background illustration -->
+    <svg class="hero-botanical" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Main stem -->
+      <path d="M400 800 Q390 650 370 500 Q350 380 320 280 Q300 200 310 120" fill="none" stroke="#C17B74" stroke-width="3" opacity="0.13"/>
+      <path d="M400 800 Q420 620 450 480 Q470 380 490 300 Q510 220 500 140" fill="none" stroke="#C17B74" stroke-width="2.5" opacity="0.1"/>
+      <!-- Branch stems -->
+      <path d="M370 500 Q300 460 240 480 Q200 500 180 470" fill="none" stroke="#C17B74" stroke-width="2" opacity="0.11"/>
+      <path d="M450 480 Q520 440 570 460 Q610 480 630 450" fill="none" stroke="#C17B74" stroke-width="2" opacity="0.1"/>
+      <path d="M320 280 Q260 250 220 270 Q190 290 170 260" fill="none" stroke="#C17B74" stroke-width="2" opacity="0.1"/>
+      <path d="M490 300 Q550 270 590 290 Q620 310 640 280" fill="none" stroke="#C17B74" stroke-width="2" opacity="0.09"/>
+      <!-- Large rose top-left area -->
+      <circle cx="220" cy="260" r="35" fill="#C17B74" opacity="0.07"/>
+      <circle cx="220" cy="260" r="25" fill="#C17B74" opacity="0.09"/>
+      <circle cx="220" cy="260" r="15" fill="#C17B74" opacity="0.11"/>
+      <ellipse cx="195" cy="250" rx="20" ry="14" fill="#C17B74" opacity="0.06" transform="rotate(-30 195 250)"/>
+      <ellipse cx="245" cy="250" rx="20" ry="14" fill="#C17B74" opacity="0.06" transform="rotate(30 245 250)"/>
+      <ellipse cx="210" cy="280" rx="18" ry="12" fill="#C17B74" opacity="0.06" transform="rotate(15 210 280)"/>
+      <ellipse cx="235" cy="275" rx="18" ry="12" fill="#C17B74" opacity="0.06" transform="rotate(-20 235 275)"/>
+      <!-- Large rose top-right area -->
+      <circle cx="590" cy="280" r="38" fill="#C17B74" opacity="0.06"/>
+      <circle cx="590" cy="280" r="27" fill="#C17B74" opacity="0.08"/>
+      <circle cx="590" cy="280" r="16" fill="#C17B74" opacity="0.1"/>
+      <ellipse cx="565" cy="268" rx="22" ry="14" fill="#C17B74" opacity="0.05" transform="rotate(-25 565 268)"/>
+      <ellipse cx="618" cy="272" rx="22" ry="14" fill="#C17B74" opacity="0.05" transform="rotate(25 618 272)"/>
+      <ellipse cx="580" cy="305" rx="19" ry="12" fill="#C17B74" opacity="0.05" transform="rotate(10 580 305)"/>
+      <ellipse cx="605" cy="300" rx="19" ry="12" fill="#C17B74" opacity="0.05" transform="rotate(-15 605 300)"/>
+      <!-- Rose at left branch -->
+      <circle cx="180" cy="470" r="30" fill="#C17B74" opacity="0.07"/>
+      <circle cx="180" cy="470" r="20" fill="#C17B74" opacity="0.09"/>
+      <circle cx="180" cy="470" r="11" fill="#C17B74" opacity="0.11"/>
+      <ellipse cx="160" cy="460" rx="16" ry="11" fill="#C17B74" opacity="0.06" transform="rotate(-30 160 460)"/>
+      <ellipse cx="200" cy="458" rx="16" ry="11" fill="#C17B74" opacity="0.06" transform="rotate(25 200 458)"/>
+      <!-- Rose at right branch -->
+      <circle cx="630" cy="450" r="32" fill="#C17B74" opacity="0.06"/>
+      <circle cx="630" cy="450" r="22" fill="#C17B74" opacity="0.08"/>
+      <circle cx="630" cy="450" r="12" fill="#C17B74" opacity="0.1"/>
+      <ellipse cx="610" cy="438" rx="17" ry="11" fill="#C17B74" opacity="0.05" transform="rotate(-20 610 438)"/>
+      <ellipse cx="652" cy="440" rx="17" ry="11" fill="#C17B74" opacity="0.05" transform="rotate(30 652 440)"/>
+      <!-- Leaves -->
+      <ellipse cx="280" cy="390" rx="30" ry="12" fill="#C17B74" opacity="0.07" transform="rotate(-40 280 390)"/>
+      <ellipse cx="340" cy="340" rx="25" ry="10" fill="#C17B74" opacity="0.06" transform="rotate(35 340 340)"/>
+      <ellipse cx="460" cy="360" rx="28" ry="11" fill="#C17B74" opacity="0.06" transform="rotate(-35 460 360)"/>
+      <ellipse cx="520" cy="400" rx="26" ry="10" fill="#C17B74" opacity="0.07" transform="rotate(40 520 400)"/>
+      <ellipse cx="250" cy="310" rx="22" ry="9" fill="#C17B74" opacity="0.06" transform="rotate(-50 250 310)"/>
+      <ellipse cx="540" cy="330" rx="24" ry="9" fill="#C17B74" opacity="0.06" transform="rotate(45 540 330)"/>
+      <ellipse cx="300" cy="450" rx="20" ry="8" fill="#C17B74" opacity="0.06" transform="rotate(30 300 450)"/>
+      <ellipse cx="510" cy="430" rx="22" ry="9" fill="#C17B74" opacity="0.06" transform="rotate(-30 510 430)"/>
+      <!-- Smaller buds -->
+      <circle cx="310" cy="120" r="10" fill="#C17B74" opacity="0.09"/>
+      <circle cx="310" cy="120" r="6" fill="#C17B74" opacity="0.12"/>
+      <circle cx="500" cy="140" r="12" fill="#C17B74" opacity="0.08"/>
+      <circle cx="500" cy="140" r="7" fill="#C17B74" opacity="0.11"/>
+      <!-- Leaf veins -->
+      <path d="M265 398 Q280 390 295 382" fill="none" stroke="#C17B74" stroke-width="0.8" opacity="0.06"/>
+      <path d="M448 368 Q460 360 472 352" fill="none" stroke="#C17B74" stroke-width="0.8" opacity="0.05"/>
+    </svg>
+
+    <!-- Falling rose petals -->
+    <div class="hero-petals" aria-hidden="true">
+      <div class="petal petal-1"></div>
+      <div class="petal petal-2"></div>
+      <div class="petal petal-3"></div>
+      <div class="petal petal-4"></div>
+      <div class="petal petal-5"></div>
+      <div class="petal petal-6"></div>
+      <div class="petal petal-7"></div>
+      <div class="petal petal-8"></div>
+      <div class="petal petal-9"></div>
+      <div class="petal petal-10"></div>
+      <div class="petal petal-11"></div>
+      <div class="petal petal-12"></div>
+      <div class="petal petal-13"></div>
+      <div class="petal petal-14"></div>
+      <div class="petal petal-15"></div>
+      <div class="petal petal-16"></div>
+      <div class="petal petal-17"></div>
+      <div class="petal petal-18"></div>
+    </div>
+
+    <!-- Hero content -->
+    <div class="container hero-content">
       <h1>Stories That Arrive At Your Door</h1>
       <p>Receive 2 beautifully written story letters every month. No screen. Just the magic of a real letter in your hands.</p>
       <a href="#stories" class="btn btn-primary">Choose Your Story</a>
-      <a href="how-it-works.html" class="btn btn-outline">How It Works</a>
+      <a href="how-it-works.html" class="btn btn-outline-light">How It Works</a>
     </div>
   </section>
 
@@ -68,16 +151,201 @@
     </div>
   </div>
 
-  <!-- Choose Your Story -->
-  <section class="section" id="stories">
+  <!-- ============ Gift Occasions Section ============ -->
+  <section class="section gift-occasions">
     <div class="container">
-      <h2 class="section-title">Choose Your Story</h2>
-      <p class="section-subtitle">Each collection is a continuing tale, delivered in beautiful handwritten-style letters. Pick the world you want to step into.</p>
+      <h2 class="section-title fade-up">The Perfect Gift &mdash; For Anyone Who Loves a Story</h2>
+      <div class="occasions-grid">
+
+        <div class="occasion-card fade-up">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="24" cy="32" r="14" fill="none" stroke="#C17B74" stroke-width="1.5"/>
+              <rect x="10" y="30" width="28" height="16" rx="3" fill="#FBF7F0" stroke="#C17B74" stroke-width="1.5"/>
+              <line x1="24" y1="30" x2="24" y2="46" stroke="#C17B74" stroke-width="1"/>
+              <line x1="10" y1="38" x2="38" y2="38" stroke="#C17B74" stroke-width="1"/>
+              <path d="M20 30 Q20 22 16 18 Q12 14 16 10 Q20 6 24 10 Q28 6 32 10 Q36 14 32 18 Q28 22 28 30" fill="#C17B74" opacity="0.2" stroke="#C17B74" stroke-width="1.5"/>
+              <path d="M22 30 Q22 24 24 20 Q26 24 26 30" fill="none" stroke="#C17B74" stroke-width="1"/>
+              <!-- Candle flames -->
+              <ellipse cx="16" cy="8" rx="2" ry="3" fill="#D4A574" opacity="0.6"/>
+              <ellipse cx="24" cy="6" rx="2" ry="3.5" fill="#D4A574" opacity="0.7"/>
+              <ellipse cx="32" cy="8" rx="2" ry="3" fill="#D4A574" opacity="0.6"/>
+              <line x1="16" y1="11" x2="16" y2="14" stroke="#8B6E5A" stroke-width="0.8"/>
+              <line x1="24" y1="9.5" x2="24" y2="14" stroke="#8B6E5A" stroke-width="0.8"/>
+              <line x1="32" y1="11" x2="32" y2="14" stroke="#8B6E5A" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <h3>Birthdays</h3>
+          <p>A gift they'll think about long after the candles are blown out</p>
+        </div>
+
+        <div class="occasion-card fade-up">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 42 Q10 32 6 24 Q2 16 8 10 Q14 4 24 14 Q34 4 40 10 Q46 16 42 24 Q38 32 24 42Z" fill="#C17B74" opacity="0.15" stroke="#C17B74" stroke-width="1.5"/>
+              <path d="M24 36 Q14 28 11 22 Q8 16 12 12 Q16 8 24 16 Q32 8 36 12 Q40 16 37 22 Q34 28 24 36Z" fill="#C17B74" opacity="0.12"/>
+              <circle cx="24" cy="22" r="3" fill="#D4A574" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3>Just Because</h3>
+          <p>No occasion needed. Some people just deserve a little magic</p>
+        </div>
+
+        <div class="occasion-card fade-up">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Flower / blossom -->
+              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(0 24 20)"/>
+              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(60 24 20)"/>
+              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(120 24 20)"/>
+              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(180 24 20)"/>
+              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(240 24 20)"/>
+              <circle cx="24" cy="20" r="4" fill="#D4A574" opacity="0.4"/>
+              <!-- Stem -->
+              <path d="M24 28 Q24 35 22 42" fill="none" stroke="#8B6E5A" stroke-width="1.5" opacity="0.5"/>
+              <ellipse cx="18" cy="34" rx="6" ry="3" fill="#8B6E5A" opacity="0.15" transform="rotate(-30 18 34)"/>
+              <ellipse cx="30" cy="37" rx="5" ry="2.5" fill="#8B6E5A" opacity="0.15" transform="rotate(25 30 37)"/>
+            </svg>
+          </div>
+          <h3>Mother's Day</h3>
+          <p>Give Mum something she'll look forward to every single month</p>
+        </div>
+
+        <div class="occasion-card fade-up">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Envelope -->
+              <rect x="6" y="14" width="36" height="24" rx="3" fill="#FBF7F0" stroke="#C17B74" stroke-width="1.5"/>
+              <path d="M6 14 L24 28 L42 14" fill="none" stroke="#C17B74" stroke-width="1.5"/>
+              <path d="M6 38 L18 26" fill="none" stroke="#C17B74" stroke-width="1" opacity="0.4"/>
+              <path d="M42 38 L30 26" fill="none" stroke="#C17B74" stroke-width="1" opacity="0.4"/>
+              <!-- Heart seal -->
+              <path d="M24 22 Q21 18 22 16 Q23 14 24 16 Q25 14 26 16 Q27 18 24 22Z" fill="#C17B74" opacity="0.4"/>
+            </svg>
+          </div>
+          <h3>Thank You</h3>
+          <p>For the person who deserves more than a card</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Choose Your Story ============ -->
+  <section class="section section-dark-alt" id="stories">
+    <div class="container">
+      <h2 class="section-title fade-up">Choose Your Story</h2>
+      <p class="section-subtitle fade-up">Each collection is a continuing tale, delivered in beautiful handwritten-style letters. Pick the world you want to step into.</p>
       <div class="story-grid">
 
         <!-- Story 1: Rose Ashworth -->
-        <div class="story-card">
-          <div class="story-card-image">&#9993;</div>
+        <div class="story-card fade-up">
+          <div class="story-card-image">
+            <svg viewBox="0 0 500 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <radialGradient id="candleGlow" cx="0.75" cy="0.25" r="0.4">
+                  <stop offset="0%" stop-color="#D4A574" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#D4A574" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="roseDesk" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#A0785A"/>
+                  <stop offset="100%" stop-color="#7A5C42"/>
+                </linearGradient>
+                <linearGradient id="roseBg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#F5E6DC"/>
+                  <stop offset="50%" stop-color="#EEDDD0"/>
+                  <stop offset="100%" stop-color="#E8D0C0"/>
+                </linearGradient>
+              </defs>
+              <!-- Background -->
+              <rect width="500" height="300" fill="url(#roseBg)"/>
+              <!-- Candlelight glow -->
+              <circle cx="375" cy="75" r="120" fill="url(#candleGlow)"/>
+              <!-- Wallpaper pattern hint -->
+              <pattern id="wp" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M20 5 Q25 15 20 25 Q15 15 20 5Z" fill="#C17B74" opacity="0.04"/>
+              </pattern>
+              <rect width="500" height="140" fill="url(#wp)"/>
+              <!-- Writing desk -->
+              <rect x="60" y="160" width="380" height="12" rx="2" fill="url(#roseDesk)"/>
+              <rect x="65" y="172" width="8" height="3" fill="#6B4C36"/>
+              <rect x="427" y="172" width="8" height="3" fill="#6B4C36"/>
+              <!-- Desk front panel -->
+              <rect x="80" y="172" width="340" height="80" rx="3" fill="#8B6A4A" opacity="0.3"/>
+              <rect x="90" y="180" width="140" height="55" rx="2" fill="#7A5C42" opacity="0.25"/>
+              <circle cx="160" cy="207" r="3" fill="#D4A574" opacity="0.4"/>
+              <rect x="270" y="180" width="140" height="55" rx="2" fill="#7A5C42" opacity="0.25"/>
+              <circle cx="340" cy="207" r="3" fill="#D4A574" opacity="0.4"/>
+              <!-- Desk legs -->
+              <rect x="80" y="252" width="10" height="48" rx="2" fill="#7A5C42"/>
+              <rect x="410" y="252" width="10" height="48" rx="2" fill="#7A5C42"/>
+              <!-- Open letter on desk -->
+              <rect x="140" y="115" width="120" height="80" rx="2" fill="#FBF7F0" transform="rotate(-5 200 155)" filter="url(#letterShadow)"/>
+              <g transform="rotate(-5 200 155)">
+                <line x1="152" y1="132" x2="248" y2="132" stroke="#8B6E5A" stroke-width="0.6" opacity="0.3"/>
+                <line x1="152" y1="142" x2="240" y2="142" stroke="#8B6E5A" stroke-width="0.6" opacity="0.25"/>
+                <line x1="152" y1="152" x2="245" y2="152" stroke="#8B6E5A" stroke-width="0.6" opacity="0.25"/>
+                <line x1="152" y1="162" x2="230" y2="162" stroke="#8B6E5A" stroke-width="0.6" opacity="0.2"/>
+                <line x1="152" y1="172" x2="242" y2="172" stroke="#8B6E5A" stroke-width="0.6" opacity="0.2"/>
+                <line x1="152" y1="182" x2="220" y2="182" stroke="#8B6E5A" stroke-width="0.6" opacity="0.15"/>
+                <text x="155" y="128" font-family="Georgia, serif" font-size="7" fill="#8B6E5A" opacity="0.5" font-style="italic">My dearest Rose,</text>
+              </g>
+              <!-- Wax seal -->
+              <circle cx="245" cy="182" r="12" fill="#C17B74" opacity="0.85" transform="rotate(-5 245 182)"/>
+              <circle cx="245" cy="182" r="8" fill="#a8655f" opacity="0.6" transform="rotate(-5 245 182)"/>
+              <text x="241" y="185" font-family="Georgia, serif" font-size="8" fill="#FBF7F0" opacity="0.7" transform="rotate(-5 245 182)">L</text>
+              <!-- Inkwell -->
+              <ellipse cx="330" cy="148" rx="14" ry="8" fill="#2D2020" opacity="0.7"/>
+              <rect x="318" y="130" width="24" height="18" rx="4" fill="#2D2020" opacity="0.6"/>
+              <ellipse cx="330" cy="130" rx="12" ry="5" fill="#1a1212" opacity="0.5"/>
+              <ellipse cx="330" cy="132" rx="8" ry="3" fill="#2D2020" opacity="0.8"/>
+              <!-- Quill pen -->
+              <line x1="325" y1="135" x2="290" y2="80" stroke="#8B6E5A" stroke-width="1.5"/>
+              <path d="M290 80 Q285 70 280 60 Q288 65 295 62 Q292 72 290 80Z" fill="#FBF7F0" stroke="#8B6E5A" stroke-width="0.5" opacity="0.8"/>
+              <path d="M288 76 Q286 72 285 68" fill="none" stroke="#8B6E5A" stroke-width="0.3" opacity="0.4"/>
+              <!-- Candle -->
+              <rect x="368" y="100" width="14" height="55" rx="3" fill="#FBF7F0" opacity="0.9"/>
+              <rect x="368" y="100" width="14" height="55" rx="3" fill="#F5E6DC" opacity="0.5"/>
+              <line x1="375" y1="100" x2="375" y2="92" stroke="#8B6E5A" stroke-width="0.8"/>
+              <!-- Flame -->
+              <ellipse cx="375" cy="86" rx="5" ry="9" fill="#D4A574" opacity="0.8"/>
+              <ellipse cx="375" cy="84" rx="3" ry="6" fill="#F5E6DC" opacity="0.6"/>
+              <ellipse cx="375" cy="83" rx="1.5" ry="3" fill="#FBF7F0" opacity="0.7"/>
+              <!-- Candlestick base -->
+              <ellipse cx="375" cy="155" rx="16" ry="4" fill="#D4A574" opacity="0.5"/>
+              <rect x="370" y="150" width="10" height="8" rx="1" fill="#D4A574" opacity="0.4"/>
+              <!-- Roses bottom-left -->
+              <!-- Rose 1 (large) -->
+              <circle cx="80" cy="130" r="22" fill="#C17B74" opacity="0.6"/>
+              <circle cx="80" cy="130" r="16" fill="#C17B74" opacity="0.45"/>
+              <circle cx="80" cy="130" r="10" fill="#d4908a" opacity="0.5"/>
+              <circle cx="80" cy="130" r="5" fill="#e0a5a0" opacity="0.6"/>
+              <ellipse cx="62" cy="122" rx="14" ry="9" fill="#C17B74" opacity="0.35" transform="rotate(-30 62 122)"/>
+              <ellipse cx="98" cy="122" rx="14" ry="9" fill="#C17B74" opacity="0.35" transform="rotate(30 98 122)"/>
+              <ellipse cx="70" cy="145" rx="13" ry="8" fill="#C17B74" opacity="0.3" transform="rotate(20 70 145)"/>
+              <ellipse cx="95" cy="142" rx="13" ry="8" fill="#C17B74" opacity="0.3" transform="rotate(-15 95 142)"/>
+              <!-- Rose 2 (medium) -->
+              <circle cx="50" cy="155" r="16" fill="#d4908a" opacity="0.5"/>
+              <circle cx="50" cy="155" r="11" fill="#C17B74" opacity="0.4"/>
+              <circle cx="50" cy="155" r="6" fill="#e0a5a0" opacity="0.5"/>
+              <ellipse cx="38" cy="148" rx="10" ry="7" fill="#d4908a" opacity="0.3" transform="rotate(-25 38 148)"/>
+              <ellipse cx="62" cy="150" rx="10" ry="7" fill="#d4908a" opacity="0.3" transform="rotate(20 62 150)"/>
+              <!-- Rose 3 (small bud) -->
+              <circle cx="108" cy="148" r="10" fill="#C17B74" opacity="0.45"/>
+              <circle cx="108" cy="148" r="6" fill="#d4908a" opacity="0.4"/>
+              <!-- Leaves for roses -->
+              <ellipse cx="40" cy="140" rx="16" ry="6" fill="#8B6E5A" opacity="0.2" transform="rotate(-50 40 140)"/>
+              <ellipse cx="110" cy="160" rx="14" ry="5" fill="#8B6E5A" opacity="0.2" transform="rotate(40 110 160)"/>
+              <ellipse cx="60" cy="170" rx="12" ry="5" fill="#8B6E5A" opacity="0.15" transform="rotate(-20 60 170)"/>
+              <path d="M40 140 Q48 137 56 140" fill="none" stroke="#8B6E5A" stroke-width="0.4" opacity="0.15"/>
+              <!-- Rose stems -->
+              <path d="M80 152 Q75 165 70 175" fill="none" stroke="#8B6E5A" stroke-width="1.2" opacity="0.25"/>
+              <path d="M50 170 Q48 180 52 190" fill="none" stroke="#8B6E5A" stroke-width="1" opacity="0.2"/>
+              <!-- Decorative swirl corners -->
+              <path d="M10 290 Q10 270 30 270 Q20 270 20 260 Q20 270 10 270" fill="none" stroke="#C17B74" stroke-width="1" opacity="0.15"/>
+              <path d="M490 290 Q490 270 470 270 Q480 270 480 260 Q480 270 490 270" fill="none" stroke="#C17B74" stroke-width="1" opacity="0.15"/>
+            </svg>
+          </div>
           <div class="story-card-body">
             <span class="story-tag">Regency Romance</span>
             <h3>Rose Ashworth</h3>
@@ -93,8 +361,117 @@
         </div>
 
         <!-- Story 2: Clara Wren -->
-        <div class="story-card">
-          <div class="story-card-image">&#9993;</div>
+        <div class="story-card fade-up">
+          <div class="story-card-image">
+            <svg viewBox="0 0 500 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <radialGradient id="lampGlow" cx="0.3" cy="0.35" r="0.45">
+                  <stop offset="0%" stop-color="#D4A574" stop-opacity="0.3"/>
+                  <stop offset="60%" stop-color="#D4A574" stop-opacity="0.08"/>
+                  <stop offset="100%" stop-color="#D4A574" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="claraBg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#1a2340"/>
+                  <stop offset="50%" stop-color="#1e2a4a"/>
+                  <stop offset="100%" stop-color="#162038"/>
+                </linearGradient>
+                <linearGradient id="curtain" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#1a1a2e"/>
+                  <stop offset="100%" stop-color="#252545"/>
+                </linearGradient>
+              </defs>
+              <!-- Dark background -->
+              <rect width="500" height="300" fill="url(#claraBg)"/>
+              <!-- Lamp glow -->
+              <circle cx="150" cy="105" r="180" fill="url(#lampGlow)"/>
+              <!-- Window frame -->
+              <rect x="180" y="15" width="140" height="130" rx="3" fill="#2a3555" stroke="#3a4a6a" stroke-width="2"/>
+              <!-- Window panes -->
+              <rect x="185" y="20" width="63" height="58" fill="#1e3050" opacity="0.5"/>
+              <rect x="252" y="20" width="63" height="58" fill="#1e3050" opacity="0.5"/>
+              <rect x="185" y="82" width="63" height="58" fill="#1e3050" opacity="0.5"/>
+              <rect x="252" y="82" width="63" height="58" fill="#1e3050" opacity="0.5"/>
+              <!-- Night sky through window -->
+              <circle cx="220" cy="40" r="1.5" fill="#FBF7F0" opacity="0.4"/>
+              <circle cx="280" cy="50" r="1" fill="#FBF7F0" opacity="0.3"/>
+              <circle cx="240" cy="65" r="1.2" fill="#FBF7F0" opacity="0.35"/>
+              <circle cx="300" cy="35" r="0.8" fill="#FBF7F0" opacity="0.25"/>
+              <circle cx="260" cy="95" r="1" fill="#FBF7F0" opacity="0.3"/>
+              <!-- Moonlight sliver -->
+              <circle cx="295" cy="42" r="8" fill="#FBF7F0" opacity="0.08"/>
+              <!-- Window frame cross -->
+              <line x1="250" y1="15" x2="250" y2="145" stroke="#3a4a6a" stroke-width="2.5"/>
+              <line x1="180" y1="78" x2="320" y2="78" stroke="#3a4a6a" stroke-width="2.5"/>
+              <!-- Blackout curtain left -->
+              <path d="M170 10 Q165 10 160 15 L160 150 Q165 148 170 150 Q175 145 180 150 L180 10Z" fill="url(#curtain)" opacity="0.9"/>
+              <path d="M162 20 Q164 80 162 140" fill="none" stroke="#1a1a2e" stroke-width="0.8" opacity="0.3"/>
+              <path d="M170 15 Q172 80 170 145" fill="none" stroke="#2a2a4a" stroke-width="0.5" opacity="0.3"/>
+              <!-- Blackout curtain right -->
+              <path d="M320 10 Q325 10 330 15 L340 150 Q335 148 330 150 Q325 145 320 150 L320 10Z" fill="url(#curtain)" opacity="0.9"/>
+              <path d="M328 20 Q330 80 328 140" fill="none" stroke="#1a1a2e" stroke-width="0.8" opacity="0.3"/>
+              <path d="M335 15 Q337 80 335 145" fill="none" stroke="#2a2a4a" stroke-width="0.5" opacity="0.3"/>
+              <!-- Writing desk -->
+              <rect x="70" y="170" width="360" height="10" rx="2" fill="#5a4535"/>
+              <rect x="70" y="180" width="360" height="70" rx="2" fill="#4a3828" opacity="0.4"/>
+              <!-- Desk legs -->
+              <rect x="85" y="250" width="8" height="50" fill="#5a4535"/>
+              <rect x="407" y="250" width="8" height="50" fill="#5a4535"/>
+              <!-- Desk lamp -->
+              <rect x="115" y="130" width="6" height="40" rx="1" fill="#8B6E5A" opacity="0.7"/>
+              <ellipse cx="118" cy="170" rx="14" ry="4" fill="#5a4535" opacity="0.6"/>
+              <!-- Lamp shade -->
+              <path d="M95 105 L100 130 L136 130 L141 105Z" fill="#D4A574" opacity="0.5"/>
+              <path d="M98 108 L102 128 L134 128 L138 108Z" fill="#D4A574" opacity="0.25"/>
+              <!-- Lamp light bulb glow -->
+              <ellipse cx="118" cy="115" rx="8" ry="6" fill="#D4A574" opacity="0.3"/>
+              <!-- Envelope on desk -->
+              <rect x="200" y="140" width="100" height="60" rx="2" fill="#F5E6DC" opacity="0.85" transform="rotate(3 250 170)"/>
+              <g transform="rotate(3 250 170)">
+                <line x1="212" y1="155" x2="288" y2="155" stroke="#8B6E5A" stroke-width="0.5" opacity="0.3"/>
+                <line x1="212" y1="162" x2="280" y2="162" stroke="#8B6E5A" stroke-width="0.5" opacity="0.25"/>
+                <line x1="212" y1="169" x2="270" y2="169" stroke="#8B6E5A" stroke-width="0.5" opacity="0.2"/>
+                <text x="215" y="153" font-family="Georgia, serif" font-size="5.5" fill="#8B6E5A" opacity="0.5" font-style="italic">Mrs. Eleanor Wren</text>
+                <text x="215" y="166" font-family="Georgia, serif" font-size="5" fill="#8B6E5A" opacity="0.35" font-style="italic">4 Linden Lane</text>
+              </g>
+              <!-- Wax seal on envelope -->
+              <circle cx="280" cy="185" r="8" fill="#C17B74" opacity="0.6" transform="rotate(3 280 185)"/>
+              <!-- Telegram / folded map -->
+              <rect x="310" y="145" width="60" height="40" rx="1" fill="#E8D5C0" opacity="0.5" transform="rotate(-8 340 165)"/>
+              <g transform="rotate(-8 340 165)">
+                <line x1="316" y1="153" x2="364" y2="153" stroke="#8B6E5A" stroke-width="0.4" opacity="0.25"/>
+                <line x1="316" y1="159" x2="360" y2="159" stroke="#8B6E5A" stroke-width="0.4" opacity="0.2"/>
+                <line x1="316" y1="165" x2="355" y2="165" stroke="#8B6E5A" stroke-width="0.4" opacity="0.15"/>
+                <text x="318" y="151" font-family="monospace" font-size="4.5" fill="#8B6E5A" opacity="0.4">TELEGRAM</text>
+              </g>
+              <!-- Fold line on telegram -->
+              <line x1="340" y1="145" x2="340" y2="185" stroke="#8B6E5A" stroke-width="0.3" opacity="0.2" transform="rotate(-8 340 165)"/>
+              <!-- Forget-me-nots (small blue flowers) -->
+              <g opacity="0.7">
+                <!-- Flower 1 -->
+                <circle cx="385" cy="148" r="4" fill="#6a9fd8" opacity="0.6"/>
+                <circle cx="385" cy="148" r="2" fill="#FBF7F0" opacity="0.5"/>
+                <circle cx="381" cy="144" r="3.5" fill="#7aaee0" opacity="0.5"/>
+                <circle cx="389" cy="144" r="3.5" fill="#7aaee0" opacity="0.5"/>
+                <circle cx="382" cy="152" r="3.5" fill="#5d93cc" opacity="0.5"/>
+                <circle cx="388" cy="152" r="3.5" fill="#5d93cc" opacity="0.5"/>
+                <!-- Flower 2 -->
+                <circle cx="400" cy="155" r="3.5" fill="#6a9fd8" opacity="0.55"/>
+                <circle cx="400" cy="155" r="1.8" fill="#FBF7F0" opacity="0.5"/>
+                <circle cx="397" cy="152" r="3" fill="#7aaee0" opacity="0.45"/>
+                <circle cx="403" cy="152" r="3" fill="#7aaee0" opacity="0.45"/>
+                <!-- Flower 3 -->
+                <circle cx="392" cy="160" r="3" fill="#5d93cc" opacity="0.5"/>
+                <circle cx="392" cy="160" r="1.5" fill="#FBF7F0" opacity="0.45"/>
+                <!-- Stems -->
+                <path d="M385 153 Q388 162 392 170" fill="none" stroke="#5a8040" stroke-width="0.8" opacity="0.4"/>
+                <path d="M400 159 Q398 165 395 170" fill="none" stroke="#5a8040" stroke-width="0.7" opacity="0.35"/>
+                <!-- Tiny leaves -->
+                <ellipse cx="390" cy="165" rx="4" ry="1.5" fill="#5a8040" opacity="0.25" transform="rotate(-30 390 165)"/>
+              </g>
+              <!-- Slight warm light reflection on desk surface -->
+              <ellipse cx="170" cy="170" rx="60" ry="8" fill="#D4A574" opacity="0.06"/>
+            </svg>
+          </div>
           <div class="story-card-body">
             <span class="story-tag">Wartime Britain</span>
             <h3>Clara Wren</h3>
@@ -115,23 +492,44 @@
 
   <div class="divider">&#10043; &#10043; &#10043;</div>
 
+  <!-- ============ Letter Reveal Animation ============ -->
+  <section class="letter-reveal-section">
+    <div class="container">
+      <h2 class="letter-reveal-title fade-up"><em>A letter is waiting for you</em></h2>
+      <div class="letter-animation fade-up">
+        <div class="envelope-wrapper">
+          <!-- Envelope back -->
+          <div class="envelope-back"></div>
+          <!-- Letter that slides out -->
+          <div class="letter-paper">
+            <p class="letter-text"><em>My dearest &mdash; I have the most extraordinary news&hellip;</em></p>
+          </div>
+          <!-- Envelope front -->
+          <div class="envelope-front"></div>
+          <!-- Envelope flap -->
+          <div class="envelope-flap"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- How It Works -->
   <section class="section" id="how-it-works">
     <div class="container">
-      <h2 class="section-title">How It Works</h2>
-      <p class="section-subtitle">Three simple steps to a world of stories, delivered straight to your letterbox.</p>
+      <h2 class="section-title fade-up">How It Works</h2>
+      <p class="section-subtitle fade-up">Three simple steps to a world of stories, delivered straight to your letterbox.</p>
       <div class="steps">
-        <div class="step">
+        <div class="step fade-up">
           <div class="step-number">1</div>
           <h3>Choose Your Story</h3>
           <p>Browse our collections and pick the tale that speaks to you — from Regency romance to wartime drama.</p>
         </div>
-        <div class="step">
+        <div class="step fade-up">
           <div class="step-number">2</div>
           <h3>Subscribe</h3>
           <p>Select a monthly or annual plan. Gift subscriptions are available too — perfect for the book lover in your life.</p>
         </div>
-        <div class="step">
+        <div class="step fade-up">
           <div class="step-number">3</div>
           <h3>Receive Your Letters</h3>
           <p>Twice a month, a beautifully crafted story letter arrives at your door by Royal Mail. Settle in and read.</p>
@@ -143,12 +541,12 @@
   <!-- Pricing -->
   <section class="section" id="pricing" style="background: #f5ede3;">
     <div class="container">
-      <h2 class="section-title">Choose Your Plan</h2>
-      <p class="section-subtitle">Subscribe for yourself or give the gift of a story. All plans include free UK delivery and eco-friendly packaging.</p>
+      <h2 class="section-title fade-up">Choose Your Plan</h2>
+      <p class="section-subtitle fade-up">Subscribe for yourself or give the gift of a story. All plans include free UK delivery and eco-friendly packaging.</p>
       <div class="pricing-grid">
 
         <!-- Monthly -->
-        <div class="pricing-card">
+        <div class="pricing-card fade-up">
           <span class="pricing-badge badge-flexible">Most Flexible</span>
           <h3>Monthly</h3>
           <div class="price">&pound;12.99</div>
@@ -158,7 +556,7 @@
         </div>
 
         <!-- Annual -->
-        <div class="pricing-card">
+        <div class="pricing-card fade-up">
           <span class="pricing-badge badge-value">Best Value</span>
           <h3>Annual</h3>
           <div class="price">&pound;119.99</div>
@@ -168,7 +566,7 @@
         </div>
 
         <!-- Gift 3 Months -->
-        <div class="pricing-card highlighted">
+        <div class="pricing-card highlighted fade-up">
           <div class="ribbon-wrap"><div class="ribbon">Most Popular</div></div>
           <span class="pricing-badge badge-popular">Most Popular Gift</span>
           <h3>Gift 3 Months</h3>
@@ -179,7 +577,7 @@
         </div>
 
         <!-- Gift 6 Months -->
-        <div class="pricing-card">
+        <div class="pricing-card fade-up">
           <span class="pricing-badge badge-gift">Gift</span>
           <h3>Gift 6 Months</h3>
           <div class="price">&pound;64.99</div>
@@ -189,7 +587,7 @@
         </div>
 
         <!-- Gift 12 Months -->
-        <div class="pricing-card">
+        <div class="pricing-card fade-up">
           <span class="pricing-badge badge-gift">Gift</span>
           <h3>Gift 12 Months</h3>
           <div class="price">&pound;109.99</div>
@@ -205,23 +603,23 @@
   <!-- Mother's Day Gift Section -->
   <section class="section mothers-day-section" id="mothers-day">
     <div class="container">
-      <h2 class="section-title">Give Mum Something She'll Look Forward To Every Month</h2>
-      <p class="section-subtitle">A Love Letter Tales gift subscription means she'll receive a beautiful letter in her post twice a month — a little moment of magic, just for her.</p>
+      <h2 class="section-title fade-up">Give Mum Something She'll Look Forward To Every Month</h2>
+      <p class="section-subtitle fade-up">A Love Letter Tales gift subscription means she'll receive a beautiful letter in her post twice a month — a little moment of magic, just for her.</p>
 
       <div class="md-gift-grid">
-        <div class="md-gift-card md-featured">
+        <div class="md-gift-card md-featured fade-up">
           <h3>3 Months</h3>
           <div class="price">&pound;34.99</div>
           <p class="price-desc">6 beautiful story letters. The perfect taster.</p>
           <a href="#stripe" class="btn btn-primary">Gift 3 Months</a>
         </div>
-        <div class="md-gift-card">
+        <div class="md-gift-card fade-up">
           <h3>6 Months</h3>
           <div class="price">&pound;64.99</div>
           <p class="price-desc">12 letters. Half a year of stories.</p>
           <a href="#stripe" class="btn btn-outline">Gift 6 Months</a>
         </div>
-        <div class="md-gift-card">
+        <div class="md-gift-card fade-up">
           <h3>12 Months</h3>
           <div class="price">&pound;109.99</div>
           <p class="price-desc">24 letters. A full year of magic in her letterbox.</p>
@@ -230,19 +628,19 @@
       </div>
 
       <!-- How the Gift Works -->
-      <h3 class="section-title" style="margin-top:2.5rem;">How the Gift Works</h3>
+      <h3 class="section-title fade-up" style="margin-top:2.5rem;">How the Gift Works</h3>
       <div class="steps">
-        <div class="step">
+        <div class="step fade-up">
           <div class="step-number">1</div>
           <h3>You Choose</h3>
           <p>Pick a story and gift length — 3, 6, or 12 months.</p>
         </div>
-        <div class="step">
+        <div class="step fade-up">
           <div class="step-number">2</div>
           <h3>We Email You</h3>
           <p>We send you a printable gift card immediately — something lovely to give on the day.</p>
         </div>
-        <div class="step">
+        <div class="step fade-up">
           <div class="step-number">3</div>
           <h3>Mum Receives Her Letters</h3>
           <p>Her first letters arrive within 7 days, then 2 every month after that.</p>
@@ -256,26 +654,29 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section class="section" style="background: #f5ede3;">
+  <!-- ============ Testimonials — Updated ============ -->
+  <section class="section testimonials-section">
     <div class="container">
-      <h2 class="section-title">What Our Readers Say</h2>
-      <p class="section-subtitle">Don't just take our word for it — here's what our subscribers think.</p>
+      <h2 class="section-title fade-up">What Our Readers Say</h2>
+      <p class="section-subtitle fade-up">Don't just take our word for it — here's what our subscribers think.</p>
       <div class="testimonials-grid">
-        <div class="testimonial">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>Opening my letter each fortnight has become my favourite ritual. It feels like receiving a message from another century. I'm completely hooked on Rose's story.</p>
-          <span class="testimonial-author">— Sarah M., Edinburgh</span>
+        <div class="testimonial fade-up">
+          <div class="testimonial-quote">&ldquo;</div>
+          <p>I didn't expect to feel so much reading a letter addressed to someone else. By the second one, I felt like I was there.</p>
+          <div class="testimonial-line"></div>
+          <span class="testimonial-author">Sarah T., Monthly Subscriber</span>
         </div>
-        <div class="testimonial">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>I bought this as a gift for my mum and she absolutely adores it. She says it's the most thoughtful present she's ever received. We now discuss the plot over Sunday tea.</p>
-          <span class="testimonial-author">— James T., Bristol</span>
+        <div class="testimonial fade-up">
+          <div class="testimonial-quote">&ldquo;</div>
+          <p>I bought the 3-month gift for my mum's birthday. She rang me when the first letter arrived. She was crying. In the best way.</p>
+          <div class="testimonial-line"></div>
+          <span class="testimonial-author">Gemma R., Gift Subscriber</span>
         </div>
-        <div class="testimonial">
-          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>In a world of endless scrolling, there's something magical about sitting down with a real letter. The writing is beautiful and the paper quality is gorgeous.</p>
-          <span class="testimonial-author">— Priya K., London</span>
+        <div class="testimonial fade-up">
+          <div class="testimonial-quote">&ldquo;</div>
+          <p>I read mine with a cup of tea every fortnight. It's become my favourite thing. I actually look forward to the post.</p>
+          <div class="testimonial-line"></div>
+          <span class="testimonial-author">Diane W., Annual Subscriber</span>
         </div>
       </div>
     </div>
@@ -290,12 +691,16 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ============ Footer — Warmed Up ============ -->
   <footer class="footer">
     <div class="container">
+      <div class="footer-logo-area">
+        <span class="footer-logo">Love Letter <em>Tales</em></span>
+      </div>
+      <div class="footer-rose-line"></div>
       <div class="footer-grid">
         <div class="footer-about">
-          <h4>Love Letter Tales</h4>
+          <h4>About Us</h4>
           <p>We believe in the beauty of slow storytelling. Every letter is crafted with care, printed on luxurious paper, and sent with love from the UK. Because some stories deserve to be held, not scrolled.</p>
           <div class="footer-social">
             <a href="#" aria-label="Instagram">IG</a>
@@ -324,7 +729,7 @@
           <p style="font-size:0.9rem;color:rgba(251,247,240,0.7);margin-bottom:0.8rem;">Join our mailing list for writing news, sneak peeks, and the occasional love letter.</p>
           <form class="newsletter-form" onsubmit="event.preventDefault();">
             <input type="email" placeholder="Your email address" aria-label="Email address" required>
-            <button type="submit">Join</button>
+            <button type="submit">Join the Story</button>
           </form>
         </div>
       </div>
