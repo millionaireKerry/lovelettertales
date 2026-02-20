@@ -51,7 +51,9 @@
   <!-- Contact Form -->
   <section class="section">
     <div class="container">
-      <form class="contact-form" id="contactForm" onsubmit="event.preventDefault(); document.getElementById('formSuccess').style.display='block'; this.reset();">
+      <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p style="display:none;"><label>Do not fill this in: <input name="bot-field"></label></p>
         <div class="form-group">
           <label for="name">Your Name</label>
           <input type="text" id="name" name="name" placeholder="e.g. Rose Ashworth" required>
@@ -65,7 +67,6 @@
           <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;">Send Your Message</button>
-        <p id="formSuccess" style="display:none;text-align:center;margin-top:1.2rem;color:#8B6E5A;font-style:italic;">Thank you for writing to us. We'll reply as soon as we can.</p>
       </form>
     </div>
   </section>
@@ -106,7 +107,7 @@
         </div>
         <div class="footer-links">
           <h4>Legal</h4>
-          <a href="#">Privacy Policy</a>
+          <a href="privacy.html">Privacy Policy</a>
           <a href="#">Terms &amp; Conditions</a>
           <a href="#">Refund Policy</a>
         </div>
