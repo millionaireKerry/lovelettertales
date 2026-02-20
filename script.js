@@ -82,4 +82,30 @@
     });
   });
 
+  // ---- Scroll Fade-Up Animations (Intersection Observer) ----
+  var fadeElements = document.querySelectorAll('.fade-up');
+
+  if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
+    var fadeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    fadeElements.forEach(function (el) {
+      fadeObserver.observe(el);
+    });
+  } else {
+    // Fallback: show everything immediately if IntersectionObserver not supported
+    fadeElements.forEach(function (el) {
+      el.classList.add('visible');
+    });
+  }
+
 })();

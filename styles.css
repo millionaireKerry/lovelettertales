@@ -5,7 +5,8 @@
      rose    #C17B74
      brown   #8B6E5A
      dark    #2D2020
-   Fonts: Playfair Display (headings), Lora (body)
+     hero-dark #1e1510
+   Fonts: Playfair Display (headings), Lora (body), Cormorant Garamond (testimonials)
    =========================== */
 
 /* ---------- Reset & Base ---------- */
@@ -88,6 +89,24 @@ p {
   text-align: center;
 }
 
+/* ---------- Scroll Fade-Up Animations ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.25s; }
+.fade-up:nth-child(5) { transition-delay: 0.3s; }
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-block;
@@ -124,6 +143,18 @@ p {
 .btn-outline:hover {
   background: #C17B74;
   color: #FBF7F0;
+}
+
+.btn-outline-light {
+  background: transparent;
+  color: #FBF7F0;
+  border: 2px solid rgba(251, 247, 240, 0.5);
+}
+
+.btn-outline-light:hover {
+  background: rgba(251, 247, 240, 0.15);
+  color: #FBF7F0;
+  border-color: #FBF7F0;
 }
 
 .btn-secondary {
@@ -307,49 +338,71 @@ p {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* ---------- Hero ---------- */
+/* ====================================
+   HERO — Dark, Atmospheric, Full-Height
+   ==================================== */
 .hero {
-  padding: 6rem 0 5rem;
-  text-align: center;
-  background: linear-gradient(180deg, #FBF7F0 0%, #f5ede3 100%);
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #1e1510;
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
+/* Pulsing radial glow */
+.hero-glow {
   position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 320px;
-  height: 320px;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: rgba(193, 123, 116, 0.06);
+  background: radial-gradient(circle, rgba(193, 123, 116, 0.18) 0%, rgba(193, 123, 116, 0.05) 40%, transparent 70%);
+  animation: glowPulse 6s ease-in-out infinite;
   pointer-events: none;
 }
 
-.hero::after {
-  content: '';
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* Botanical SVG background */
+.hero-botanical {
   position: absolute;
-  bottom: -40px;
-  left: -40px;
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  background: rgba(139, 110, 90, 0.05);
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 800px;
+  height: auto;
+  transform: translate(-50%, -50%);
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Hero content */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding: 2rem 0;
 }
 
 .hero h1 {
+  color: #FBF7F0;
   margin-bottom: 1.2rem;
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
 }
 
 .hero p {
-  font-size: 1.1rem;
-  color: #8B6E5A;
+  font-size: 1.15rem;
+  color: rgba(251, 247, 240, 0.75);
   max-width: 580px;
   margin: 0 auto 2.4rem;
 }
@@ -357,6 +410,60 @@ p {
 .hero .btn {
   margin: 0 0.5rem;
 }
+
+/* ---------- Rose Petals Falling ---------- */
+.hero-petals {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  border-radius: 50% 0 50% 0;
+  opacity: 0;
+  animation: petalFall linear infinite;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  5% { opacity: 0.7; }
+  50% { transform: translateY(50vh) translateX(30px) rotate(180deg); }
+  95% { opacity: 0.5; }
+  100% {
+    transform: translateY(110vh) translateX(-20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Individual petal styles — positions, sizes, colours, speeds */
+.petal-1  { left: 5%;  width: 10px; height: 14px; background: rgba(193, 123, 116, 0.5); animation-duration: 12s; animation-delay: 0s; }
+.petal-2  { left: 12%; width: 8px;  height: 12px; background: rgba(212, 165, 116, 0.4); animation-duration: 15s; animation-delay: 2s; }
+.petal-3  { left: 20%; width: 12px; height: 16px; background: rgba(193, 123, 116, 0.45); animation-duration: 11s; animation-delay: 1s; transform: rotate(45deg); }
+.petal-4  { left: 28%; width: 7px;  height: 10px; background: rgba(224, 165, 160, 0.5); animation-duration: 14s; animation-delay: 3s; }
+.petal-5  { left: 35%; width: 11px; height: 15px; background: rgba(193, 123, 116, 0.35); animation-duration: 13s; animation-delay: 0.5s; }
+.petal-6  { left: 42%; width: 9px;  height: 13px; background: rgba(212, 144, 138, 0.45); animation-duration: 16s; animation-delay: 4s; }
+.petal-7  { left: 50%; width: 10px; height: 14px; background: rgba(193, 123, 116, 0.4); animation-duration: 12s; animation-delay: 1.5s; }
+.petal-8  { left: 58%; width: 8px;  height: 11px; background: rgba(224, 165, 160, 0.5); animation-duration: 14s; animation-delay: 2.5s; }
+.petal-9  { left: 65%; width: 12px; height: 16px; background: rgba(193, 123, 116, 0.3); animation-duration: 11s; animation-delay: 0.8s; }
+.petal-10 { left: 72%; width: 7px;  height: 10px; background: rgba(212, 165, 116, 0.45); animation-duration: 15s; animation-delay: 3.5s; }
+.petal-11 { left: 78%; width: 10px; height: 14px; background: rgba(193, 123, 116, 0.4); animation-duration: 13s; animation-delay: 1.2s; }
+.petal-12 { left: 85%; width: 9px;  height: 12px; background: rgba(224, 165, 160, 0.35); animation-duration: 16s; animation-delay: 4.5s; }
+.petal-13 { left: 92%; width: 11px; height: 15px; background: rgba(193, 123, 116, 0.45); animation-duration: 12s; animation-delay: 2s; }
+.petal-14 { left: 8%;  width: 6px;  height: 9px;  background: rgba(212, 144, 138, 0.4); animation-duration: 17s; animation-delay: 5s; }
+.petal-15 { left: 38%; width: 8px;  height: 11px; background: rgba(193, 123, 116, 0.3); animation-duration: 14s; animation-delay: 3s; }
+.petal-16 { left: 55%; width: 9px;  height: 13px; background: rgba(224, 165, 160, 0.4); animation-duration: 13s; animation-delay: 1.8s; }
+.petal-17 { left: 68%; width: 7px;  height: 10px; background: rgba(193, 123, 116, 0.35); animation-duration: 15s; animation-delay: 2.8s; }
+.petal-18 { left: 82%; width: 10px; height: 13px; background: rgba(212, 144, 138, 0.3); animation-duration: 11s; animation-delay: 0.3s; }
 
 /* Decorative divider */
 .divider {
@@ -394,7 +501,70 @@ p {
   font-size: 1.15rem;
 }
 
-/* ---------- Story Cards ---------- */
+/* ====================================
+   Gift Occasions Section
+   ==================================== */
+.gift-occasions {
+  background: #FBF7F0;
+}
+
+.occasions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.occasion-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 1.2rem;
+  text-align: center;
+  box-shadow: 0 2px 16px rgba(45, 32, 32, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(193, 123, 116, 0.08);
+}
+
+.occasion-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px rgba(45, 32, 32, 0.1);
+}
+
+.occasion-icon {
+  margin-bottom: 1rem;
+}
+
+.occasion-icon svg {
+  display: inline-block;
+}
+
+.occasion-card h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #2D2020;
+}
+
+.occasion-card p {
+  font-size: 0.88rem;
+  color: #8B6E5A;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* ====================================
+   Story Cards
+   ==================================== */
+.section-dark-alt {
+  background: #f5ede3;
+}
+
+.section-dark-alt .section-title,
+.section-dark-alt .section-subtitle {
+  color: #2D2020;
+}
+
 .story-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -406,24 +576,39 @@ p {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 16px rgba(45, 32, 32, 0.06);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 2px solid transparent;
 }
 
 .story-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 30px rgba(45, 32, 32, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(45, 32, 32, 0.14);
+  border-color: #C17B74;
 }
 
 .story-card-image {
-  height: 220px;
+  height: 260px;
   background: linear-gradient(135deg, #e8d5cf 0%, #dbc4b8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 3rem;
-  color: #C17B74;
-  opacity: 0.4;
+  overflow: hidden;
+  position: relative;
+}
+
+.story-card-image svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.story-card:hover .story-card-image svg {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
+}
+
+.story-card-image svg {
+  transition: transform 0.3s ease;
 }
 
 .story-card-body {
@@ -456,7 +641,123 @@ p {
   width: 100%;
 }
 
-/* ---------- How It Works Steps ---------- */
+/* ====================================
+   Letter Reveal Animation Section
+   ==================================== */
+.letter-reveal-section {
+  background: #2D2020;
+  padding: 5rem 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.letter-reveal-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  color: #FBF7F0;
+  margin-bottom: 3rem;
+}
+
+.letter-animation {
+  display: flex;
+  justify-content: center;
+  perspective: 800px;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 280px;
+  height: 200px;
+}
+
+/* Envelope back */
+.envelope-back {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background: #C17B74;
+  border-radius: 0 0 8px 8px;
+  z-index: 1;
+}
+
+/* Letter paper */
+.letter-paper {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 30px;
+  height: 140px;
+  background: #FBF7F0;
+  border-radius: 4px;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20px;
+  animation: letterSlide 8s ease-in-out infinite;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.letter-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.95rem;
+  color: #8B6E5A;
+  opacity: 0;
+  animation: letterTextFade 8s ease-in-out infinite;
+  margin: 0;
+  padding: 0 10px;
+}
+
+@keyframes letterSlide {
+  0%, 15% { transform: translateY(0); }
+  35%, 60% { transform: translateY(-80px); }
+  80%, 100% { transform: translateY(0); }
+}
+
+@keyframes letterTextFade {
+  0%, 25% { opacity: 0; }
+  40%, 55% { opacity: 1; }
+  70%, 100% { opacity: 0; }
+}
+
+/* Envelope front */
+.envelope-front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: #d4908a;
+  border-radius: 0 0 8px 8px;
+  z-index: 3;
+}
+
+/* Envelope flap */
+.envelope-flap {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 100px solid #a8655f;
+  z-index: 4;
+  transform-origin: top center;
+  animation: flapOpen 8s ease-in-out infinite;
+}
+
+@keyframes flapOpen {
+  0%, 10% { transform: rotateX(0deg); }
+  25%, 65% { transform: rotateX(180deg); }
+  80%, 100% { transform: rotateX(0deg); }
+}
+
+/* ====================================
+   How It Works Steps
+   ==================================== */
 .steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -494,7 +795,7 @@ p {
 
 /* Arrow between steps (desktop only) */
 .step:not(:last-child)::after {
-  content: '→';
+  content: '\2192';
   position: absolute;
   top: 2.5rem;
   right: -1.4rem;
@@ -503,7 +804,14 @@ p {
   opacity: 0.4;
 }
 
-/* ---------- Testimonials ---------- */
+/* ====================================
+   Testimonials — Updated
+   ==================================== */
+.testimonials-section {
+  background: #FBF7F0;
+  padding: 5rem 0;
+}
+
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -513,41 +821,45 @@ p {
 .testimonial {
   background: #fff;
   border-radius: 12px;
-  padding: 2rem;
+  padding: 2.5rem 2rem 2rem;
   box-shadow: 0 2px 16px rgba(45, 32, 32, 0.05);
   position: relative;
 }
 
-.testimonial::before {
-  content: '\201C';
+.testimonial-quote {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 4rem;
+  font-size: 5rem;
   color: #C17B74;
-  opacity: 0.2;
-  position: absolute;
-  top: 0.5rem;
-  left: 1.2rem;
   line-height: 1;
+  margin-bottom: -1.5rem;
+  opacity: 0.6;
 }
 
 .testimonial p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #2D2020;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
   position: relative;
   z-index: 1;
 }
 
-.testimonial-author {
-  font-size: 0.85rem;
-  color: #8B6E5A;
-  font-weight: 600;
+.testimonial-line {
+  width: 40px;
+  height: 2px;
+  background: #C17B74;
+  margin-bottom: 0.8rem;
+  opacity: 0.5;
 }
 
-.testimonial .stars {
-  color: #C17B74;
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
+.testimonial-author {
+  font-size: 0.8rem;
+  color: #8B6E5A;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 /* ---------- Gift Cards ---------- */
@@ -612,7 +924,7 @@ p {
 }
 
 .gift-card ul li::before {
-  content: '✓';
+  content: '\2713';
   position: absolute;
   left: 0;
   color: #C17B74;
@@ -725,11 +1037,38 @@ p {
   min-height: 140px;
 }
 
-/* ---------- Footer ---------- */
+/* ====================================
+   Footer — Warmed Up
+   ==================================== */
 .footer {
   background: #2D2020;
   color: #FBF7F0;
   padding: 4rem 0 2rem;
+}
+
+.footer-logo-area {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #FBF7F0;
+}
+
+.footer-logo em {
+  font-style: italic;
+  color: #C17B74;
+}
+
+.footer-rose-line {
+  width: 80px;
+  height: 2px;
+  background: #C17B74;
+  margin: 0 auto 2.5rem;
+  opacity: 0.6;
 }
 
 .footer-grid {
@@ -796,7 +1135,7 @@ p {
   flex: 1;
   padding: 0.65rem 1rem;
   border-radius: 50px;
-  border: 1px solid rgba(251, 247, 240, 0.2);
+  border: 1px solid rgba(251, 247, 240, 0.3);
   background: rgba(251, 247, 240, 0.08);
   color: #FBF7F0;
   font-family: 'Lora', Georgia, serif;
@@ -813,7 +1152,7 @@ p {
 }
 
 .newsletter-form button {
-  padding: 0.65rem 1.2rem;
+  padding: 0.65rem 1.4rem;
   border-radius: 50px;
   border: none;
   background: #C17B74;
@@ -1129,7 +1468,9 @@ p {
   font-size: 0.9rem;
 }
 
-/* ---------- Responsive ---------- */
+/* ====================================
+   Responsive
+   ==================================== */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -1154,13 +1495,32 @@ p {
   }
 
   .hero {
-    padding: 4rem 0 3rem;
+    min-height: 85vh;
   }
 
   .hero .btn {
     display: block;
     margin: 0.5rem auto;
     max-width: 260px;
+  }
+
+  .hero-glow {
+    width: 500px;
+    height: 500px;
+  }
+
+  /* Fewer petals on mobile */
+  .petal-14,
+  .petal-15,
+  .petal-16,
+  .petal-17,
+  .petal-18 {
+    display: none;
+  }
+
+  .occasions-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
 
   .step:not(:last-child)::after {
@@ -1223,6 +1583,27 @@ p {
   .promo-banner .banner-close {
     right: 0.5rem;
   }
+
+  .envelope-wrapper {
+    width: 240px;
+    height: 170px;
+  }
+
+  .envelope-back {
+    height: 140px;
+  }
+
+  .envelope-flap {
+    border-left-width: 120px;
+    border-right-width: 120px;
+    border-top-width: 85px;
+  }
+}
+
+@media (max-width: 600px) {
+  .occasions-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1231,6 +1612,37 @@ p {
   }
 
   .hero {
-    padding: 3rem 0 2.5rem;
+    min-height: 80vh;
+  }
+
+  .letter-reveal-section {
+    padding: 3.5rem 0;
+  }
+
+  .envelope-wrapper {
+    width: 200px;
+    height: 150px;
+  }
+
+  .envelope-back {
+    height: 120px;
+  }
+
+  .envelope-flap {
+    border-left-width: 100px;
+    border-right-width: 100px;
+    border-top-width: 75px;
+    top: 30px;
+  }
+
+  .letter-paper {
+    left: 15px;
+    right: 15px;
+    bottom: 20px;
+    height: 110px;
+  }
+
+  .letter-text {
+    font-size: 0.82rem;
   }
 }
