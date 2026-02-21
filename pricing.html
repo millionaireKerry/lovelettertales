@@ -9,6 +9,51 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ── UK / International toggle ── */
+    .delivery-toggle-wrap {
+      text-align: center;
+      margin: 0 auto 40px;
+    }
+    .delivery-toggle-wrap p {
+      font-family: 'Lora', serif;
+      font-size: 0.92rem;
+      color: #8B6E5A;
+      margin-bottom: 14px;
+    }
+    .delivery-toggle {
+      display: inline-flex;
+      background: #f0e8df;
+      border-radius: 30px;
+      padding: 4px;
+      gap: 4px;
+    }
+    .delivery-toggle button {
+      border: none;
+      background: transparent;
+      font-family: 'Lora', serif;
+      font-size: 0.92rem;
+      color: #8B6E5A;
+      padding: 9px 22px;
+      border-radius: 26px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .delivery-toggle button.active {
+      background: #2D2020;
+      color: #FBF7F0;
+    }
+    .intl-note {
+      font-family: 'Lora', serif;
+      font-size: 0.82rem;
+      color: #8B6E5A;
+      text-align: center;
+      margin-top: -28px;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
 
@@ -54,26 +99,35 @@
       <h2 class="section-title">Subscribe for Yourself</h2>
       <p class="section-subtitle">Pick a plan and start receiving stories. No contracts, no hidden costs just beautiful letters in your letterbox.</p>
 
+            <!-- UK / International toggle -->
+      <div class="delivery-toggle-wrap">
+        <p>Where are we sending your letters?</p>
+        <div class="delivery-toggle" id="deliveryToggle">
+          <button class="active" id="btn-uk" onclick="setDelivery('uk')">&#127468;&#127463; UK</button>
+          <button id="btn-intl" onclick="setDelivery('intl')">&#127758; International</button>
+        </div>
+      </div>
+      <p class="intl-note" id="intl-note" style="display:none;">Airmail delivery included. Letters posted on the 1st and 15th of every month.</p>
       <div class="pricing-grid" style="max-width:700px;margin:0 auto 4rem;">
 
         <!-- Monthly -->
         <div class="pricing-card">
           <span class="pricing-badge badge-flexible">Most Flexible</span>
           <h3>Monthly</h3>
-          <div class="price">&pound;12.99</div>
+          <div class="price" id="price-monthly">&pound;12.99</div>
           <div class="price-period">per month</div>
           <p class="price-desc">2 letters posted on the 1st and 15th every month. Cancel anytime.</p>
-          <a href="https://buy.stripe.com/28E00idAhgQ6dgw8gU1Nu03" target="_blank" rel="noopener" class="btn btn-outline">Subscribe Monthly</a>
+          <a href="https://buy.stripe.com/28E00idAhgQ6dgw8gU1Nu03" id="link-monthly" target="_blank" rel="noopener" class="btn btn-outline">Subscribe Monthly</a>
         </div>
 
         <!-- Annual -->
         <div class="pricing-card highlighted">
           <span class="pricing-badge badge-value">Best Value</span>
           <h3>Annual</h3>
-          <div class="price">&pound;119.99</div>
+          <div class="price" id="price-annual">&pound;119.99</div>
           <div class="price-period">per year</div>
           <p class="price-desc">2 letters per month posted on the 1st and 15th. Save over &pound;35.</p>
-          <a href="https://buy.stripe.com/4gM3cuao50R8foE2WA1Nu04" target="_blank" rel="noopener" class="btn btn-primary">Subscribe Annually</a>
+          <a href="https://buy.stripe.com/4gM3cuao50R8foE2WA1Nu04" id="link-annual" target="_blank" rel="noopener" class="btn btn-primary">Subscribe Annually</a>
         </div>
 
       </div>
@@ -88,30 +142,30 @@
           <div class="ribbon-wrap"><div class="ribbon">Most Popular</div></div>
           <span class="pricing-badge badge-popular">Most Popular Gift</span>
           <h3>Gift 3 Months</h3>
-          <div class="price">&pound;34.99</div>
+          <div class="price" id="price-gift3">&pound;34.99</div>
           <div class="price-period">one-off payment</div>
           <p class="price-desc">The perfect gift. 6 beautifully crafted letters.</p>
-          <a href="https://buy.stripe.com/7sY9AS8fX2Zgdgw9kY1Nu02" target="_blank" rel="noopener" class="btn btn-primary">Buy Gift</a>
+          <a href="https://buy.stripe.com/7sY9AS8fX2Zgdgw9kY1Nu02" id="link-gift3" target="_blank" rel="noopener" class="btn btn-primary">Buy Gift</a>
         </div>
 
         <!-- Gift 6 Months -->
         <div class="pricing-card">
           <span class="pricing-badge badge-gift">Gift</span>
           <h3>Gift 6 Months</h3>
-          <div class="price">&pound;64.99</div>
+          <div class="price" id="price-gift6">&pound;64.99</div>
           <div class="price-period">one-off payment</div>
           <p class="price-desc">Six months of stories. A truly memorable gift.</p>
-          <a href="https://buy.stripe.com/eVqcN4gMtfM25O440E1Nu01" target="_blank" rel="noopener" class="btn btn-outline">Buy Gift</a>
+          <a href="https://buy.stripe.com/eVqcN4gMtfM25O440E1Nu01" id="link-gift6" target="_blank" rel="noopener" class="btn btn-outline">Buy Gift</a>
         </div>
 
         <!-- Gift 12 Months -->
         <div class="pricing-card">
           <span class="pricing-badge badge-gift">Gift</span>
           <h3>Gift 12 Months</h3>
-          <div class="price">&pound;109.99</div>
+          <div class="price" id="price-gift12">&pound;109.99</div>
           <div class="price-period">one-off payment</div>
           <p class="price-desc">A full year of letters. The ultimate gift for someone special.</p>
-          <a href="https://buy.stripe.com/bJedR8bs9gQ6dgwdBe1Nu00" target="_blank" rel="noopener" class="btn btn-outline">Buy Gift</a>
+          <a href="https://buy.stripe.com/bJedR8bs9gQ6dgwdBe1Nu00" id="link-gift12" target="_blank" rel="noopener" class="btn btn-outline">Buy Gift</a>
         </div>
 
       </div>
@@ -185,5 +239,23 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    var ukLinks = { monthly:'https://buy.stripe.com/28E00idAhgQ6dgw8gU1Nu03', annual:'https://buy.stripe.com/4gM3cuao50R8foE2WA1Nu04', gift3:'https://buy.stripe.com/7sY9AS8fX2Zgdgw9kY1Nu02', gift6:'https://buy.stripe.com/eVqcN4gMtfM25O440E1Nu01', gift12:'https://buy.stripe.com/bJedR8bs9gQ6dgwdBe1Nu00' };
+    var intlLinks = { monthly:'https://buy.stripe.com/4gM4gy7bTarI90g1Sw1Nu05', annual:'https://buy.stripe.com/bJe6oGfIp57o4K07cQ1Nu06', gift3:'https://buy.stripe.com/fZu00i7bT43kfoE1Sw1Nu07', gift6:'https://buy.stripe.com/00wfZgbs97fwa4k40E1Nu08', gift12:'https://buy.stripe.com/cNi4gybs9arIb8odBe1Nu09' };
+    var ukPrices = { monthly:'&pound;12.99', annual:'&pound;119.99', gift3:'&pound;34.99', gift6:'&pound;64.99', gift12:'&pound;109.99' };
+    var intlPrices = { monthly:'&pound;17.99', annual:'&pound;179.99', gift3:'&pound;49.99', gift6:'&pound;94.99', gift12:'&pound;169.99' };
+    function setDelivery(zone) {
+      var links = zone==='uk' ? ukLinks : intlLinks;
+      var prices = zone==='uk' ? ukPrices : intlPrices;
+      document.getElementById('btn-uk').classList.toggle('active', zone==='uk');
+      document.getElementById('btn-intl').classList.toggle('active', zone==='intl');
+      ['monthly','annual','gift3','gift6','gift12'].forEach(function(k) {
+        var el = document.getElementById('link-'+k); if (el) el.href = links[k];
+        var pe = document.getElementById('price-'+k); if (pe) pe.innerHTML = prices[k];
+      });
+      var note = document.getElementById('intl-note');
+      if (note) note.style.display = zone==='intl' ? 'block' : 'none';
+    }
+  </script>
 </body>
 </html>
