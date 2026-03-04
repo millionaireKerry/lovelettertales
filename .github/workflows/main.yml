@@ -1,0 +1,19 @@
+
+name: Content Automation
+
+on:
+  schedule:
+    - cron: "0 12 * * 3,6"
+  workflow_dispatch:
+
+jobs:
+  run-content-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Mission Control
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // This is a placeholder. In a real scenario, this would trigger the main orchestrator.
+            // For now, we just log the intent.
+            console.log("Triggering content generation for lovelettertales.com");
