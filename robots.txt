@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /gift-admin.html
+Disallow: /gift-card.html
 
 Sitemap: https://lovelettertales.com/sitemap.xml
