@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You! | Love Letter Tales</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .success-container {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 40px;
+      background: #fff;
+      border: 1px solid #e8ddd4;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .success-icon {
+      font-size: 48px;
+      color: #C17B74;
+      margin-bottom: 20px;
+    }
+    .personalization-form {
+      text-align: left;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid #eee;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 8px;
+      color: #2D2020;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Lato', sans-serif;
+    }
+    .btn-submit {
+      background: #2D2020;
+      color: #FBF7F0;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    .btn-submit:hover {
+      background: #4a3535;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Love Letter <span>Tales</span></a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="success-container">
+      <div class="success-icon">💌</div>
+      <h1>Thank You for Your Order!</h1>
+      <p>We've received your payment. We're getting your gift ready right now.</p>
+
+      <div class="personalization-form">
+        <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Personalise Your Gift</h2>
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 25px;">Fill this in now and we'll include these details on the digital gift card we send you.</p>
+        
+        <form name="personalization" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="personalization">
+          
+          <div class="form-group">
+            <label for="buyer-email">Your Email (to match your order)</label>
+            <input type="email" id="buyer-email" name="buyer-email" placeholder="The email you used to pay" required>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name">Recipient's Name</label>
+            <input type="text" id="recipient-name" name="recipient-name" placeholder="Who is this gift for?" required>
+          </div>
+
+          <div class="form-group">
+            <label for="personal-message">Your Personal Message</label>
+            <textarea id="personal-message" name="personal-message" rows="4" placeholder="e.g. Happy Mother's Day! With all our love, Kerry & family x"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Save Personalisation</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Love Letter Tales</p>
+    </div>
+  </footer>
+</body>
+</html>
