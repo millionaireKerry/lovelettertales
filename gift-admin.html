@@ -499,7 +499,18 @@
   }
 
   function buildGiftCardURL(data) {
-    const base = window.location.origin + window.location.pathname.replace('gift-admin.html', 'gift-card.html');
+    // Robustly find the directory and point to gift-card.html
+    let path = window.location.pathname;
+    if (path.endsWith('gift-admin.html')) {
+      path = path.replace('gift-admin.html', 'gift-card.html');
+    } else if (path.endsWith('gift-admin')) {
+      path = path.replace('gift-admin', 'gift-card.html');
+    } else {
+      // Fallback: assume it's in the same directory
+      path = path.substring(0, path.lastIndexOf('/') + 1) + 'gift-card.html';
+    }
+    
+    const base = window.location.origin + path;
     const p = new URLSearchParams();
     if (data.to)      p.set('to',      data.to);
     if (data.from)    p.set('from',    data.from);
@@ -511,16 +522,16 @@
 
   function buildEmailText(data, cardURL) {
     const firstName = data.to.split(' ')[0] || data.to;
-    return `Subject: Your Love Letter Tales Gift — ${data.plan}
+    return `Subject: Your Love Letter Tales Gift: ${data.plan}
 
 Dear ${firstName},
 
-${data.from ? data.from + ' has' : 'Someone special has'} given you a very special gift — a Love Letter Tales subscription.
+${data.from ? data.from + ' has' : 'Someone special has'} given you a very special gift, a Love Letter Tales subscription.
 
 ${data.message ? '"' + data.message + '"\n' : ''}
 Your gift includes: ${data.plan}
 
-You'll receive two beautifully written story letters every month, delivered straight to your door by Royal Mail. No screens, no apps — just the quiet pleasure of a real letter in your hands.
+You'll receive two beautifully written story letters every month, delivered straight to your door by Royal Mail. No screens, no apps, just the quiet pleasure of a real letter in your hands.
 
 YOUR GIFT CODE: ${data.code}
 
@@ -532,7 +543,7 @@ Or go to lovelettertales.com and click "Redeem a Gift" in the footer.
 You can also view and print your personalised gift card here:
 ${cardURL}
 
-Your first letters will arrive within 7 days of redeeming your code.
+Your first letters will arrive within 14 days of redeeming your code.
 
 With warmest wishes,
 The Love Letter Tales Team
