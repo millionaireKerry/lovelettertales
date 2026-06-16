@@ -246,7 +246,6 @@
     font-size: 14px;
     line-height: 1.8;
     color: #2D2020;
-    white-space: pre-wrap;
     font-family: 'Cormorant Garamond', serif;
     font-size: 15px;
   }
@@ -520,11 +519,31 @@
     return base + '?' + p.toString();
   }
 
+  function buildEmailHTML(data, cardURL) {
+    const firstName = data.to.split(' ')[0] || data.to;
+    return `
+<div style="font-family: 'Georgia', serif; color: #2D2020; line-height: 1.6; max-width: 600px;">
+  <p>Dear ${firstName},</p>
+  <p>${data.from ? data.from + ' has' : 'Someone special has'} given you a very special gift, a Love Letter Tales subscription.</p>
+  ${data.message ? '<p style="font-style: italic; border-left: 3px solid #C17B74; padding-left: 15px; margin: 20px 0;">"' + data.message + '"</p>' : ''}
+  <p>Your gift includes: <strong>${data.plan}</strong></p>
+  <p>You'll receive two beautifully written story letters every month, delivered straight to your door by Royal Mail. No screens, no apps, just the quiet pleasure of a real letter in your hands.</p>
+  <p style="background: #fdf9f5; border: 1px solid #d4c5b5; padding: 15px; text-align: center; margin: 25px 0;">
+    <span style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #8B6E5A; margin-bottom: 5px;">Your Gift Code</span>
+    <strong style="font-size: 22px; letter-spacing: 0.15em; color: #2D2020;">${data.code}</strong>
+  </p>
+  <p>To get started, simply visit the link below and enter your gift code:</p>
+  <p><a href="https://lovelettertales.com/redeem.html" style="color: #C17B74; font-weight: bold; text-decoration: underline;">Click here to redeem your gift</a></p>
+  <p>You can also view and print your personalised gift card here:</p>
+  <p><a href="${cardURL}" style="color: #C17B74; font-weight: bold; text-decoration: underline;">View your personalised gift card</a></p>
+  <p>Your first letters will arrive within 14 days of redeeming your code.</p>
+  <p>With warmest wishes,<br>The Love Letter Tales Team<br><a href="https://lovelettertales.com" style="color: #C17B74;">lovelettertales.com</a></p>
+</div>`;
+  }
+
   function buildEmailText(data, cardURL) {
     const firstName = data.to.split(' ')[0] || data.to;
-    return `Subject: Your Love Letter Tales Gift: ${data.plan}
-
-Dear ${firstName},
+    return `Dear ${firstName},
 
 ${data.from ? data.from + ' has' : 'Someone special has'} given you a very special gift, a Love Letter Tales subscription.
 
@@ -537,8 +556,6 @@ YOUR GIFT CODE: ${data.code}
 
 To get started, simply visit the link below and enter your gift code:
 https://lovelettertales.com/redeem.html
-
-Or go to lovelettertales.com and click "Redeem a Gift" in the footer.
 
 You can also view and print your personalised gift card here:
 ${cardURL}
@@ -555,6 +572,7 @@ lovelettertales.com`;
   let currentData = null;
   let currentCardURL = null;
   let currentEmailText = null;
+  let currentEmailHTML = null;
 
   // ── Generate ─────────────────────────────────────────────────────────────
 
@@ -574,6 +592,7 @@ lovelettertales.com`;
     currentData = { to: name, email, plan, story, from, message, code, date };
     currentCardURL = buildGiftCardURL(currentData);
     currentEmailText = buildEmailText(currentData, currentCardURL);
+    currentEmailHTML = buildEmailHTML(currentData, currentCardURL);
 
     // Show code
     document.getElementById('generated-code-value').textContent = code;
@@ -587,7 +606,7 @@ lovelettertales.com`;
     document.getElementById('preview-link-box').classList.add('visible');
 
     // Show email area
-    document.getElementById('email-preview').textContent = currentEmailText;
+    document.getElementById('email-preview').innerHTML = currentEmailHTML;
     document.getElementById('email-area').classList.add('visible');
 
     // Save to log
@@ -614,9 +633,25 @@ lovelettertales.com`;
     navigator.clipboard.writeText(currentCardURL).then(() => showToast('Link copied to clipboard!'));
   }
 
-  function copyEmail() {
-    if (!currentEmailText) return;
-    navigator.clipboard.writeText(currentEmailText).then(() => showToast('Email text copied!'));
+  async function copyEmail() {
+    if (!currentEmailHTML) return;
+    
+    try {
+      const type = "text/html";
+      const blob = new Blob([currentEmailHTML], { type });
+      const data = [new ClipboardItem({ 
+        [type]: blob,
+        ["text/plain"]: new Blob([currentEmailText], { type: "text/plain" })
+      })];
+      
+      await navigator.clipboard.write(data);
+      showToast('Professional Rich Text Email copied!');
+    } catch (err) {
+      console.error('Failed to copy rich text: ', err);
+      // Fallback to plain text
+      await navigator.clipboard.writeText(currentEmailText);
+      showToast('Email copied as plain text');
+    }
   }
 
   function openMailto() {
