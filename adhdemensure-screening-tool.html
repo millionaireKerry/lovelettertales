@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>ADHDemensure Screening Tool — Neurodivergent Life Profile</title>
+<meta name="description" content="A supportive, non-diagnostic screening tool for identifying possible traits of undiagnosed ADHD in older adults and people living with dementia.">
+<style>
+  :root{
+    --plum:#5b2a6e;
+    --plum-dark:#41194f;
+    --teal:#1d7a74;
+    --teal-soft:#e4f2f1;
+    --cream:#faf7f2;
+    --ink:#2b2233;
+    --ink-soft:#5a4f63;
+    --line:#e3dbe8;
+    --amber:#b25e09;
+    --amber-soft:#fdf1e3;
+    --green:#2e6b34;
+    --green-soft:#e9f3ea;
+    --plum-soft:#f3ecf7;
+    --radius:14px;
+    --shadow:0 4px 18px rgba(65,25,79,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:17px;}
+  body{
+    font-family:Georgia,'Times New Roman',serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.65;
+  }
+  h1,h2,h3,h4,.btn,.chip,.scale-label,.progress-text,.meta-label{
+    font-family:'Segoe UI',Verdana,Arial,Helvetica,sans-serif;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 60px;}
+  header.site{
+    background:var(--plum);
+    color:#fff;
+    padding:26px 20px;
+    text-align:center;
+  }
+  header.site .brand{
+    font-family:'Segoe UI',Verdana,Arial,sans-serif;
+    font-size:1.6rem;font-weight:700;letter-spacing:.4px;
+  }
+  header.site .brand span{color:#f0c66a;}
+  header.site .tagline{opacity:.92;font-size:.95rem;margin-top:4px;font-style:italic;}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:30px;margin-top:26px;
+  }
+  .disclaimer{
+    background:var(--amber-soft);border:1px solid #ecd3ae;border-left:6px solid var(--amber);
+    border-radius:10px;padding:16px 18px;margin:18px 0;font-size:.95rem;
+  }
+  .disclaimer strong{color:var(--amber);}
+  h1{font-size:1.7rem;color:var(--plum-dark);line-height:1.3;}
+  h2{font-size:1.35rem;color:var(--plum-dark);margin-bottom:10px;}
+  h3{font-size:1.1rem;color:var(--plum-dark);margin-bottom:6px;}
+  p+p{margin-top:12px;}
+  .lede{font-size:1.05rem;color:var(--ink-soft);margin-top:12px;}
+  .btn{
+    display:inline-block;border:none;border-radius:999px;cursor:pointer;
+    font-size:1.02rem;font-weight:600;padding:13px 30px;
+    transition:background .15s ease, transform .05s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--teal);color:#fff;}
+  .btn-primary:hover{background:#155e59;}
+  .btn-plum{background:var(--plum);color:#fff;}
+  .btn-plum:hover{background:var(--plum-dark);}
+  .btn-ghost{background:transparent;color:var(--plum);border:2px solid var(--plum);}
+  .btn-ghost:hover{background:var(--plum-soft);}
+  .btn[disabled]{opacity:.45;cursor:not-allowed;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;justify-content:space-between;align-items:center;}
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  /* version picker */
+  .version-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;}
+  @media(max-width:640px){.version-grid{grid-template-columns:1fr;}}
+  .version-card{
+    border:2px solid var(--line);border-radius:var(--radius);padding:22px;cursor:pointer;
+    background:#fff;text-align:left;font:inherit;transition:border-color .15s, background .15s;
+  }
+  .version-card:hover{border-color:var(--teal);background:var(--teal-soft);}
+  .version-card h3{margin-bottom:8px;}
+  .version-card p{font-size:.93rem;color:var(--ink-soft);}
+  .version-card .chip{display:inline-block;background:var(--plum-soft);color:var(--plum);
+    border-radius:999px;font-size:.78rem;font-weight:700;padding:3px 12px;margin-bottom:10px;}
+
+  /* details form */
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+  @media(max-width:640px){.form-grid{grid-template-columns:1fr;}}
+  .field label{display:block;font-family:'Segoe UI',Verdana,sans-serif;font-weight:600;font-size:.9rem;margin-bottom:5px;color:var(--plum-dark);}
+  .field input,.field select{
+    width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:8px;
+    font:inherit;font-size:1rem;background:#fff;color:var(--ink);
+  }
+  .field input:focus,.field select:focus{outline:2px solid var(--teal);border-color:var(--teal);}
+  .hint{font-size:.85rem;color:var(--ink-soft);margin-top:4px;}
+
+  /* progress */
+  .progress-shell{margin-top:26px;}
+  .progress-text{font-size:.88rem;font-weight:600;color:var(--plum-dark);display:flex;justify-content:space-between;margin-bottom:6px;}
+  .progress-bar{height:10px;background:var(--line);border-radius:999px;overflow:hidden;}
+  .progress-fill{height:100%;background:var(--teal);border-radius:999px;width:0%;transition:width .25s ease;}
+
+  /* questions */
+  .domain-intro{
+    background:var(--plum-soft);border-radius:10px;padding:14px 18px;margin:14px 0 6px;
+    font-size:.95rem;color:var(--ink-soft);
+  }
+  .q-block{border-bottom:1px solid var(--line);padding:20px 0;}
+  .q-block:last-of-type{border-bottom:none;}
+  .q-text{font-size:1.04rem;margin-bottom:14px;}
+  .q-num{color:var(--teal);font-weight:700;font-family:'Segoe UI',Verdana,sans-serif;margin-right:6px;}
+  .scale{display:flex;flex-wrap:wrap;gap:8px;}
+  .scale-opt{position:relative;}
+  .scale-opt input{position:absolute;opacity:0;pointer-events:none;}
+  .scale-opt label{
+    display:inline-block;cursor:pointer;border:1.5px solid var(--line);border-radius:999px;
+    padding:9px 16px;font-family:'Segoe UI',Verdana,sans-serif;font-size:.88rem;font-weight:600;
+    color:var(--ink-soft);background:#fff;transition:all .12s ease;user-select:none;
+  }
+  .scale-opt label:hover{border-color:var(--teal);color:var(--teal);}
+  .scale-opt input:checked+label{background:var(--teal);border-color:var(--teal);color:#fff;}
+  .scale-opt input:focus-visible+label{outline:3px solid var(--plum);outline-offset:2px;}
+  .scale-opt.na input:checked+label{background:var(--ink-soft);border-color:var(--ink-soft);}
+  .unanswered-note{display:none;background:var(--amber-soft);border-radius:8px;padding:10px 14px;
+    font-size:.9rem;margin-top:16px;border:1px solid #ecd3ae;}
+  .unanswered-note.show{display:block;}
+
+  /* report */
+  .report-head{border-bottom:3px solid var(--plum);padding-bottom:18px;margin-bottom:22px;}
+  .report-brand{font-family:'Segoe UI',Verdana,sans-serif;font-weight:700;font-size:1.25rem;color:var(--plum);}
+  .report-brand span{color:var(--teal);}
+  .report-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:14px;}
+  .meta-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);}
+  .meta-value{font-size:.98rem;}
+  .profile-summary{
+    background:var(--teal-soft);border-left:6px solid var(--teal);border-radius:10px;
+    padding:18px 20px;margin:20px 0;
+  }
+  .profile-summary h3{color:var(--teal);}
+  .trait-row{margin:16px 0;}
+  .trait-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .trait-name{font-family:'Segoe UI',Verdana,sans-serif;font-weight:600;font-size:.97rem;}
+  .trait-band{font-family:'Segoe UI',Verdana,sans-serif;font-size:.8rem;font-weight:700;
+    border-radius:999px;padding:2px 12px;}
+  .band-high{background:var(--plum-soft);color:var(--plum);}
+  .band-moderate{background:var(--amber-soft);color:var(--amber);}
+  .band-low{background:var(--green-soft);color:var(--green);}
+  .band-na{background:#eee;color:#777;}
+  .trait-bar{height:14px;background:#efe9f3;border-radius:999px;margin-top:6px;overflow:hidden;position:relative;}
+  .trait-fill{height:100%;border-radius:999px;background:var(--plum);}
+  .trait-fill.moderate{background:var(--amber);}
+  .trait-fill.low{background:var(--green);}
+  .trait-pct{font-size:.82rem;color:var(--ink-soft);font-family:'Segoe UI',Verdana,sans-serif;}
+  .cluster-section{margin-top:26px;}
+  .cluster-card{border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-top:14px;
+    page-break-inside:avoid;break-inside:avoid;}
+  .cluster-card.high{border-left:6px solid var(--plum);}
+  .cluster-card.moderate{border-left:6px solid var(--amber);}
+  .cluster-card h4{font-size:1.02rem;color:var(--plum-dark);margin-bottom:8px;}
+  .cluster-card .mean{font-size:.9rem;color:var(--ink-soft);margin-bottom:10px;font-style:italic;}
+  .cluster-card ul{margin:8px 0 0 20px;}
+  .cluster-card li{margin-bottom:7px;font-size:.95rem;}
+  .cluster-label{font-family:'Segoe UI',Verdana,sans-serif;font-size:.78rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:.05em;}
+  .cluster-label.high{color:var(--plum);}
+  .cluster-label.moderate{color:var(--amber);}
+  .gp-box{background:var(--plum-soft);border-radius:12px;padding:20px 22px;margin-top:28px;
+    page-break-inside:avoid;break-inside:avoid;}
+  .cta-box{background:var(--plum);color:#fff;border-radius:12px;padding:24px;margin-top:28px;
+    page-break-inside:avoid;break-inside:avoid;}
+  .cta-box h3{color:#f0c66a;}
+  .cta-box a{color:#f0c66a;font-weight:700;}
+  .report-disclaimer{font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--line);
+    margin-top:30px;padding-top:16px;}
+  footer.site{padding:30px 20px;text-align:center;font-size:.85rem;color:var(--ink-soft);}
+
+  /* print */
+  @media print{
+    body{background:#fff;font-size:12pt;}
+    header.site,footer.site,.no-print,.progress-shell{display:none !important;}
+    .card{border:none;box-shadow:none;padding:0;margin:0;}
+    .wrap{max-width:none;padding:0;}
+    .screen{display:none !important;}
+    #screen-report{display:block !important;}
+    .cta-box{background:#fff;color:var(--ink);border:2px solid var(--plum);}
+    .cta-box h3,.cta-box a{color:var(--plum);}
+    a[href]::after{content:"";}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">ADHDemen<span>sure</span></div>
+  <div class="tagline">Seeing the whole person — recognising ADHD traits in later life and dementia care</div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ SCREEN: WELCOME ============ -->
+  <section class="screen active" id="screen-welcome">
+    <div class="card">
+      <h1>The ADHDemensure Screening Tool</h1>
+      <p class="lede">Were you — or someone you care for — told they were "lazy", "scatty", or "a handful"? Does clothing irritate them? Do they need to know <em>why</em> before they'll do anything? A "lost generation" of older adults grew up before ADHD was understood, and many are now living with dementia while their lifelong ADHD traits go unrecognised.</p>
+      <p class="lede">This tool looks across nine areas of life experience to build a <strong>Neurodivergent Life Profile</strong> — a picture of whether someone displays traits commonly associated with ADHD, and how care and daily environments could be adapted to suit them better.</p>
+
+      <div class="disclaimer">
+        <strong>Important — please read.</strong> This is <strong>not a diagnostic tool</strong> and it cannot tell you whether someone has ADHD, dementia, or any other condition. Only a qualified clinician can make a diagnosis. This screening is an educational and reflective aid. Its purpose is to highlight patterns that may be worth discussing with a GP or care team, and to suggest person-centred adjustments that may improve comfort and wellbeing whatever the underlying cause. If you have concerns about memory, thinking, or behaviour changes, please speak to a doctor.
+      </div>
+
+      <h2 style="margin-top:26px;">Who is completing the screening?</h2>
+      <div class="version-grid">
+        <button type="button" class="version-card" onclick="chooseVersion('self')">
+          <span class="chip">Version 1 · 46 questions</span>
+          <h3>About myself</h3>
+          <p>A self-report version for the individual, reflecting on their own life history and everyday experiences. Ideal for older adults, or anyone who has always felt "different" and wants to understand why.</p>
+        </button>
+        <button type="button" class="version-card" onclick="chooseVersion('observer')">
+          <span class="chip">Version 2 · 10 questions</span>
+          <h3>About someone I support</h3>
+          <p>An observational version for family members, carers, and care home staff, reflecting on the whole life history of someone they support — particularly someone living with dementia.</p>
+        </button>
+      </div>
+      <p class="hint" style="margin-top:16px;">Answers stay on this device only — nothing is sent or stored anywhere.</p>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: DETAILS ============ -->
+  <section class="screen" id="screen-details">
+    <div class="card">
+      <h2>Before we begin</h2>
+      <p>These details appear on the report only. Use initials if you prefer — nothing leaves this device.</p>
+      <div class="form-grid">
+        <div class="field">
+          <label for="f-person">Name or initials of the person being screened</label>
+          <input type="text" id="f-person" autocomplete="off" placeholder="e.g. Margaret H.">
+        </div>
+        <div class="field" id="f-completer-wrap">
+          <label for="f-completer">Name of person completing the screening</label>
+          <input type="text" id="f-completer" autocomplete="off" placeholder="e.g. J. Smith">
+        </div>
+        <div class="field" id="f-role-wrap">
+          <label for="f-role">Your relationship to this person</label>
+          <select id="f-role">
+            <option>Family member</option>
+            <option>Care home staff member</option>
+            <option>Professional carer</option>
+            <option>Friend</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-date">Date</label>
+          <input type="date" id="f-date">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-ghost" onclick="showScreen('screen-welcome')">Back</button>
+        <button type="button" class="btn btn-primary" onclick="startQuiz()">Start the screening</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: QUIZ ============ -->
+  <section class="screen" id="screen-quiz">
+    <div class="progress-shell">
+      <div class="progress-text"><span id="progress-label"></span><span id="progress-count"></span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="card">
+      <div id="quiz-body"></div>
+      <div class="unanswered-note" id="unanswered-note">
+        You've left one or more questions blank — that's fine. Unanswered questions are simply left out of the profile. Choose "Continue" again to move on, or answer them first.
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-ghost" id="btn-back" onclick="prevPage()">Back</button>
+        <button type="button" class="btn btn-primary" id="btn-next" onclick="nextPage()">Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: REPORT ============ -->
+  <section class="screen" id="screen-report">
+    <div class="card" id="report-card">
+      <div class="report-head">
+        <div class="report-brand">ADHDemen<span>sure</span> — Neurodivergent Life Profile</div>
+        <div class="report-meta" id="report-meta"></div>
+      </div>
+      <div id="report-body"></div>
+      <div class="report-disclaimer">
+        <strong>Disclaimer:</strong> The ADHDemensure Screening Tool is an educational and reflective aid. It is <strong>not a diagnostic instrument</strong> and does not confirm or rule out ADHD, dementia, or any other condition. Traits highlighted here can have many causes. The results are intended to support conversations with qualified health professionals and to encourage person-centred approaches to care. If you are worried about someone's memory, thinking, mood, or behaviour, please consult a GP. © ADHDemensure · adhdemensure.com
+      </div>
+    </div>
+    <div class="btn-row no-print">
+      <button type="button" class="btn btn-ghost" onclick="restart()">Start again</button>
+      <button type="button" class="btn btn-plum" onclick="window.print()">Print / save report as PDF</button>
+    </div>
+    <p class="hint no-print" style="margin-top:10px;">Tip: choose "Save as PDF" in the print window to keep a copy or share it with a GP or care team.</p>
+  </section>
+
+</div>
+
+<footer class="site">
+  ADHDemensure · Transforming care for people living with dementia and undiagnosed ADHD · <strong>adhdemensure.com</strong>
+</footer>
+
+<script>
+"use strict";
+
+/* ---------------- data ---------------- */
+
+const SCALE = [
+  {v:0, label:"Never / not at all"},
+  {v:1, label:"Rarely"},
+  {v:2, label:"Sometimes"},
+  {v:3, label:"Often"},
+  {v:4, label:"Very often / always"},
+  {v:null, label:"Not sure", na:true}
+];
+
+const DOMAINS = [
+  {
+    id:"life",
+    title:"Life History Patterns",
+    trait:"Lifelong ADHD Footprint",
+    intro:"ADHD leaves a distinctive footprint across a person's life. Multiple jobs, unfinished hobbies, a reputation for being “difficult”, and a trail of lost belongings are not character flaws — they are a pattern.",
+    self:[
+      "Have you had a large number of different jobs throughout your working life, often moving on because you became bored or frustrated?",
+      "Have you started many hobbies or projects with great enthusiasm, only to lose interest before completing them?",
+      "Were you labelled at school or at work as a troublemaker, awkward, or underachieving, despite feeling that you were intelligent?",
+      "Do you frequently lose everyday items such as keys, glasses, or your purse, even when you have just put them down?",
+      "Have people close to you described you as disorganised, chaotic, or unreliable, even though you do not feel that way about yourself?",
+      "Looking back, do you feel your life has been more unpredictable or changeable than most people's — not through choice, but because you struggled to maintain consistency?"
+    ],
+    meaning:"A changeable, restless life history — many jobs, many unfinished projects, many lost belongings — is one of the most recognisable biographical markers of undiagnosed ADHD, especially in generations for whom assessment was never available.",
+    tips:[
+      "Use life-story work to reframe this history as a pattern of an interest-led brain, not personal failure.",
+      "Offer short, varied, achievable activities with a visible end point, rather than long repetitive ones.",
+      "Record in the care plan that variety and novelty are needs, not “attention-seeking”.",
+      "Avoid language such as “unreliable” or “difficult” in notes and handovers — describe the pattern instead."
+    ]
+  },
+  {
+    id:"memory",
+    title:"Object Permanence & Working Memory",
+    trait:"Out of Sight, Out of Mind",
+    intro:"“Out of sight, out of mind” is not a metaphor for people with ADHD — it is a literal experience. If something is not visible, it effectively ceases to exist.",
+    self:[
+      "If you put something away in a drawer or cupboard, do you then genuinely forget it exists until you happen to see it again?",
+      "Do you rely heavily on leaving things out in visible places as a reminder system, even if it makes your home look cluttered?",
+      "Have you ever set off on a journey and only realised partway through that you had forgotten something important, such as your purse, your keys, or even the right shoes?",
+      "Do you find it very difficult to hold a list of instructions in your head, and need to write things down or be reminded repeatedly?",
+      "If a task is not immediately in front of you, do you tend to forget it entirely until something external reminds you?"
+    ],
+    meaning:"Working-memory differences mean that things which are out of sight genuinely stop existing for this person. In a care setting this can be mistaken for memory loss caused by dementia, when it may be a lifelong trait — or both at once.",
+    tips:[
+      "Keep important items visible: open shelving, clear-fronted drawers, labelled boxes with pictures.",
+      "Give one instruction at a time; back up spoken information with written or visual prompts.",
+      "Use visible reminder systems (whiteboards, object cues) rather than relying on verbal recall.",
+      "When assessing memory, ask family whether “out of sight, out of mind” was a lifelong pattern — it changes the interpretation."
+    ]
+  },
+  {
+    id:"time",
+    title:"Time Blindness & Waiting Paralysis",
+    trait:"Time Blindness",
+    intro:"People with ADHD often experience only two time states: “now” and “not now”. A 3pm appointment can paralyse the entire day. This is not anxiety — it is a neurological difference in time perception.",
+    self:[
+      "If you have an appointment or commitment later in the day, do you find it almost impossible to concentrate on anything else until it has happened?",
+      "Do you tend to book appointments as early in the day as possible, because having them later makes the whole day feel wasted?",
+      "Have you frequently been late to appointments or events — not because you did not care, but because you misjudged how long getting ready would take?",
+      "Do you find that you either arrive very early or very late, with little in between?",
+      "Do you lose track of time easily — looking up to find that an hour has passed when you thought it was ten minutes, or vice versa?"
+    ],
+    meaning:"This person may live in “now” and “not now”. Pending events can dominate the whole day, and unstructured waiting can be genuinely distressing rather than merely boring.",
+    tips:[
+      "Schedule appointments, outings, and visits as early in the day as possible.",
+      "Avoid announcing events a long time in advance; use “now and next” cues instead of clock times.",
+      "Use visual timers or countdown cues for transitions rather than verbal warnings alone.",
+      "Recognise restlessness before an event as waiting paralysis, not agitation — fill the gap with absorbing activity."
+    ]
+  },
+  {
+    id:"focus",
+    title:"Task-Switching, Hyperfocus & the “Rabbit Hole”",
+    trait:"Focus Regulation",
+    intro:"ADHD is not an inability to focus — it is an inability to regulate focus: deep absorption in what is interesting, and chains of half-finished tasks everywhere else.",
+    self:[
+      "Have you ever started one task, noticed something else that needed doing, gone to do that, and ended up somewhere completely different, with the original task unfinished?",
+      "Do you sometimes become so absorbed in an activity you enjoy that you lose track of time completely, forgetting to eat, sleep, or attend to other commitments?",
+      "Do you find it very difficult to stop an activity you are enjoying, even when you know you should?",
+      "Is it harder for you to start a task than to continue one once you are in it?",
+      "Do you find routine, repetitive tasks almost unbearably difficult to sustain, while complex or novel tasks feel energising?"
+    ],
+    meaning:"Focus here is regulated by interest, not importance. Starting is the hardest part; stopping an absorbing activity is nearly as hard. Interruptions mid-flow can cause real distress.",
+    tips:[
+      "Start tasks alongside the person (“body doubling”) rather than instructing from a distance.",
+      "Where possible, let absorbing activities reach a natural stopping point before mealtimes or care tasks.",
+      "Give gentle advance transition cues rather than abrupt interruptions.",
+      "Offer interest-led, novel activities; do not expect sustained engagement with repetitive ones."
+    ]
+  },
+  {
+    id:"shame",
+    title:"Lifelong Internalised Shame & Labelling",
+    trait:"Internalised Shame",
+    intro:"Many older adults with undiagnosed ADHD grew up when neurodiversity was not recognised. Criticism was internalised as proof of being “lazy” or “broken” — particularly for women.",
+    self:[
+      "Growing up, were you frequently told you were “lazy”, “stubborn”, or “wasting your potential”, even when you felt you were trying your best?",
+      "Do you have a lifelong feeling that you have to work twice as hard as other people just to manage basic daily tasks?",
+      "Have you spent much of your life feeling a deep sense of shame, or feeling that you are somehow “broken” compared to your peers?",
+      "When you fail to complete a task, do you immediately blame your own character rather than the circumstances?",
+      "Have you ever felt a profound sense of relief upon reading about ADHD, as though someone had finally described your inner experience accurately?"
+    ],
+    meaning:"Decades of criticism may have been internalised as shame and a belief of being fundamentally flawed. Apparent low mood, self-criticism, or refusal to try new things may be self-protection learned over a lifetime.",
+    tips:[
+      "Use strength-based language in every interaction and in all written records.",
+      "Praise effort and intention, not just outcomes; never compare with other residents or family members.",
+      "Reassure quickly and warmly after mistakes — the internal critic is already louder than any carer.",
+      "Consider gently sharing age-appropriate information about ADHD; recognition can bring enormous relief."
+    ]
+  },
+  {
+    id:"sensory",
+    title:"Sensory Sensitivity & Overload",
+    trait:"Sensory Sensitivity",
+    intro:"Tactile defensiveness and sensory overload are well documented in ADHD. A resident who refuses their cardigan or will not sit in the dining room may be in genuine sensory pain — not displaying “challenging behaviour”.",
+    self:[
+      "Have you always found certain clothing textures, tight waistbands, or labels unbearable to wear, to the point where it affects your ability to concentrate?",
+      "Do you feel physically overwhelmed or agitated in environments with multiple overlapping noises, such as a busy dining room or a television playing over conversation?",
+      "Do you have a strong aversion to certain food textures, or have you been described as a “fussy eater” throughout your life?",
+      "When you are forced to endure an uncomfortable sensory environment, do you feel an urge to escape, or become irritable with those around you?",
+      "Do you find that physical discomfort, such as an itchy label or a noisy room, makes it almost impossible to think clearly?"
+    ],
+    meaning:"Certain textures, noises, and environments may cause genuine physical distress. Refusing clothing, avoiding the dining room, or agitation at busy times may be sensory pain, not confusion or defiance.",
+    tips:[
+      "Build a sensory profile into the care plan: preferred fabrics, removed labels, loose waistbands.",
+      "Offer quiet dining options; avoid a television playing over conversation.",
+      "Respect lifelong food-texture preferences — “fussy eating” is often sensory, not behavioural.",
+      "Treat sudden agitation as a possible sensory cause first: check noise, clothing, lighting, and crowding."
+    ]
+  },
+  {
+    id:"rsd",
+    title:"Rejection Sensitive Dysphoria & Emotional Dysregulation",
+    trait:"Rejection Sensitivity",
+    intro:"Rejection Sensitive Dysphoria (RSD) is an extreme emotional sensitivity to perceived rejection or criticism. In older adults it can look like sudden withdrawal, tearfulness, or anger after seemingly minor interactions.",
+    self:[
+      "Do you experience intense, almost physical pain or distress when you feel you have been criticised or rejected, even mildly?",
+      "Have you spent your life “people-pleasing” or over-achieving to avoid the possibility of someone being disappointed in you?",
+      "Do your emotions tend to hit you all at once with overwhelming force, rather than building up gradually?",
+      "Have you ever ended relationships or avoided social situations entirely, because the fear of saying the wrong thing or being judged was too exhausting?",
+      "Do you find that you replay conversations or interactions for hours or days afterwards, worrying about whether you said the right thing?"
+    ],
+    meaning:"Perceived criticism or rejection may cause intense, almost physical pain, followed by withdrawal, tearfulness, or anger. Staff may see a “disproportionate” reaction; the person is experiencing something overwhelming and real.",
+    tips:[
+      "Deliver any correction privately, gently, and with immediate reassurance that the relationship is intact.",
+      "Watch for withdrawal after minor interactions — follow up kindly rather than leaving the person alone with it.",
+      "Prioritise consistency of staff so trust can build; unpredictable faces raise the stakes of every interaction.",
+      "Never correct or tease in front of others, even light-heartedly."
+    ]
+  },
+  {
+    id:"why",
+    title:"The Need for “Why” (Contextual Compliance)",
+    trait:"Need for Context",
+    intro:"What is labelled “stubbornness” or “non-compliance” is often a neurodivergent need for context. Many people with ADHD cannot act on a request until they understand the reason. It is not defiance — it is a requirement for meaning before action.",
+    self:[
+      "Do you find it extremely difficult to follow instructions or rules if no one has explained why they are necessary?",
+      "Have you been labelled as “difficult” or “argumentative” because you ask a lot of questions before agreeing to do something?",
+      "If a task feels pointless or illogical to you, do you feel a physical resistance to starting it?",
+      "Do you find that once you understand the purpose of a task, your resistance disappears completely?",
+      "Do you find it easier to comply with a request when the person asking takes time to explain their reasoning?"
+    ],
+    meaning:"This person likely needs to understand the reason for a request before they can act on it. Resistance to medication, personal care, or routines may vanish entirely once a genuine explanation is given.",
+    tips:[
+      "Always give the reason with the request: “This tablet protects your heart” rather than “It's time for your tablets”.",
+      "Welcome questions as engagement, not argument — answering them is the intervention.",
+      "Involve the person in decisions about their own routine wherever possible.",
+      "Record in the care plan which explanations work, so every staff member can use them."
+    ]
+  },
+  {
+    id:"masking",
+    title:"Masking & Autopilot Exhaustion",
+    trait:"Masking & Burnout",
+    intro:"Many older adults — especially women — have spent decades masking their ADHD to fit in. In early-stage dementia the capacity to mask erodes, which can look like sudden personality change when it is actually the mask slipping for the first time.",
+    self:[
+      "Do you feel that the version of yourself you present to the world requires constant, conscious effort to maintain?",
+      "After a social event or a day of appointments, do you require a significant amount of time alone in a quiet room to recover?",
+      "Have you ever felt that if you stopped consciously managing your behaviour, your life would fall apart?",
+      "Do you find that you can function highly in a crisis, but struggle to maintain energy for routine, mundane daily tasks?",
+      "Have people who know you well ever commented that you seem like a completely different person when you are tired or unwell?"
+    ],
+    meaning:"A lifetime of consciously managing how they appear takes enormous energy. As cognition changes, the mask may slip — what looks like sudden personality change or rapid decline may be the real, unmasked person emerging for the first time.",
+    tips:[
+      "Schedule genuine recovery time after visits, outings, and appointments — quiet, alone, undemanding.",
+      "Do not read post-event exhaustion or “seeming like a different person” as automatic evidence of decline.",
+      "Keep a low-demand rhythm to the day with clear rest points, not back-to-back activities.",
+      "Let family know that the emerging “new” personality may in fact be the unmasked person — and worth getting to know."
+    ]
+  }
+];
+
+/* Observational version: 10 questions, each mapped to one or more domains */
+const OBSERVER_QUESTIONS = [
+  {text:"Did this person have many different jobs, or frequently change direction throughout their working life?", domains:["life"]},
+  {text:"Were they known for starting projects enthusiastically but rarely finishing them?", domains:["life","focus"]},
+  {text:"Did they frequently lose belongings, forget appointments, or arrive unprepared for events?", domains:["memory"]},
+  {text:"Were they ever described as “scatty”, “away with the fairies”, “a handful”, or “highly strung”?", domains:["shame"]},
+  {text:"Did they struggle with punctuality, despite genuinely trying to be on time?", domains:["time"]},
+  {text:"Did they seem to have an all-or-nothing approach to tasks — either completely absorbed or completely avoidant?", domains:["focus"]},
+  {text:"Did they become very distressed by criticism, even when it was mild or well-intentioned?", domains:["rsd"]},
+  {text:"Did they have strong reactions to certain clothing, foods, or environments that others found unremarkable?", domains:["sensory"]},
+  {text:"Did they ask “why” a great deal before agreeing to do something, and become resistant if no explanation was given?", domains:["why"]},
+  {text:"Looking back, does their life history make more sense if you consider the possibility that they may have had undiagnosed ADHD?", domains:["overall"]}
+];
+
+/* ---------------- state ---------------- */
+
+let version = null;          // 'self' | 'observer'
+let pages = [];              // array of {title, intro, questions:[{key,text}]}
+let pageIndex = 0;
+let answers = {};            // key -> value (0-4) or 'na'
+let warned = false;
+
+/* ---------------- navigation ---------------- */
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0});
+}
+
+function chooseVersion(v){
+  version = v;
+  const completerWrap = document.getElementById('f-completer-wrap');
+  const roleWrap = document.getElementById('f-role-wrap');
+  const show = (v==='observer');
+  completerWrap.style.display = show ? '' : 'none';
+  roleWrap.style.display = show ? '' : 'none';
+  document.getElementById('f-date').valueAsDate = new Date();
+  showScreen('screen-details');
+}
+
+function startQuiz(){
+  answers = {};
+  pageIndex = 0;
+  if(version==='self'){
+    pages = DOMAINS.map((d,di)=>({
+      title:`Domain ${di+1} of ${DOMAINS.length}: ${d.title}`,
+      intro:d.intro,
+      questions:d.self.map((q,qi)=>({key:`${d.id}:${qi}`, text:q}))
+    }));
+  }else{
+    pages = [{
+      title:"Observational questions",
+      intro:"Reflect on the whole life history of the person you support — not just how they are today. Answer as honestly as you can; “Not sure” is always acceptable.",
+      questions:OBSERVER_QUESTIONS.map((q,qi)=>({key:`obs:${qi}`, text:q.text}))
+    }];
+  }
+  renderPage();
+  showScreen('screen-quiz');
+}
+
+function renderPage(){
+  const page = pages[pageIndex];
+  const body = document.getElementById('quiz-body');
+  let html = `<h2>${page.title}</h2><div class="domain-intro">${page.intro}</div>`;
+  page.questions.forEach((q,qi)=>{
+    html += `<div class="q-block"><p class="q-text"><span class="q-num">${qi+1}.</span>${q.text}</p><div class="scale" role="radiogroup" aria-label="Question ${qi+1}">`;
+    SCALE.forEach(opt=>{
+      const idAttr = `opt-${q.key.replace(/[^a-z0-9]/gi,'_')}-${opt.na?'na':opt.v}`;
+      const val = opt.na ? 'na' : opt.v;
+      const checked = (answers[q.key]!==undefined && String(answers[q.key])===String(val)) ? 'checked' : '';
+      html += `<span class="scale-opt${opt.na?' na':''}">
+        <input type="radio" id="${idAttr}" name="q-${q.key}" value="${val}" ${checked} onchange="answers['${q.key}']=this.value==='na'?'na':Number(this.value)">
+        <label for="${idAttr}">${opt.label}</label></span>`;
+    });
+    html += `</div></div>`;
+  });
+  body.innerHTML = html;
+  document.getElementById('btn-back').style.visibility = pageIndex===0 ? 'hidden' : 'visible';
+  document.getElementById('btn-next').textContent = pageIndex===pages.length-1 ? 'Finish & create profile' : 'Continue';
+  document.getElementById('progress-label').textContent = version==='self' ? `Section ${pageIndex+1} of ${pages.length}` : 'Observational screening';
+  const answered = Object.keys(answers).length;
+  const total = version==='self' ? DOMAINS.reduce((n,d)=>n+d.self.length,0) : OBSERVER_QUESTIONS.length;
+  document.getElementById('progress-count').textContent = `${answered} of ${total} answered`;
+  document.getElementById('progress-fill').style.width = `${(pageIndex/pages.length)*100}%`;
+  document.getElementById('unanswered-note').classList.remove('show');
+  warned = false;
+  window.scrollTo({top:0});
+}
+
+function pageUnanswered(){
+  return pages[pageIndex].questions.some(q=>answers[q.key]===undefined);
+}
+
+function nextPage(){
+  if(pageUnanswered() && !warned){
+    document.getElementById('unanswered-note').classList.add('show');
+    warned = true;
+    return;
+  }
+  if(pageIndex < pages.length-1){
+    pageIndex++;
+    renderPage();
+  }else{
+    buildReport();
+    showScreen('screen-report');
+  }
+}
+
+function prevPage(){
+  if(pageIndex>0){ pageIndex--; renderPage(); }
+}
+
+function restart(){
+  version=null; answers={}; pages=[]; pageIndex=0;
+  showScreen('screen-welcome');
+}
+
+/* ---------------- scoring & report ---------------- */
+
+function bandFor(mean){
+  if(mean===null) return {key:'na', label:'Not enough answers', cls:'band-na'};
+  if(mean>=2.6) return {key:'high', label:'Strongly present', cls:'band-high'};
+  if(mean>=1.6) return {key:'moderate', label:'Moderately present', cls:'band-moderate'};
+  return {key:'low', label:'Little indication', cls:'band-low'};
+}
+
+function domainScores(){
+  const scores = {};
+  if(version==='self'){
+    DOMAINS.forEach(d=>{
+      const vals = d.self.map((_,qi)=>answers[`${d.id}:${qi}`]).filter(v=>typeof v==='number');
+      scores[d.id] = vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+    });
+  }else{
+    const buckets = {};
+    OBSERVER_QUESTIONS.forEach((q,qi)=>{
+      const v = answers[`obs:${qi}`];
+      if(typeof v!=='number') return;
+      q.domains.forEach(id=>{ (buckets[id]=buckets[id]||[]).push(v); });
+    });
+    DOMAINS.forEach(d=>{
+      scores[d.id] = buckets[d.id] ? buckets[d.id].reduce((a,b)=>a+b,0)/buckets[d.id].length : null;
+    });
+    scores._overall = buckets.overall ? buckets.overall[0] : null;
+  }
+  return scores;
+}
+
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function buildReport(){
+  const scores = domainScores();
+  const person = document.getElementById('f-person').value.trim() || 'Not given';
+  const completer = document.getElementById('f-completer').value.trim();
+  const role = document.getElementById('f-role').value;
+  const dateVal = document.getElementById('f-date').value;
+  const dateStr = dateVal ? new Date(dateVal+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+
+  // meta
+  let meta = `
+    <div><div class="meta-label">Person screened</div><div class="meta-value">${esc(person)}</div></div>
+    <div><div class="meta-label">Screening version</div><div class="meta-value">${version==='self'?'Self-report (46 questions)':'Observational (10 questions)'}</div></div>
+    <div><div class="meta-label">Date</div><div class="meta-value">${esc(dateStr)}</div></div>`;
+  if(version==='observer'){
+    meta += `<div><div class="meta-label">Completed by</div><div class="meta-value">${esc(completer||'Not given')} (${esc(role)})</div></div>`;
+  }
+  document.getElementById('report-meta').innerHTML = meta;
+
+  // classify domains
+  const rows = DOMAINS.map(d=>{
+    const mean = scores[d.id];
+    return {domain:d, mean, band:bandFor(mean)};
+  });
+  const highs = rows.filter(r=>r.band.key==='high');
+  const mods = rows.filter(r=>r.band.key==='moderate');
+  const scored = rows.filter(r=>r.mean!==null);
+
+  // summary text
+  let summary;
+  const clusterNames = highs.map(r=>r.domain.trait).join(', ');
+  if(scored.length===0){
+    summary = `Not enough questions were answered to build a profile. You can start again at any time — answering even a few sections gives a useful picture.`;
+  }else if(highs.length>=3){
+    summary = `This profile shows a <strong>notable cluster of traits commonly associated with ADHD</strong>, most strongly in: <strong>${clusterNames}</strong>. This pattern does not diagnose anything, but it suggests this person may genuinely benefit from the person-centred adjustments described below, and that the possibility of lifelong undiagnosed ADHD is well worth raising with a GP or care team — especially when interpreting changes attributed to dementia.`;
+  }else if(highs.length>=1){
+    summary = `This profile shows <strong>some traits commonly associated with ADHD</strong>, particularly: <strong>${clusterNames}</strong>. This does not diagnose anything, but the adjustments suggested below for these areas may make daily life noticeably more comfortable, and the pattern may be worth mentioning to a GP or care team.`;
+  }else if(mods.length>=2){
+    summary = `This profile shows <strong>mild indications</strong> of some ADHD-associated traits. Nothing here is conclusive, but the suggestions below for the moderately-present areas may still be helpful, and it may be worth revisiting this screening if new patterns become apparent.`;
+  }else{
+    summary = `Based on the answers given, this profile shows <strong>little indication of ADHD-associated traits</strong>. Remember that this tool cannot rule anything in or out — if instinct or life history still suggests something has been missed, discuss it with a GP.`;
+  }
+  if(version==='observer' && typeof scores._overall==='number' && scores._overall>=3){
+    summary += ` Notably, the person completing this screening feels that this life history <strong>makes more sense when undiagnosed ADHD is considered</strong> — experienced carers' pattern-recognition is a valuable signal in its own right.`;
+  }
+
+  // profile bars
+  let bars = '';
+  rows.forEach(r=>{
+    const pct = r.mean===null ? 0 : Math.round((r.mean/4)*100);
+    bars += `<div class="trait-row">
+      <div class="trait-top">
+        <span class="trait-name">${r.domain.title}</span>
+        <span><span class="trait-pct">${r.mean===null?'—':pct+'%'}</span> &nbsp;<span class="trait-band ${r.band.cls}">${r.band.label}</span></span>
+      </div>
+      <div class="trait-bar"><div class="trait-fill ${r.band.key}" style="width:${pct}%"></div></div>
+    </div>`;
+  });
+
+  // cluster cards for high + moderate
+  let clusters = '';
+  [...highs, ...mods].forEach(r=>{
+    const d = r.domain;
+    clusters += `<div class="cluster-card ${r.band.key}">
+      <span class="cluster-label ${r.band.key}">${r.band.label}</span>
+      <h4>${d.trait} <span style="font-weight:normal;color:var(--ink-soft);">— ${d.title}</span></h4>
+      <p class="mean">${d.meaning}</p>
+      <h3 style="font-size:.92rem;">Person-centred adjustments to consider</h3>
+      <ul>${d.tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+    </div>`;
+  });
+  if(!clusters){
+    clusters = `<p>No trait areas reached a moderate or strong level in this screening, so no specific adjustments are suggested. General person-centred care principles — knowing the whole life history, explaining before acting, and respecting sensory preferences — benefit everyone.</p>`;
+  }
+
+  const observerNote = version==='observer' ? `
+    <p style="margin-top:14px;">Because this was the shorter observational screening, consider following up with the full 46-question self-report version together with the person, where their capacity and comfort allow — or completing it on their behalf using your knowledge of their life history.</p>` : '';
+
+  document.getElementById('report-body').innerHTML = `
+    <div class="profile-summary">
+      <h3>Profile summary</h3>
+      <p>${summary}</p>
+    </div>
+
+    <h2 style="margin-top:26px;">Neurodivergent Life Profile</h2>
+    <p style="font-size:.9rem;color:var(--ink-soft);">Each bar shows how strongly the answers indicated traits in that area (0–100%). Percentages describe answers given today — they are not clinical scores.</p>
+    ${bars}
+
+    <div class="cluster-section">
+      <h2>What this profile may mean — and what can help</h2>
+      ${clusters}
+      ${observerNote}
+    </div>
+
+    <div class="gp-box">
+      <h3>Sharing this report with a GP or care team</h3>
+      <p>Print or save this report and take it to the GP, memory clinic, or care team. You might say: <em>“These lifelong patterns pre-date any memory concerns. Could they be relevant to how we interpret the current presentation, and to how care is planned?”</em> Distinguishing lifelong traits from new changes matters: some behaviours attributed to dementia may be lifelong ADHD traits — and adjusting the environment for them can reduce distress whatever the cause.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3>Want to go further?</h3>
+      <p>ADHDemensure provides training and consultancy for care homes, care teams, and families on creating environments and care plans that work for people living with dementia who also show ADHD traits — from sensory-aware mealtimes to communication approaches that end “non-compliance” battles for good.</p>
+      <p style="margin-top:10px;">Visit <a href="https://adhdemensure.com">adhdemensure.com</a> to find out more or to book a training session.</p>
+    </div>`;
+}
+</script>
+</body>
+</html>
