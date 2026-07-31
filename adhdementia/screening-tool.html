@@ -177,16 +177,17 @@
       </div>
 
       <h3 style="margin-top:28px;">Who is completing the screening?</h3>
+      <p style="font-size:.93rem;color:var(--ink-soft);margin-top:8px;">Wherever possible, start with the self-report version, together with the person. Most people in the earlier stages of dementia can still answer questions about their own life story, and it is always more respectful to ask the person than to talk about them. The observational version is there for when that is no longer possible, or as a second perspective alongside it.</p>
       <div class="version-grid">
         <button type="button" class="version-card" onclick="chooseVersion('self')">
           <span class="chip">Version 1 &middot; 46 questions</span>
           <h3>About myself</h3>
-          <p>A self-report version for the individual, reflecting on their own life history and everyday experiences. Ideal for older adults, or anyone who has always felt "different" and wants to understand why.</p>
+          <p>A self-report version answered by the person themselves, reflecting on their own life history and everyday experiences. Works beautifully completed together, one conversation at a time, with the resident doing the telling.</p>
         </button>
         <button type="button" class="version-card" onclick="chooseVersion('observer')">
           <span class="chip">Version 2 &middot; 10 questions</span>
           <h3>About someone I support</h3>
-          <p>An observational version for family members, carers, and care home staff, reflecting on the whole life history of someone they support, particularly someone living with dementia.</p>
+          <p>An observational version for family members, carers, and care home staff, reflecting on the whole life history of someone who can no longer easily tell it themselves, or offering a second perspective alongside their own answers.</p>
         </button>
       </div>
       <p class="hint">Answers stay on this device only. Nothing is sent or stored anywhere.</p>
@@ -350,6 +351,7 @@ const DOMAINS = [
     meaning:"Working-memory differences mean that things which are out of sight genuinely stop existing for this person. In a care setting this can be mistaken for memory loss caused by dementia, when it may be a lifelong trait, or both at once.",
     tips:[
       "Keep important items visible: open shelving, clear-fronted drawers, labelled boxes with pictures.",
+      "Ask before tidying. Items left out on view may be deliberate visual anchors, and a kindly tidied room can dismantle a lifetime's reminder system in an afternoon. Agree with the person, and with housekeeping, which belongings stay out and where.",
       "Give one instruction at a time, and back up spoken information with written or visual prompts.",
       "Use visible reminder systems such as whiteboards and object cues, rather than relying on verbal recall.",
       "When assessing memory, ask family whether “out of sight, out of mind” was a lifelong pattern. It changes the interpretation."
