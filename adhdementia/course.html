@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Online Course | ADHDementia</title>
+<meta name="description" content="ADHD Awareness in Dementia Care: an interactive one-hour online course for care home staff, with a certificate on completion.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .course-wrap{max-width:880px;margin:0 auto;padding:0 24px 80px;}
+  .course-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:44px;margin-top:34px;
+  }
+  @media(max-width:640px){.course-card{padding:28px 22px;}}
+  .screen{display:none;}
+  .screen.active{display:block;}
+  .draft-banner{
+    background:var(--teal-pale);border:1px solid #bcd9d6;border-left:4px solid var(--teal);
+    border-radius:var(--radius);padding:12px 18px;font-size:.85rem;color:var(--ink);margin-top:20px;
+  }
+
+  /* progress */
+  .course-progress{margin-top:34px;}
+  .progress-text{font-size:.85rem;font-weight:600;color:var(--black);display:flex;justify-content:space-between;margin-bottom:8px;}
+  .progress-bar{height:6px;background:var(--line);border-radius:999px;overflow:hidden;}
+  .progress-fill{height:100%;background:var(--gold);border-radius:999px;width:0%;transition:width .25s ease;}
+
+  /* module map */
+  .module-map{list-style:none;margin-top:24px;}
+  .module-map li{
+    display:flex;align-items:center;gap:16px;padding:16px 18px;border:1px solid var(--line);
+    border-radius:var(--radius);margin-bottom:10px;background:var(--white);
+  }
+  .module-map li.done{border-left:4px solid var(--teal);}
+  .module-map li.current{border-left:4px solid var(--gold);background:var(--gold-pale);}
+  .module-map li.locked{opacity:.5;}
+  .module-map .m-num{
+    font-family:var(--font-display);font-style:italic;font-size:1.1rem;color:var(--gold);
+    min-width:34px;
+  }
+  .module-map .m-title{font-weight:600;font-size:.95rem;color:var(--black);flex:1;}
+  .module-map .m-time{font-size:.8rem;color:var(--ink-soft);}
+  .module-map .m-state{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+  .module-map .done .m-state{color:var(--teal);}
+  .module-map .current .m-state{color:var(--gold);}
+
+  /* content blocks */
+  .mod-kicker{font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+  .mod-body h3{margin-top:26px;}
+  .mod-body p{margin-top:12px;color:var(--ink);}
+  .mod-body ul{margin:12px 0 0 22px;}
+  .mod-body li{margin-bottom:8px;}
+  .learn-outcomes{
+    background:var(--paper);border-radius:var(--radius);padding:18px 22px;margin-top:18px;
+    font-size:.93rem;
+  }
+  .learn-outcomes strong{display:block;margin-bottom:8px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--black);}
+  .key-point{
+    border-left:3px solid var(--gold);background:var(--gold-pale);border-radius:var(--radius);
+    padding:14px 20px;margin-top:18px;font-size:.96rem;
+  }
+
+  /* knowledge checks */
+  .check{
+    border:1.5px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin-top:26px;
+    background:var(--white);
+  }
+  .check .check-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .check .check-q{font-weight:600;color:var(--black);margin-bottom:14px;}
+  .check .opts{display:flex;flex-direction:column;gap:8px;}
+  .check .opt{
+    text-align:left;font:inherit;font-size:.93rem;padding:12px 16px;border:1.5px solid var(--line);
+    border-radius:var(--radius);background:var(--white);cursor:pointer;transition:border-color .12s;
+  }
+  .check .opt:hover{border-color:var(--gold);}
+  .check .opt.sel-right{border-color:var(--teal);background:var(--teal-pale);font-weight:600;}
+  .check .opt.sel-wrong{border-color:#b3452f;background:#fbe9e4;}
+  .check .opt:disabled{cursor:default;}
+  .check .feedback{display:none;margin-top:14px;font-size:.92rem;border-radius:var(--radius);padding:12px 16px;}
+  .check .feedback.right{display:block;background:var(--teal-pale);color:var(--teal);}
+  .check .feedback.wrong{display:block;background:#fbe9e4;color:#8a2f1c;}
+  .course-btn-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px;justify-content:space-between;align-items:center;}
+  .gate-note{font-size:.85rem;color:var(--ink-soft);margin-top:12px;display:none;}
+  .gate-note.show{display:block;}
+
+  /* assessment */
+  .assess-q{border-bottom:1px solid var(--line);padding:22px 0;}
+  .assess-q:last-of-type{border-bottom:none;}
+  .assess-result{border-radius:var(--radius);padding:24px;margin-top:10px;}
+  .assess-result.pass{background:var(--teal-pale);border-left:4px solid var(--teal);}
+  .assess-result.fail{background:var(--gold-pale);border-left:4px solid var(--gold);}
+
+  /* certificate */
+  .cert{
+    border:3px solid var(--gold);border-radius:6px;padding:6px;margin-top:30px;background:var(--white);
+  }
+  .cert-inner{
+    border:1.5px solid var(--gold);border-radius:4px;padding:56px 40px;text-align:center;
+  }
+  .cert .cert-brand{font-family:var(--font-display);font-weight:700;font-size:1.5rem;color:var(--black);}
+  .cert .cert-brand span{color:var(--gold);}
+  .cert .cert-line{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);margin-top:26px;}
+  .cert .cert-name{font-family:var(--font-display);font-style:italic;font-size:2.3rem;color:var(--black);margin-top:10px;}
+  .cert .cert-course{font-size:1.05rem;font-weight:600;color:var(--black);margin-top:22px;}
+  .cert .cert-detail{font-size:.9rem;color:var(--ink-soft);margin-top:16px;}
+  .cert .cert-sig{margin-top:38px;display:flex;justify-content:center;gap:80px;flex-wrap:wrap;}
+  .cert .sig-block{min-width:200px;}
+  .cert .sig-rule{border-top:1px solid var(--ink-soft);margin-bottom:6px;}
+  .cert .sig-label{font-size:.78rem;color:var(--ink-soft);}
+  .cert .cert-id{font-size:.72rem;color:var(--ink-soft);margin-top:30px;letter-spacing:.06em;}
+
+  @media print{
+    body{background:#fff;}
+    .nav,.footer,.no-print,.course-progress{display:none !important;}
+    .course-wrap{max-width:none;padding:0;}
+    .course-card{border:none;box-shadow:none;padding:0;margin:0;}
+    .screen{display:none !important;}
+    #screen-cert{display:block !important;}
+    #screen-cert h2,#screen-cert .course-btn-row,#screen-cert .hintline{display:none;}
+    .cert{margin-top:0;}
+    a[href]::after{content:"";}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">ADHD<span>ementia</span></a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="screening-tool.html">Screening Tool</a></li>
+      <li><a href="training.html" class="active">Training &amp; Consultancy</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="guides.html">Guides</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" style="padding:70px 0 60px;">
+  <div class="container">
+    <p class="kicker">Online course</p>
+    <h1 style="font-size:clamp(2rem,4.5vw,3.2rem);">ADHD Awareness <span class="serif-i">in Dementia Care</span></h1>
+    <p class="lede" style="margin-bottom:0;">An interactive course for care home staff. About one hour, six modules, a short assessment, and a certificate at the end.</p>
+  </div>
+</header>
+
+<div class="course-wrap">
+
+  <!-- ============ SCREEN: START ============ -->
+  <section class="screen active" id="screen-start">
+    <div class="course-card">
+      <h2>Welcome</h2>
+      <p style="color:var(--ink-soft);margin-top:10px;">This course introduces the essentials of recognising and supporting ADHD traits in older adults living with dementia. It is designed for all care home staff, from carers and nurses to housekeeping, kitchen and activities teams, because every role shapes a resident's day. Work through the six modules in order, answer the knowledge checks as you go, and pass a short final assessment to receive your certificate.</p>
+      <div class="learn-outcomes">
+        <strong>By the end of this course you will be able to</strong>
+        <ul style="margin:0 0 0 20px;">
+          <li>Explain why many older adults have ADHD that was never diagnosed</li>
+          <li>Recognise common ADHD traits and how they present in dementia care</li>
+          <li>Reframe "challenging behaviour" as possible unmet neurodivergent need</li>
+          <li>Apply practical adjustments in your own role, on your next shift</li>
+          <li>Understand how screening supports person-centred care planning</li>
+        </ul>
+      </div>
+      <div class="field" style="margin-top:26px;max-width:420px;">
+        <label for="learner-name">Your full name (as it should appear on your certificate)</label>
+        <input type="text" id="learner-name" autocomplete="name" placeholder="e.g. Jane Smith">
+      </div>
+      <div class="course-btn-row" style="justify-content:flex-start;">
+        <button type="button" class="btn btn-gold" onclick="startCourse()">Start the course</button>
+        <button type="button" class="btn btn-outline-dark" id="btn-resume" style="display:none;" onclick="resumeCourse()">Resume where I left off</button>
+      </div>
+      <div class="draft-banner"><strong>Draft content.</strong> The module text below is a working draft built from the ADHDementia framework, ready to be replaced and tweaked with the author's final wording before accreditation.</div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: MAP ============ -->
+  <section class="screen" id="screen-map">
+    <div class="course-card">
+      <h2>Course overview</h2>
+      <p style="color:var(--ink-soft);">Modules unlock in order. You can leave at any time and your progress is saved on this device.</p>
+      <ul class="module-map" id="module-map"></ul>
+      <div class="course-btn-row" style="justify-content:flex-start;">
+        <button type="button" class="btn btn-gold" id="btn-continue" onclick="openCurrent()">Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: MODULE ============ -->
+  <section class="screen" id="screen-module">
+    <div class="course-progress">
+      <div class="progress-text"><span id="mod-label"></span><span id="mod-count"></span></div>
+      <div class="progress-bar"><div class="progress-fill" id="mod-fill"></div></div>
+    </div>
+    <div class="course-card">
+      <div id="module-body"></div>
+      <p class="gate-note" id="gate-note">Answer every knowledge check above to continue.</p>
+      <div class="course-btn-row">
+        <button type="button" class="btn btn-outline-dark" onclick="showMap()">Course overview</button>
+        <button type="button" class="btn btn-gold" id="btn-mod-next" onclick="completeModule()">Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: ASSESSMENT ============ -->
+  <section class="screen" id="screen-assess">
+    <div class="course-card">
+      <div class="mod-kicker">Final assessment</div>
+      <h2>Show what you know</h2>
+      <p style="color:var(--ink-soft);">Ten questions drawn from the whole course. You need 8 out of 10 to pass. You can retake the assessment as many times as you need.</p>
+      <div id="assess-body"></div>
+      <div class="course-btn-row">
+        <button type="button" class="btn btn-outline-dark" onclick="showMap()">Back to overview</button>
+        <button type="button" class="btn btn-gold" id="btn-submit-assess" onclick="submitAssessment()">Submit answers</button>
+      </div>
+      <div id="assess-result"></div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: CERTIFICATE ============ -->
+  <section class="screen" id="screen-cert">
+    <div class="course-card">
+      <h2>Congratulations!</h2>
+      <p style="color:var(--ink-soft);">You have completed ADHD Awareness in Dementia Care. Print your certificate below, or save it as a PDF for your training records.</p>
+      <div class="cert">
+        <div class="cert-inner">
+          <div class="cert-brand">ADHD<span>ementia</span></div>
+          <div class="cert-line">Certificate of Completion</div>
+          <div class="cert-name" id="cert-name">Name</div>
+          <div class="cert-course">has successfully completed the course<br>"ADHD Awareness in Dementia Care"</div>
+          <div class="cert-detail">An interactive online course on recognising and supporting ADHD traits<br>in older adults living with dementia &middot; One hour of learning</div>
+          <div class="cert-detail" id="cert-date"></div>
+          <div class="cert-sig">
+            <div class="sig-block">
+              <div class="sig-rule"></div>
+              <div class="sig-label">Kerry Billson, Founder, ADHDementia</div>
+            </div>
+          </div>
+          <div class="cert-id" id="cert-id"></div>
+        </div>
+      </div>
+      <p class="hintline" style="font-size:.85rem;color:var(--ink-soft);margin-top:16px;">Tip: choose "Save as PDF" in the print window to keep a digital copy.</p>
+      <div class="course-btn-row no-print">
+        <button type="button" class="btn btn-outline-dark" onclick="resetCourse()">Restart course</button>
+        <button type="button" class="btn btn-dark" onclick="window.print()">Print / save certificate</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">ADHD<span>ementia</span></div>
+        <p>Transforming care plans and care environments for people living with dementia who also have ADHD. Screening, training and consultancy for care homes, care teams and families.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="screening-tool.html">Screening Tool</a></li>
+          <li><a href="training.html">Training &amp; Consultancy</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="guides.html">Guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Get in touch</a></li>
+          <li><a href="https://adhdementia.com">adhdementia.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p><strong>Important:</strong> The ADHDementia screening tool and all content on this site are educational aids, not diagnostic instruments. They cannot confirm or rule out ADHD, dementia or any other condition. If you are concerned about someone's memory, thinking, mood or behaviour, please speak to a GP or qualified clinician.</p>
+      <p>&copy; 2026 ADHDementia. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* ================= course content (draft, to be replaced with final text) ================= */
+
+const MODULES = [
+  {
+    title:"The Lost Generation",
+    time:"8 min",
+    outcomes:["Explain why most older adults with ADHD were never diagnosed","Describe who was most likely to be missed, and why"],
+    blocks:[
+      {h:"A diagnosis that arrived too late", p:"ADHD was not recognised in anything like its modern form until the 1980s, and the understanding that it persists into adulthood, and presents differently in women, came decades later. For anyone born before roughly 1960, the chance of being assessed as a child was effectively zero. Today's care home residents are exactly that generation."},
+      {h:"What it was called instead", p:"Without a diagnosis, lifelong ADHD traits were filed under character: lazy, scatty, highly strung, away with the fairies, a handful. Women were especially likely to be missed, because their ADHD tended to be internalised: the daydreamer rather than the disruptor, working twice as hard as everyone else to appear organised, at great private cost."},
+      {key:"Some of the residents in your home have almost certainly lived their whole lives with unrecognised ADHD. Nobody knows, including them."}
+    ],
+    checks:[
+      {q:"Why do so few care home residents have an ADHD diagnosis?", opts:["ADHD is rare in older people","Assessment simply did not exist when they were young","They grew out of it","Their families kept it secret"], a:1, fb:"Correct. The diagnosis did not exist in any meaningful form during their childhoods, so a whole generation was never assessed."},
+      {q:"Which group was most likely to have their ADHD missed entirely?", opts:["Boys who were disruptive at school","Women, whose traits were often internalised","People with severe symptoms","People born after 1990"], a:1, fb:"Correct. Internalised, inattentive presentations, most common in women, rarely attracted attention, so those women were labelled rather than helped."}
+    ]
+  },
+  {
+    title:"ADHD Meets Dementia",
+    time:"8 min",
+    outcomes:["Outline the emerging evidence linking ADHD and dementia","Explain why traits are misread in care settings"],
+    blocks:[
+      {h:"The emerging evidence", p:"Recent large studies report that adults with ADHD may face around three times the risk of developing dementia, with the greatest risk in those whose ADHD was never treated. The care home population is, almost by definition, the untreated population. These are associations rather than certainties, but the direction of the evidence is consistent and growing."},
+      {h:"Two conditions, one presentation", p:"When a resident has both dementia and lifelong ADHD, staff see one presentation and tend to attribute all of it to dementia. The forgetfulness, the agitation at busy times, the resistance to requests, the afternoon exhaustion: each may be dementia, ADHD, or both. If we misread the cause, we choose the wrong response."},
+      {key:"You do not need to diagnose anything. You need to ask one question: was this trait there for the whole of this person's life?"}
+    ],
+    checks:[
+      {q:"A resident's daughter says her mother has lost things constantly since her twenties. Her care plan attributes losing things to her dementia. What does the daughter's information suggest?", opts:["The daughter is probably mistaken","The trait is lifelong, so it may be ADHD-related rather than new decline","It makes no difference to her care","Her dementia started in her twenties"], a:1, fb:"Correct. A lifelong pattern points to a lifelong trait. That changes how we interpret today's presentation and what adjustments will actually help."},
+      {q:"What does the emerging research suggest about ADHD and dementia risk?", opts:["There is no connection","ADHD may roughly triple the risk, especially when untreated","ADHD protects against dementia","Only treated ADHD carries risk"], a:1, fb:"Correct. Large cohort studies report around three times the risk, with untreated ADHD carrying the most. The care home cohort is largely the untreated cohort."}
+    ]
+  },
+  {
+    title:"Recognising the Traits",
+    time:"12 min",
+    outcomes:["Recognise the nine trait domains of the ADHDementia framework","Spot how each trait presents in a care home day"],
+    blocks:[
+      {h:"Nine domains, one person", p:"The ADHDementia framework looks at nine areas: life history patterns, object permanence and working memory, time blindness, task-switching and hyperfocus, internalised shame, sensory sensitivity, rejection sensitivity, the need for why, and masking. No one shows all nine. The pattern across them is what matters."},
+      {h:"Out of sight, out of mind", p:"For many people with ADHD, an object that is not visible stops existing. A lifetime of coping means leaving things out on view as visual anchors: tablets by the kettle, tomorrow's letter on the chair. When a room is kindly tidied, the room looks lovely, and the resident is lost in it. What looks like worsening dementia may be a fifty-year coping system dismantled in an afternoon."},
+      {h:"Time blindness", p:"Many people with ADHD experience two time states: now and not now. A 3pm appointment can paralyse the entire day, because the brain cannot settle while something is pending. This is not anxiety. It is a different perception of time, and it is why unstructured waiting can cause genuine distress."},
+      {key:"A trait is not a behaviour problem. It is information about how this person's mind has always worked."}
+    ],
+    checks:[
+      {q:"Mrs P keeps taking her belongings out of her drawers and spreading them across every surface. Housekeeping keep tidying them away, and she becomes distressed each time. What is the most likely explanation through an ADHD lens?", opts:["She is being deliberately difficult","Her visible belongings are her memory system, and tidying erases it","She wants more attention from staff","Her dementia means she no longer cares about tidiness"], a:1, fb:"Correct. Visible objects are anchors. The kind response is to agree with her which items stay out and where, and to brief housekeeping."},
+      {q:"Mr T has a hospital appointment at 3pm and has been unsettled since breakfast, unable to join any activity. What is happening?", opts:["He is confused about where he is","Waiting paralysis: the pending event dominates everything until it happens","He dislikes the activities on offer","He is deliberately avoiding the trip"], a:1, fb:"Correct. In a now and not now brain, a pending event blocks everything else. Booking appointments early in the day prevents most of this."},
+      {q:"Which of these is NOT one of the framework's nine domains?", opts:["Sensory sensitivity","Rejection sensitivity","Intelligence testing","Masking"], a:2, fb:"Correct. The framework screens lifelong traits and experiences. It never measures intelligence, and it never diagnoses."}
+    ]
+  },
+  {
+    title:"Reframing Behaviour",
+    time:"12 min",
+    outcomes:["Reinterpret common 'challenging behaviour' labels","Respond to sensory distress, rejection sensitivity and the need for why"],
+    blocks:[
+      {h:"The cardigan is not the problem", p:"Sensory sensitivity means certain textures, noises and environments cause genuine physical distress. The resident who refuses her cardigan may find its fabric unbearable. The gentleman who will not sit in the dining room may be overwhelmed by overlapping noise. Before behaviour charts, check the environment: noise, clothing, lighting, crowding."},
+      {h:"The question why is not defiance", p:"Many people with ADHD cannot act on a request until they understand the reason. Give the reason with the request: this tablet protects your heart, rather than it's time for your tablets. Resistance that vanishes when a reason is given was never non-compliance. It was a need for meaning."},
+      {h:"Small criticisms, enormous pain", p:"Rejection sensitive dysphoria means perceived criticism can cause intense, almost physical pain, followed by withdrawal, tears or anger that staff experience as disproportionate. Correct privately and gently, reassure immediately, and never tease in front of others, even light-heartedly."},
+      {key:"Behaviour is communication. With ADHD in the picture, it is often communicating a need the care plan never knew existed."}
+    ],
+    checks:[
+      {q:"A resident becomes agitated at lunchtimes in the busy dining room, and calm when she eats alone. The behaviour chart says lunchtime agitation, cause unknown. What should the team try first?", opts:["A medication review for the agitation","A quieter dining option, and check noise, seating and crowding","Moving her lunch to the busiest sitting so she gets used to it","Recording the behaviour in more detail"], a:1, fb:"Correct. Treat sudden agitation as possible sensory overload first. The cheapest, kindest intervention is changing the environment, not the person."},
+      {q:"Mr D refuses his medication every morning from one carer, but takes it happily from another. The successful carer always explains what each tablet is for. What is the lesson?", opts:["Mr D simply prefers one carer","The need for why: explanation is the intervention, so every carer should use it","Medication should be hidden in food","Mr D should be reminded that refusing is not allowed"], a:1, fb:"Correct. When understanding the reason removes the resistance, record what works in the care plan so every member of staff can do the same."}
+    ]
+  },
+  {
+    title:"Practical Adjustments",
+    time:"10 min",
+    outcomes:["Apply environment, communication and routine adjustments","Write care plan language that describes need instead of judging"],
+    blocks:[
+      {h:"The environment", p:"Keep important belongings visible and agree what stays out. Offer quiet dining options and turn the television off during conversation. Remove clothing labels and respect fabric preferences. Schedule appointments and outings early in the day. Build genuine recovery time after visits and events, and do not read post-event exhaustion as decline."},
+      {h:"The words we write", p:"Care plan language shapes how every future shift treats a resident. Refuses personal care judges; needs to understand the reason before personal care, explanations that work are listed below describes and instructs. Replace non-compliant, difficult and attention-seeking with what the person needs and what works."},
+      {key:"Every role matters. The housekeeper who asks before tidying, the cook who respects a lifelong texture aversion and the activities coordinator who plans novelty over repetition are all delivering ADHD-aware care."}
+    ],
+    checks:[
+      {q:"Which care plan entry is best practice?", opts:["Resident is non-compliant with medication","Resident argues about tablets, be firm","Resident needs the purpose of each medication explained before taking it. Saying this one protects your heart works well","Resident takes medication only for certain staff"], a:2, fb:"Correct. It describes the need, gives the working strategy word for word, and lets every member of staff succeed on their next shift."},
+      {q:"A resident is exhausted and seems like a different person after every family visit. The team should:", opts:["Reduce family visits","Build quiet recovery time into the day after visits, and not record the exhaustion as decline","Refer for urgent assessment after each visit","Encourage her to socialise more to build stamina"], a:1, fb:"Correct. A lifetime of masking makes social occasions expensive. Recovery time is the adjustment, and post-event exhaustion is not automatically deterioration."}
+    ]
+  },
+  {
+    title:"Screening, Dignity and Next Steps",
+    time:"5 min",
+    outcomes:["Explain what the screening tool does and does not do","Approach screening respectfully, with the person, not about them"],
+    blocks:[
+      {h:"What screening is, and is not", p:"The ADHDementia screening tool builds a Neurodivergent Life Profile across the nine domains. It is not a diagnostic tool, and it never labels anyone. It highlights lifelong patterns worth discussing with the GP and worth reflecting in the care plan, whatever the underlying cause."},
+      {h:"Ask the person, not about them", p:"Wherever possible, complete the self-report version together with the resident. Most people in the earlier stages of dementia can still answer questions about their own life story, and it is always more respectful to ask the person than to talk about them. The observational version exists for when that is no longer possible, or as a second perspective."},
+      {key:"The goal is not a label. It is a care plan, and an environment, that finally fits the person who actually lives there."}
+    ],
+    checks:[
+      {q:"What does the screening tool provide?", opts:["An ADHD diagnosis","A Neurodivergent Life Profile of lifelong traits, with care adjustments to consider","A dementia severity score","A behaviour management plan"], a:1, fb:"Correct. It profiles lifelong traits and suggests person-centred adjustments. Diagnosis belongs to clinicians alone."},
+      {q:"A resident in the early stages of dementia is being screened. Best practice is to:", opts:["Complete the observational version without telling her","Ask her family to answer everything","Complete the self-report version together with her, asking her the questions directly","Wait until her dementia advances"], a:2, fb:"Correct. She is the expert on her own life. Asking her directly is both more accurate and more dignified."}
+    ]
+  }
+];
+
+const ASSESSMENT = [
+  {q:"Why does the care home generation so rarely have an ADHD diagnosis?", opts:["ADHD fades with age","ADHD assessment did not exist during their childhoods","Diagnosis requires a brain scan","Their symptoms only began in old age"], a:1},
+  {q:"Whose ADHD was most often missed entirely?", opts:["Disruptive schoolboys","Women with internalised, inattentive presentations","Professional men","Athletes"], a:1},
+  {q:"What does emerging research suggest about untreated ADHD?", opts:["It carries the highest associated dementia risk","It prevents dementia","It has no relationship to dementia","It only matters before age 40"], a:0},
+  {q:"A resident's belongings are spread over every surface and she becomes distressed when they are tidied away. The ADHD-aware first response is to:", opts:["Tidy more gradually","Agree with her which items stay out and where, and brief housekeeping","Store everything safely in drawers","Add distress at tidying to her behaviour chart"], a:1},
+  {q:"A resident cannot settle all morning before an afternoon appointment. The best adjustment is to:", opts:["Book appointments as early in the day as possible","Remind him repeatedly how long is left","Cancel his appointments","Distract him with the television"], a:0},
+  {q:"A resident refuses to wear a cardigan her family bought. The ADHD-aware question is:", opts:["How do we persuade her?","Could the fabric be causing genuine sensory distress?","Should we buy several identical ones?","Is she being ungrateful?"], a:1},
+  {q:"Resistance that disappears once a reason is explained was:", opts:["Non-compliance","Attention-seeking","A need for meaning before action","Manipulation"], a:2},
+  {q:"After perceived criticism, a resident withdraws to her room in tears for hours. This may be:", opts:["Rejection sensitive dysphoria, needing gentle private reassurance","Proof she cannot cope with feedback","Ordinary tiredness","A reason to avoid speaking to her"], a:0},
+  {q:"Which is the best care plan language?", opts:["Difficult at mealtimes","Refuses the dining room","Finds overlapping noise overwhelming, offer the quiet dining option and seat away from the television","Attention-seeking at lunch"], a:2},
+  {q:"The screening tool's result is:", opts:["A diagnosis of ADHD","A Neurodivergent Life Profile that informs care planning and GP conversations","A dementia staging score","A medication recommendation"], a:1}
+];
+
+/* ================= state ================= */
+
+const STORE_KEY = "adhdementia-course-v1";
+let state = { name:"", completed:[], passed:false };
+
+function load(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw){ state = Object.assign(state, JSON.parse(raw)); }
+  }catch(e){}
+}
+function save(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+}
+
+let currentModule = 0;
+let checkState = {};   // per-module: index -> answered correctly at least attempted
+let assessAnswers = {};
+
+/* ================= navigation ================= */
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+function startCourse(){
+  const name = document.getElementById('learner-name').value.trim();
+  if(!name){
+    document.getElementById('learner-name').focus();
+    document.getElementById('learner-name').style.borderColor = '#b3452f';
+    return;
+  }
+  state.name = name;
+  save();
+  showMap();
+}
+
+function resumeCourse(){
+  showMap();
+}
+
+function showMap(){
+  const map = document.getElementById('module-map');
+  let html = '';
+  const nextIdx = state.completed.length;
+  MODULES.forEach((m,i)=>{
+    const done = state.completed.includes(i);
+    const current = i===nextIdx;
+    const cls = done?'done':(current?'current':'locked');
+    const stateLabel = done?'Complete':(current?'Up next':'Locked');
+    html += `<li class="${cls}"><span class="m-num">${i+1}</span><span class="m-title">${m.title}</span><span class="m-time">${m.time}</span><span class="m-state">${stateLabel}</span></li>`;
+  });
+  const assessReady = state.completed.length===MODULES.length;
+  html += `<li class="${state.passed?'done':(assessReady?'current':'locked')}"><span class="m-num">&#9733;</span><span class="m-title">Final assessment</span><span class="m-time">8 min</span><span class="m-state">${state.passed?'Passed':(assessReady?'Up next':'Locked')}</span></li>`;
+  map.innerHTML = html;
+  document.getElementById('btn-continue').textContent = state.passed ? 'View certificate' : (assessReady ? 'Start final assessment' : `Continue: ${MODULES[nextIdx].title}`);
+  showScreen('screen-map');
+}
+
+function openCurrent(){
+  if(state.passed){ showCertificate(); return; }
+  if(state.completed.length===MODULES.length){ openAssessment(); return; }
+  openModule(state.completed.length);
+}
+
+/* ================= modules ================= */
+
+function openModule(i){
+  currentModule = i;
+  checkState = {};
+  const m = MODULES[i];
+  let html = `<div class="mod-kicker">Module ${i+1} of ${MODULES.length} &middot; about ${m.time}</div><h2>${m.title}</h2>`;
+  html += `<div class="learn-outcomes"><strong>In this module</strong><ul style="margin:0 0 0 20px;">${m.outcomes.map(o=>`<li>${o}</li>`).join('')}</ul></div>`;
+  html += `<div class="mod-body">`;
+  m.blocks.forEach(b=>{
+    if(b.key){ html += `<div class="key-point"><strong>Key point:</strong> ${b.key}</div>`; }
+    else{ html += `<h3>${b.h}</h3><p>${b.p}</p>`; }
+  });
+  html += `</div>`;
+  m.checks.forEach((c,ci)=>{
+    html += `<div class="check" id="check-${ci}">
+      <div class="check-label">Knowledge check</div>
+      <div class="check-q">${c.q}</div>
+      <div class="opts">${c.opts.map((o,oi)=>`<button type="button" class="opt" onclick="answerCheck(${ci},${oi})">${o}</button>`).join('')}</div>
+      <div class="feedback" id="fb-${ci}"></div>
+    </div>`;
+  });
+  document.getElementById('module-body').innerHTML = html;
+  document.getElementById('mod-label').textContent = `Module ${i+1}: ${m.title}`;
+  document.getElementById('mod-count').textContent = `${state.completed.length} of ${MODULES.length} modules complete`;
+  document.getElementById('mod-fill').style.width = `${(state.completed.length/(MODULES.length+1))*100}%`;
+  document.getElementById('gate-note').classList.remove('show');
+  showScreen('screen-module');
+}
+
+function answerCheck(ci, oi){
+  const c = MODULES[currentModule].checks[ci];
+  const box = document.getElementById(`check-${ci}`);
+  const opts = box.querySelectorAll('.opt');
+  const fb = document.getElementById(`fb-${ci}`);
+  if(oi===c.a){
+    opts.forEach(o=>o.disabled=true);
+    opts[oi].classList.add('sel-right');
+    fb.className = 'feedback right';
+    fb.textContent = c.fb;
+    checkState[ci] = true;
+  }else{
+    opts[oi].classList.add('sel-wrong');
+    opts[oi].disabled = true;
+    fb.className = 'feedback wrong';
+    fb.textContent = 'Not quite. Have another look and try again.';
+  }
+}
+
+function completeModule(){
+  const total = MODULES[currentModule].checks.length;
+  const done = Object.keys(checkState).length;
+  if(done < total){
+    document.getElementById('gate-note').classList.add('show');
+    return;
+  }
+  if(!state.completed.includes(currentModule)){
+    state.completed.push(currentModule);
+    save();
+  }
+  showMap();
+}
+
+/* ================= assessment ================= */
+
+function openAssessment(){
+  assessAnswers = {};
+  let html = '';
+  ASSESSMENT.forEach((q,qi)=>{
+    html += `<div class="assess-q"><div class="check-q">${qi+1}. ${q.q}</div><div class="opts">
+      ${q.opts.map((o,oi)=>`<button type="button" class="opt" id="aq-${qi}-${oi}" onclick="pickAssess(${qi},${oi})">${o}</button>`).join('')}
+    </div></div>`;
+  });
+  document.getElementById('assess-body').innerHTML = html;
+  document.getElementById('assess-result').innerHTML = '';
+  document.getElementById('btn-submit-assess').style.display = '';
+  showScreen('screen-assess');
+}
+
+function pickAssess(qi, oi){
+  assessAnswers[qi] = oi;
+  ASSESSMENT[qi].opts.forEach((_,i)=>{
+    document.getElementById(`aq-${qi}-${i}`).classList.remove('sel-right');
+  });
+  document.getElementById(`aq-${qi}-${oi}`).classList.add('sel-right');
+}
+
+function submitAssessment(){
+  const answered = Object.keys(assessAnswers).length;
+  const resultEl = document.getElementById('assess-result');
+  if(answered < ASSESSMENT.length){
+    resultEl.innerHTML = `<div class="assess-result fail"><strong>${ASSESSMENT.length-answered} question${ASSESSMENT.length-answered===1?'':'s'} still unanswered.</strong> Answer every question, then submit again.</div>`;
+    return;
+  }
+  let score = 0;
+  ASSESSMENT.forEach((q,qi)=>{ if(assessAnswers[qi]===q.a) score++; });
+  if(score>=8){
+    state.passed = true;
+    save();
+    resultEl.innerHTML = `<div class="assess-result pass"><strong>You passed, ${score} out of ${ASSESSMENT.length}.</strong> Well done. Your certificate is ready.</div>`;
+    document.getElementById('btn-submit-assess').style.display = 'none';
+    setTimeout(showCertificate, 1200);
+  }else{
+    resultEl.innerHTML = `<div class="assess-result fail"><strong>You scored ${score} out of ${ASSESSMENT.length}.</strong> You need 8 to pass. Revisit any module from the course overview, then try again. <div style="margin-top:14px;"><button type="button" class="btn btn-gold" onclick="openAssessment()">Retake the assessment</button></div></div>`;
+  }
+}
+
+/* ================= certificate ================= */
+
+function showCertificate(){
+  document.getElementById('cert-name').textContent = state.name || 'Name';
+  const d = new Date();
+  document.getElementById('cert-date').textContent = 'Completed on ' + d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('cert-id').textContent = 'Certificate ID: ADHD-' + d.getFullYear() + '-' + Math.random().toString(36).slice(2,8).toUpperCase() + ' · Verify at adhdementia.com';
+  showScreen('screen-cert');
+}
+
+function resetCourse(){
+  state = { name: state.name, completed:[], passed:false };
+  save();
+  showScreen('screen-start');
+}
+
+/* ================= init ================= */
+
+load();
+if(state.name){
+  document.getElementById('learner-name').value = state.name;
+  if(state.completed.length>0 || state.passed){
+    document.getElementById('btn-resume').style.display = '';
+  }
+}
+</script>
+</body>
+</html>
