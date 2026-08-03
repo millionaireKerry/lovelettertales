@@ -19,10 +19,6 @@
   @media(max-width:640px){.course-card{padding:28px 22px;}}
   .screen{display:none;}
   .screen.active{display:block;}
-  .draft-banner{
-    background:var(--teal-pale);border:1px solid #bcd9d6;border-left:4px solid var(--teal);
-    border-radius:var(--radius);padding:12px 18px;font-size:.85rem;color:var(--ink);margin-top:20px;
-  }
 
   /* progress */
   .course-progress{margin-top:34px;}
@@ -64,6 +60,13 @@
     border-left:3px solid var(--gold);background:var(--gold-pale);border-radius:var(--radius);
     padding:14px 20px;margin-top:18px;font-size:.96rem;
   }
+  .try-box{
+    border-left:3px solid var(--teal);background:var(--teal-pale);border-radius:var(--radius);
+    padding:14px 20px;margin-top:14px;font-size:.94rem;
+  }
+  .refs-details{margin-top:22px;font-size:.88rem;color:var(--ink-soft);}
+  .refs-details summary{cursor:pointer;font-weight:600;color:var(--black);}
+  .refs-details h4{margin:14px 0 4px;color:var(--black);font-size:.9rem;}
 
   /* knowledge checks */
   .check{
@@ -71,19 +74,22 @@
     background:var(--white);
   }
   .check .check-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-  .check .check-q{font-weight:600;color:var(--black);margin-bottom:14px;}
-  .check .opts{display:flex;flex-direction:column;gap:8px;}
-  .check .opt{
-    text-align:left;font:inherit;font-size:.93rem;padding:12px 16px;border:1.5px solid var(--line);
-    border-radius:var(--radius);background:var(--white);cursor:pointer;transition:border-color .12s;
+  .check-q{font-weight:600;color:var(--black);margin-bottom:14px;}
+  .opts{display:flex;flex-direction:column;gap:8px;align-items:stretch;}
+  .opt{
+    display:block;width:100%;text-align:left;font:inherit;font-size:.93rem;line-height:1.5;
+    padding:12px 16px;border:1.5px solid var(--line);
+    border-radius:var(--radius);background:var(--white);color:var(--ink);
+    cursor:pointer;transition:border-color .12s;
   }
-  .check .opt:hover{border-color:var(--gold);}
-  .check .opt.sel-right{border-color:var(--teal);background:var(--teal-pale);font-weight:600;}
-  .check .opt.sel-wrong{border-color:#b3452f;background:#fbe9e4;}
-  .check .opt:disabled{cursor:default;}
-  .check .feedback{display:none;margin-top:14px;font-size:.92rem;border-radius:var(--radius);padding:12px 16px;}
-  .check .feedback.right{display:block;background:var(--teal-pale);color:var(--teal);}
-  .check .feedback.wrong{display:block;background:#fbe9e4;color:#8a2f1c;}
+  .opt:hover{border-color:var(--gold);}
+  .opt.sel-right{border-color:var(--teal);background:var(--teal-pale);font-weight:600;}
+  .opt.sel-wrong{border-color:#b3452f;background:#fbe9e4;}
+  .opt.sel-picked{border-color:var(--black);background:var(--paper);font-weight:600;}
+  .opt:disabled{cursor:default;opacity:1;}
+  .feedback{display:none;margin-top:14px;font-size:.92rem;border-radius:var(--radius);padding:12px 16px;}
+  .feedback.right{display:block;background:var(--teal-pale);color:var(--teal);}
+  .feedback.wrong{display:block;background:#fbe9e4;color:#8a2f1c;}
   .course-btn-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px;justify-content:space-between;align-items:center;}
   .gate-note{font-size:.85rem;color:var(--ink-soft);margin-top:12px;display:none;}
   .gate-note.show{display:block;}
@@ -178,7 +184,20 @@
         <button type="button" class="btn btn-gold" onclick="startCourse()">Start the course</button>
         <button type="button" class="btn btn-outline-dark" id="btn-resume" style="display:none;" onclick="resumeCourse()">Resume where I left off</button>
       </div>
-      <div class="draft-banner"><strong>Draft content.</strong> The module text below is a working draft built from the ADHDementia framework, ready to be replaced and tweaked with the author's final wording before accreditation.</div>
+      <details class="refs-details">
+        <summary>Research references supporting the course content</summary>
+        <p style="margin-top:10px;">These references support the research-informed content used in the course. They are provided for quality assurance and course development and do not need to be read during normal learner progression.</p>
+        <h4>Executive function and working memory</h4>
+        <p>Boonstra et al. (2005), Executive functioning in adult ADHD: a meta-analytic review. Psychological Medicine, 35(8), 1097-1108. PMID: 16116936. Alderson et al. (2013), ADHD and working memory in adults: a meta-analytic review. Neuropsychology, 27(3), 287-302. PMID: 23688211.</p>
+        <h4>Emotional dysregulation</h4>
+        <p>Beheshti et al. (2020), Emotion dysregulation in adults with ADHD: a meta-analysis. BMC Psychiatry, 20, 120. PMID: 32164655. Soler-Guti&eacute;rrez et al. (2023), Evidence of emotion dysregulation as a core symptom of adult ADHD: a systematic review. PLOS ONE, 18(1), e0280131. PMID: 36608036.</p>
+        <h4>Sensory processing</h4>
+        <p>Jurek et al. (2025), Sensory Processing in Individuals With ADHD Compared With Control Populations: A Systematic Review and Meta-Analysis. Journal of the American Academy of Child &amp; Adolescent Psychiatry, 64(10), 1132-1147. PMID: 40250555. The review found higher sensory sensitivity, avoidance, seeking and low registration across ADHD samples.</p>
+        <h4>Interoception</h4>
+        <p>Bruton et al. (2025), Diminished Interoceptive Awareness in Attention-Deficit/Hyperactivity Disorder: A Systematic Review. Psychophysiology, 62(2), e14750. The evidence is emerging and mixed, so care implications should be framed as possibilities rather than universal ADHD traits.</p>
+        <h4>Sleep</h4>
+        <p>D&iacute;az-Rom&aacute;n, Mitchell &amp; Cortese (2018), Sleep in adults with ADHD: systematic review and meta-analysis. Neuroscience &amp; Biobehavioural Reviews, 89, 61-71. PMID: 29477617. Bijlenga/Kooij and colleagues also describe delayed circadian timing in subgroups of adults with ADHD; sleep history should be individualised.</p>
+      </details>
     </div>
   </section>
 
@@ -292,7 +311,7 @@
 <script>
 "use strict";
 
-/* ================= course content (draft, to be replaced with final text) ================= */
+/* ================= course content (author-final text) ================= */
 
 const MODULES = [
   {
@@ -300,12 +319,14 @@ const MODULES = [
     time:"8 min",
     outcomes:["Explain why most older adults with ADHD were never diagnosed","Describe who was most likely to be missed, and why"],
     blocks:[
-      {h:"A diagnosis that arrived too late", p:"ADHD was not recognised in anything like its modern form until the 1980s, and the understanding that it persists into adulthood, and presents differently in women, came decades later. For anyone born before roughly 1960, the chance of being assessed as a child was effectively zero. Today's care home residents are exactly that generation."},
+      {h:"A diagnosis that arrived too late", p:"ADHD-related behaviours were recognised long before the term ADHD came into everyday use, but the way they were understood was much narrower. During the 1960s and 1970s, British clinicians used terms such as hyperkinetic syndrome, usually centred on conspicuous overactivity in children, and the condition was diagnosed far less often in the UK than it is today. Broader recognition of difficulties with attention and executive function, persistence into adulthood, and less visibly hyperactive presentations developed later. Recognition increased during the 1990s, but diagnosis and treatment still focused heavily on boys with obvious hyperactivity. As a result, many older adults living in care homes today - including people born well into the 1960s and 1970s - passed through school without ADHD ever being considered, particularly girls and people with predominantly inattentive presentations."},
       {h:"What it was called instead", p:"Without a diagnosis, lifelong ADHD traits were filed under character: lazy, scatty, highly strung, away with the fairies, a handful. Women were especially likely to be missed, because their ADHD tended to be internalised: the daydreamer rather than the disruptor, working twice as hard as everyone else to appear organised, at great private cost."},
+      {h:"Look for the life story, not the label", p:"Older adults may never have used the word ADHD, but their families may describe a lifelong pattern: always late or extremely early, constantly losing things, many unfinished projects, intense hobbies, interrupting, restlessness, paperwork problems, difficulty sleeping at conventional times, emotional intensity, or needing another person to provide structure. These descriptions do not diagnose ADHD. They help staff establish a baseline - what was present long before dementia and what is genuinely new."},
+      {tip:"Practice prompt: Ask families “What has this person always been like when it comes to time, organisation, attention, sleep, emotions, movement and getting things started?”"},
       {key:"Some of the residents in your home have almost certainly lived their whole lives with unrecognised ADHD. Nobody knows, including them."}
     ],
     checks:[
-      {q:"Why do so few care home residents have an ADHD diagnosis?", opts:["ADHD is rare in older people","Assessment simply did not exist when they were young","They grew out of it","Their families kept it secret"], a:1, fb:"Correct. The diagnosis did not exist in any meaningful form during their childhoods, so a whole generation was never assessed."},
+      {q:"Why do so few older adults living in care homes have an ADHD diagnosis?", opts:["ADHD is rare in older people","ADHD was narrowly understood and rarely recognised during much of their childhood, especially in girls and less visibly hyperactive children","They grew out of it","Their families kept it secret"], a:1, fb:"Correct. ADHD-related difficulties were known, but recognition in the UK was narrow and uncommon for much of this generation's childhood. Many people - especially girls and those without obvious hyperactivity - were therefore never considered for assessment."},
       {q:"Which group was most likely to have their ADHD missed entirely?", opts:["Boys who were disruptive at school","Women, whose traits were often internalised","People with severe symptoms","People born after 1990"], a:1, fb:"Correct. Internalised, inattentive presentations, most common in women, rarely attracted attention, so those women were labelled rather than helped."}
     ]
   },
@@ -314,13 +335,15 @@ const MODULES = [
     time:"8 min",
     outcomes:["Outline the emerging evidence linking ADHD and dementia","Explain why traits are misread in care settings"],
     blocks:[
-      {h:"The emerging evidence", p:"Recent large studies report that adults with ADHD may face around three times the risk of developing dementia, with the greatest risk in those whose ADHD was never treated. The care home population is, almost by definition, the untreated population. These are associations rather than certainties, but the direction of the evidence is consistent and growing."},
+      {h:"The emerging evidence", p:"A large cohort study reported an association between adult ADHD and later dementia, with an adjusted hazard ratio of about 2.8. In that study the association was not observed among participants recorded as receiving psychostimulant medication, but this does not prove that medication prevents dementia or that untreated ADHD causes dementia. The safest training message is that ADHD may be relevant to dementia risk and, just as importantly, can overlap with dementia in attention, working memory, organisation and behaviour. Care staff should not diagnose from this association; they should use it as a reason to ask better life-history questions."},
       {h:"Two conditions, one presentation", p:"When a resident has both dementia and lifelong ADHD, staff see one presentation and tend to attribute all of it to dementia. The forgetfulness, the agitation at busy times, the resistance to requests, the afternoon exhaustion: each may be dementia, ADHD, or both. If we misread the cause, we choose the wrong response."},
+      {h:"When lifelong scaffolding disappears", p:"Many adults with ADHD function by building external structure around themselves: a spouse who remembers appointments, a job that fixes the shape of the day, visible notes, calendars, particular places for belongings, alarms, duplicate items, routines and last-minute urgency. Retirement, bereavement, hospital admission and moving into residential care can remove several of those supports at once. The person can therefore look dramatically less organised even before dementia itself is considered."},
+      {tip:"Care-home question: “What systems used to keep this person on track, and which of those systems have disappeared?”"},
       {key:"You do not need to diagnose anything. You need to ask one question: was this trait there for the whole of this person's life?"}
     ],
     checks:[
       {q:"A resident's daughter says her mother has lost things constantly since her twenties. Her care plan attributes losing things to her dementia. What does the daughter's information suggest?", opts:["The daughter is probably mistaken","The trait is lifelong, so it may be ADHD-related rather than new decline","It makes no difference to her care","Her dementia started in her twenties"], a:1, fb:"Correct. A lifelong pattern points to a lifelong trait. That changes how we interpret today's presentation and what adjustments will actually help."},
-      {q:"What does the emerging research suggest about ADHD and dementia risk?", opts:["There is no connection","ADHD may roughly triple the risk, especially when untreated","ADHD protects against dementia","Only treated ADHD carries risk"], a:1, fb:"Correct. Large cohort studies report around three times the risk, with untreated ADHD carrying the most. The care home cohort is largely the untreated cohort."}
+      {q:"What does the emerging research suggest about ADHD and dementia risk?", opts:["There is no connection","Adult ADHD has been associated with a higher later dementia risk in cohort research; causation is not established","ADHD protects against dementia","Only treated ADHD carries risk"], a:1, fb:"Correct. Cohort research has reported a substantially higher later dementia risk among adults with ADHD. This is an association, not proof that ADHD causes dementia or that medication prevents it."}
     ]
   },
   {
@@ -328,14 +351,25 @@ const MODULES = [
     time:"12 min",
     outcomes:["Recognise the nine trait domains of the ADHDementia framework","Spot how each trait presents in a care home day"],
     blocks:[
-      {h:"Nine domains, one person", p:"The ADHDementia framework looks at nine areas: life history patterns, object permanence and working memory, time blindness, task-switching and hyperfocus, internalised shame, sensory sensitivity, rejection sensitivity, the need for why, and masking. No one shows all nine. The pattern across them is what matters."},
-      {h:"Out of sight, out of mind", p:"For many people with ADHD, an object that is not visible stops existing. A lifetime of coping means leaving things out on view as visual anchors: tablets by the kettle, tomorrow's letter on the chair. When a room is kindly tidied, the room looks lovely, and the resident is lost in it. What looks like worsening dementia may be a fifty-year coping system dismantled in an afternoon."},
-      {h:"Time blindness", p:"Many people with ADHD experience two time states: now and not now. A 3pm appointment can paralyse the entire day, because the brain cannot settle while something is pending. This is not anxiety. It is a different perception of time, and it is why unstructured waiting can cause genuine distress."},
+      {h:"Nine domains, one person", p:"The current ADHDementia screening tool groups observations into nine practical areas. For the training, it is useful to understand the wider pattern underneath them. ADHD is not simply “poor concentration”. It can affect regulation of attention, working memory, time, task initiation, transitions, movement, impulse control, emotion, sensory input, sleep and the strategies a person has built over a lifetime to compensate. No one will show every feature, and none of these features is diagnostic on its own. The pattern, the lifelong history and the impact on care are what matter."},
+      {h:"Out of sight, out of mind", p:"Many adults with ADHD describe an “out of sight, out of mind” experience. The more precise explanation is difficulty with working memory and prospective memory: keeping information active long enough to use it later. People may compensate by leaving important objects where they can see them - tablets by the kettle, tomorrow's letter on the chair, keys in one exact place. If a care home tidies those visual prompts away, it may accidentally remove a memory system that has worked for decades."},
+      {h:"Time blindness", p:"Many adults with ADHD report difficulty judging the passage of time, estimating how long tasks will take and shifting attention when a future event is pending. An afternoon appointment can sometimes dominate the whole morning - often called “waiting mode” in ADHD communities. Anxiety can also contribute, so staff should not assume one cause. The practical point is to notice whether long periods of waiting predict distress and, where possible, reduce unnecessary waiting or make time concrete with clear prompts."},
+      {h:"Task initiation: knowing is not the same as starting", p:"A person can know what needs doing, want to do it and still struggle to begin. This is an executive-function problem, not necessarily refusal. Showering is a good example because it contains many separate steps and sensory transitions: stop the current activity, gather clothes, undress, tolerate temperature and water, wash, dry, dress and restart the day. But the difficulty is not always the number of steps. Staff may think a resident is 'doing nothing' when internally they are concentrating, planning, remembering, daydreaming or following a train of thought. Asking them to shower can therefore be an interruption to something real, even when there is nothing visible in their hands. Dementia can make both the sequence and the interruption harder to manage."},
+      {tip:"Try: give advance warning where possible, acknowledge what the person is already doing, reduce the first step, offer a cue, stay nearby, or start together rather than repeating the demand more loudly. “When this programme finishes, we can get ready for your shower” may work better than an unexpected “Come on, shower time”."},
+      {h:"Transitions, hyperfocus and interruption", p:"Attention in ADHD is often inconsistent rather than simply absent. A person may struggle to sustain attention to something repetitive yet remain absorbed in an interesting task for a long time. Stopping can be harder than continuing. Sudden interruption - television off, meal now, personal care immediately - can therefore trigger distress. Advance warning and a clear finishing point can make the transition easier."},
+      {h:"Listening does not always look like listening", p:"Some people with ADHD listen better when part of their attention is occupied by movement or a simple second activity. Doodling, knitting, folding a cloth, handling a fidget object, pacing gently or looking away can help them stay with a conversation. Requiring stillness, folded hands and constant eye contact may actually make it harder to process what is being said. Do not assume that looking away, moving or using their hands means they are rude, bored or not listening. Check understanding instead of judging appearance."},
+      {h:"Make instructions concrete", p:"Vague requests can create unnecessary confusion. 'Can you sort this out?', 'Can you update that?' or 'Get yourself ready' may leave a person unsure what is actually expected. Use clear, specific language and make the desired outcome obvious: 'Please put your blue jumper on and then come to the dining room' or 'Please add today's date to this form and give it back to me.' Break longer requests into manageable steps and allow time for the person to process the first one before adding another."},
+      {p:"Eye contact should never be used as a test of attention. Some people with ADHD and other neurodivergent people find eye contact distracting or uncomfortable because it adds another thing to process while they are trying to listen. Let the person look where they need to look, and judge communication by whether they understand and can respond, not by whether they are looking directly at you."},
+      {h:"Restlessness and impulsivity in later life", p:"Hyperactivity does not have to mean running around. In adulthood and older age it may look like internal restlessness, pacing, fidgeting, talking, needing to be occupied, changing position frequently or finding prolonged sitting intolerable. Impulsivity may appear as interrupting, speaking before thinking, difficulty waiting, sudden decisions or acting before safety information has been processed. Dementia may reduce the compensatory “brakes” that once kept these traits less visible."},
+      {h:"Emotion can arrive faster than the explanation", p:"Emotional dysregulation is common in adult ADHD research. Some people describe emotions rising very quickly and intensely - frustration, anger, tears, excitement - and then settling faster than staff expect. In a resident with dementia, this can be mistaken for a new behavioural symptom unless the team asks whether emotional intensity has been lifelong and what usually helps the person regulate."},
+      {h:"Sleep and body-clock history", p:"Sleep problems and later sleep timing are common in adults with ADHD. A lifelong “night owl” may have spent decades going to bed late and waking late when circumstances allowed. Residential care should not assume that a conventional early bedtime is automatically therapeutic. Ask what the person's natural sleep-wake pattern was before dementia, while still checking new sleep disturbance for pain, illness, medication effects, depression, delirium and dementia-related change."},
+      {h:"Body signals: hunger, thirst, fatigue and toileting", p:"Emerging research suggests that interoceptive awareness - noticing and interpreting internal body signals - may be reduced in some people with ADHD. A person may not notice hunger, thirst, fatigue or the need for the toilet until the signal becomes urgent. In dementia care this is worth considering when distress appears at predictable times, but it must never replace assessment for physical illness, pain, constipation, infection or other clinical causes."},
+      {h:"Masking and lifelong compensation", p:"Many adults with ADHD spend years hiding or compensating for difficulties so that other people do not see how much effort everyday life takes. They may rely on lists, strict routines, another person, arriving extremely early, keeping everything in one exact place, constant movement, humour, over-preparation or simply working twice as hard to appear organised. They may also suppress interrupting, restlessness, emotional reactions or confusion because experience has taught them these behaviours will be judged. Dementia can weaken the cognitive resources needed to maintain those strategies. What looks like a sudden change in personality or behaviour may sometimes be a lifelong trait becoming more visible because the person can no longer mask or compensate in the same way."},
       {key:"A trait is not a behaviour problem. It is information about how this person's mind has always worked."}
     ],
     checks:[
       {q:"Mrs P keeps taking her belongings out of her drawers and spreading them across every surface. Housekeeping keep tidying them away, and she becomes distressed each time. What is the most likely explanation through an ADHD lens?", opts:["She is being deliberately difficult","Her visible belongings are her memory system, and tidying erases it","She wants more attention from staff","Her dementia means she no longer cares about tidiness"], a:1, fb:"Correct. Visible objects are anchors. The kind response is to agree with her which items stay out and where, and to brief housekeeping."},
-      {q:"Mr T has a hospital appointment at 3pm and has been unsettled since breakfast, unable to join any activity. What is happening?", opts:["He is confused about where he is","Waiting paralysis: the pending event dominates everything until it happens","He dislikes the activities on offer","He is deliberately avoiding the trip"], a:1, fb:"Correct. In a now and not now brain, a pending event blocks everything else. Booking appointments early in the day prevents most of this."},
+      {q:"Mr T has a hospital appointment at 3pm and has been unsettled since breakfast, unable to join any activity. What is happening?", opts:["He is confused about where he is","Waiting paralysis: the pending event dominates everything until it happens","He dislikes the activities on offer","He is deliberately avoiding the trip"], a:1, fb:"Correct. A pending event can dominate attention for some people with ADHD. Earlier appointments, concrete time prompts and reducing unnecessary waiting may help, while staff should also consider anxiety and other causes of distress."},
       {q:"Which of these is NOT one of the framework's nine domains?", opts:["Sensory sensitivity","Rejection sensitivity","Intelligence testing","Masking"], a:2, fb:"Correct. The framework screens lifelong traits and experiences. It never measures intelligence, and it never diagnoses."}
     ]
   },
@@ -344,14 +378,20 @@ const MODULES = [
     time:"12 min",
     outcomes:["Reinterpret common 'challenging behaviour' labels","Respond to sensory distress, rejection sensitivity and the need for why"],
     blocks:[
-      {h:"The cardigan is not the problem", p:"Sensory sensitivity means certain textures, noises and environments cause genuine physical distress. The resident who refuses her cardigan may find its fabric unbearable. The gentleman who will not sit in the dining room may be overwhelmed by overlapping noise. Before behaviour charts, check the environment: noise, clothing, lighting, crowding."},
-      {h:"The question why is not defiance", p:"Many people with ADHD cannot act on a request until they understand the reason. Give the reason with the request: this tablet protects your heart, rather than it's time for your tablets. Resistance that vanishes when a reason is given was never non-compliance. It was a need for meaning."},
-      {h:"Small criticisms, enormous pain", p:"Rejection sensitive dysphoria means perceived criticism can cause intense, almost physical pain, followed by withdrawal, tears or anger that staff experience as disproportionate. Correct privately and gently, reassure immediately, and never tease in front of others, even light-heartedly."},
+      {h:"The cardigan is not the problem", p:"ADHD is associated with atypical sensory processing, but this can include more than sensitivity. Some people are easily overwhelmed by noise, light, touch, smell, clothing or busy environments; others seek movement, pressure, strong tastes or background sound; some fail to register sensory information until it becomes intense. The resident who refuses a cardigan may find the fabric unbearable. The gentleman who leaves the dining room may be overwhelmed by several conversations at once. The useful question is not “How do we make them tolerate it?” but “What sensory input is this person trying to escape, seek or regulate?”"},
+      {h:"Food texture and mealtimes", p:"Food is a major sensory experience. Texture, temperature, smell, mixed foods, sauces, strong flavours or the way food is presented can matter as much as taste. A resident who has eaten a narrow range of foods throughout life may not suddenly become comfortable with unfamiliar textures because they have moved into care. At the same time, new swallowing problems, dental pain, weight loss or appetite change must be assessed clinically rather than assumed to be ADHD. The dining room itself may also be the problem: cutlery, chairs, televisions, several conversations and staff moving around can create a level of sensory load that makes eating difficult. A quieter table, smaller dining space or eating in the person's preferred place may be a reasonable adjustment rather than 'giving in'."},
+      {h:"Chosen solitude is not the same as loneliness", p:"Some people with ADHD need substantial time alone to recover from social contact, noise and constant demands on their attention. A resident choosing to spend time quietly in their room is not automatically lonely, depressed or disengaged. Do not repeatedly pressure someone to join group activities simply because communal participation is the home's usual measure of wellbeing. Equally, do not turn on the television or radio because silence looks uncomfortable to you. A quiet room may be exactly what the person's nervous system needs, and their mind may already be very busy. Ask what they prefer and distinguish chosen solitude from unwanted isolation."},
+      {h:"Calm does not always mean still", p:"Many care interventions are built around the idea that relaxation means sitting quietly in a low-stimulation environment. Soft music, dim lighting, aromatherapy, hand massage and Namaste-style approaches can be comforting for some residents, but they are not universally calming. A person with ADHD may regulate better through movement, conversation, a familiar television programme, a simple quiz, sorting objects, doodling, walking or having something to do with their hands. Prolonged stillness, being touched or having someone hold their hand may actually increase distress. The aim is not to make the resident look calm. The aim is to discover what helps this particular person feel regulated."},
+      {h:"Familiar smells can be powerful", p:"Smell can be a strong emotional and memory cue. Familiar scents such as a long-used aftershave, face cream, soap, perfume, cooking smell or household product may bring comfort or recognition. Familiarity can be more meaningful than choosing a generic scent because it is assumed to be relaxing. Always check the person's own sensory history first. A smell that comforts one resident may overwhelm another, and new aversion to smell should not automatically be attributed to ADHD."},
+      {h:"The question why is not defiance", p:"Some adults with ADHD report that a request is much easier to act on when its purpose is clear, particularly when motivation, autonomy or task initiation are involved. “The need for why” is useful lived-experience language, but it is not a formal ADHD diagnostic symptom. In care, giving a brief reason can still be a powerful adjustment: “This tablet protects your heart” may make more sense than “It is tablet time”. If explanation reduces resistance, record that communication preference in the care plan."},
+      {h:"Small criticisms, enormous pain", p:"Sensitivity to rejection, criticism or perceived disapproval is commonly reported by adults with ADHD. The term “rejection sensitive dysphoria” (RSD) is widely used to describe this experience, although it is not a formal diagnostic category and should not be presented as one. What staff may observe is intense hurt, withdrawal, defensiveness, tears or anger after correction or embarrassment. Private, respectful feedback and quick reassurance may reduce unnecessary distress."},
+      {h:"Commonly reported ADHD experiences: useful clues, not diagnostic rules", p:"You may hear that “caffeine has the opposite effect on people with ADHD”. Some people with ADHD do describe feeling calmer or more focused after tea or coffee, but this response is not reliable enough to identify ADHD and caffeine can also cause anxiety, palpitations or poor sleep. Treat lifetime caffeine use as a conversation prompt, not a test: Did the person use large amounts of tea or coffee to concentrate, stay alert or settle themselves, and what effect did it actually have on them?"},
+      {p:"The same caution applies to internet shorthand such as “object permanence”, “waiting mode”, “ADHD paralysis”, “doom piles” and “body doubling”. These phrases can describe genuine lived experiences and can make training memorable, but they should be translated into the underlying functions - working memory, prospective memory, task initiation, time perception, sensory regulation or external structure - before they are written into a professional care plan."},
       {key:"Behaviour is communication. With ADHD in the picture, it is often communicating a need the care plan never knew existed."}
     ],
     checks:[
-      {q:"A resident becomes agitated at lunchtimes in the busy dining room, and calm when she eats alone. The behaviour chart says lunchtime agitation, cause unknown. What should the team try first?", opts:["A medication review for the agitation","A quieter dining option, and check noise, seating and crowding","Moving her lunch to the busiest sitting so she gets used to it","Recording the behaviour in more detail"], a:1, fb:"Correct. Treat sudden agitation as possible sensory overload first. The cheapest, kindest intervention is changing the environment, not the person."},
-      {q:"Mr D refuses his medication every morning from one carer, but takes it happily from another. The successful carer always explains what each tablet is for. What is the lesson?", opts:["Mr D simply prefers one carer","The need for why: explanation is the intervention, so every carer should use it","Medication should be hidden in food","Mr D should be reminded that refusing is not allowed"], a:1, fb:"Correct. When understanding the reason removes the resistance, record what works in the care plan so every member of staff can do the same."}
+      {q:"A resident becomes agitated at lunchtimes in the busy dining room, and calm when they eat alone. The behaviour chart says lunchtime agitation, cause unknown. What should the team try first?", opts:["A medication review for the agitation","A quieter dining option, and check noise, seating and crowding","Moving her lunch to the busiest sitting so she gets used to it","Recording the behaviour in more detail"], a:1, fb:"Correct. Sensory overload is one possibility, especially when the pattern is tied to a noisy environment. Change the environment where appropriate, while also checking for pain, illness, delirium, hunger, constipation, medication effects and other causes of new distress."},
+      {q:"Mr D refuses his medication every morning from one carer, but takes it happily from another. The successful carer always explains what each tablet is for. What is the lesson?", opts:["Mr D simply prefers one carer","Explanation appears to help this resident, so the team should record and use that communication approach","Medication should be hidden in food","Mr D should be reminded that refusing is not allowed"], a:1, fb:"Correct. If a clear explanation helps this resident understand and engage, record the wording and approach that works so the team can use it consistently."}
     ]
   },
   {
@@ -359,42 +399,98 @@ const MODULES = [
     time:"10 min",
     outcomes:["Apply environment, communication and routine adjustments","Write care plan language that describes need instead of judging"],
     blocks:[
-      {h:"The environment", p:"Keep important belongings visible and agree what stays out. Offer quiet dining options and turn the television off during conversation. Remove clothing labels and respect fabric preferences. Schedule appointments and outings early in the day. Build genuine recovery time after visits and events, and do not read post-event exhaustion as decline."},
-      {h:"The words we write", p:"Care plan language shapes how every future shift treats a resident. Refuses personal care judges; needs to understand the reason before personal care, explanations that work are listed below describes and instructs. Replace non-compliant, difficult and attention-seeking with what the person needs and what works."},
+      {h:"The environment", p:"Keep important belongings visible where that supports memory, and agree with the resident what should stay out rather than imposing a tidiness standard. Offer quiet dining options; reduce competing television or radio during important conversations; respect clothing and texture preferences; give warning before touch; make time visible with clocks, written prompts or simple countdowns; and consider earlier appointment times when waiting causes distress. Build genuine recovery time after visits and events. If task initiation is difficult, try a smaller first step or “body doubling” - being alongside the person while they begin - rather than simply repeating the instruction. None of these adjustments is automatically right for every person: the care plan should record what works for this individual."},
+      {h:"The words we write", p:"Care plan language shapes how every future shift understands and supports a resident. Writing “refuses personal care” only describes what happened. It does not explain the reason for the distress or tell staff what might help. A more useful entry might say: “May become distressed during personal care if rushed or not told what is happening. Explain each step, offer choices and allow extra time.” Good care-plan language should describe the person's needs, possible triggers and what works, rather than using labels such as “non-compliant”, “difficult” or “attention-seeking”."},
+      {h:"Activities: interest can change attention", p:"A person who cannot stay with a repetitive group activity may be able to concentrate for a long time on something that is novel, purposeful or connected to a lifelong interest. ADHD-aware activity planning can include shorter sessions, movement, practical jobs, choice, novelty and flexible entry or exit. The same activity may be fascinating for a period and then suddenly lose its pull. That does not necessarily mean the interest has disappeared forever: an old hobby can become absorbing again when it is rediscovered weeks, months or even years later. Do not permanently remove an activity from someone's life history simply because they became bored with it. 'Does not engage' is not useful unless the care team has tested what actually captures this person's attention now."},
+      {h:"Sitting still is not the goal", p:"Care-home life can unintentionally become very passive: residents are brought into a lounge, seated in a chair and the television becomes the activity. For someone who needs movement, novelty or something to do with their hands, this can be intensely under-stimulating. Watching television may work much better alongside doodling, knitting, sorting, folding, a tactile object or another simple activity. Movement and fidgeting can support attention rather than compete with it. The aim is not to make the resident look settled; it is to help them feel regulated and meaningfully occupied."},
+      {h:"Personal care: reduce the executive load", p:"Personal care can combine interruption, loss of control, several sequential steps and sensory discomfort. Instead of documenting “refuses shower”, explore the whole situation. Is the resident being asked to stop something they are absorbed in - even if that “something” appears to be simply sitting and thinking? Would advance warning help? Would a wash at a different time work better? Does the room need warming? Is hair washing the trigger? Would one familiar staff member, a visual sequence, a preferred towel or completing one step at a time make the task tolerable? The goal is not to prove ADHD caused the difficulty; it is to identify an adjustment that protects dignity and gets the care need met."},
+      {h:"Give the brain something else to do", p:"Some people find hair appointments, nail care or hand treatments difficult because they involve sitting still for a long time, tolerating touch and giving up control of part of the body. If the person wants the treatment but struggles to tolerate the process, offer another source of stimulation at the same time. A familiar programme on a tablet, music, conversation, a tactile object or something simple to do with the free hand may make it easier. Doing two things at once does not necessarily mean the person is distracted. For some people, the second activity is what allows them to stay engaged."},
       {key:"Every role matters. The housekeeper who asks before tidying, the cook who respects a lifelong texture aversion and the activities coordinator who plans novelty over repetition are all delivering ADHD-aware care."}
     ],
     checks:[
       {q:"Which care plan entry is best practice?", opts:["Resident is non-compliant with medication","Resident argues about tablets, be firm","Resident needs the purpose of each medication explained before taking it. Saying this one protects your heart works well","Resident takes medication only for certain staff"], a:2, fb:"Correct. It describes the need, gives the working strategy word for word, and lets every member of staff succeed on their next shift."},
-      {q:"A resident is exhausted and seems like a different person after every family visit. The team should:", opts:["Reduce family visits","Build quiet recovery time into the day after visits, and not record the exhaustion as decline","Refer for urgent assessment after each visit","Encourage her to socialise more to build stamina"], a:1, fb:"Correct. A lifetime of masking makes social occasions expensive. Recovery time is the adjustment, and post-event exhaustion is not automatically deterioration."}
+      {q:"A resident is exhausted and seems like a different person after every family visit. The team should:", opts:["Reduce family visits","Build quiet recovery time into the day after visits, and do not automatically record the exhaustion as decline","Refer for urgent assessment after each visit","Encourage them to socialise more to build stamina"], a:1, fb:"Correct. Social effort, sensory load or masking may contribute to post-visit exhaustion. Build in recovery time, look for a repeatable pattern and do not assume that temporary exhaustion automatically means deterioration."}
     ]
   },
   {
     title:"Screening, Dignity and Next Steps",
     time:"5 min",
-    outcomes:["Explain what the screening tool does and does not do","Approach screening respectfully, with the person, not about them"],
+    outcomes:["Explain what the screening tool does and does not do","Approach screening respectfully, starting with the person wherever possible"],
     blocks:[
-      {h:"What screening is, and is not", p:"The ADHDementia screening tool builds a Neurodivergent Life Profile across the nine domains. It is not a diagnostic tool, and it never labels anyone. It highlights lifelong patterns worth discussing with the GP and worth reflecting in the care plan, whatever the underlying cause."},
-      {h:"Ask the person, not about them", p:"Wherever possible, complete the self-report version together with the resident. Most people in the earlier stages of dementia can still answer questions about their own life story, and it is always more respectful to ask the person than to talk about them. The observational version exists for when that is no longer possible, or as a second perspective."},
+      {h:"What screening is, and is not", p:"The ADHDementia screening tool builds a Neurodivergent Life Profile from patterns in the person's current presentation and, wherever possible, their lifelong history. It is an educational and care-planning aid, not a diagnostic instrument. It cannot confirm ADHD and it should not be used to explain away new cognitive or physical changes. Its purpose is to highlight patterns worth exploring with the person, family and appropriate clinicians, and to translate those patterns into practical adjustments whether or not a formal diagnosis is ever made."},
+      {h:"Start with the person", p:"Wherever possible, complete the self-report version together with the resident. People in the earlier stages of dementia may still be able to describe important parts of their own life history, preferences and lifelong patterns. Their own perspective should be the starting point, with family or staff observations used to add context where needed. The observational version is available when self-report is not possible or as a second perspective."},
+      {h:"Three questions to ask when a trait is identified", p:"If the screening tool highlights a possible lifelong ADHD-consistent trait, pause and ask three questions: (1) Was this present earlier in the person's life? (2) Has anything changed recently? (3) What practical adjustment might help now? These questions help avoid two common mistakes: assuming a lifelong trait is part of dementia progression, or assuming a genuine new decline is “just ADHD”."},
       {key:"The goal is not a label. It is a care plan, and an environment, that finally fits the person who actually lives there."}
     ],
     checks:[
       {q:"What does the screening tool provide?", opts:["An ADHD diagnosis","A Neurodivergent Life Profile of lifelong traits, with care adjustments to consider","A dementia severity score","A behaviour management plan"], a:1, fb:"Correct. It profiles lifelong traits and suggests person-centred adjustments. Diagnosis belongs to clinicians alone."},
-      {q:"A resident in the early stages of dementia is being screened. Best practice is to:", opts:["Complete the observational version without telling her","Ask her family to answer everything","Complete the self-report version together with her, asking her the questions directly","Wait until her dementia advances"], a:2, fb:"Correct. She is the expert on her own life. Asking her directly is both more accurate and more dignified."}
+      {q:"A resident in the early stages of dementia is being screened. Best practice is to:", opts:["Complete the observational version without telling them","Ask their family to answer everything","Complete the self-report version together with them, asking them the questions directly","Wait until their dementia advances"], a:2, fb:"Correct. The resident is the expert on their own life. Asking them directly wherever possible is both more respectful and more likely to capture their own perspective."}
     ]
   }
 ];
 
+/* Final assessment: every option carries its own feedback, shown after submission */
 const ASSESSMENT = [
-  {q:"Why does the care home generation so rarely have an ADHD diagnosis?", opts:["ADHD fades with age","ADHD assessment did not exist during their childhoods","Diagnosis requires a brain scan","Their symptoms only began in old age"], a:1},
-  {q:"Whose ADHD was most often missed entirely?", opts:["Disruptive schoolboys","Women with internalised, inattentive presentations","Professional men","Athletes"], a:1},
-  {q:"What does emerging research suggest about untreated ADHD?", opts:["It carries the highest associated dementia risk","It prevents dementia","It has no relationship to dementia","It only matters before age 40"], a:0},
-  {q:"A resident's belongings are spread over every surface and she becomes distressed when they are tidied away. The ADHD-aware first response is to:", opts:["Tidy more gradually","Agree with her which items stay out and where, and brief housekeeping","Store everything safely in drawers","Add distress at tidying to her behaviour chart"], a:1},
-  {q:"A resident cannot settle all morning before an afternoon appointment. The best adjustment is to:", opts:["Book appointments as early in the day as possible","Remind him repeatedly how long is left","Cancel his appointments","Distract him with the television"], a:0},
-  {q:"A resident refuses to wear a cardigan her family bought. The ADHD-aware question is:", opts:["How do we persuade her?","Could the fabric be causing genuine sensory distress?","Should we buy several identical ones?","Is she being ungrateful?"], a:1},
-  {q:"Resistance that disappears once a reason is explained was:", opts:["Non-compliance","Attention-seeking","A need for meaning before action","Manipulation"], a:2},
-  {q:"After perceived criticism, a resident withdraws to her room in tears for hours. This may be:", opts:["Rejection sensitive dysphoria, needing gentle private reassurance","Proof she cannot cope with feedback","Ordinary tiredness","A reason to avoid speaking to her"], a:0},
-  {q:"Which is the best care plan language?", opts:["Difficult at mealtimes","Refuses the dining room","Finds overlapping noise overwhelming, offer the quiet dining option and seat away from the television","Attention-seeking at lunch"], a:2},
-  {q:"The screening tool's result is:", opts:["A diagnosis of ADHD","A Neurodivergent Life Profile that informs care planning and GP conversations","A dementia staging score","A medication recommendation"], a:1}
+  {q:"Why do so few older adults living in care homes have an ADHD diagnosis?", a:1, opts:[
+    {t:"ADHD fades with age", fb:"Incorrect. ADHD is a lifelong neurodevelopmental condition. Its presentation can change with age, but it does not simply disappear."},
+    {t:"ADHD was narrowly understood and rarely recognised during much of their childhood, especially in girls and less visibly hyperactive children", fb:"Correct. Many older adults grew up when ADHD recognition in the UK was narrow and uncommon. Girls and people without obvious hyperactivity were particularly likely to be missed."},
+    {t:"Diagnosis requires a brain scan", fb:"Incorrect. ADHD is not diagnosed using a brain scan. Diagnosis is based on developmental history, symptoms, impairment and clinical assessment."},
+    {t:"Their symptoms only began in old age", fb:"Incorrect. ADHD is a neurodevelopmental condition, so ADHD-consistent traits should have roots earlier in life. New symptoms in later life need assessment for other causes, including dementia, delirium, illness, medication effects and mood."}
+  ]},
+  {q:"A resident has always been forgetful, disorganised and prone to losing things. Their daughter says this has been the case since early adulthood. What is the most important conclusion for the care team?", a:1, opts:[
+    {t:"These behaviours must be caused by dementia", fb:"Incorrect. Dementia involves acquired change from a previous level of functioning. A lifelong pattern should not automatically be recorded as dementia progression."},
+    {t:"The lifelong pattern may be ADHD-consistent and should be considered alongside any recent changes", fb:"Correct. The history suggests these difficulties existed long before dementia. The team still needs to identify what is new, what has worsened and what practical support helps now."},
+    {t:"The daughter is probably misremembering", fb:"Incorrect. Family knowledge can be extremely valuable when establishing a resident's lifelong baseline, particularly when the resident can no longer give a full developmental history."},
+    {t:"The resident does not need further assessment", fb:"Incorrect. A lifelong ADHD-consistent pattern does not rule out dementia or other new conditions. Baseline and current change both matter."}
+  ]},
+  {q:"A resident has a hospital appointment at 3 pm. From breakfast onwards they repeatedly ask when they are going and cannot settle to any activity. What may help most in future?", a:1, opts:[
+    {t:"Avoid telling them about appointments until the last minute", fb:"Incorrect. Withholding information can increase uncertainty and undermine trust. The aim is to make time and the plan clearer, not to keep the person uninformed."},
+    {t:"Book appointments earlier in the day where possible and reduce long periods of waiting", fb:"Correct. A pending event can dominate attention for some people. Earlier appointments, concrete time prompts and less unnecessary waiting may reduce distress."},
+    {t:"Give them more group activities to distract them", fb:"Incorrect. More stimulation is not automatically helpful. If the person is stuck in a waiting state, adding demands may increase frustration rather than resolve it."},
+    {t:"Tell them firmly to stop asking", fb:"Incorrect. Repeated questioning is information about distress or uncertainty, not a behaviour to punish. Look for what is driving the repetition and adjust the situation where possible."}
+  ]},
+  {q:"A resident becomes distressed when housekeeping puts their belongings away. What is the best first response?", a:1, opts:[
+    {t:"Remove more items to reduce clutter", fb:"Incorrect. Tidying to a staff standard may remove visual prompts the person relies on. First understand what the belongings are doing for the resident."},
+    {t:"Consider whether visible belongings are acting as memory prompts and agree what should remain visible", fb:"Correct. Visible possessions may form part of a lifelong external memory system. Agreeing where important items stay can protect both autonomy and function."},
+    {t:"Lock valuables away", fb:"Incorrect. Safety may sometimes require secure storage, but locking things away as a first response ignores the reason the resident keeps items visible."},
+    {t:"Record the behaviour as hoarding", fb:"Incorrect. A label does not explain the behaviour or tell staff what helps. Describe the pattern, explore its purpose and record the adjustment that works."}
+  ]},
+  {q:"A resident looks away and fiddles with a napkin while you explain something important. What should you assume?", a:2, opts:[
+    {t:"They are not listening", fb:"Incorrect. Looking away or moving does not reliably tell us whether someone is listening. Some people concentrate better when their hands are occupied."},
+    {t:"They are being rude", fb:"Incorrect. This turns a possible regulation strategy into a character judgement. Focus on whether the person understands, not whether their listening looks conventional."},
+    {t:"The movement may be helping them concentrate, so check understanding rather than demanding eye contact", fb:"Correct. Fidgeting, doodling, handling an object or looking away can support attention for some people. Check what they have understood instead of requiring stillness or eye contact."},
+    {t:"They have lost capacity", fb:"Incorrect. Capacity cannot be judged from eye contact, fidgeting or apparent attention. Capacity is decision-specific and must be assessed using appropriate support and communication."}
+  ]},
+  {q:"A resident repeatedly resists having a shower. Which approach is most appropriate?", a:1, opts:[
+    {t:"Assume they are refusing personal care", fb:"Incorrect. This describes the outcome but not the reason. Explore task initiation, interruption, sensory discomfort, timing, communication and loss of control before deciding what is happening."},
+    {t:"Break the task into clear steps, check sensory issues, avoid interrupting something they are absorbed in, and explain what will happen", fb:"Correct. Showering can involve many executive and sensory demands. Advance warning, clear steps, choice and better timing can make the task more manageable."},
+    {t:"Insist at the same time every day so they get used to it", fb:"Incorrect. Consistency can help some people, but rigidly imposing a routine without understanding the source of distress can make future personal care harder."},
+    {t:"Add the behaviour to an agitation chart", fb:"Incorrect. Recording patterns can be useful, but documentation alone is not an intervention. The team should use the pattern to investigate triggers and identify what helps."}
+  ]},
+  {q:"A resident becomes more agitated during a hand massage in a dimly lit relaxation session. What should staff consider?", a:2, opts:[
+    {t:"They need a longer massage to settle", fb:"Incorrect. Continuing an intervention that is increasing distress risks overriding the person's sensory boundaries. Stop and reassess what regulation looks like for them."},
+    {t:"The environment is calming, so the problem must be dementia", fb:"Incorrect. An environment is only calming if the individual experiences it that way. Dim lighting, scent, music, stillness or touch can be uncomfortable for some people."},
+    {t:"Stillness, touch or low stimulation may be uncomfortable for them, and movement or another activity may regulate them better", fb:"Correct. Calm does not always mean still. A walk, conversation, familiar programme, quiz, sorting task or something to do with the hands may be more regulating for this person."},
+    {t:"They should be encouraged to tolerate it", fb:"Incorrect. The goal is not to train the resident to tolerate an intervention chosen by staff. The goal is to identify what actually supports comfort and regulation for that individual."}
+  ]},
+  {q:"A resident once loved jigsaw puzzles but now refuses them every time they are offered. What is the best interpretation?", a:2, opts:[
+    {t:"The interest has permanently disappeared", fb:"Incorrect. Interests can fluctuate. An activity that has lost its appeal now may become enjoyable again later."},
+    {t:"They are being inconsistent", fb:"Incorrect. Inconsistent engagement is not a character flaw. Attention and motivation can change with novelty, interest, energy, environment and dementia-related factors."},
+    {t:"ADHD-related interests can fluctuate, so stop forcing the activity and consider reintroducing it later", fb:"Correct. Respect the current lack of interest without erasing the hobby from the person's life story. Rediscovery can sometimes reignite an old interest."},
+    {t:"The refusal proves cognitive decline", fb:"Incorrect. Loss of interest can have many causes and one declined activity does not prove deterioration. Look for patterns and wider change before drawing conclusions."}
+  ]},
+  {q:"A resident becomes distressed in the dining room but eats comfortably in a quieter space. What is the best care-plan response?", a:2, opts:[
+    {t:"Difficult at mealtimes", fb:"Incorrect. This labels the resident rather than explaining what is happening. The difficulty appears linked to the environment, so the care plan should describe the trigger and what helps."},
+    {t:"Refuses the dining room", fb:"Incorrect. This records the outcome but not the reason. We already know the resident is more comfortable in a quieter space, and that useful information belongs in the care plan."},
+    {t:"Finds overlapping noise and busy environments overwhelming. Offer a quieter eating space and check food texture, smell and presentation", fb:"Correct. This describes the likely trigger, gives staff a practical adjustment and keeps other sensory aspects of eating in view."},
+    {t:"Needs encouragement to socialise at meals", fb:"Not quite. Social contact can support wellbeing, but encouraging communal dining assumes that socialising is always the better outcome. That expectation may not fit this person. Some people regulate better with less social and sensory demand. The important question is whether the person is lonely or distressed by being alone, not whether they are meeting someone else's idea of a sociable mealtime."}
+  ]},
+  {q:"The screening tool identifies several ADHD-consistent lifelong traits. What should the team do next?", a:2, opts:[
+    {t:"Add ADHD to the resident's diagnosis list", fb:"Incorrect. The screening tool is not diagnostic and cannot confirm ADHD. A formal diagnosis can only be made through appropriate clinical assessment."},
+    {t:"Assume any future behaviour is caused by ADHD", fb:"Incorrect. ADHD should never become a new form of diagnostic overshadowing. New or worsening changes still need assessment for dementia progression, delirium, illness, pain, medication effects and other causes."},
+    {t:"Ask what was lifelong, what has changed recently, and what practical adjustments may help now", fb:"Correct. The purpose of the tool is to improve understanding and care planning. Lifelong history, recent change and practical adjustment should be considered together."},
+    {t:"Refer immediately for stimulant medication", fb:"Incorrect. The screening tool does not recommend medication. Treatment decisions belong to qualified clinicians and require individual assessment, particularly in older adults with complex health needs."}
+  ]}
 ];
 
 /* ================= state ================= */
@@ -413,8 +509,9 @@ function save(){
 }
 
 let currentModule = 0;
-let checkState = {};   // per-module: index -> answered correctly at least attempted
+let checkState = {};
 let assessAnswers = {};
+let assessLocked = false;
 
 /* ================= navigation ================= */
 
@@ -475,6 +572,8 @@ function openModule(i){
   html += `<div class="mod-body">`;
   m.blocks.forEach(b=>{
     if(b.key){ html += `<div class="key-point"><strong>Key point:</strong> ${b.key}</div>`; }
+    else if(b.tip){ html += `<div class="try-box">${b.tip}</div>`; }
+    else if(!b.h){ html += `<p>${b.p}</p>`; }
     else{ html += `<h3>${b.h}</h3><p>${b.p}</p>`; }
   });
   html += `</div>`;
@@ -531,11 +630,12 @@ function completeModule(){
 
 function openAssessment(){
   assessAnswers = {};
+  assessLocked = false;
   let html = '';
   ASSESSMENT.forEach((q,qi)=>{
     html += `<div class="assess-q"><div class="check-q">${qi+1}. ${q.q}</div><div class="opts">
-      ${q.opts.map((o,oi)=>`<button type="button" class="opt" id="aq-${qi}-${oi}" onclick="pickAssess(${qi},${oi})">${o}</button>`).join('')}
-    </div></div>`;
+      ${q.opts.map((o,oi)=>`<button type="button" class="opt" id="aq-${qi}-${oi}" onclick="pickAssess(${qi},${oi})">${o.t}</button>`).join('')}
+    </div><div class="feedback" id="afb-${qi}"></div></div>`;
   });
   document.getElementById('assess-body').innerHTML = html;
   document.getElementById('assess-result').innerHTML = '';
@@ -544,11 +644,12 @@ function openAssessment(){
 }
 
 function pickAssess(qi, oi){
+  if(assessLocked) return;
   assessAnswers[qi] = oi;
   ASSESSMENT[qi].opts.forEach((_,i)=>{
-    document.getElementById(`aq-${qi}-${i}`).classList.remove('sel-right');
+    document.getElementById(`aq-${qi}-${i}`).classList.remove('sel-picked');
   });
-  document.getElementById(`aq-${qi}-${oi}`).classList.add('sel-right');
+  document.getElementById(`aq-${qi}-${oi}`).classList.add('sel-picked');
 }
 
 function submitAssessment(){
@@ -558,16 +659,30 @@ function submitAssessment(){
     resultEl.innerHTML = `<div class="assess-result fail"><strong>${ASSESSMENT.length-answered} question${ASSESSMENT.length-answered===1?'':'s'} still unanswered.</strong> Answer every question, then submit again.</div>`;
     return;
   }
+  assessLocked = true;
   let score = 0;
-  ASSESSMENT.forEach((q,qi)=>{ if(assessAnswers[qi]===q.a) score++; });
+  ASSESSMENT.forEach((q,qi)=>{
+    const sel = assessAnswers[qi];
+    const right = sel===q.a;
+    if(right) score++;
+    q.opts.forEach((_,i)=>{
+      const el = document.getElementById(`aq-${qi}-${i}`);
+      el.disabled = true;
+      el.classList.remove('sel-picked');
+      if(i===sel) el.classList.add(right?'sel-right':'sel-wrong');
+    });
+    const fb = document.getElementById(`afb-${qi}`);
+    fb.className = 'feedback ' + (right?'right':'wrong');
+    fb.textContent = q.opts[sel].fb;
+  });
   if(score>=8){
     state.passed = true;
     save();
-    resultEl.innerHTML = `<div class="assess-result pass"><strong>You passed, ${score} out of ${ASSESSMENT.length}.</strong> Well done. Your certificate is ready.</div>`;
+    resultEl.innerHTML = `<div class="assess-result pass"><strong>You passed, ${score} out of ${ASSESSMENT.length}.</strong> Well done. Read through the feedback above, then collect your certificate. <div style="margin-top:14px;"><button type="button" class="btn btn-gold" onclick="showCertificate()">View my certificate</button></div></div>`;
     document.getElementById('btn-submit-assess').style.display = 'none';
-    setTimeout(showCertificate, 1200);
   }else{
-    resultEl.innerHTML = `<div class="assess-result fail"><strong>You scored ${score} out of ${ASSESSMENT.length}.</strong> You need 8 to pass. Revisit any module from the course overview, then try again. <div style="margin-top:14px;"><button type="button" class="btn btn-gold" onclick="openAssessment()">Retake the assessment</button></div></div>`;
+    resultEl.innerHTML = `<div class="assess-result fail"><strong>You scored ${score} out of ${ASSESSMENT.length}.</strong> You need 8 to pass. Read the feedback above, revisit any module from the course overview, then try again. <div style="margin-top:14px;"><button type="button" class="btn btn-gold" onclick="openAssessment()">Retake the assessment</button></div></div>`;
+    document.getElementById('btn-submit-assess').style.display = 'none';
   }
 }
 
