@@ -8,7 +8,7 @@ supporting people living with dementia who also have ADHD.
 | File | Purpose |
 |---|---|
 | `index.html` | Home: hero hook, lost generation intro, stats, CQC compliance section, signposts |
-| `screening-tool.html` | The interactive screening tool (self-report, 46 questions, and observational, 10 questions) producing a printable Neurodivergent Life Profile |
+| `screening-tool.html` | The interactive screening tool (self-report, 47 questions, and observational, 10 questions) producing a printable Neurodivergent Life Profile |
 | `training.html` | Training and consultancy: online session (2 hours, GBP 495), on-site day (GBP 1,495 plus travel), group consultancy (from GBP 1,500 per day), plus the screening subscription (GBP 49 per month single home, GBP 39 founding member rate for the first 50 homes, GBP 199 per month for groups of up to five homes, seven-day free trial) |
 | `blog.html` | Blog listing (one full article live, two marked coming soon) |
 | `blog-lost-generation.html` | First full article: "The Lost Generation" |

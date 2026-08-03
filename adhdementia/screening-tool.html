@@ -149,6 +149,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="screening-tool.html" class="active">Screening Tool</a></li>
       <li><a href="training.html">Training &amp; Consultancy</a></li>
+      <li><a href="research.html">Research</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="guides.html">Guides</a></li>
       <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
@@ -180,7 +181,7 @@
       <p style="font-size:.93rem;color:var(--ink-soft);margin-top:8px;">Wherever possible, start with the self-report version, together with the person. Most people in the earlier stages of dementia can still answer questions about their own life story, and it is always more respectful to ask the person than to talk about them. The observational version is there for when that is no longer possible, or as a second perspective alongside it.</p>
       <div class="version-grid">
         <button type="button" class="version-card" onclick="chooseVersion('self')">
-          <span class="chip">Version 1 &middot; 46 questions</span>
+          <span class="chip">Version 1 &middot; 47 questions</span>
           <h3>About myself</h3>
           <p>A self-report version answered by the person themselves, reflecting on their own life history and everyday experiences. Works beautifully completed together, one conversation at a time, with the resident doing the telling.</p>
         </button>
@@ -281,6 +282,7 @@
         <ul>
           <li><a href="screening-tool.html">Screening Tool</a></li>
           <li><a href="training.html">Training &amp; Consultancy</a></li>
+          <li><a href="research.html">Research</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="guides.html">Guides</a></li>
         </ul>
@@ -346,7 +348,8 @@ const DOMAINS = [
       "Do you rely heavily on leaving things out in visible places as a reminder system, even if it makes your home look cluttered?",
       "Have you ever set off on a journey and only realised partway through that you had forgotten something important, such as your purse, your keys, or even the right shoes?",
       "Do you find it very difficult to hold a list of instructions in your head, and need to write things down or be reminded repeatedly?",
-      "If a task is not immediately in front of you, do you tend to forget it entirely until something external reminds you?"
+      "If a task is not immediately in front of you, do you tend to forget it entirely until something external reminds you?",
+      "Do you become distressed or disorientated when someone else moves or tidies away your belongings, even when they mean well?"
     ],
     meaning:"Working-memory differences mean that things which are out of sight genuinely stop existing for this person. In a care setting this can be mistaken for memory loss caused by dementia, when it may be a lifelong trait, or both at once.",
     tips:[
@@ -662,7 +665,7 @@ function buildReport(){
 
   let meta = `
     <div><div class="meta-label">Person screened</div><div class="meta-value">${esc(person)}</div></div>
-    <div><div class="meta-label">Screening version</div><div class="meta-value">${version==='self'?'Self-report (46 questions)':'Observational (10 questions)'}</div></div>
+    <div><div class="meta-label">Screening version</div><div class="meta-value">${version==='self'?'Self-report (47 questions)':'Observational (10 questions)'}</div></div>
     <div><div class="meta-label">Date</div><div class="meta-value">${esc(dateStr)}</div></div>`;
   if(version==='observer'){
     meta += `<div><div class="meta-label">Completed by</div><div class="meta-value">${esc(completer||'Not given')} (${esc(role)})</div></div>`;
@@ -722,7 +725,7 @@ function buildReport(){
   }
 
   const observerNote = version==='observer' ? `
-    <p style="margin-top:14px;">Because this was the shorter observational screening, consider following up with the full 46-question self-report version together with the person, where their capacity and comfort allow, or completing it on their behalf using your knowledge of their life history.</p>` : '';
+    <p style="margin-top:14px;">Because this was the shorter observational screening, consider following up with the full 47-question self-report version together with the person, where their capacity and comfort allow, or completing it on their behalf using your knowledge of their life history.</p>` : '';
 
   document.getElementById('report-body').innerHTML = `
     <div class="profile-summary">
