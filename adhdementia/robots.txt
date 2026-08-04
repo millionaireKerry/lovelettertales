@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /course.html
+
+Sitemap: https://adhdementia.com/sitemap.xml
