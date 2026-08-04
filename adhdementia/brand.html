@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Brand Kit | ADHDementia</title>
+<meta name="description" content="The ADHDementia brand kit: logo, colours, typography, voice and usage guidance.">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .kit h2{font-size:1.6rem;margin:0 0 .4em;}
+  .kit h3{font-size:1.05rem;margin:1.6em 0 .5em;}
+  .kit p{color:var(--ink-soft);}
+  .band{border-top:1px solid var(--line);padding:56px 0;}
+  .band:first-of-type{border-top:none;}
+  .logo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:24px;}
+  .logo-cell{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white);}
+  .logo-cell .frame{display:flex;align-items:center;justify-content:center;padding:34px 26px;min-height:150px;}
+  .logo-cell .frame.dark{background:var(--black);}
+  .logo-cell .frame.paper{background:var(--paper);}
+  .logo-cell img{max-width:100%;height:auto;}
+  .logo-cell .meta{border-top:1px solid var(--line);padding:12px 16px;font-size:.82rem;color:var(--ink-soft);}
+  .logo-cell .meta strong{display:block;color:var(--black);font-size:.9rem;margin-bottom:2px;}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:24px;}
+  .sw{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .sw .chip{height:96px;}
+  .sw .info{padding:12px 14px;font-size:.8rem;color:var(--ink-soft);line-height:1.5;}
+  .sw .info strong{display:block;color:var(--black);font-size:.88rem;}
+  .sw code{font-size:.78rem;}
+  .type-demo{border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;margin-top:18px;}
+  .type-demo .sample{font-family:var(--font-display);font-weight:700;font-size:2.4rem;line-height:1.1;color:var(--black);}
+  .type-demo .sample.body{font-family:var(--font-body);font-weight:400;font-size:1.05rem;line-height:1.7;color:var(--ink);}
+  .type-demo .label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;}
+  .type-demo .spec{font-size:.85rem;color:var(--ink-soft);margin-top:12px;}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:20px;}
+  @media(max-width:700px){.dos{grid-template-columns:1fr;}}
+  .dos ul{margin:8px 0 0 20px;}
+  .dos li{margin-bottom:9px;font-size:.94rem;color:var(--ink-soft);}
+  .dos .head{font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;}
+  .dos .yes .head{color:var(--teal);}
+  .dos .no .head{color:#b3452f;}
+  .voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:20px;}
+  @media(max-width:700px){.voice-grid{grid-template-columns:1fr;}}
+  .voice-card{border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;}
+  .voice-card h4{font-size:.95rem;color:var(--black);margin-bottom:8px;}
+  .voice-card p{font-size:.92rem;}
+  .quote-ex{border-left:3px solid var(--gold);padding-left:16px;margin-top:10px;font-style:italic;color:var(--ink);font-size:.94rem;}
+  .files{width:100%;border-collapse:collapse;margin-top:20px;font-size:.9rem;}
+  .files th{text-align:left;background:var(--black);color:#fff;padding:10px 14px;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;}
+  .files td{border-bottom:1px solid var(--line);padding:10px 14px;color:var(--ink-soft);vertical-align:top;}
+  .files td code{color:var(--black);font-size:.85rem;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">ADHD<span>ementia</span></a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="screening-tool.html">Screening Tool</a></li>
+      <li><a href="training.html">Training &amp; Consultancy</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="guides.html">Guides</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" style="padding:80px 0 70px;">
+  <div class="container">
+    <p class="kicker">Brand kit</p>
+    <h1 style="font-size:clamp(2rem,4.5vw,3.2rem);">The ADHDementia <span class="serif-i">brand</span></h1>
+    <p class="lede" style="margin-bottom:0;">Everything needed to keep the brand consistent across the website, training slides, guides, social posts and documents.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="narrow kit" style="max-width:900px;">
+
+      <!-- ===== IDEA ===== -->
+      <div class="band">
+        <h2>The idea behind the name</h2>
+        <p>ADHDementia is two words sharing a letter. <strong style="color:var(--ink);">ADHD</strong> and <strong style="color:var(--ink);">Dementia</strong> overlap on the D, which is exactly what the business is about: the population sitting in the intersection of two conditions, seen by almost nobody.</p>
+        <p>That overlap is the whole brand. The wordmark holds the two words together, and the icon draws the intersection literally. Everything else, the restraint, the gold, the serif, exists to make a serious clinical subject feel dignified rather than clinical.</p>
+      </div>
+
+      <!-- ===== LOGO ===== -->
+      <div class="band">
+        <h2>Logo</h2>
+        <p>The wordmark is the primary asset. "ADHD" is set in the darkest ink or white, and "ementia" in gold, so both words are readable inside one.</p>
+
+        <div class="logo-grid">
+          <div class="logo-cell">
+            <div class="frame"><img src="brand/logo-primary-light.png" alt="ADHDementia primary logo on a light background"></div>
+            <div class="meta"><strong>Primary, light background</strong>Default for documents, guides and white slides.</div>
+          </div>
+          <div class="logo-cell">
+            <div class="frame dark"><img src="brand/logo-primary-dark.png" alt="ADHDementia primary logo on a dark background"></div>
+            <div class="meta"><strong>Primary, dark background</strong>Default for the website, title slides and social.</div>
+          </div>
+          <div class="logo-cell">
+            <div class="frame paper"><img src="brand/logo-stacked-light.png" alt="ADHDementia stacked logo with icon"></div>
+            <div class="meta"><strong>Stacked with icon</strong>For square spaces: social avatars, certificates, slide covers.</div>
+          </div>
+          <div class="logo-cell">
+            <div class="frame dark"><img src="brand/logo-stacked-dark.png" alt="ADHDementia stacked logo on dark"></div>
+            <div class="meta"><strong>Stacked, dark background</strong>The strongest version. Use it where you have room.</div>
+          </div>
+          <div class="logo-cell">
+            <div class="frame paper"><img src="brand/logo-lockup-tagline.png" alt="ADHDementia logo with tagline"></div>
+            <div class="meta"><strong>Lockup with descriptor</strong>Where the audience does not yet know what you do: directories, letterheads, exhibition stands.</div>
+          </div>
+          <div class="logo-cell">
+            <div class="frame"><img src="brand/logo-mono-black.png" alt="ADHDementia single colour logo"></div>
+            <div class="meta"><strong>Single colour</strong>For faxes of the world: black and white printing, embroidery, stamps. A white version is included too.</div>
+          </div>
+          <div class="logo-cell">
+            <div class="frame paper"><img src="brand/logo-pivot-light.png" alt="ADHDementia logo with the shared D highlighted"></div>
+            <div class="meta"><strong>Pivot variant</strong>Highlights the shared D. Use only when explaining the name, for example the opening slide of training or an About page. Never as the everyday logo.</div>
+          </div>
+          <div class="logo-cell">
+            <div class="frame dark"><img src="brand/icon-white.svg" alt="ADHDementia icon" style="width:150px"></div>
+            <div class="meta"><strong>Icon alone</strong>Two circles, one intersection. Use where the name appears elsewhere on the page, or at very small sizes.</div>
+          </div>
+        </div>
+
+        <h3>Clear space and minimum size</h3>
+        <p>Leave clear space around the logo equal to the height of the capital A on all sides. Never place it on a busy photograph. Minimum width: 120px on screen, 30mm in print. Below that, use the icon alone.</p>
+      </div>
+
+      <!-- ===== COLOUR ===== -->
+      <div class="band">
+        <h2>Colour</h2>
+        <p>Near-black and white do the work. Gold is the accent and should stay an accent, roughly one tenth of any layout. Teal is a quiet secondary for reassurance: correct answers, calm notices, supportive messages.</p>
+
+        <div class="swatches">
+          <div class="sw"><div class="chip" style="background:#0d0d0f"></div><div class="info"><strong>Ink</strong><code>#0D0D0F</code><br>Text, backgrounds, the logo</div></div>
+          <div class="sw"><div class="chip" style="background:#b98c2c"></div><div class="info"><strong>Gold</strong><code>#B98C2C</code><br>Accent on light backgrounds</div></div>
+          <div class="sw"><div class="chip" style="background:#d9ae4e"></div><div class="info"><strong>Gold Bright</strong><code>#D9AE4E</code><br>Accent on dark backgrounds</div></div>
+          <div class="sw"><div class="chip" style="background:#15706a"></div><div class="info"><strong>Teal</strong><code>#15706A</code><br>Secondary, calm and supportive</div></div>
+          <div class="sw"><div class="chip" style="background:#f7f5f0;border-bottom:1px solid #e5e2da"></div><div class="info"><strong>Paper</strong><code>#F7F5F0</code><br>Warm section backgrounds</div></div>
+          <div class="sw"><div class="chip" style="background:#f4ead3"></div><div class="info"><strong>Gold Pale</strong><code>#F4EAD3</code><br>Highlights and key points</div></div>
+          <div class="sw"><div class="chip" style="background:#e2efee"></div><div class="info"><strong>Teal Pale</strong><code>#E2EFEE</code><br>Positive feedback panels</div></div>
+          <div class="sw"><div class="chip" style="background:#55555c"></div><div class="info"><strong>Ink Soft</strong><code>#55555C</code><br>Secondary text</div></div>
+        </div>
+
+        <h3>Accessibility</h3>
+        <p>Gold on white does not pass contrast requirements for body text. Use gold for large headings, rules and accents only, never for small text on a light background. On dark backgrounds use Gold Bright.</p>
+      </div>
+
+      <!-- ===== TYPE ===== -->
+      <div class="band">
+        <h2>Typography</h2>
+        <p>Two typefaces, both free on Google Fonts. Playfair Display carries authority and warmth; Inter keeps everything else quietly readable.</p>
+
+        <div class="type-demo">
+          <div class="label">Headings: Playfair Display</div>
+          <div class="sample">How many of your residents<br>have ADHD <em style="color:var(--gold)">and don't know it?</em></div>
+          <div class="spec">Weight 700 for headings. Italic 600 in gold for the emphasised phrase, used once per heading at most. Tight line height (1.1 to 1.2).</div>
+        </div>
+
+        <div class="type-demo">
+          <div class="label">Body: Inter</div>
+          <div class="sample body">Today's care home generation grew up before ADHD had a name. They were called lazy, scatty, highly strung. They were never assessed.</div>
+          <div class="spec">Weight 400 for body, 600 for emphasis and buttons. Line height 1.6 to 1.7. Small capitals with wide letter spacing (0.2em) for the eyebrow labels above headings.</div>
+        </div>
+
+        <h3>If the fonts are unavailable</h3>
+        <p>In Word, PowerPoint or Canva, substitute Georgia for Playfair Display and Arial or Helvetica for Inter. Never substitute a rounded or handwritten face.</p>
+      </div>
+
+      <!-- ===== VOICE ===== -->
+      <div class="band">
+        <h2>Voice</h2>
+        <p>The voice is the brand's biggest asset, because the subject is emotive and the temptation to overclaim is constant. Resist it. Understatement reads as expertise.</p>
+
+        <div class="voice-grid">
+          <div class="voice-card">
+            <h4>Specific, not general</h4>
+            <p>Name the cardigan, the dining room, the 3pm appointment. Concrete detail is what makes a care manager recognise their own resident.</p>
+            <div class="quote-ex">"The cardigan is not a battle to be won. It is information."</div>
+          </div>
+          <div class="voice-card">
+            <h4>Honest about evidence</h4>
+            <p>Say association, not proof. State limitations before someone else does. Credibility here is worth more than certainty.</p>
+            <div class="quote-ex">"These are associations rather than certainties, but the direction of the evidence is consistent."</div>
+          </div>
+          <div class="voice-card">
+            <h4>Never diagnostic</h4>
+            <p>The tool screens, it does not diagnose. Every piece of published material repeats this, without exception.</p>
+            <div class="quote-ex">"The goal is not a label. It is a care plan that fits the person who actually lives there."</div>
+          </div>
+          <div class="voice-card">
+            <h4>On the side of the staff</h4>
+            <p>Care teams are doing their best inside systems that were not built for this. Reframe practice, never blame the carer.</p>
+            <div class="quote-ex">"The housekeeper kindly tidies everything away. The room looks lovely. The resident is now lost in it."</div>
+          </div>
+        </div>
+
+        <h3>House style</h3>
+        <div class="dos">
+          <div class="yes">
+            <div class="head">Always</div>
+            <ul>
+              <li>UK English spelling: behaviour, recognised, person-centred, organisation</li>
+              <li>Commas, colons or brackets instead of long dashes</li>
+              <li>"People living with dementia", not "dementia patients" or "sufferers"</li>
+              <li>"Traits", not "symptoms", when describing lifelong ADHD patterns</li>
+              <li>Sentence case for headings, not Title Case</li>
+              <li>ADHDementia as one word, capital ADHD, lowercase ementia</li>
+            </ul>
+          </div>
+          <div class="no">
+            <div class="head">Never</div>
+            <ul>
+              <li>Claims of accreditation before it is granted</li>
+              <li>"Diagnose", "test", "assessment" for what the tool does</li>
+              <li>"Challenging behaviour" without quotation marks or reframing</li>
+              <li>Exclamation marks, or urgency language in marketing</li>
+              <li>Stock photography of sad older people looking out of windows</li>
+              <li>ADHDementia written as ADHD Dementia, ADHDemensure or Adhdementia</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== APPLICATION ===== -->
+      <div class="band">
+        <h2>Applying the brand</h2>
+        <h3>Training slides</h3>
+        <p>Dark cover slide with the stacked logo. Content slides on white or Paper, one idea per slide, Playfair headings and Inter body. Use the gold Key Point panel sparingly, no more than once per module. Photographs of environments, never of identifiable residents.</p>
+        <h3>Guides and documents</h3>
+        <p>Light background, primary logo top left, gold rule under the title, generous margins. Footer carries the non-diagnostic line on every document.</p>
+        <h3>Social posts</h3>
+        <p>Quote cards on Ink with the phrase in Playfair and the logo small in the corner. Leave plenty of space. One idea per card.</p>
+        <h3>Email signature</h3>
+        <p>Name, then "Founder, ADHDementia", then the descriptor "ADHD in dementia care", then adhdementia.com. Keep it text only, or add the icon at 60px.</p>
+      </div>
+
+      <!-- ===== FILES ===== -->
+      <div class="band">
+        <h2>Files</h2>
+        <p>All assets live in the <code>brand</code> folder alongside the website.</p>
+        <table class="files">
+          <tr><th>File</th><th>Use</th></tr>
+          <tr><td><code>logo-primary-light.png</code></td><td>Primary wordmark, transparent background, for light surfaces</td></tr>
+          <tr><td><code>logo-primary-dark.png</code></td><td>Primary wordmark for dark surfaces</td></tr>
+          <tr><td><code>logo-stacked-light.png</code> / <code>-dark.png</code></td><td>Icon above wordmark, for square spaces</td></tr>
+          <tr><td><code>logo-lockup-tagline.png</code></td><td>Wordmark with descriptor</td></tr>
+          <tr><td><code>logo-mono-black.png</code> / <code>-white.png</code></td><td>Single colour</td></tr>
+          <tr><td><code>logo-pivot-light.png</code></td><td>Shared D variant, for explaining the name only</td></tr>
+          <tr><td><code>icon.svg</code> / <code>icon-white.svg</code></td><td>Icon alone, scales to any size without loss</td></tr>
+          <tr><td><code>favicon.svg</code>, <code>apple-touch-icon.png</code></td><td>Browser tab and phone home screen</td></tr>
+          <tr><td><code>social-card.png</code></td><td>Link preview image for social media (in the site root)</td></tr>
+        </table>
+        <p style="margin-top:18px;">PNGs are rendered at double resolution, so they stay sharp in print and on high-density screens. The icon is vector and can be scaled to any size.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">ADHD<span>ementia</span></div>
+        <p>Transforming care plans and care environments for people living with dementia who also have ADHD. Screening, training and consultancy for care homes, care teams and families.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="screening-tool.html">Screening Tool</a></li>
+          <li><a href="training.html">Training &amp; Consultancy</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="guides.html">Guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact &amp; legal</h4>
+        <ul>
+          <li><a href="contact.html">Get in touch</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="https://adhdementia.com">adhdementia.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p><strong>Important:</strong> The ADHDementia screening tool and all content on this site are educational aids, not diagnostic instruments. They cannot confirm or rule out ADHD, dementia or any other condition. If you are concerned about someone's memory, thinking, mood or behaviour, please speak to a GP or qualified clinician.</p>
+      <p>&copy; 2026 ADHDementia. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
