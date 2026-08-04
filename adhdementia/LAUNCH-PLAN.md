@@ -21,7 +21,7 @@ create. Items marked **[build]** are things I can do once you have decided.
 **Not done yet**
 
 - The site is not deployed and the domain is not connected
-- No payments: the subscription, trial and guide shop are copy only
+- No payments: membership, webinar booking and the guide shop are copy only
 - No analytics
 - Guide PDFs not written
 - Legal placeholders (company number, ICO number, email) not filled in
@@ -60,8 +60,10 @@ create. Items marked **[build]** are things I can do once you have decided.
 | | Task | Notes |
 |---|---|---|
 | **[you]** | Create a Stripe account | Needs company and bank details |
-| **[build]** | Subscription checkout with the seven-day trial | GBP 49, plus the GBP 39 founding member coupon and the GBP 199 group tier |
-| **[build]** | Gate the screening tool behind the subscription | Currently open to everyone |
+| **[build]** | Membership checkout | GBP 84 per month per home, unlimited staff course completions |
+| **[build]** | Gate the *course* behind membership | The screening tool stays free and open |
+| **[build]** | Open webinar booking and payment | GBP 65 per person, two dates a month |
+| **[build]** | Course completion records for managers | Needed so homes can evidence training; currently the learner prints their own certificate and we see nothing |
 | **[build]** | Payment links for the guides | Simplest route for digital downloads |
 | **[build]** | Update the Privacy and Terms payment sections | Once live |
 
@@ -139,7 +141,7 @@ match.
 Vanity metrics will waste your time. Track four things monthly:
 
 1. **Enquiries** through the contact form, and where they came from
-2. **Screening tool starts** and, later, trial sign-ups
+2. **Screening tool starts**, webinar bookings and membership sign-ups
 3. **Search Console impressions and clicks**, especially which queries
 4. **LinkedIn**: followers and profile views, not likes
 
@@ -222,7 +224,7 @@ favicon, self-hosted fonts.
 **Week one live:** Google Business Profile, LinkedIn launch post and the nine-week
 series, directory listings, first pilot home approaches.
 
-**Then:** Stripe and the subscription gate, first guide PDF, CPD accreditation
+**Then:** Stripe, membership and the course gate, first guide PDF, CPD accreditation
 application, email sign-up.
 
 **Ongoing:** one article a month, two or three LinkedIn posts a week, ask every
