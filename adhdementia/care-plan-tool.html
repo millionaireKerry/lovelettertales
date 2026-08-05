@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>The Personhood Profile | ADHDementia</title>
+<meta name="description" content="Build a living profile of who a person is, was and may become, and turn it into care that actually fits them.">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .pp-wrap{max-width:1140px;margin:0 auto;padding:0 24px 80px;}
+  .pp-shell{display:grid;grid-template-columns:250px 1fr;gap:28px;margin-top:32px;align-items:start;}
+  @media(max-width:900px){.pp-shell{grid-template-columns:1fr;}}
+
+  /* section nav */
+  .pp-nav{position:sticky;top:96px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);}
+  @media(max-width:900px){.pp-nav{position:static;}}
+  .pp-nav ol{list-style:none;counter-reset:s;}
+  .pp-nav li{counter-increment:s;}
+  .pp-nav button{
+    display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;font:inherit;font-size:.86rem;
+    padding:9px 10px;border:none;background:none;border-radius:6px;cursor:pointer;color:var(--ink-soft);
+  }
+  .pp-nav button::before{content:counter(s);font-family:var(--font-display);font-style:italic;color:var(--gold);min-width:16px;}
+  .pp-nav button:hover{background:var(--paper);color:var(--black);}
+  .pp-nav button.on{background:var(--black);color:var(--gold-bright);font-weight:600;}
+  .pp-nav button.on::before{color:var(--gold-bright);}
+  .pp-nav button.done::after{content:"\2713";margin-left:auto;color:var(--teal);font-weight:700;}
+  .pp-nav button.on.done::after{color:var(--gold-bright);}
+
+  .pp-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px;}
+  @media(max-width:640px){.pp-card{padding:24px 20px;}}
+  .pp-sec{display:none;}
+  .pp-sec.on{display:block;}
+  .pp-sec > .kicker{margin-bottom:8px;}
+  .pp-why{background:var(--paper);border-left:3px solid var(--gold);border-radius:var(--radius);padding:14px 18px;margin:14px 0 22px;font-size:.92rem;color:var(--ink-soft);}
+
+  .f{margin-bottom:18px;}
+  .f label{display:block;font-size:.86rem;font-weight:600;color:var(--black);margin-bottom:5px;}
+  .f .hint{font-size:.82rem;color:var(--ink-soft);margin-bottom:6px;}
+  .f input[type=text],.f input[type=date],.f input[type=url],.f select,.f textarea{
+    width:100%;font:inherit;font-size:.97rem;padding:11px 13px;border:1.5px solid var(--line);
+    border-radius:var(--radius);background:var(--white);color:var(--ink);
+  }
+  .f textarea{min-height:88px;resize:vertical;}
+  .f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+  .f2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:640px){.f2{grid-template-columns:1fr;}}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+  .chip-t{position:relative;}
+  .chip-t input{position:absolute;opacity:0;pointer-events:none;}
+  .chip-t label{
+    display:inline-block;cursor:pointer;border:1.5px solid var(--line);border-radius:999px;
+    padding:7px 15px;font-size:.85rem;color:var(--ink-soft);background:var(--white);user-select:none;margin:0;font-weight:500;
+  }
+  .chip-t label:hover{border-color:var(--gold);}
+  .chip-t input:checked+label{background:var(--black);border-color:var(--black);color:var(--gold-bright);font-weight:600;}
+
+  /* repeaters */
+  .rep-item{border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;background:var(--paper);}
+  .rep-item .rep-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .rep-item .rep-head strong{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+  .btn-mini{font:inherit;font-size:.8rem;font-weight:600;padding:5px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--white);cursor:pointer;color:var(--ink-soft);}
+  .btn-mini:hover{border-color:#b3452f;color:#b3452f;}
+  .btn-add{font:inherit;font-size:.88rem;font-weight:600;padding:10px 20px;border-radius:999px;border:1.5px dashed var(--gold);background:var(--gold-pale);cursor:pointer;color:#8a6a1e;}
+  .btn-add:hover{background:var(--white);}
+
+  /* insight engine */
+  .insight{border-left:3px solid var(--teal);background:var(--teal-pale);border-radius:var(--radius);padding:16px 20px;margin-top:14px;}
+  .insight .ilabel{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+  .insight h4{font-size:.95rem;color:var(--black);margin:12px 0 4px;}
+  .insight h4:first-of-type{margin-top:0;}
+  .insight p{font-size:.92rem;color:var(--ink);margin-bottom:6px;}
+  .insight ul{margin:4px 0 0 20px;}
+  .insight li{font-size:.92rem;color:var(--ink);margin-bottom:5px;}
+
+  .pp-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between;margin-top:30px;align-items:center;}
+  .save-note{font-size:.82rem;color:var(--ink-soft);}
+
+  /* toolbar */
+  .pp-bar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    background:var(--black);border-radius:var(--radius);padding:16px 22px;margin-top:26px;}
+  .pp-bar .who{color:#fff;font-family:var(--font-display);font-size:1.15rem;}
+  .pp-bar .who span{color:var(--gold-bright);}
+  .pp-bar .tools{display:flex;gap:10px;flex-wrap:wrap;}
+  .pp-bar button{font:inherit;font-size:.85rem;font-weight:600;padding:9px 18px;border-radius:999px;cursor:pointer;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff;}
+  .pp-bar button:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+  .pp-bar button.primary{background:var(--gold);border-color:var(--gold);color:var(--black);}
+  .pp-bar button.primary:hover{background:var(--gold-bright);}
+
+  /* dates alert */
+  .upcoming{background:var(--gold-pale);border:1px solid #e3d2a6;border-left:4px solid var(--gold);border-radius:var(--radius);padding:16px 20px;margin-top:18px;}
+  .upcoming h4{font-size:.9rem;color:var(--black);margin-bottom:8px;}
+  .upcoming li{font-size:.9rem;margin-bottom:6px;color:var(--ink);}
+  .upcoming ul{margin-left:20px;}
+  .upcoming .soon{font-weight:700;color:#8a6a1e;}
+
+  /* media list */
+  .media-play{display:inline-block;margin-top:8px;font-size:.85rem;font-weight:600;color:var(--teal);}
+
+  /* ===== OUTPUT VIEWS ===== */
+  .out{display:none;}
+  .out.on{display:block;}
+  .doc{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:44px;margin-top:26px;}
+  @media(max-width:640px){.doc{padding:26px 20px;}}
+  .doc-head{border-bottom:3px solid var(--black);padding-bottom:18px;margin-bottom:24px;}
+  .doc-brand{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--black);}
+  .doc-brand span{color:var(--gold);}
+  .doc h1{font-size:2rem;margin-top:12px;}
+  .doc .sub{font-size:.95rem;color:var(--ink-soft);margin-top:6px;}
+  .doc h2{font-size:1.15rem;margin:30px 0 6px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+  .doc h3{font-size:.95rem;margin:16px 0 4px;color:var(--black);}
+  .doc p{font-size:.95rem;margin-bottom:8px;}
+  .doc .muted{color:var(--ink-soft);font-style:italic;}
+  .doc ul{margin:6px 0 10px 22px;}
+  .doc li{font-size:.95rem;margin-bottom:5px;}
+  .doc .kv{display:grid;grid-template-columns:190px 1fr;gap:6px 16px;margin:10px 0;}
+  .doc .kv dt{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding-top:2px;}
+  .doc .kv dd{font-size:.96rem;}
+  @media(max-width:640px){.doc .kv{grid-template-columns:1fr;gap:2px 0;}.doc .kv dd{margin-bottom:10px;}}
+  .doc .block{page-break-inside:avoid;break-inside:avoid;}
+  .doc .callout{background:var(--paper);border-left:3px solid var(--gold);border-radius:var(--radius);padding:14px 18px;margin:12px 0;font-size:.94rem;}
+  .doc .teal-callout{background:var(--teal-pale);border-left:3px solid var(--teal);border-radius:var(--radius);padding:14px 18px;margin:12px 0;font-size:.94rem;}
+
+  /* care card */
+  .card-doc{border:3px solid var(--gold);border-radius:8px;padding:6px;background:var(--white);margin-top:26px;}
+  .card-in{border:1px solid var(--gold);border-radius:5px;padding:32px 34px;}
+  .card-in .cc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:2px solid var(--black);padding-bottom:14px;margin-bottom:18px;flex-wrap:wrap;}
+  .card-in h1{font-size:1.9rem;line-height:1.15;}
+  .card-in .callname{font-size:1rem;color:var(--teal);font-weight:600;margin-top:4px;}
+  .card-in .cc-brand{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--black);text-align:right;}
+  .card-in .cc-brand span{color:var(--gold);}
+  .cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  @media(max-width:700px){.cc-grid{grid-template-columns:1fr;}}
+  .cc-box h3{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .cc-box ul{margin:0 0 0 18px;}
+  .cc-box li{font-size:.92rem;margin-bottom:5px;}
+  .cc-box p{font-size:.92rem;}
+  .cc-full{grid-column:1/-1;}
+
+  .empty-note{color:var(--ink-soft);font-style:italic;font-size:.93rem;}
+
+  @media print{
+    @page{margin:14mm;}
+    .nav,.footer,.pp-bar,.pp-nav,.no-print,.hero{display:none !important;}
+    .pp-wrap{max-width:none;padding:0;}
+    .doc,.card-doc{border:none;box-shadow:none;padding:0;margin:0;}
+    .card-doc{border:3px solid var(--gold);padding:6px;}
+    #builder{display:none !important;}
+    a[href]::after{content:"";}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">ADHD<span>ementia</span></a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="screening-tool.html">Screening Tool</a></li>
+      <li><a href="training.html">Training &amp; Consultancy</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="guides.html">Guides</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" style="padding:70px 0 60px;">
+  <div class="container">
+    <p class="kicker">The Personhood Profile</p>
+    <h1 style="font-size:clamp(2rem,4.5vw,3.2rem);">Who they are, who they were, <span class="serif-i">and who they may yet become.</span></h1>
+    <p class="lede" style="margin-bottom:0;">Care plans record needs and risks. This records the person. Build a living profile that turns a life history into care that actually fits, then print it for the care file, the bedroom door and every shift that follows.</p>
+  </div>
+</header>
+
+<div class="pp-wrap">
+
+  <div class="pp-bar no-print">
+    <div class="who">Profile: <span id="bar-name">unnamed</span></div>
+    <div class="tools">
+      <button type="button" onclick="showBuilder()">Edit profile</button>
+      <button type="button" onclick="buildProfileDoc()">Full profile</button>
+      <button type="button" onclick="buildCareCard()">Care card</button>
+      <button type="button" onclick="saveFile()">Save to file</button>
+      <button type="button" onclick="document.getElementById('load-file').click()">Open file</button>
+      <input type="file" id="load-file" accept="application/json" style="display:none" onchange="loadFile(event)">
+      <button type="button" class="primary" onclick="window.print()">Print</button>
+    </div>
+  </div>
+
+  <!-- ================= BUILDER ================= -->
+  <div id="builder">
+    <div class="pp-shell">
+      <aside class="pp-nav no-print">
+        <ol id="sec-nav"></ol>
+      </aside>
+      <div class="pp-card" id="sec-host"></div>
+    </div>
+    <div class="pp-actions no-print">
+      <span class="save-note" id="save-note">Saved automatically on this device</span>
+      <div class="btn-row">
+        <button type="button" class="btn btn-outline-dark" onclick="prevSec()">Back</button>
+        <button type="button" class="btn btn-gold" onclick="nextSec()">Next section</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= OUTPUTS ================= -->
+  <div class="out" id="out-profile"><div class="doc" id="profile-doc"></div>
+    <div class="btn-row no-print" style="margin-top:22px;"><button type="button" class="btn btn-outline-dark" onclick="showBuilder()">Back to editing</button><button type="button" class="btn btn-dark" onclick="window.print()">Print / save as PDF</button></div>
+  </div>
+  <div class="out" id="out-card"><div class="card-doc"><div class="card-in" id="card-doc"></div></div>
+    <p class="hint no-print" style="font-size:.85rem;color:var(--ink-soft);margin-top:14px;">Designed for the inside of a wardrobe door, the care file front page, or the handover folder. Never display personal information where visitors can see it.</p>
+    <div class="btn-row no-print" style="margin-top:16px;"><button type="button" class="btn btn-outline-dark" onclick="showBuilder()">Back to editing</button><button type="button" class="btn btn-dark" onclick="window.print()">Print / save as PDF</button></div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">ADHD<span>ementia</span></div>
+        <p>Transforming care plans and care environments for people living with dementia who also have ADHD. Screening, training and consultancy for care homes, care teams and families.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="screening-tool.html">Screening Tool</a></li>
+          <li><a href="training.html">Training &amp; Consultancy</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="guides.html">Guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact &amp; legal</h4>
+        <ul>
+          <li><a href="contact.html">Get in touch</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="https://adhdementia.com">adhdementia.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p><strong>Important:</strong> The ADHDementia screening tool and all content on this site are educational aids, not diagnostic instruments. They cannot confirm or rule out ADHD, dementia or any other condition. If you are concerned about someone's memory, thinking, mood or behaviour, please speak to a GP or qualified clinician.</p>
+      <p>&copy; 2026 ADHDementia. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* =========================================================
+   DATA MODEL
+   ========================================================= */
+let D = {};
+const STORE = "adhdementia-personhood-v1";
+
+function blank(){
+  return {
+    meta:{completedBy:"",role:"",date:new Date().toISOString().slice(0,10),sources:[]},
+    id:{legalName:"",callName:"",title:"",addressPref:"",neverCall:[],nameStory:"",pronouns:""},
+    life:{born:"",placesLived:"",childhood:"",chapters:[],proudest:"",hardest:""},
+    work:{jobs:[],workStory:"",statusNotes:""},
+    roles:{relationships:[],rolePlayed:"",whoTheyCareFor:""},
+    nd:{screened:"",domains:[],ndNotes:""},
+    sensory:{likes:[],dislikes:[],clothing:"",food:"",noise:"",touch:"",smell:""},
+    rhythm:{bodyClock:"",bestTime:"",worstTime:"",morningRoutine:"",eveningRoutine:"",sleepStory:""},
+    media:{items:[]},
+    dates:{items:[]},
+    comms:{approach:"",works:[],avoid:[],firstLanguage:"",hearingVision:"",humour:""},
+    distress:{earlySigns:"",escalators:[],soothers:[],recovery:"",neverDo:""},
+    values:{faith:"",politics:"",modesty:"",money:"",animals:"",valuesNotes:""},
+    future:{stillWants:"",goals:"",legacy:"",worries:""}
+  };
+}
+
+/* =========================================================
+   OCCUPATION INSIGHT ENGINE
+   ========================================================= */
+const OCC = [
+  {k:["director","manager","managing","boss","owner","executive","chairman","chair","proprietor","supervisor","foreman","partner","chief","head of","ceo","md"],
+   t:"A lifetime of authority",
+   m:"This person spent decades being the one who decided, and being addressed accordingly. In a care home the whole structure inverts: other people now decide when they wash, eat and sleep, and they may be addressed by a first name, or with 'love' or 'sweetheart', by staff they have never met. That is not a small discourtesy. For someone already disorientated, it removes the last familiar marker of who they are.",
+   a:["Ask how they wish to be addressed, and record it. Default to title and surname until told otherwise.",
+      "Offer genuine choices rather than instructions: which of two shirts, tea before or after the wash.",
+      "Give the reason with the request, as you would have to any colleague.",
+      "Find something to be in charge of: chairing residents' meetings, checking a rota, showing a new resident round."]},
+  {k:["teacher","lecturer","tutor","headmaster","headmistress","professor","instructor","trainer","educat"],
+   t:"Structure, standards and the front of the room",
+   m:"Teaching lives are organised by timetable, term and the expectation of being listened to. People from teaching backgrounds often retain a strong sense of how a day should be shaped, and may find unstructured time distressing rather than restful.",
+   a:["Give a predictable shape to the day, and say what is coming next.",
+      "Offer roles that use the instinct to explain: reading aloud, helping another resident, talking to visiting students.",
+      "Expect precision about language and correct yourself gracefully when they pick you up.",
+      "Avoid speaking to them as though they need simplifying. Adjust pace, not vocabulary."]},
+  {k:["nurse","matron","doctor","gp","midwife","paramedic","carer","care assistant","health visitor","physio","surgeon","dentist"],
+   t:"A lifetime of caring for others",
+   m:"People from caring professions often find receiving care far harder than giving it. They may minimise their own pain, apologise for needing help, become distressed by another resident's distress, or try to take charge of situations they cannot influence.",
+   a:["Frame help as collaboration: 'shall we do this together' rather than 'let me do that for you'.",
+      "Give a caring role: watering plants, tea round, sitting with someone new.",
+      "Expect underreported pain. Ask directly and specifically.",
+      "Notice if the distress of other residents is affecting them, and offer somewhere quieter."]},
+  {k:["farm","farmer","agricultur","milk","postman","postal","baker","dairy","fisherman","gardener","groundsman"],
+   t:"An early-morning working life",
+   m:"Decades of starting work before dawn leave a body clock that does not reset in later life. Waking at 4am is not confusion or agitation; it is fifty years of habit meeting a building that will not open the kitchen until seven.",
+   a:["Do not record early waking as a sleep problem before checking their working history.",
+      "Have something available for early risers: a drink, a warm room, a job, company.",
+      "Consider whether an earlier breakfast is possible for them specifically.",
+      "Expect them to be tired early evening. Do not push them to stay up for activities."]},
+  {k:["night shift","nights","nightshift","security","night porter","baker night","factory night"],
+   t:"A nocturnal working life",
+   m:"Someone who worked nights for years may have a genuinely shifted circadian rhythm. Being expected to settle at 8pm may be as unnatural as being woken at 3am would be for a day worker.",
+   a:["Ask what time they naturally went to bed and record it.",
+      "Where safe, allow a later settling time rather than treating wakefulness as a behaviour.",
+      "Provide quiet night-time occupation rather than encouraging sleep they do not feel.",
+      "Review any night sedation against this history."]},
+  {k:["army","navy","raf","military","soldier","regiment","police","fire","firefighter","officer","merchant navy","forces"],
+   t:"Uniform, hierarchy and drill",
+   m:"Service life builds a deep relationship with routine, punctuality, appearance and rank. Being late, dishevelled or spoken to informally can feel genuinely wrong. There may also be experiences never spoken about, and some care tasks (restraint, sudden noise, being held) may carry echoes that nobody in the building knows about.",
+   a:["Keep to time, and explain when you cannot.",
+      "Attend to appearance: shaving, shoes, a straight collar. It matters more than it seems.",
+      "Approach from the front, announce yourself, and never restrain without exhausting every alternative.",
+      "Ask family, sensitively, whether there is service history that should shape how care is delivered."]},
+  {k:["engineer","mechanic","builder","carpenter","joiner","electrician","plumber","fitter","welder","machinist","technician","toolmaker"],
+   t:"Hands that need work",
+   m:"A working life spent making, fixing and understanding how things go together does not stop needing an outlet. Restlessness in a lounge chair may simply be a pair of hands with nothing to do.",
+   a:["Provide real tasks with real objects: sorting, assembling, tightening, sanding, folding.",
+      "Ask their opinion on how something works or should be fixed. The expertise usually outlasts the memory.",
+      "Avoid infantilising activities. A locked toolbox of safe tools beats a colouring book.",
+      "Expect frustration with being told not to touch things."]},
+  {k:["accountant","clerk","secretary","admin","bookkeep","banker","bank","cashier","typist","civil serv","solicitor","lawyer","auditor"],
+   t:"Order, paperwork and being useful",
+   m:"Lives organised around accuracy, filing and getting the figures right often leave a strong need for things to be in their proper place and for the day to be accounted for. Losing track of paperwork, money or time can cause disproportionate anxiety.",
+   a:["Provide safe paperwork: forms to check, envelopes to sort, a diary to keep.",
+      "Take questions about money and belongings seriously, and answer them concretely.",
+      "Keep possessions in consistent, agreed places and tell them when anything moves.",
+      "A named place for glasses, purse and keys will do more than reassurance."]},
+  {k:["housewife","homemaker","mother","home maker","domestic","cleaner","housekeep","cook","chef","dinner lady","catering"],
+   t:"A life spent running a household",
+   m:"Feeding people, keeping a house, and being the one who noticed what needed doing is a career, even when it was never paid. Being served every meal and having nothing to organise can feel like redundancy rather than rest.",
+   a:["Offer genuine jobs: laying tables, folding laundry, drying up, arranging flowers.",
+      "Ask their advice about cooking, and use it.",
+      "Let them host: pouring tea for a visitor, offering biscuits to another resident.",
+      "Recognise that tidying other people's things may be care, not confusion."]},
+  {k:["shop","retail","sales","publican","landlord","landlady","barmaid","barman","hairdress","barber","waitress","waiter","receptionist","market"],
+   t:"A working life among people",
+   m:"Greeting, chatting and remembering regulars was the job. Social contact is likely to be genuinely restorative rather than tiring, and isolation may hit harder than it would for others.",
+   a:["Give them a greeting role: welcoming visitors, sitting near the entrance if they enjoy it.",
+      "Expect and encourage conversation with everyone, including new staff.",
+      "Notice if they are placed in a quiet corner for staff convenience.",
+      "A hairdressing or shop reminiscence box may unlock a great deal."]},
+  {k:["driver","lorry","haulage","taxi","bus","train","chauffeur","courier","delivery","pilot","seafarer","sailor"],
+   t:"Movement and independence",
+   m:"A life spent travelling and deciding your own route sits badly with a building you cannot leave. Walking about is often mistaken for wandering, when it may be the last remnant of autonomy.",
+   a:["Provide a safe route to walk, and let them use it without being redirected.",
+      "Radio, maps, road atlases and travel programmes may be more engaging than television.",
+      "Explain, rather than block, when they want to leave. Ask where they are heading and why.",
+      "Being a passenger on any outing may matter more than the destination."]},
+  {k:["factory","mill","production","assembly","warehouse","packer","operative","miner","steel","shipyard","textile"],
+   t:"Shift work, noise and a team",
+   m:"Industrial working lives combine strong routine, tolerance of noise and machinery, and a powerful sense of being part of a shift. Camaraderie was often the best part of the job.",
+   a:["Rhythmic, repetitive tasks may be genuinely satisfying rather than boring.",
+      "Group activity with a shared purpose usually beats individual entertainment.",
+      "Check whether background noise is comforting rather than distressing for this person.",
+      "Shift patterns may explain their natural sleep and mealtimes."]},
+  {k:["musician","artist","singer","actor","writer","journalist","photograph","designer","dancer","painter"],
+   t:"A creative working life",
+   m:"Creative work is rarely just a job. The need to make, perform or express usually persists, and its absence can feel like grief rather than boredom.",
+   a:["Provide the materials, not a craft session: an instrument, paper, a camera, an audience.",
+      "Performing for others may still be possible and deeply restorative.",
+      "Their work may exist. Find it, display it, and tell staff about it.",
+      "Expect strong opinions about music and images used around them."]}
+];
+
+function occInsights(text){
+  const t=(text||"").toLowerCase();
+  if(!t.trim()) return [];
+  return OCC.filter(o=>o.k.some(k=>t.includes(k)));
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+const SECTIONS = [
+  {id:"id", title:"Name and identity",
+   why:"Getting a name wrong is not a small thing. For someone who is disorientated, the way they are addressed may be the last reliable signal that the people around them know who they are.",
+   render:()=>`
+    ${fText("Full legal name","id.legalName","As it appears on records")}
+    ${f2(
+      fText("What they like to be called","id.callName","The name they answer to and prefer"),
+      fText("Title","id.title","Mr, Mrs, Dr, Sister, Captain, or none")
+    )}
+    ${fSelect("How staff should address them","id.addressPref",["","Title and surname, always","Title and surname until invited otherwise","First name","Nickname","Ask them each time"])}
+    ${fChips("Never use these","id.neverCall",["Love","Sweetheart","Darling","Dear","Pet","Their full first name","A shortened first name","Baby talk of any kind"])}
+    ${fText("Pronouns","id.pronouns","If known and relevant")}
+    ${fArea("The story behind the name","id.nameStory","Named after someone? A nickname with a history? A name they changed, or hated? Anything staff should know so the name means something.")}
+   `},
+
+  {id:"life", title:"Life chapters",
+   why:"A life is not one fact. Recording it in chapters gives staff something to talk about with every resident, on any shift, and helps everyone see a whole person rather than a diagnosis.",
+   render:()=>`
+    ${f2(fText("Born","life.born","Year and place"), fText("Places lived","life.placesLived","In order, if known"))}
+    ${fArea("Childhood and family of origin","life.childhood","Parents, siblings, schooling, the world they grew up in.")}
+    ${rep("life.chapters","Add a life chapter",[
+      {k:"period",l:"When",p:"e.g. 1962 to 1974"},
+      {k:"title",l:"Chapter",p:"e.g. The farm years"},
+      {k:"detail",l:"What happened",p:"What defined this period, who was in it, what it meant to them.",area:true},
+      {k:"use",l:"How to use this in care",p:"e.g. Talks happily about this. Good subject when anxious.",area:true}
+    ])}
+    ${f2(fArea("Proudest of","life.proudest","Say it back to them when they need it."), fArea("Hardest thing they lived through","life.hardest","Handle with care, and tell staff what to avoid."))}
+   `},
+
+  {id:"work", title:"Work, status and identity",
+   why:"We ask what someone did for a living and then file it. But a working life shapes how a person expects to be spoken to, how they use their hands, when they wake, and what makes them feel useful. This section turns the job title into care instructions.",
+   render:()=>`
+    ${rep("work.jobs",'Add a job or role',[
+      {k:"role",l:"Job or role",p:"e.g. Managing director of a haulage firm"},
+      {k:"years",l:"Years",p:"e.g. 1968 to 1994"},
+      {k:"detail",l:"What it involved",p:"Responsibilities, hours, what they were known for.",area:true}
+    ])}
+    ${fArea("What work meant to them","work.workStory","Was it a living, a calling, or an escape? Did they miss it when they stopped?")}
+    ${fArea("Status and how they expect to be treated","work.statusNotes","Were they used to deference, or to being one of the team? What would feel disrespectful to them?")}
+    <div id="occ-insight"></div>
+   `},
+
+  {id:"roles", title:"Roles and relationships",
+   why:"People are somebody to someone. Knowing who they were to others explains a great deal of what they say and do, including who they may be looking for.",
+   render:()=>`
+    ${rep("roles.relationships","Add a person",[
+      {k:"name",l:"Name",p:"e.g. Margaret"},
+      {k:"rel",l:"Relationship",p:"e.g. Wife, married 1961"},
+      {k:"status",l:"Living, died, estranged, unknown",p:"Be honest, this matters"},
+      {k:"notes",l:"What staff should know",p:"How they refer to them, whether they ask for them, what to say if they do.",area:true}
+    ])}
+    ${fArea("The role they played in the family","roles.rolePlayed","The one who organised everything? The peacemaker? The provider? The one everyone rang?")}
+    ${fArea("Who they still feel responsible for","roles.whoTheyCareFor","People often remain worried about children who are now in their sixties. Knowing this explains a lot of anxiety.")}
+   `},
+
+  {id:"nd", title:"Neurodivergent profile",
+   why:"Lifelong traits are not dementia. If this person has been screened with the ADHDementia tool, bring the findings here so that the care plan reflects who they have always been, not only what has changed.",
+   render:()=>`
+    ${fSelect("Screened with the ADHDementia tool?","nd.screened",["","Yes, self-report","Yes, observational","Yes, both","Not yet","Declined"])}
+    ${fChips("Trait areas strongly present","nd.domains",["Lifelong ADHD footprint","Out of sight, out of mind","Time blindness","Focus regulation","Internalised shame","Sensory sensitivity","Rejection sensitivity","Need for context","Masking and burnout"])}
+    ${fArea("What this means for their care","nd.ndNotes","Bring across the adjustments from the screening report that this team should actually use.")}
+    <p style="font-size:.86rem;color:var(--ink-soft);margin-top:10px;">The screening tool is free and takes about fifteen minutes: <a href="screening-tool.html" target="_blank" rel="noopener">open it in a new tab</a>. Screening is not diagnosis, and nothing here should be recorded as a diagnosis.</p>
+   `},
+
+  {id:"sensory", title:"Sensory profile",
+   why:"A great deal of recorded distress is a sensory environment nobody has asked about. This section is often the fastest route to a calmer day.",
+   render:()=>`
+    ${fChips("Comforting","sensory.likes",["Warmth","Being wrapped","Quiet","Background chatter","Music","Familiar smells","Soft fabrics","Being outdoors","Movement","Something to hold","Firm pressure","Bright light"])}
+    ${fChips("Distressing","sensory.dislikes",["Noise","Several conversations","Television","Bright light","Being touched unexpectedly","Being cold","Heat","Strong smells","Crowds","Labels and seams","Tight waistbands","Sudden movement"])}
+    ${f2(fArea("Clothing","sensory.clothing","Fabrics, waistbands, labels, layers, shoes, what they always chose to wear."),
+        fArea("Food and drink","sensory.food","Textures, temperatures, strong flavours, lifelong dislikes, how they take their tea."))}
+    ${f2(fArea("Sound","sensory.noise","Which rooms are tolerable, whether the television helps or hurts, preferred volume."),
+        fArea("Touch and personal care","sensory.touch","Water temperature, hair washing, being approached, what to say before you touch them."))}
+    ${fArea("Smell","sensory.smell","Their own soap, aftershave or perfume. Familiar is usually better than pleasant.")}
+   `},
+
+  {id:"rhythm", title:"Rhythms and routines",
+   why:"Homes run to one clock. People do not. A lifetime of rising at five or working nights does not reset because someone has moved in.",
+   render:()=>`
+    ${fSelect("Lifelong body clock","rhythm.bodyClock",["","Very early riser","Early riser","Ordinary hours","Night owl","Shift pattern, variable"])}
+    ${f2(fText("Best time of day","rhythm.bestTime","When they are most themselves"), fText("Hardest time of day","rhythm.worstTime","When to keep demands low"))}
+    ${fArea("Morning routine, as it always was","rhythm.morningRoutine","The order they did things, what came first, what they cannot start the day without.")}
+    ${fArea("Evening and bedtime routine","rhythm.eveningRoutine","What time they went to bed, what they did first, radio, reading, a drink.")}
+    ${fArea("Sleep story","rhythm.sleepStory","Lifelong sleeper or lifelong insomniac? Naps? What has genuinely changed recently?")}
+   `},
+
+  {id:"media", title:"Music, media and memory",
+   why:"Music reaches people when words cannot, and personalised music has a strong evidence base in dementia care. Add the actual links so that any member of staff can play the right thing in seconds, at the moment it is needed.",
+   render:()=>`
+    ${rep("media.items","Add a song, programme or clip",[
+      {k:"title",l:"Title",p:"e.g. Moon River"},
+      {k:"artist",l:"Artist or source",p:"e.g. Andy Williams"},
+      {k:"url",l:"Link",p:"Paste a YouTube, Spotify or radio link",url:true},
+      {k:"when",l:"When to use it",p:"e.g. During personal care, or when she is looking for her mother",select:["","Waking and getting up","Personal care","Mealtimes","Afternoon lull","Evening and settling","When distressed","When looking for someone","Just for pleasure"]},
+      {k:"story",l:"Why it matters",p:"Whose song was it? What does it bring back? Warn here if it may bring sadness as well as comfort.",area:true}
+    ])}
+    <div class="pp-why" style="margin-top:18px;">Check with family before using anything tied to a bereavement. A song can open grief as easily as it opens joy, and the person may not be able to tell you which is happening.</div>
+   `},
+
+  {id:"dates", title:"Dates that matter",
+   why:"Every home marks birthdays. Almost none mark the wedding anniversary of someone whose husband died twenty years ago, or the birthday of a daughter who visits every week. Those are the dates that explain a difficult morning.",
+   render:()=>`
+    ${rep("dates.items","Add a date",[
+      {k:"date",l:"Date",p:"",date:true},
+      {k:"what",l:"What it is",p:"e.g. Wedding anniversary"},
+      {k:"who",l:"Who it relates to",p:"e.g. Margaret, wife"},
+      {k:"kind",l:"Type",p:"",select:["","Birthday, theirs","Birthday, someone they love","Wedding anniversary","Anniversary of a death","Religious or cultural","Remembrance or service","Other date that matters"]},
+      {k:"mark",l:"How to mark it, or what to expect",p:"e.g. Play their first dance. Expect a low morning. Ring their daughter beforehand.",area:true}
+    ])}
+    <div id="upcoming-box"></div>
+   `},
+
+  {id:"comms", title:"Communication",
+   why:"The same sentence works from one carer and fails from another. Write down what actually works so it survives staff turnover.",
+   render:()=>`
+    ${fArea("How to approach them","comms.approach","From the front? Announce yourself? Sit down first? Touch their hand or not?")}
+    ${fChips("What works","comms.works",["Give the reason first","One instruction at a time","Written prompts","Humour","Slow pace","Sitting at their level","Offering two choices","Silence and time","Being asked their opinion","Familiar phrases"])}
+    ${fChips("What does not work","comms.avoid",["Being rushed","Being corrected","Several people talking","Being told what to do","Baby talk","Being touched first","Loud voices","Open questions","Being watched","Being reasoned with when upset"])}
+    ${f2(fText("First language","comms.firstLanguage","And any language they revert to"), fText("Hearing and vision","comms.hearingVision","Aids, which side to approach, glasses"))}
+    ${fArea("Their sense of humour","comms.humour","Dry? Filthy? Gentle teasing welcome or not? This is one of the fastest routes to trust.")}
+   `},
+
+  {id:"distress", title:"Distress and comfort",
+   why:"By the time distress is obvious it is usually too late to prevent. Recording the early signs, and what genuinely helps, is the difference between de-escalation and a difficult afternoon for everyone.",
+   render:()=>`
+    ${fArea("Earliest signs something is wrong","distress.earlySigns","What do they do ten minutes before anyone would call it agitation? Pacing, going quiet, folding things, asking the same question.")}
+    ${fChips("Makes it worse","distress.escalators",["Being told they are wrong","Being hurried","Crowds","Noise","Being alone","Being followed","Physical guidance","Too many questions","Unfamiliar staff","Being blocked from leaving"])}
+    ${fChips("Genuinely helps","distress.soothers",["Their music","Going outside","A hot drink","A specific person","Being left alone","A job to do","Physical warmth","Familiar object","Movement or walking","Quiet company"])}
+    ${fArea("How they recover","distress.recovery","How long does it take? Do they remember it afterwards? Do they need an apology, or for it never to be mentioned?")}
+    ${fArea("Never do this","distress.neverDo","The one or two things that this team must not do, whatever the circumstances, and why.")}
+   `},
+
+  {id:"values", title:"Beliefs, values and dignity",
+   why:"Care that offends someone's values is not person-centred, however kindly it is delivered.",
+   render:()=>`
+    ${fArea("Faith and spiritual life","values.faith","Practising or not, what they would want, what they would find intrusive.")}
+    ${fArea("Politics and strong views","values.politics","Not to be argued with, but useful to know before the news goes on.")}
+    ${fArea("Modesty and personal care","values.modesty","Who they will accept help from, what must stay covered, what they would find humiliating.")}
+    ${f2(fArea("Money and possessions","values.money","Attitudes to money, what they like to keep with them, what worries them."),
+        fArea("Animals","values.animals","Loved, feared, or allergic. Worth knowing before the therapy dog arrives."))}
+    ${fArea("What dignity means to this person","values.valuesNotes","In their words if possible, or their family's.")}
+   `},
+
+  {id:"future", title:"Who they may yet become",
+   why:"A care plan that only looks backwards treats a person as finished. People living with dementia still form new attachments, discover new pleasures and have things they want. This section keeps the plan facing forwards.",
+   render:()=>`
+    ${fArea("What they still want","future.stillWants","In their own words wherever possible. Ask, even if the answer changes each time.")}
+    ${fArea("Goals for the coming months","future.goals","Small and real: to walk to the postbox, to see the sea again, to be at a grandchild's wedding.")}
+    ${fArea("New things worth trying","future.legacy","Interests they never had time for, and anything they have surprised everyone by enjoying since moving in.")}
+    ${fArea("What they are afraid of","future.worries","Being a burden, being left, going into hospital, dying alone. Naming it lets the team respond to it.")}
+   `},
+
+  {id:"meta", title:"Who completed this",
+   why:"A profile is only trustworthy if you know where it came from and how current it is.",
+   render:()=>`
+    ${f2(fText("Completed by","meta.completedBy","Name"), fText("Role","meta.role","e.g. Registered manager, daughter"))}
+    ${fDate("Date completed","meta.date")}
+    ${fChips("Information came from","meta.sources",["The person themselves","Spouse or partner","Son or daughter","Other family","Friend","Previous care setting","Existing records","Staff observation"])}
+    <div class="pp-why" style="margin-top:20px;">Review this profile at least every six months, and whenever something significant changes. A profile that is two years out of date can mislead a new member of staff as easily as an empty one.</div>
+   `}
+];
+
+/* =========================================================
+   FIELD HELPERS
+   ========================================================= */
+function get(path){ return path.split('.').reduce((o,k)=>(o||{})[k], D); }
+function set(path,val){
+  const ks=path.split('.'); let o=D;
+  for(let i=0;i<ks.length-1;i++) o=o[ks[i]];
+  o[ks[ks.length-1]]=val; save();
+}
+function esc(s){ return String(s==null?"":s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function fText(label,path,hint){
+  return `<div class="f"><label for="i-${path}">${label}</label>${hint?`<div class="hint">${hint}</div>`:''}
+    <input type="text" id="i-${path}" value="${esc(get(path))}" oninput="set('${path}',this.value);liveUpdate('${path}')"></div>`;
+}
+function fDate(label,path){
+  return `<div class="f"><label for="i-${path}">${label}</label>
+    <input type="date" id="i-${path}" value="${esc(get(path))}" oninput="set('${path}',this.value)"></div>`;
+}
+function fArea(label,path,hint){
+  return `<div class="f"><label for="i-${path}">${label}</label>${hint?`<div class="hint">${hint}</div>`:''}
+    <textarea id="i-${path}" oninput="set('${path}',this.value);liveUpdate('${path}')">${esc(get(path))}</textarea></div>`;
+}
+function fSelect(label,path,opts){
+  return `<div class="f"><label for="i-${path}">${label}</label>
+    <select id="i-${path}" onchange="set('${path}',this.value)">
+    ${opts.map(o=>`<option value="${esc(o)}" ${get(path)===o?'selected':''}>${o||'Not recorded'}</option>`).join('')}
+    </select></div>`;
+}
+function fChips(label,path,opts){
+  const cur=get(path)||[];
+  return `<div class="f"><label>${label}</label><div class="chips">
+    ${opts.map((o,i)=>{
+      const id=`c-${path.replace(/\./g,'_')}-${i}`;
+      return `<span class="chip-t"><input type="checkbox" id="${id}" ${cur.includes(o)?'checked':''} onchange="toggleChip('${path}','${esc(o)}',this.checked)"><label for="${id}">${o}</label></span>`;
+    }).join('')}
+  </div></div>`;
+}
+function toggleChip(path,val,on){
+  let a=get(path)||[];
+  if(on){ if(!a.includes(val)) a.push(val); } else { a=a.filter(x=>x!==val); }
+  set(path,a);
+}
+function f2(a,b){ return `<div class="f2">${a}${b}</div>`; }
+
+/* repeaters */
+function rep(path,addLabel,fields){
+  const items=get(path)||[];
+  let h=`<div id="rep-${path.replace(/\./g,'_')}">`;
+  items.forEach((it,idx)=>{ h+=repItem(path,addLabel,fields,it,idx); });
+  h+=`</div><button type="button" class="btn-add" onclick="addRep('${path}')">+ ${addLabel}</button>`;
+  return h;
+}
+function repItem(path,addLabel,fields,it,idx){
+  let h=`<div class="rep-item"><div class="rep-head"><strong>${addLabel.replace('Add a','').replace('Add','').trim()} ${idx+1}</strong>
+    <button type="button" class="btn-mini" onclick="delRep('${path}',${idx})">Remove</button></div>`;
+  fields.forEach(f=>{
+    const v=esc(it[f.k]||"");
+    const id=`r-${path.replace(/\./g,'_')}-${idx}-${f.k}`;
+    if(f.area) h+=`<div class="f"><label for="${id}">${f.l}</label><textarea id="${id}" placeholder="${esc(f.p)}" oninput="setRep('${path}',${idx},'${f.k}',this.value)">${v}</textarea></div>`;
+    else if(f.select) h+=`<div class="f"><label for="${id}">${f.l}</label><select id="${id}" onchange="setRep('${path}',${idx},'${f.k}',this.value)">${f.select.map(o=>`<option value="${esc(o)}" ${it[f.k]===o?'selected':''}>${o||'Not set'}</option>`).join('')}</select></div>`;
+    else if(f.date) h+=`<div class="f"><label for="${id}">${f.l}</label><input type="date" id="${id}" value="${v}" onchange="setRep('${path}',${idx},'${f.k}',this.value);refreshUpcoming()"></div>`;
+    else if(f.url) h+=`<div class="f"><label for="${id}">${f.l}</label><input type="url" id="${id}" value="${v}" placeholder="${esc(f.p)}" oninput="setRep('${path}',${idx},'${f.k}',this.value)">${v?`<a class="media-play" href="${v}" target="_blank" rel="noopener">Test this link</a>`:''}</div>`;
+    else h+=`<div class="f"><label for="${id}">${f.l}</label><input type="text" id="${id}" value="${v}" placeholder="${esc(f.p)}" oninput="setRep('${path}',${idx},'${f.k}',this.value);liveUpdate('${path}')"></div>`;
+  });
+  return h+`</div>`;
+}
+function addRep(path){ const a=get(path)||[]; a.push({}); set(path,a); renderSec(); }
+function delRep(path,i){ const a=get(path)||[]; a.splice(i,1); set(path,a); renderSec(); }
+function setRep(path,i,k,v){ const a=get(path)||[]; a[i]=a[i]||{}; a[i][k]=v; set(path,a); }
+
+/* =========================================================
+   LIVE FEATURES
+   ========================================================= */
+function liveUpdate(path){
+  if(path.startsWith('work.')) renderOccInsights();
+  if(path.startsWith('id.')) updateBar();
+  markNav();
+}
+function renderOccInsights(){
+  const host=document.getElementById('occ-insight'); if(!host) return;
+  const text=(D.work.jobs||[]).map(j=>`${j.role||''} ${j.detail||''}`).join(' ')+' '+(D.work.workStory||'');
+  const hits=occInsights(text);
+  if(!hits.length){ host.innerHTML=`<p class="empty-note" style="margin-top:14px;">Add a job above and this section will suggest what that working life may mean for their care.</p>`; return; }
+  host.innerHTML=hits.map(o=>`<div class="insight">
+    <div class="ilabel">What this working life may mean</div>
+    <h4>${o.t}</h4><p>${o.m}</p>
+    <h4>Try this</h4><ul>${o.a.map(x=>`<li>${x}</li>`).join('')}</ul>
+  </div>`).join('');
+}
+function daysUntil(mmdd){
+  if(!mmdd) return null;
+  const d=new Date(mmdd); if(isNaN(d)) return null;
+  const now=new Date(); now.setHours(0,0,0,0);
+  let next=new Date(now.getFullYear(), d.getMonth(), d.getDate());
+  if(next<now) next=new Date(now.getFullYear()+1, d.getMonth(), d.getDate());
+  return Math.round((next-now)/86400000);
+}
+function upcomingList(within){
+  return (D.dates.items||[]).map(it=>({...it,d:daysUntil(it.date)}))
+    .filter(it=>it.d!==null && it.d<=within).sort((a,b)=>a.d-b.d);
+}
+function refreshUpcoming(){
+  const host=document.getElementById('upcoming-box'); if(!host) return;
+  const up=upcomingList(60);
+  if(!up.length){ host.innerHTML=`<p class="empty-note" style="margin-top:16px;">Dates added here will appear as reminders, with the number of days until each one.</p>`; return; }
+  host.innerHTML=`<div class="upcoming"><h4>Coming up in the next 60 days</h4><ul>
+    ${up.map(u=>`<li><strong>${esc(u.what||'Date')}</strong>${u.who?', '+esc(u.who):''} &middot; <span class="${u.d<=14?'soon':''}">${u.d===0?'today':(u.d===1?'tomorrow':'in '+u.d+' days')}</span>${u.mark?'<br><span style="color:var(--ink-soft)">'+esc(u.mark)+'</span>':''}</li>`).join('')}
+  </ul></div>`;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+let cur=0;
+function sectionFilled(s){
+  const branch=D[s.id]; if(!branch) return false;
+  return Object.values(branch).some(v=>Array.isArray(v)?v.length>0:(typeof v==='string'&&v.trim()!==''));
+}
+function markNav(){
+  document.querySelectorAll('#sec-nav button').forEach((b,i)=>{
+    b.classList.toggle('on', i===cur);
+    b.classList.toggle('done', sectionFilled(SECTIONS[i]));
+  });
+}
+function renderNav(){
+  document.getElementById('sec-nav').innerHTML=SECTIONS.map((s,i)=>`<li><button type="button" onclick="goSec(${i})">${s.title}</button></li>`).join('');
+  markNav();
+}
+function renderSec(){
+  const s=SECTIONS[cur];
+  document.getElementById('sec-host').innerHTML=`<p class="kicker on-light">Section ${cur+1} of ${SECTIONS.length}</p><h2>${s.title}</h2><div class="pp-why">${s.why}</div>${s.render()}`;
+  if(s.id==='work') renderOccInsights();
+  if(s.id==='dates') refreshUpcoming();
+  markNav(); updateBar();
+}
+function goSec(i){ cur=i; renderSec(); showBuilder(); window.scrollTo({top:0,behavior:'instant'}); }
+function nextSec(){ if(cur<SECTIONS.length-1) goSec(cur+1); else buildProfileDoc(); }
+function prevSec(){ if(cur>0) goSec(cur-1); }
+
+function showBuilder(){
+  document.getElementById('builder').style.display='';
+  document.querySelectorAll('.out').forEach(o=>o.classList.remove('on'));
+}
+function showOut(id){
+  document.getElementById('builder').style.display='none';
+  document.querySelectorAll('.out').forEach(o=>o.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function updateBar(){
+  document.getElementById('bar-name').textContent = D.id.callName || D.id.legalName || 'unnamed';
+}
+
+/* =========================================================
+   STORAGE
+   ========================================================= */
+function save(){
+  try{ localStorage.setItem(STORE, JSON.stringify(D));
+    const n=document.getElementById('save-note'); if(n){ n.textContent='Saved just now'; clearTimeout(window._st); window._st=setTimeout(()=>n.textContent='Saved automatically on this device',2000);} }catch(e){}
+}
+function load(){
+  try{ const raw=localStorage.getItem(STORE); D = raw?Object.assign(blank(),JSON.parse(raw)):blank(); }
+  catch(e){ D=blank(); }
+}
+function saveFile(){
+  const name=(D.id.callName||D.id.legalName||'personhood-profile').replace(/[^a-z0-9]/gi,'-').toLowerCase();
+  const blob=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=name+'-profile.json'; a.click();
+  URL.revokeObjectURL(a.href);
+}
+function loadFile(ev){
+  const f=ev.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ try{ D=Object.assign(blank(),JSON.parse(r.result)); save(); renderSec(); showBuilder(); }
+    catch(e){ alert('That file could not be read as a profile.'); } };
+  r.readAsText(f); ev.target.value='';
+}
+
+/* =========================================================
+   OUTPUT: FULL PROFILE
+   ========================================================= */
+function has(v){ return Array.isArray(v)?v.length>0:(typeof v==='string'&&v.trim()!==''); }
+function para(label,val){ return has(val)?`<h3>${label}</h3><p>${esc(val).replace(/\n/g,'<br>')}</p>`:''; }
+function list(label,arr){ return (arr&&arr.length)?`<h3>${label}</h3><ul>${arr.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''; }
+
+function buildProfileDoc(){
+  const name=D.id.callName||D.id.legalName||'This person';
+  const occHits=occInsights((D.work.jobs||[]).map(j=>`${j.role||''} ${j.detail||''}`).join(' ')+' '+(D.work.workStory||''));
+  let h=`<div class="doc-head">
+    <div class="doc-brand">ADHD<span>ementia</span> &middot; Personhood Profile</div>
+    <h1>${esc(D.id.title?D.id.title+' ':'')}${esc(D.id.legalName||'Name not recorded')}</h1>
+    <div class="sub">${D.id.callName?'Known as <strong>'+esc(D.id.callName)+'</strong>. ':''}${D.id.addressPref?'Address as: '+esc(D.id.addressPref)+'.':''}
+    ${D.meta.completedBy?' Completed by '+esc(D.meta.completedBy)+(D.meta.role?', '+esc(D.meta.role):''):''}${D.meta.date?' on '+new Date(D.meta.date+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):''}</div>
+  </div>`;
+
+  /* identity */
+  h+=`<div class="block"><h2>Name and identity</h2>`;
+  if(D.id.neverCall&&D.id.neverCall.length) h+=`<div class="callout"><strong>Never use:</strong> ${D.id.neverCall.map(esc).join(', ')}.</div>`;
+  h+=para('The story behind the name',D.id.nameStory)+para('Pronouns',D.id.pronouns)+`</div>`;
+
+  /* life */
+  h+=`<div class="block"><h2>Life chapters</h2>`;
+  h+=`<dl class="kv">${D.life.born?`<dt>Born</dt><dd>${esc(D.life.born)}</dd>`:''}${D.life.placesLived?`<dt>Places lived</dt><dd>${esc(D.life.placesLived)}</dd>`:''}</dl>`;
+  h+=para('Childhood and family of origin',D.life.childhood);
+  (D.life.chapters||[]).forEach(c=>{
+    if(!has(c.title)&&!has(c.detail)) return;
+    h+=`<h3>${esc(c.title||'Chapter')}${c.period?' <span class="muted">('+esc(c.period)+')</span>':''}</h3>`;
+    if(has(c.detail)) h+=`<p>${esc(c.detail).replace(/\n/g,'<br>')}</p>`;
+    if(has(c.use)) h+=`<div class="teal-callout"><strong>In care:</strong> ${esc(c.use)}</div>`;
+  });
+  h+=para('Proudest of',D.life.proudest)+para('Hardest thing they lived through',D.life.hardest)+`</div>`;
+
+  /* work */
+  h+=`<div class="block"><h2>Work, status and identity</h2>`;
+  (D.work.jobs||[]).forEach(j=>{ if(!has(j.role)) return;
+    h+=`<h3>${esc(j.role)}${j.years?' <span class="muted">('+esc(j.years)+')</span>':''}</h3>`;
+    if(has(j.detail)) h+=`<p>${esc(j.detail).replace(/\n/g,'<br>')}</p>`; });
+  h+=para('What work meant to them',D.work.workStory)+para('Status and how they expect to be treated',D.work.statusNotes);
+  occHits.forEach(o=>{ h+=`<div class="teal-callout"><strong>${esc(o.t)}.</strong> ${esc(o.m)}<ul>${o.a.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`; });
+  h+=`</div>`;
+
+  /* roles */
+  h+=`<div class="block"><h2>Roles and relationships</h2>`;
+  (D.roles.relationships||[]).forEach(r=>{ if(!has(r.name)) return;
+    h+=`<h3>${esc(r.name)}${r.rel?' <span class="muted">'+esc(r.rel)+'</span>':''}${r.status?' &middot; '+esc(r.status):''}</h3>`;
+    if(has(r.notes)) h+=`<p>${esc(r.notes).replace(/\n/g,'<br>')}</p>`; });
+  h+=para('Role in the family',D.roles.rolePlayed)+para('Who they still feel responsible for',D.roles.whoTheyCareFor)+`</div>`;
+
+  /* nd */
+  if(has(D.nd.screened)||has(D.nd.domains)||has(D.nd.ndNotes)){
+    h+=`<div class="block"><h2>Neurodivergent profile</h2>`;
+    if(has(D.nd.screened)) h+=`<p><strong>Screened:</strong> ${esc(D.nd.screened)}</p>`;
+    h+=list('Trait areas strongly present',D.nd.domains)+para('What this means for their care',D.nd.ndNotes);
+    h+=`<p class="muted" style="font-size:.86rem;">Screening indicates lifelong traits. It is not a diagnosis and must not be recorded as one.</p></div>`;
+  }
+
+  /* sensory */
+  h+=`<div class="block"><h2>Sensory profile</h2>`;
+  h+=list('Comforting',D.sensory.likes)+list('Distressing',D.sensory.dislikes);
+  h+=para('Clothing',D.sensory.clothing)+para('Food and drink',D.sensory.food)+para('Sound',D.sensory.noise)+para('Touch and personal care',D.sensory.touch)+para('Smell',D.sensory.smell)+`</div>`;
+
+  /* rhythm */
+  h+=`<div class="block"><h2>Rhythms and routines</h2>`;
+  h+=`<dl class="kv">${D.rhythm.bodyClock?`<dt>Body clock</dt><dd>${esc(D.rhythm.bodyClock)}</dd>`:''}${D.rhythm.bestTime?`<dt>Best time of day</dt><dd>${esc(D.rhythm.bestTime)}</dd>`:''}${D.rhythm.worstTime?`<dt>Hardest time</dt><dd>${esc(D.rhythm.worstTime)}</dd>`:''}</dl>`;
+  h+=para('Morning routine',D.rhythm.morningRoutine)+para('Evening and bedtime',D.rhythm.eveningRoutine)+para('Sleep story',D.rhythm.sleepStory)+`</div>`;
+
+  /* media */
+  const media=(D.media.items||[]).filter(m=>has(m.title));
+  if(media.length){
+    h+=`<div class="block"><h2>Music, media and memory</h2>`;
+    media.forEach(m=>{
+      h+=`<h3>${esc(m.title)}${m.artist?' <span class="muted">'+esc(m.artist)+'</span>':''}</h3>`;
+      if(has(m.when)) h+=`<p><strong>When:</strong> ${esc(m.when)}</p>`;
+      if(has(m.story)) h+=`<p>${esc(m.story).replace(/\n/g,'<br>')}</p>`;
+      if(has(m.url)) h+=`<p><a href="${esc(m.url)}" target="_blank" rel="noopener">Play this</a> <span class="muted" style="font-size:.8rem;">${esc(m.url)}</span></p>`;
+    });
+    h+=`</div>`;
+  }
+
+  /* dates */
+  const dts=(D.dates.items||[]).filter(x=>has(x.date)||has(x.what));
+  if(dts.length){
+    h+=`<div class="block"><h2>Dates that matter</h2>`;
+    dts.slice().sort((a,b)=>(a.date||'').slice(5).localeCompare((b.date||'').slice(5))).forEach(x=>{
+      const d=x.date?new Date(x.date+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long'}):'Date not set';
+      h+=`<h3>${d} &middot; ${esc(x.what||'')}${x.who?' <span class="muted">'+esc(x.who)+'</span>':''}</h3>`;
+      if(has(x.kind)) h+=`<p class="muted">${esc(x.kind)}</p>`;
+      if(has(x.mark)) h+=`<p>${esc(x.mark).replace(/\n/g,'<br>')}</p>`;
+    });
+    h+=`</div>`;
+  }
+
+  /* comms */
+  h+=`<div class="block"><h2>Communication</h2>`;
+  h+=para('How to approach them',D.comms.approach)+list('What works',D.comms.works)+list('What does not work',D.comms.avoid);
+  h+=`<dl class="kv">${D.comms.firstLanguage?`<dt>First language</dt><dd>${esc(D.comms.firstLanguage)}</dd>`:''}${D.comms.hearingVision?`<dt>Hearing and vision</dt><dd>${esc(D.comms.hearingVision)}</dd>`:''}</dl>`;
+  h+=para('Sense of humour',D.comms.humour)+`</div>`;
+
+  /* distress */
+  h+=`<div class="block"><h2>Distress and comfort</h2>`;
+  h+=para('Earliest signs something is wrong',D.distress.earlySigns)+list('Makes it worse',D.distress.escalators)+list('Genuinely helps',D.distress.soothers)+para('How they recover',D.distress.recovery);
+  if(has(D.distress.neverDo)) h+=`<div class="callout"><strong>Never do this:</strong> ${esc(D.distress.neverDo).replace(/\n/g,'<br>')}</div>`;
+  h+=`</div>`;
+
+  /* values */
+  h+=`<div class="block"><h2>Beliefs, values and dignity</h2>`;
+  h+=para('Faith and spiritual life',D.values.faith)+para('Politics and strong views',D.values.politics)+para('Modesty and personal care',D.values.modesty)+para('Money and possessions',D.values.money)+para('Animals',D.values.animals)+para('What dignity means to this person',D.values.valuesNotes)+`</div>`;
+
+  /* future */
+  h+=`<div class="block"><h2>Who they may yet become</h2>`;
+  h+=para('What they still want',D.future.stillWants)+para('Goals for the coming months',D.future.goals)+para('New things worth trying',D.future.legacy)+para('What they are afraid of',D.future.worries)+`</div>`;
+
+  /* provenance */
+  h+=`<div class="block"><h2>About this profile</h2>`;
+  h+=list('Information came from',D.meta.sources);
+  h+=`<p class="muted" style="font-size:.86rem;border-top:1px solid var(--line);padding-top:14px;margin-top:16px;">This Personhood Profile supports person-centred care planning under CQC Regulation 9. It does not replace a statutory care plan, risk assessment or clinical record, and nothing in it is a diagnosis. It contains personal information about a living individual and must be stored, shared and destroyed in line with your organisation's data protection policy. Review at least every six months. &copy; ADHDementia &middot; adhdementia.com</p></div>`;
+
+  document.getElementById('profile-doc').innerHTML=h;
+  showOut('out-profile');
+}
+
+/* =========================================================
+   OUTPUT: CARE CARD
+   ========================================================= */
+function buildCareCard(){
+  const distressSong=(D.media.items||[]).find(m=>m.when==='When distressed'&&has(m.title));
+  const up=upcomingList(31);
+  const box=(t,inner)=>inner?`<div class="cc-box"><h3>${t}</h3>${inner}</div>`:'';
+  const ul=a=>(a&&a.length)?`<ul>${a.slice(0,5).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'';
+  const p=v=>has(v)?`<p>${esc(v).replace(/\n/g,'<br>')}</p>`:'';
+
+  let h=`<div class="cc-top">
+    <div><h1>${esc(D.id.title?D.id.title+' ':'')}${esc(D.id.legalName||'Name not recorded')}</h1>
+    ${D.id.callName?`<div class="callname">Call me ${esc(D.id.callName)}</div>`:''}
+    ${D.id.addressPref?`<div style="font-size:.9rem;color:var(--ink-soft);margin-top:2px;">${esc(D.id.addressPref)}</div>`:''}</div>
+    <div class="cc-brand">ADHD<span>ementia</span><div style="font-family:var(--font-body);font-weight:400;font-size:.72rem;color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;margin-top:4px;">Care card</div></div>
+  </div><div class="cc-grid">`;
+
+  h+=box('Never call me', (D.id.neverCall&&D.id.neverCall.length)?`<p>${D.id.neverCall.map(esc).join(', ')}</p>`:'');
+  h+=box('Helps me', ul(D.distress.soothers));
+  h+=box('Makes it worse', ul(D.distress.escalators));
+  h+=box('Early signs I am struggling', p(D.distress.earlySigns));
+  h+=box('How to approach me', p(D.comms.approach));
+  h+=box('My best and hardest times', (has(D.rhythm.bestTime)||has(D.rhythm.worstTime))?`<p>${has(D.rhythm.bestTime)?'Best: '+esc(D.rhythm.bestTime)+'. ':''}${has(D.rhythm.worstTime)?'Hardest: '+esc(D.rhythm.worstTime)+'.':''}</p>`:'');
+  h+=box('Sensory: yes and no', (has(D.sensory.likes)||has(D.sensory.dislikes))?`<p>${(D.sensory.likes||[]).slice(0,4).map(esc).join(', ')}${(D.sensory.dislikes&&D.sensory.dislikes.length)?'<br><strong>Avoid:</strong> '+D.sensory.dislikes.slice(0,4).map(esc).join(', '):''}</p>`:'');
+  h+=box('Play this if I am distressed', distressSong?`<p><strong>${esc(distressSong.title)}</strong>${distressSong.artist?', '+esc(distressSong.artist):''}${has(distressSong.url)?`<br><a href="${esc(distressSong.url)}" target="_blank" rel="noopener">Open the link</a>`:''}</p>`:'');
+
+  if(has(D.distress.neverDo)) h+=`<div class="cc-box cc-full"><h3 style="color:#b3452f">Never do this</h3><p>${esc(D.distress.neverDo).replace(/\n/g,'<br>')}</p></div>`;
+  if(up.length) h+=`<div class="cc-box cc-full"><h3>Dates in the next month</h3><ul>${up.map(u=>`<li><strong>${esc(u.what||'')}</strong>${u.who?', '+esc(u.who):''} &middot; ${u.d===0?'today':(u.d===1?'tomorrow':'in '+u.d+' days')}${u.mark?' &middot; '+esc(u.mark):''}</li>`).join('')}</ul></div>`;
+  if(has(D.work.jobs)&&has(D.work.jobs[0].role)) h+=`<div class="cc-box cc-full"><h3>Who I was</h3><p>${esc(D.work.jobs[0].role)}${D.work.jobs[0].years?', '+esc(D.work.jobs[0].years):''}${has(D.life.proudest)?'. '+esc(D.life.proudest):''}</p></div>`;
+
+  h+=`</div><p style="font-size:.72rem;color:var(--ink-soft);border-top:1px solid var(--line);margin-top:22px;padding-top:10px;">Summary only. The full Personhood Profile is in the care file. Contains personal information: store and display in line with your data protection policy.</p>`;
+
+  document.getElementById('card-doc').innerHTML=h;
+  showOut('out-card');
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+load(); renderNav(); renderSec();
+</script>
+</body>
+</html>
