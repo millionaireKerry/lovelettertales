@@ -1,0 +1,40 @@
+# Netlify redirect rules.
+# This file must sit in the published root of the site (the same folder as index.html).
+# Format: FROM  TO  STATUS
+# The "!" after 301 forces the rule even if a real file exists at that path.
+
+# ---------------------------------------------------------------------------
+# Domain redirects
+# All three alternative domains point at the Personhood Profile landing page on
+# adhdementia.com. One canonical site, one set of search rankings.
+# ---------------------------------------------------------------------------
+
+http://personhoodprofile.com/*        https://adhdementia.com/personhood-profile.html  301!
+https://personhoodprofile.com/*       https://adhdementia.com/personhood-profile.html  301!
+http://www.personhoodprofile.com/*    https://adhdementia.com/personhood-profile.html  301!
+https://www.personhoodprofile.com/*   https://adhdementia.com/personhood-profile.html  301!
+
+http://personhoodprofile.co.uk/*      https://adhdementia.com/personhood-profile.html  301!
+https://personhoodprofile.co.uk/*     https://adhdementia.com/personhood-profile.html  301!
+http://www.personhoodprofile.co.uk/*  https://adhdementia.com/personhood-profile.html  301!
+https://www.personhoodprofile.co.uk/* https://adhdementia.com/personhood-profile.html  301!
+
+http://knowmefirst.co.uk/*            https://adhdementia.com/personhood-profile.html  301!
+https://knowmefirst.co.uk/*           https://adhdementia.com/personhood-profile.html  301!
+http://www.knowmefirst.co.uk/*        https://adhdementia.com/personhood-profile.html  301!
+https://www.knowmefirst.co.uk/*       https://adhdementia.com/personhood-profile.html  301!
+
+# ---------------------------------------------------------------------------
+# Vanity short links on the main domain.
+# Safe to print on a leaflet or say out loud.
+# ---------------------------------------------------------------------------
+
+/profile        /personhood-profile.html  301!
+/myprofile      /my-profile.html          301!
+/knowmefirst    /personhood-profile.html  301!
+
+# ---------------------------------------------------------------------------
+# Old path kept alive in case anything was shared before the rename.
+# ---------------------------------------------------------------------------
+
+/care-plan-tool.html  /care-home-profile.html  301!

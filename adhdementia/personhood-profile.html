@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Personhood Profile | Know the person before the diagnosis</title>
+<meta name="description" content="A care plan records what is done to a person. A Personhood Profile records who that person is. Free to use, written by the person themselves or built by a care home with their family.">
+<link rel="canonical" href="https://adhdementia.com/personhood-profile.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ADHDementia">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="The Personhood Profile | Know the person before the diagnosis">
+<meta property="og:description" content="A care plan records what is done to a person. A Personhood Profile records who that person is. Free to use, written by the person themselves or built by a care home with their family.">
+<meta property="og:url" content="https://adhdementia.com/personhood-profile.html">
+<meta property="og:image" content="https://adhdementia.com/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Personhood Profile from ADHDementia">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Personhood Profile | Know the person before the diagnosis">
+<meta name="twitter:description" content="A care plan records what is done to a person. A Personhood Profile records who that person is.">
+<meta name="twitter:image" content="https://adhdementia.com/social-card.png">
+<meta name="author" content="Kerry Billson">
+<meta name="theme-color" content="#0d0d0f">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .pick{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;}
+  @media(max-width:860px){.pick{grid-template-columns:1fr;}}
+  .pick-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;}
+  .pick-card .band{height:8px;background:var(--teal);}
+  .pick-card.b .band{background:var(--gold);}
+  .pick-body{padding:34px;display:flex;flex-direction:column;flex:1;}
+  @media(max-width:640px){.pick-body{padding:26px 22px;}}
+  .pick-who{font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;}
+  .pick-card.b .pick-who{color:var(--gold);}
+  .pick-body h3{font-size:1.5rem;line-height:1.25;}
+  .pick-body .sub{color:var(--ink-soft);font-size:.98rem;margin-top:12px;}
+  .pick-body ul{list-style:none;margin:22px 0 28px;flex:1;}
+  .pick-body ul li{position:relative;padding:9px 0 9px 26px;font-size:.93rem;border-bottom:1px solid var(--line);}
+  .pick-body ul li:last-child{border-bottom:none;}
+  .pick-body ul li::before{content:"\2713";position:absolute;left:0;top:9px;color:var(--teal);font-weight:700;}
+  .pick-card.b ul li::before{color:var(--gold);}
+  .pick-free{font-family:var(--font-display);font-weight:700;font-size:1.2rem;margin-bottom:18px;}
+  .pick-free small{font-family:var(--font-body);font-size:.85rem;font-weight:500;color:var(--ink-soft);display:block;margin-top:4px;}
+
+  .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:34px;}
+  .feat-item h3{font-size:1.15rem;margin-bottom:10px;}
+  .feat-item p{color:var(--ink-soft);font-size:.95rem;}
+  .feat-item .fnum{font-family:var(--font-display);font-style:italic;font-size:1.6rem;color:var(--gold);display:block;margin-bottom:6px;}
+
+  .story{max-width:820px;}
+  .story blockquote{border-left:3px solid var(--gold);padding:6px 0 6px 26px;margin:30px 0;
+    font-family:var(--font-display);font-style:italic;font-size:1.3rem;line-height:1.5;color:var(--ink);}
+  .story p{margin-bottom:1.25em;}
+
+  .privacy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;margin-top:36px;}
+  .privacy-grid h3{font-size:1.05rem;color:var(--white);margin-bottom:8px;}
+  .privacy-grid p{font-size:.93rem;color:#b9b9c2;}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "The Personhood Profile",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Any modern web browser",
+  "url": "https://adhdementia.com/personhood-profile.html",
+  "description": "A free tool for recording who a person is, in their own words or in their family's words, so that anyone who ever cares for them knows the person and not just the diagnosis.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "publisher": { "@type": "Organization", "name": "ADHDementia", "url": "https://adhdementia.com" },
+  "author": { "@type": "Person", "name": "Kerry Billson" }
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">ADHD<span>ementia</span></a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="screening-tool.html">Screening Tool</a></li>
+      <li><a href="personhood-profile.html" class="active">Personhood Profile</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="guides.html">Guides</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <p class="kicker">Free to use. Nothing leaves your device.</p>
+    <h1>A care plan records what is done to a person. <span class="serif-i">This records who they are.</span></h1>
+    <p class="lede">Somewhere in every care home there is a woman on the quiet corridor described in her notes as "pleasant, compliant, requires assistance with personal care". She ran a school for thirty years. Nobody currently on shift knows that. <strong>The Personhood Profile exists so that they do.</strong></p>
+    <div class="btn-row" style="margin-top:34px;">
+      <a class="btn btn-gold" href="my-profile.html">Write my own profile</a>
+      <a class="btn btn-outline-light" href="care-home-profile.html">Build one for a resident</a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker on-light">Two versions of the same idea</p>
+      <h2>Written by the person, or built with their family</h2>
+      <hr class="gold-rule">
+      <p>They produce the same thing: a rich, usable, printable record of a whole human being. The only difference is who holds the pen, and when.</p>
+    </div>
+
+    <div class="pick">
+
+      <article class="pick-card">
+        <div class="band"></div>
+        <div class="pick-body">
+          <p class="pick-who">For individuals and families</p>
+          <h3>My Personhood Profile</h3>
+          <p class="sub">You write it. In the first person, in your own words, at any point in your life. Ideally long before anyone else needs it, and certainly in the months after a diagnosis while everything is still clear.</p>
+          <ul>
+            <li>Thirteen parts, written as you would speak</li>
+            <li>What to call me, and what never to call me</li>
+            <li>What helps me, what makes things worse</li>
+            <li>The music and the films that reach me</li>
+            <li>Dates that matter, and why they matter</li>
+            <li>Carries weight as an advance statement in law</li>
+            <li>Give it to a care home before admission, not after</li>
+          </ul>
+          <p class="pick-free">Free, always<small>No account. No sign up. No email address.</small></p>
+          <a class="btn btn-teal" href="my-profile.html">Start my profile</a>
+        </div>
+      </article>
+
+      <article class="pick-card b">
+        <div class="band"></div>
+        <div class="pick-body">
+          <p class="pick-who">For care homes and care teams</p>
+          <h3>The Personhood Profile</h3>
+          <p class="sub">Built by the home with the family, usually in the first fortnight, and added to for as long as the person is with you. Sits alongside the statutory care plan rather than replacing any part of it.</p>
+          <ul>
+            <li>Fourteen sections, structured for a keyworker</li>
+            <li>Working life read for what it still means today</li>
+            <li>Music and video links that play at the bedside</li>
+            <li>Anniversaries and family dates, not just birthdays</li>
+            <li>Early signs of distress, and what actually works</li>
+            <li>A one page care card for the back of the door</li>
+            <li>Evidence of person centred care under Regulation 9</li>
+          </ul>
+          <p class="pick-free">Free to use<small>No licence, no per bed charge, no procurement process.</small></p>
+          <a class="btn btn-dark" href="care-home-profile.html">Open the profile builder</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section paper">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker on-light">Why it goes further</p>
+      <h2>What a one page leaflet cannot do</h2>
+      <hr class="gold-rule">
+      <p>The Alzheimer's Society "This is Me" leaflet was a genuine step forward and thousands of homes still use it. It is also a single sheet of paper that gets filed. This is what happens when you give the same idea room to breathe.</p>
+    </div>
+
+    <div class="feat">
+      <div class="feat-item">
+        <span class="fnum">01</span>
+        <h3>It reads a working life</h3>
+        <p>Type in what someone did for a living and the profile tells you what it still means. A man who ran a company for thirty years is not being difficult when he bristles at being called "sweetheart". He is being spoken to like a child for the first time in his adult life, and every instinct he has is correct.</p>
+      </div>
+      <div class="feat-item">
+        <span class="fnum">02</span>
+        <h3>The music actually plays</h3>
+        <p>A song title written on a form is a song nobody plays. Links sit inside the profile and open at the point of care, on the phone in the carer's pocket, at three in the morning when the person is frightened and words are not working.</p>
+      </div>
+      <div class="feat-item">
+        <span class="fnum">03</span>
+        <h3>It knows what today is</h3>
+        <p>Not only birthdays. The wedding anniversary of a marriage that ended in widowhood. The date a son died. The day the pit closed. The profile surfaces this month's dates so that nobody walks into a room cheerfully wondering why she is crying.</p>
+      </div>
+      <div class="feat-item">
+        <span class="fnum">04</span>
+        <h3>It is a second brain, not a form</h3>
+        <p>People keep the things that hold them together in notebooks and phones and shoeboxes. This does the same job in one place: the names, the habits, the private jokes, the way the tea is made, the reason the belongings on the windowsill must not be tidied away.</p>
+      </div>
+      <div class="feat-item">
+        <span class="fnum">05</span>
+        <h3>It fits on one page when it has to</h3>
+        <p>Nobody reads forty pages on a busy shift. Every profile produces a one page care card: never call me, what helps, what makes it worse, early signs, play this if I am distressed, dates this month, who I was. Print it and it is on the wall in two minutes.</p>
+      </div>
+      <div class="feat-item">
+        <span class="fnum">06</span>
+        <h3>It travels with the person</h3>
+        <p>Save it as a file, keep it, email it, hand it over. It moves from home to hospital to home again without anybody having to start from nothing, and without a family repeating the same story to the fifth professional in a fortnight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="story">
+      <p class="kicker on-light">Where this came from</p>
+      <h2>Eight years of watching people be misread</h2>
+      <hr class="gold-rule">
+      <p>I spent eight years working in care homes. In that time I watched people be sedated for behaviour that was not a symptom of anything except being placed in a building that did not suit them and cared for by people who had never been told who they were.</p>
+      <p>A resident kept her things out on every surface. Housekeeping tidied them away each morning because it looked untidy, and each morning she became distressed and was recorded as agitated. Nobody had ever asked why the objects were out. For a brain like hers, out of sight is genuinely gone. The tidying was not kindness. It was the daily removal of her memory.</p>
+      <blockquote>Everything a care home needs in order to get this right, the person or their family already knows. We simply never ask, and when we do ask we write it on a form nobody opens again.</blockquote>
+      <p>That is the whole idea. Ask properly, once. Record it in a way that is actually usable at four in the morning by an agency carer who has never met the person before. And let the person themselves write it, while they still can, in their own words rather than in a professional's summary of them.</p>
+      <p style="font-size:.95rem;color:var(--ink-soft);">Kerry Billson. Founder of ADHDementia, doctoral researcher in ADHD and dementia, and someone with ADHD herself.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section dark">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">Your information</p>
+      <h2>Nothing you type is ever sent to us</h2>
+      <hr class="gold-rule">
+      <p>This matters more here than anywhere else on the site, because what goes into a Personhood Profile is deeply personal. So the design is simple: there is no server to send it to.</p>
+    </div>
+    <div class="privacy-grid">
+      <div>
+        <h3>It stays in your browser</h3>
+        <p>Everything you enter is saved on the device you are using, so you can close the page and come back to it. It is never transmitted anywhere.</p>
+      </div>
+      <div>
+        <h3>We never see it</h3>
+        <p>ADHDementia holds no copy, no database and no account. We could not read a profile if we wanted to, and we do not want to.</p>
+      </div>
+      <div>
+        <h3>You control who gets it</h3>
+        <p>Save the profile as a file and share it with exactly the people you choose: a care home, a hospital, a family member, a solicitor.</p>
+      </div>
+      <div>
+        <h3>Care homes stay compliant</h3>
+        <p>Because the data never leaves the home's own device, using the profile does not create a new processor relationship or a new data flow to assess.</p>
+      </div>
+    </div>
+    <p style="margin-top:34px;font-size:.88rem;color:#8f8f98;">One consequence worth knowing: if you clear your browser data or change device without saving your file first, the profile is gone and we cannot recover it. Save your file regularly. <a href="privacy.html" style="color:var(--gold-bright);">Read the full privacy policy</a>.</p>
+  </div>
+</section>
+
+<section class="section paper">
+  <div class="container">
+    <div class="notice" style="max-width:860px;margin:0 auto;">
+      <p><strong>Where this sits in law.</strong> A profile written by the person themselves is a statement of their wishes, feelings, beliefs and values. Under the Mental Capacity Act 2005, anyone making a decision on behalf of someone who lacks capacity must take those wishes into account. That gives the profile real weight. It is not, however, an Advance Decision to Refuse Treatment, and it is not a Lasting Power of Attorney. It cannot refuse medical treatment on your behalf and it does not appoint anyone to act for you. If you want either of those, speak to a solicitor.</p>
+      <p style="margin-top:14px;"><strong>For care homes.</strong> The Personhood Profile supports your care plan. It does not replace it. Your statutory documentation, risk assessments and records remain exactly as they are.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <p class="kicker">Start where you are</p>
+    <h2>Ten minutes now saves a stranger years of guessing</h2>
+    <p>You do not have to finish it in one sitting. Answer what you can, save it, and add to it whenever something occurs to you. Even a half completed profile tells a care team more than most admissions packs ever will.</p>
+    <div class="btn-row" style="justify-content:center;">
+      <a class="btn btn-gold" href="my-profile.html">Write my own profile</a>
+      <a class="btn btn-outline-light" href="care-home-profile.html">Build one for a resident</a>
+    </div>
+    <p style="margin-top:30px;font-size:.85rem;color:#8f8f98;">Also reachable at personhoodprofile.com and knowmefirst.co.uk</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">ADHD<span>ementia</span></div>
+        <p>Transforming care plans and care environments for people living with dementia who also have ADHD. Screening, training and consultancy for care homes, care teams and families.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="screening-tool.html">Screening Tool</a></li>
+          <li><a href="personhood-profile.html">Personhood Profile</a></li>
+          <li><a href="training.html">Training &amp; Consultancy</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="guides.html">Guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact &amp; legal</h4>
+        <ul>
+          <li><a href="contact.html">Get in touch</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="https://adhdementia.com">adhdementia.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p><strong>Important:</strong> The ADHDementia screening tool and all content on this site are educational aids, not diagnostic instruments. They cannot confirm or rule out ADHD, dementia or any other condition. If you are concerned about someone's memory, thinking, mood or behaviour, please speak to a GP or qualified clinician.</p>
+      <p>&copy; 2026 ADHDementia. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

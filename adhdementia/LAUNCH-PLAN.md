@@ -229,3 +229,52 @@ application, email sign-up.
 
 **Ongoing:** one article a month, two or three LinkedIn posts a week, ask every
 training client for a Google review and a LinkedIn recommendation.
+
+---
+
+## 6. The Personhood Profile (added August 2026)
+
+Three extra domains are now owned: personhoodprofile.com, personhoodprofile.co.uk
+and knowmefirst.co.uk. All three redirect to `personhood-profile.html` on the main
+site rather than becoming separate sites, so that search authority, backlinks and
+brand recognition all accumulate in one place. Full setup instructions are in
+`DOMAINS.md`.
+
+### What is live
+
+- `personhood-profile.html` is the landing page and the redirect target.
+- `my-profile.html` is the free self-authored version for individuals and families.
+- `care-home-profile.html` is the version a care home builds with the family. This
+  file was previously `care-plan-tool.html`; the old path 301s to the new one.
+
+Both tools are now linked from the main navigation and the footer of every page,
+included in `sitemap.xml`, and no longer carry `noindex`.
+
+### Positioning
+
+Do not describe either tool as a care plan. Care homes already buy care planning
+software from Person Centred Software, Nourish or Log my Care, and the response to
+"here is a care plan tool" is "we already have one". Describe it as a Personhood
+Profile that sits alongside the statutory care plan: the deep digital successor to
+the Alzheimer's Society "This is Me" leaflet.
+
+### Why it is free
+
+It is the widest possible top of funnel. A family who writes a profile for their
+mother arrives at a care home already carrying the ADHDementia name. A home that
+uses the builder for one resident meets the brand before it ever sees a price. The
+money is in training and membership, where staff turnover of roughly a quarter to a
+third a year makes the need genuinely recurring. A questionnaire is not recurring.
+Training is.
+
+### Still to do
+
+- [ ] Complete the DNS and Netlify alias steps in `DOMAINS.md`
+- [ ] Add a Personhood Profile module or session to the training offer, so the free
+      tool has a paid path attached to it
+- [ ] Write a blog article on the profile, using the school headteacher and the
+      company director as the two worked examples
+- [ ] Ask two pilot homes to build a profile for one resident each and report back.
+      Their words become the case study and, later, the CPD evidence
+- [ ] Consider a printed A5 leaflet for families carrying only
+      `knowmefirst.co.uk`, for care home entrance halls and memory clinics
