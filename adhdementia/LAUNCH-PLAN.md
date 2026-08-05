@@ -278,3 +278,27 @@ Training is.
       Their words become the case study and, later, the CPD evidence
 - [ ] Consider a printed A5 leaflet for families carrying only
       `knowmefirst.co.uk`, for care home entrance halls and memory clinics
+
+### Pricing decision, August 2026
+
+The two versions are priced differently on purpose.
+
+**My Personhood Profile is free and stays free.** Charging a family to write down
+who their mother is would be wrong, and it would also be commercially stupid: this
+is the widest possible top of the funnel. Every family who writes one arrives at a
+care home carrying the ADHDementia name, and homes hear about you from the people
+they most want to impress.
+
+**The care home version is £49 a month per home**, unlimited residents and
+unlimited staff, with a fortnight free first and no card. It is also included at no
+extra cost in Care Home Membership at £84, which makes membership the obvious
+choice: £35 more buys unlimited course completions for the whole team.
+
+Flat pricing rather than per bed is deliberate. Care planning software charges per
+bed, so a forty bed home pays £80 to £200 a month for one system. A single flat fee
+whatever your size is easy to say, easy to approve, and it undercuts the comparison
+without looking cheap.
+
+The access key gate on `care-home-profile.html` is a courtesy lock, not security.
+Read `ACCESS-KEYS.md` before issuing the first key: it explains what the gate does
+and does not do, and the point at which paying for a real login becomes worth it.

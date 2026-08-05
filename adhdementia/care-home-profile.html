@@ -32,6 +32,26 @@
   .xlink a:hover{text-decoration:underline;}
 </style>
 <style>
+  /* access gate */
+  .gate-card{max-width:760px;margin:0 auto;background:var(--white);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);padding:40px;}
+  @media(max-width:640px){.gate-card{padding:26px 22px;}}
+  .gate-card p{color:var(--ink-soft);}
+  .gate-form{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-top:26px;}
+  .gate-form label{display:block;font-size:.85rem;font-weight:600;color:var(--black);margin-bottom:6px;}
+  .gate-form input{width:100%;font:inherit;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:12px 14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);min-width:240px;}
+  .gate-form input:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+  .gate-form>div{flex:0 1 320px;}
+  .gate-msg{margin-top:14px;font-size:.92rem;font-weight:600;min-height:1.2em;}
+  .gate-msg.bad{color:#a3302a;}
+  .gate-msg.good{color:var(--teal);}
+  .gate-split{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px;padding-top:30px;border-top:1px solid var(--line);}
+  @media(max-width:640px){.gate-split{grid-template-columns:1fr;}}
+  .gate-split h3{font-size:1.05rem;margin-bottom:8px;}
+  .gate-split p{font-size:.92rem;margin-bottom:16px;}
+  @media print{#gate{display:none !important;}}
+
   .pp-wrap{max-width:1140px;margin:0 auto;padding:0 24px 80px;}
   .pp-shell{display:grid;grid-template-columns:250px 1fr;gap:28px;margin-top:32px;align-items:start;}
   @media(max-width:900px){.pp-shell{grid-template-columns:1fr;}}
@@ -167,7 +187,7 @@
 
   @media print{
     @page{margin:14mm;}
-    .nav,.footer,.pp-bar,.pp-nav,.no-print,.hero{display:none !important;}
+    .nav,.footer,.pp-bar,.pp-nav,.no-print,.xlink,#gate,.hero{display:none !important;}
     .pp-wrap{max-width:none;padding:0;}
     .doc,.card-doc{border:none;box-shadow:none;padding:0;margin:0;}
     .card-doc{border:3px solid var(--gold);padding:6px;}
@@ -210,7 +230,110 @@
   </div>
 </div>
 
-<div class="pp-wrap">
+<!-- ================= ACCESS GATE ================= -->
+<section class="section paper" id="gate" style="padding:70px 0;">
+  <div class="container">
+    <div class="gate-card">
+      <p class="kicker on-light">Care home subscription</p>
+      <h2 style="font-size:1.9rem;">Enter your access key</h2>
+      <hr class="gold-rule">
+      <p>The Personhood Profile builder is included with a care home subscription. Enter the key from your welcome email and this device will remember it. One key covers your whole home, every member of staff and every resident.</p>
+      <div class="gate-form">
+        <div>
+          <label for="gate-key">Access key</label>
+          <input type="text" id="gate-key" placeholder="PP-XXXX-XXXX" autocomplete="off" spellcheck="false"
+                 onkeydown="if(event.key==='Enter'){event.preventDefault();tryKey();}">
+        </div>
+        <button type="button" class="btn btn-dark" onclick="tryKey()">Unlock</button>
+      </div>
+      <p class="gate-msg" id="gate-msg" role="status"></p>
+      <div class="gate-split">
+        <div>
+          <h3>Not subscribed yet?</h3>
+          <p>&pound;49 per month, per home. Unlimited residents, unlimited staff, cancel any time. A fortnight's free trial first, with no card.</p>
+          <a class="btn btn-gold" href="contact.html">Start the free trial</a>
+        </div>
+        <div>
+          <h3>Are you a family member?</h3>
+          <p>The version a person writes about themselves is free and always will be. No key, no sign-up, no card.</p>
+          <a class="btn btn-outline-dark" href="my-profile.html">Go to the free version</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* =========================================================================
+   ACCESS KEYS
+   -------------------------------------------------------------------------
+   To add a subscriber, generate a key and paste its hash into ACCESS below,
+   with the key itself in the comment so you know what you issued to whom.
+   To cancel a subscriber, delete their line. See ACCESS-KEYS.md for the
+   one-line generator and the full process.
+
+   This is a courtesy lock, not security. Anyone who reads this file can get
+   past it. It exists so that a paying home has something to enter and an
+   unsubscribed one meets a closed door, not to stop a determined person.
+   ========================================================================= */
+const ACCESS = [
+  'f0db80d4',   // PP-DEMO-2026   Kerry: demos, screenshots and sales calls
+  'f9cd3601',   // PP-XMMP-JYTM   unassigned
+  '5c74f153',   // PP-FNTA-QCCJ   unassigned
+  'c0b8d474',   // PP-WEXA-4RC9   unassigned
+  'c8641a5c',   // PP-CNT4-YRAN   unassigned
+  '5fea2b90',   // PP-7JFY-NPTU   unassigned
+  '6c63e5dd'    // PP-UMXY-9HY3   unassigned
+];
+
+function keyHash(s){
+  let x = 0x811c9dc5;
+  s = (s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  for (let i = 0; i < s.length; i++){ x ^= s.charCodeAt(i); x = Math.imul(x, 0x01000193) >>> 0; }
+  return x.toString(16).padStart(8, '0');
+}
+
+function unlock(){
+  /* This script sits above #app in the document, so on first load the element
+     does not exist yet. Wait for the DOM if it is not ready. */
+  const gate = document.getElementById('gate');
+  const app = document.getElementById('app');
+  if (!app){
+    document.addEventListener('DOMContentLoaded', unlock, { once: true });
+    return;
+  }
+  if (gate) gate.hidden = true;
+  app.hidden = false;
+}
+
+function tryKey(){
+  const input = document.getElementById('gate-key');
+  const msg = document.getElementById('gate-msg');
+  const raw = input.value.trim();
+  if (!raw){
+    msg.className = 'gate-msg bad';
+    msg.textContent = 'Please enter the key from your welcome email.';
+    return;
+  }
+  if (ACCESS.indexOf(keyHash(raw)) === -1){
+    msg.className = 'gate-msg bad';
+    msg.textContent = 'That key was not recognised. Check it against your welcome email, or get in touch and we will resend it.';
+    return;
+  }
+  try { localStorage.setItem('pp-access', raw.toUpperCase()); } catch(e){}
+  msg.className = 'gate-msg good';
+  msg.textContent = 'Unlocked. This device will remember your key.';
+  unlock();
+}
+
+(function(){
+  let saved = '';
+  try { saved = localStorage.getItem('pp-access') || ''; } catch(e){}
+  if (saved && ACCESS.indexOf(keyHash(saved)) !== -1) unlock();
+})();
+</script>
+
+<div class="pp-wrap" id="app" hidden>
 
   <div class="pp-bar no-print">
     <div class="who">Profile: <span id="bar-name">unnamed</span></div>

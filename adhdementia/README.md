@@ -11,9 +11,9 @@ supporting people living with dementia who also have ADHD.
 | `screening-tool.html` | The interactive screening tool (self-report, 47 questions, and observational, 10 questions) producing a printable Neurodivergent Life Profile |
 | `training.html` | Training and consultancy: private online session (2 hours, GBP 495), on-site day (GBP 1,495 plus travel), group consultancy (from GBP 1,500 per day), open webinars (GBP 65 per person, first Tuesday 10.30am and last Thursday 2pm each month), and Care Home Membership (GBP 84 per month, unlimited staff completions of the online course). The screening tool is free. |
 | `course.html` | The one-hour interactive online course, with knowledge checks, final assessment and printable certificate |
-| `personhood-profile.html` | Landing page for the Personhood Profile family: what it is, the two versions, privacy, and where it sits in law. Redirect target for personhoodprofile.com, personhoodprofile.co.uk and knowmefirst.co.uk |
+| `personhood-profile.html` | Landing page for the Personhood Profile family: what it is, the two versions, pricing, privacy, and where it sits in law. Redirect target for personhoodprofile.com, personhoodprofile.co.uk and knowmefirst.co.uk |
 | `my-profile.html` | **My Personhood Profile.** Self-authored, first person, 13 parts. Written by the individual before or after diagnosis and shared with a care home pre-admission. Carries weight as an advance statement under the Mental Capacity Act 2005 |
-| `care-home-profile.html` | **The Personhood Profile.** Built by a care home with the family, 14 sections, occupation insight engine, music and video links, significant dates, and a printable one-page care card |
+| `care-home-profile.html` | **The Personhood Profile.** Built by a care home with the family, 14 sections, occupation insight engine, music and video links, significant dates, and a printable one-page care card. Behind an access key at GBP 49 per month per home, included in Care Home Membership. Key management is in `ACCESS-KEYS.md` |
 | `research.html` and `research-*.html` | Research listing plus three full papers |
 | `blog.html` and `blog-*.html` | Blog listing plus three full articles |
 | `guides.html` | Guide shop with four placeholder products, priced, marked coming soon |
@@ -24,6 +24,7 @@ supporting people living with dementia who also have ADHD.
 | `_redirects` | Netlify redirect rules: the three extra domains, vanity short links, and the old `care-plan-tool.html` path |
 | `LAUNCH-PLAN.md` | Launch checklist, SEO, analytics and visibility plan |
 | `DOMAINS.md` | DNS, Netlify alias and Search Console setup for the extra domains |
+| `ACCESS-KEYS.md` | How to issue, revoke and generate care home access keys, and when to replace the key gate with a real login |
 
 ## Design notes
 
