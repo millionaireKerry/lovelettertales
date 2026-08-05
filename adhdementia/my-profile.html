@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>My Personhood Profile | ADHDementia</title>
+<meta name="description" content="Write down who you are, while you can, in your own words. A profile you can give to anyone who ever cares for you.">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .mp-wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px;}
+  .mp-shell{display:grid;grid-template-columns:240px 1fr;gap:28px;margin-top:28px;align-items:start;}
+  @media(max-width:900px){.mp-shell{grid-template-columns:1fr;}}
+  .mp-nav{position:sticky;top:96px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);}
+  @media(max-width:900px){.mp-nav{position:static;}}
+  .mp-nav ol{list-style:none;counter-reset:s;}
+  .mp-nav li{counter-increment:s;}
+  .mp-nav button{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;font:inherit;font-size:.86rem;
+    padding:9px 10px;border:none;background:none;border-radius:6px;cursor:pointer;color:var(--ink-soft);}
+  .mp-nav button::before{content:counter(s);font-family:var(--font-display);font-style:italic;color:var(--gold);min-width:16px;}
+  .mp-nav button:hover{background:var(--paper);color:var(--black);}
+  .mp-nav button.on{background:var(--black);color:var(--gold-bright);font-weight:600;}
+  .mp-nav button.on::before{color:var(--gold-bright);}
+  .mp-nav button.done::after{content:"\2713";margin-left:auto;color:var(--teal);font-weight:700;}
+  .mp-nav button.on.done::after{color:var(--gold-bright);}
+
+  .mp-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px;}
+  @media(max-width:640px){.mp-card{padding:24px 20px;}}
+  .mp-why{background:var(--paper);border-left:3px solid var(--gold);border-radius:var(--radius);padding:14px 18px;margin:14px 0 22px;font-size:.94rem;color:var(--ink-soft);}
+  .mp-why em{color:var(--ink);font-style:normal;font-weight:600;}
+
+  .f{margin-bottom:18px;}
+  .f label{display:block;font-size:.9rem;font-weight:600;color:var(--black);margin-bottom:5px;}
+  .f .hint{font-size:.84rem;color:var(--ink-soft);margin-bottom:6px;}
+  .f input[type=text],.f input[type=date],.f input[type=url],.f select,.f textarea{
+    width:100%;font:inherit;font-size:1rem;padding:11px 13px;border:1.5px solid var(--line);
+    border-radius:var(--radius);background:var(--white);color:var(--ink);}
+  .f textarea{min-height:92px;resize:vertical;}
+  .f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+  .f2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:640px){.f2{grid-template-columns:1fr;}}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+  .chip-t{position:relative;}
+  .chip-t input{position:absolute;opacity:0;pointer-events:none;}
+  .chip-t label{display:inline-block;cursor:pointer;border:1.5px solid var(--line);border-radius:999px;
+    padding:7px 15px;font-size:.87rem;color:var(--ink-soft);background:var(--white);user-select:none;margin:0;font-weight:500;}
+  .chip-t label:hover{border-color:var(--gold);}
+  .chip-t input:checked+label{background:var(--black);border-color:var(--black);color:var(--gold-bright);font-weight:600;}
+
+  .rep-item{border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;background:var(--paper);}
+  .rep-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .rep-head strong{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+  .btn-mini{font:inherit;font-size:.8rem;font-weight:600;padding:5px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--white);cursor:pointer;color:var(--ink-soft);}
+  .btn-mini:hover{border-color:#b3452f;color:#b3452f;}
+  .btn-add{font:inherit;font-size:.9rem;font-weight:600;padding:10px 20px;border-radius:999px;border:1.5px dashed var(--gold);background:var(--gold-pale);cursor:pointer;color:#8a6a1e;}
+  .btn-add:hover{background:var(--white);}
+
+  .legal-box{background:var(--gold-pale);border:1px solid #e3d2a6;border-left:4px solid var(--gold);border-radius:var(--radius);padding:18px 22px;margin:20px 0;font-size:.93rem;}
+  .legal-box h4{font-size:.95rem;color:var(--black);margin-bottom:8px;}
+  .legal-box p{margin-bottom:8px;}
+  .legal-box a{font-weight:600;}
+
+  .mp-bar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    background:var(--black);border-radius:var(--radius);padding:16px 22px;margin-top:26px;}
+  .mp-bar .who{color:#fff;font-family:var(--font-display);font-size:1.15rem;}
+  .mp-bar .who span{color:var(--gold-bright);}
+  .mp-bar .tools{display:flex;gap:10px;flex-wrap:wrap;}
+  .mp-bar button{font:inherit;font-size:.85rem;font-weight:600;padding:9px 18px;border-radius:999px;cursor:pointer;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff;}
+  .mp-bar button:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+  .mp-bar button.primary{background:var(--gold);border-color:var(--gold);color:var(--black);}
+  .mp-bar button.primary:hover{background:var(--gold-bright);}
+
+  .mp-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between;margin-top:30px;align-items:center;}
+  .save-note{font-size:.84rem;color:var(--ink-soft);}
+
+  /* output */
+  .out{display:none;}
+  .out.on{display:block;}
+  .doc{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:46px;margin-top:26px;}
+  @media(max-width:640px){.doc{padding:26px 20px;}}
+  .doc-head{border-bottom:3px solid var(--gold);padding-bottom:20px;margin-bottom:26px;}
+  .doc-brand{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--black);}
+  .doc-brand span{color:var(--gold);}
+  .doc h1{font-size:2.1rem;margin-top:14px;}
+  .doc .sub{font-size:1rem;color:var(--ink-soft);margin-top:8px;font-style:italic;}
+  .doc h2{font-size:1.2rem;margin:32px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+  .doc h3{font-size:.95rem;margin:16px 0 4px;color:var(--black);}
+  .doc p{font-size:.97rem;margin-bottom:8px;}
+  .doc ul{margin:6px 0 10px 22px;}
+  .doc li{font-size:.97rem;margin-bottom:5px;}
+  .doc .muted{color:var(--ink-soft);font-style:italic;}
+  .doc .block{page-break-inside:avoid;break-inside:avoid;}
+  .doc .voice{background:var(--paper);border-left:3px solid var(--gold);border-radius:var(--radius);padding:16px 20px;margin:14px 0;font-size:1rem;}
+  .doc .kv{display:grid;grid-template-columns:180px 1fr;gap:6px 16px;margin:10px 0;}
+  .doc .kv dt{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding-top:2px;}
+  .doc .kv dd{font-size:.97rem;}
+  @media(max-width:640px){.doc .kv{grid-template-columns:1fr;}.doc .kv dd{margin-bottom:10px;}}
+  .sign{border-top:2px solid var(--black);margin-top:36px;padding-top:20px;page-break-inside:avoid;}
+  .sign .sig-row{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:26px;}
+  @media(max-width:640px){.sign .sig-row{grid-template-columns:1fr;}}
+  .sign .sig-line{border-bottom:1px solid var(--ink-soft);height:38px;}
+  .sign .sig-lab{font-size:.8rem;color:var(--ink-soft);margin-top:5px;}
+  .doc-legal{font-size:.86rem;color:var(--ink-soft);border-top:1px solid var(--line);margin-top:30px;padding-top:16px;}
+
+  .empty-note{color:var(--ink-soft);font-style:italic;font-size:.93rem;}
+
+  @media print{
+    @page{margin:16mm;}
+    .nav,.footer,.mp-bar,.mp-nav,.no-print,.hero{display:none !important;}
+    .mp-wrap{max-width:none;padding:0;}
+    .doc{border:none;box-shadow:none;padding:0;margin:0;}
+    #builder{display:none !important;}
+    a[href]::after{content:"";}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">ADHD<span>ementia</span></a>
+    <button class="nav-toggle" aria-label="Open menu" onclick="document.getElementById('navlinks').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="screening-tool.html">Screening Tool</a></li>
+      <li><a href="training.html">Training &amp; Consultancy</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="guides.html">Guides</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" style="padding:70px 0 60px;">
+  <div class="container">
+    <p class="kicker">My Personhood Profile</p>
+    <h1 style="font-size:clamp(2rem,4.5vw,3.2rem);">Say who you are <span class="serif-i">while you can say it yourself.</span></h1>
+    <p class="lede" style="margin-bottom:0;">If you ever need care, the people looking after you will read a file. This is your chance to write part of it. In your own words, in your own voice, before anyone has to guess.</p>
+  </div>
+</header>
+
+<div class="mp-wrap">
+
+  <div class="mp-bar no-print">
+    <div class="who">Profile: <span id="bar-name">not started</span></div>
+    <div class="tools">
+      <button type="button" onclick="showBuilder()">Edit</button>
+      <button type="button" onclick="buildDoc()">See my profile</button>
+      <button type="button" onclick="saveFile()">Save to file</button>
+      <button type="button" onclick="document.getElementById('load-file').click()">Open file</button>
+      <input type="file" id="load-file" accept="application/json" style="display:none" onchange="loadFile(event)">
+      <button type="button" class="primary" onclick="window.print()">Print</button>
+    </div>
+  </div>
+
+  <div id="builder">
+    <div class="mp-shell">
+      <aside class="mp-nav no-print"><ol id="sec-nav"></ol></aside>
+      <div class="mp-card" id="sec-host"></div>
+    </div>
+    <div class="mp-actions no-print">
+      <span class="save-note" id="save-note">Saved automatically on this device</span>
+      <div class="btn-row">
+        <button type="button" class="btn btn-outline-dark" onclick="prevSec()">Back</button>
+        <button type="button" class="btn btn-gold" onclick="nextSec()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="out" id="out-doc"><div class="doc" id="the-doc"></div>
+    <div class="btn-row no-print" style="margin-top:22px;">
+      <button type="button" class="btn btn-outline-dark" onclick="showBuilder()">Back to editing</button>
+      <button type="button" class="btn btn-dark" onclick="window.print()">Print / save as PDF</button>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">ADHD<span>ementia</span></div>
+        <p>Transforming care plans and care environments for people living with dementia who also have ADHD. Screening, training and consultancy for care homes, care teams and families.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="screening-tool.html">Screening Tool</a></li>
+          <li><a href="training.html">Training &amp; Consultancy</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="guides.html">Guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact &amp; legal</h4>
+        <ul>
+          <li><a href="contact.html">Get in touch</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="https://adhdementia.com">adhdementia.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p><strong>Important:</strong> The ADHDementia screening tool and all content on this site are educational aids, not diagnostic instruments. They cannot confirm or rule out ADHD, dementia or any other condition. If you are concerned about someone's memory, thinking, mood or behaviour, please speak to a GP or qualified clinician.</p>
+      <p>&copy; 2026 ADHDementia. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+let D={}; const STORE="adhdementia-my-profile-v1";
+
+function blank(){return{
+  me:{name:"",callMe:"",title:"",never:[],pronouns:"",born:"",nameStory:""},
+  legal:{writtenBy:"",helpedBy:"",date:new Date().toISOString().slice(0,10),lpaHealth:"",lpaName:"",adrt:"",adrtWhere:"",gp:""},
+  story:{chapters:[],work:"",workMeant:"",proud:"",hard:""},
+  people:{list:[],whoMatters:"",visiting:""},
+  mind:{nd:[],ndNotes:"",howIThink:"",overwhelm:""},
+  senses:{likes:[],dislikes:[],clothes:"",food:"",sound:"",touch:"",smell:""},
+  day:{clock:"",morning:"",evening:"",best:"",worst:"",musts:""},
+  music:{items:[]},
+  dates:{items:[]},
+  talk:{approach:"",works:[],avoid:[],humour:"",language:""},
+  hard:{signs:"",worse:[],better:[],recover:"",never:""},
+  values:{faith:"",modesty:"",politics:"",animals:"",dignity:""},
+  wishes:{home:"",room:"",food:"",routine:"",matters:"",afraid:"",end:""}
+};}
+
+const S=[
+ {id:"me",t:"My name",
+  why:"How I am spoken to may be the last thing that still feels like me. <em>Please start here.</em>",
+  r:()=>`
+   ${T("My full name","me.name")}
+   ${two(T("What I like to be called","me.callMe","The name I actually answer to"),T("My title","me.title","Mr, Mrs, Dr, Sister, or none"))}
+   ${C("Please never call me","me.never",["Love","Sweetheart","Darling","Dear","Pet","My first name, unless I invite you","A shortened version of my name","Anything in a sing-song voice"])}
+   ${two(T("My pronouns","me.pronouns"),T("When and where I was born","me.born"))}
+   ${A("The story of my name","me.nameStory","Were you named after someone? Do you have a nickname with a history? Is there a name you have always hated?")}
+  `},
+
+ {id:"legal",t:"The formal bits",
+  why:"This profile says what I want. It is not the same as the legal documents that say who can decide for me, so record here whether those exist and where they are kept.",
+  r:()=>`
+   ${two(T("Who wrote this profile","legal.writtenBy","Usually you"),T("Who helped","legal.helpedBy","If anyone"))}
+   ${DT("Date written","legal.date")}
+   ${T("My GP practice","legal.gp")}
+   ${Sel("Do I have a Lasting Power of Attorney for health and welfare?","legal.lpaHealth",["","Yes, registered","Yes, being registered","No","I do not know"])}
+   ${T("If yes, who is my attorney and how are they contacted","legal.lpaName")}
+   ${Sel("Do I have an Advance Decision to Refuse Treatment?","legal.adrt",["","Yes","No","I am thinking about it"])}
+   ${T("If yes, where is it kept","legal.adrtWhere","The care team needs to be able to find it")}
+   <div class="legal-box">
+     <h4>Please read this before you go further</h4>
+     <p>This profile is an <strong>advance statement</strong>. It records your wishes, feelings, beliefs and values. Under the Mental Capacity Act 2005, anyone making a decision on your behalf must take these into account when working out your best interests. That gives this document real weight.</p>
+     <p>It is <strong>not</strong> an Advance Decision to Refuse Treatment, which is a separate legal document refusing specific medical treatment and which must meet strict formal requirements. It is also not a Lasting Power of Attorney, which appoints someone to decide for you.</p>
+     <p>If you want either of those, speak to your GP, a solicitor, or Age UK, and record above where they are kept. This profile sits alongside them and does not replace them.</p>
+   </div>
+  `},
+
+ {id:"story",t:"My life so far",
+  why:"So that the people caring for me have something to talk to me about, and know that I was somebody before they met me.",
+  r:()=>`
+   ${rep("story.chapters","Add a chapter of my life",[
+     {k:"when",l:"When",p:"e.g. 1975 to 1990"},
+     {k:"title",l:"What to call this chapter",p:"e.g. The years at the mill"},
+     {k:"detail",l:"What happened",p:"Who was there, what it meant to me.",area:true}])}
+   ${A("The work I did","story.work","Jobs, trades, raising a family, caring for someone. All of it counts.")}
+   ${A("What my work meant to me","story.workMeant","Was it a living, a calling, or something I was glad to leave? How did I expect to be treated at work?")}
+   ${two(A("What I am proudest of","story.proud","Tell me this back to me if I am low."),A("The hardest thing I have lived through","story.hard","Say here if you would rather it was not raised."))}
+  `},
+
+ {id:"people",t:"My people",
+  why:"So that if I ask for someone, you know who I mean, and know what to say.",
+  r:()=>`
+   ${rep("people.list","Add someone important",[
+     {k:"name",l:"Name",p:"e.g. Margaret"},
+     {k:"who",l:"Who they are to me",p:"e.g. My wife, married 1968"},
+     {k:"status",l:"Living, died, or we are not in touch",p:"Please be honest here"},
+     {k:"say",l:"What to say if I ask for them",p:"This matters enormously. Tell the care team exactly what you would want said.",area:true}])}
+   ${A("Who matters most to me","people.whoMatters")}
+   ${A("How I like visits to go","people.visiting","How long, what time of day, whether I like a fuss, what I would like offered to my visitors.")}
+  `},
+
+ {id:"mind",t:"How my mind works",
+  why:"Everybody's brain works differently. Saying how mine works now saves everyone guessing later.",
+  r:()=>`
+   ${C("This is me","mind.nd",["I have ADHD","I think I may have ADHD","I am autistic","I think I may be autistic","I am dyslexic","I have another diagnosis","None of these","I would rather not say"])}
+   ${A("What that means day to day","mind.ndNotes","How it shows up, what helps, what makes it worse.")}
+   ${A("How I think and get things done","mind.howIThink","Do you need everything in sight? Do you work best under pressure? Do you need to know why before you will do something? Are you a list person?")}
+   ${A("What overwhelms me","mind.overwhelm","Too much noise, too many people, too many choices, being rushed, being watched.")}
+   <p style="font-size:.88rem;color:var(--ink-soft);margin-top:10px;">If you are unsure about ADHD, our <a href="screening-tool.html" target="_blank" rel="noopener">free screening tool</a> may help you put words to it. It is not a diagnosis, but it can be a useful thing to take to a GP.</p>
+  `},
+
+ {id:"senses",t:"My senses",
+  why:"The small physical things decide whether a day is bearable. They are almost never written down, and almost never guessed correctly.",
+  r:()=>`
+   ${C("These comfort me","senses.likes",["Warmth","Being wrapped up","Quiet","Background chatter","Music","Familiar smells","Soft fabrics","Fresh air","Movement","Something to hold","Firm pressure","Daylight"])}
+   ${C("These distress me","senses.dislikes",["Noise","Several conversations at once","Television","Bright light","Being touched without warning","Being cold","Being too hot","Strong smells","Crowds","Labels and seams","Tight waistbands","Sudden movement"])}
+   ${two(A("Clothes","senses.clothes","Fabrics I cannot bear, what I always wear, labels, waistbands, shoes."),A("Food and drink","senses.food","Textures I hate, what I will always eat, how I take my tea, what I have never eaten."))}
+   ${two(A("Sound","senses.sound","How loud, what kind, whether the television helps or hurts."),A("Touch and personal care","senses.touch","Water temperature, hair washing, being approached, what to say before touching me."))}
+   ${A("Smell","senses.smell","My soap, my perfume or aftershave, anything that makes me feel sick.")}
+  `},
+
+ {id:"day",t:"My days",
+  why:"Care homes run to one clock. I have my own, and it took me a lifetime to build.",
+  r:()=>`
+   ${Sel("My natural body clock","day.clock",["","Very early riser","Early riser","Ordinary hours","Night owl","Shifts, so it varies"])}
+   ${two(T("When I am at my best","day.best"),T("When I am at my worst","day.worst"))}
+   ${A("How my morning goes","day.morning","The order I do things. What I cannot start the day without.")}
+   ${A("How my evening goes","day.evening","When I go to bed, what I do first, radio, reading, a drink.")}
+   ${A("Things I would hate to lose","day.musts","The daily things that make me feel like myself. A proper cup of tea, the crossword, the news at six, a walk, a bath not a shower.")}
+  `},
+
+ {id:"music",t:"My music",
+  why:"Music reaches people when words stop working. Choose the songs you would want played to you, and say why.",
+  r:()=>`
+   ${rep("music.items","Add a song or programme",[
+     {k:"title",l:"Title",p:"e.g. Moon River"},
+     {k:"artist",l:"Artist",p:"e.g. Andy Williams"},
+     {k:"url",l:"Link",p:"Paste a YouTube or Spotify link so anyone can find it",url:true},
+     {k:"when",l:"When to play it",p:"",select:["","When I wake up","During personal care","At mealtimes","In the afternoon","In the evening","If I am upset","If I am looking for someone","Just because I love it"]},
+     {k:"why",l:"Why this one",p:"Whose song was it? What does it bring back? Say here if it might make me cry as well as smile.",area:true}])}
+   <div class="mp-why" style="margin-top:18px;">Say honestly if a song carries grief as well as comfort. Later on you may not be able to explain which one is happening.</div>
+  `},
+
+ {id:"dates",t:"Dates that matter to me",
+  why:"Everyone remembers a birthday. Almost nobody remembers the anniversary of a death, or the birthday of a child who is now sixty. Those are the days that make a morning hard.",
+  r:()=>`
+   ${rep("dates.items","Add a date",[
+     {k:"date",l:"Date",p:"",date:true},
+     {k:"what",l:"What it is",p:"e.g. Our wedding anniversary"},
+     {k:"who",l:"Who it is about",p:"e.g. Margaret"},
+     {k:"kind",l:"Type",p:"",select:["","My birthday","Someone else's birthday","Wedding anniversary","The day someone died","Religious or cultural","Remembrance","Another day that matters"]},
+     {k:"want",l:"What I would like to happen",p:"e.g. Play our first dance. Let me be quiet. Ring my daughter. Take me to the grave if you can.",area:true}])}
+  `},
+
+ {id:"talk",t:"How to talk to me",
+  why:"The same sentence works from one person and fails from another. Write down what works, so nobody has to learn it the hard way.",
+  r:()=>`
+   ${A("How to approach me","talk.approach","From the front? Say your name? Sit down first? Touch my hand, or not?")}
+   ${C("This helps","talk.works",["Tell me why","One thing at a time","Write it down for me","Humour","Go slowly","Sit at my level","Give me two choices","Give me time in silence","Ask my opinion","Use my own words back"])}
+   ${C("This does not","talk.avoid",["Rushing me","Correcting me","Several people talking","Being told what to do","Baby talk","Touching me first","Shouting","Open questions","Being watched","Reasoning with me when I am upset"])}
+   ${two(T("My first language","talk.language","And any language I may go back to"),T("My sense of humour","talk.humour","Dry, filthy, gentle, none of the above"))}
+  `},
+
+ {id:"hard",t:"When I am struggling",
+  why:"If I cannot tell you what is wrong, this page is how I tell you in advance.",
+  r:()=>`
+   ${A("How you will know something is wrong","hard.signs","What do you do ten minutes before anyone would notice? Go quiet? Pace? Fold things? Ask the same question?")}
+   ${C("This will make it worse","hard.worse",["Being told I am wrong","Being hurried","Crowds","Noise","Being left alone","Being followed","Being taken by the arm","Too many questions","Strangers","Being stopped from leaving"])}
+   ${C("This will help","hard.better",["My music","Going outside","A hot drink","One particular person","Being left alone for a bit","Something to do","A blanket","Something familiar to hold","Walking","Quiet company"])}
+   ${A("How I come back from it","hard.recover","How long it takes. Whether I will remember. Whether I want it mentioned afterwards or never spoken of again.")}
+   ${A("Whatever happens, please never","hard.never","The one or two things you must not do to me, and why.")}
+  `},
+
+ {id:"values",t:"What matters to me",
+  why:"Kind care that offends what you believe is not kind care.",
+  r:()=>`
+   ${A("Faith and belief","values.faith","Practising or not. What I would want. What I would find intrusive.")}
+   ${A("Modesty and personal care","values.modesty","Who I will accept help from, what must stay covered, what would humiliate me.")}
+   ${two(A("Strong views","values.politics","Worth knowing before the news goes on."),A("Animals","values.animals","Love them, fear them, allergic."))}
+   ${A("What dignity means to me","values.dignity","In my own words.")}
+  `},
+
+ {id:"wishes",t:"What I want, if I ever need care",
+  why:"This is the part to write while you can still choose. It is the part a care home most needs, and most rarely gets.",
+  r:()=>`
+   ${A("If I need to be cared for, this is what I want","wishes.home","At home for as long as possible? Near particular people? A small home rather than a large one? A garden? A room facing the sun?")}
+   ${A("My room","wishes.room","What I want around me. Photographs, my chair, my own bedding, the radio, things where I can see them.")}
+   ${A("Food and drink","wishes.food","What I want offered, what I never want served, and how I take it.")}
+   ${A("My routine","wishes.routine","What time I want to get up and go to bed. Bath or shower. When I want to be left alone.")}
+   ${A("What would make a day a good day","wishes.matters","Be specific. Small and real is better than grand.")}
+   ${A("What frightens me about needing care","wishes.afraid","Naming it lets people respond to it. Being a burden, being alone, going into hospital, losing my dignity.")}
+   ${A("If I become very unwell","wishes.end","Anything you would want the people caring for you to know. Where you would want to be, who you would want with you, what would comfort you.")}
+   <div class="legal-box" style="margin-top:24px;">
+     <h4>One more time, because it matters</h4>
+     <p>Anything you write here about your wishes must be taken into account if someone ever makes a decision on your behalf. But refusing specific medical treatment in advance requires a separate legal document. If that is what you want, please talk to your GP or a solicitor.</p>
+   </div>
+  `}
+];
+
+/* helpers */
+function get(p){return p.split('.').reduce((o,k)=>(o||{})[k],D);}
+function set(p,v){const k=p.split('.');let o=D;for(let i=0;i<k.length-1;i++)o=o[k[i]];o[k[k.length-1]]=v;save();}
+function esc(s){return String(s==null?"":s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function T(l,p,h){return `<div class="f"><label for="i-${p}">${l}</label>${h?`<div class="hint">${h}</div>`:''}<input type="text" id="i-${p}" value="${esc(get(p))}" oninput="set('${p}',this.value);live()"></div>`;}
+function DT(l,p){return `<div class="f"><label for="i-${p}">${l}</label><input type="date" id="i-${p}" value="${esc(get(p))}" oninput="set('${p}',this.value)"></div>`;}
+function A(l,p,h){return `<div class="f"><label for="i-${p}">${l}</label>${h?`<div class="hint">${h}</div>`:''}<textarea id="i-${p}" oninput="set('${p}',this.value);live()">${esc(get(p))}</textarea></div>`;}
+function Sel(l,p,o){return `<div class="f"><label for="i-${p}">${l}</label><select id="i-${p}" onchange="set('${p}',this.value)">${o.map(x=>`<option value="${esc(x)}" ${get(p)===x?'selected':''}>${x||'Not answered'}</option>`).join('')}</select></div>`;}
+function C(l,p,o){const c=get(p)||[];return `<div class="f"><label>${l}</label><div class="chips">${o.map((x,i)=>{const id=`c-${p.replace(/\./g,'_')}-${i}`;return `<span class="chip-t"><input type="checkbox" id="${id}" ${c.includes(x)?'checked':''} onchange="tog('${p}','${esc(x)}',this.checked)"><label for="${id}">${x}</label></span>`;}).join('')}</div></div>`;}
+function tog(p,v,on){let a=get(p)||[];if(on){if(!a.includes(v))a.push(v);}else{a=a.filter(x=>x!==v);}set(p,a);}
+function two(a,b){return `<div class="f2">${a}${b}</div>`;}
+function rep(p,lab,fs){const it=get(p)||[];let h='<div>';it.forEach((x,i)=>{h+=item(p,lab,fs,x,i);});h+=`</div><button type="button" class="btn-add" onclick="addR('${p}')">+ ${lab}</button>`;return h;}
+function item(p,lab,fs,it,i){
+  let h=`<div class="rep-item"><div class="rep-head"><strong>${i+1}</strong><button type="button" class="btn-mini" onclick="delR('${p}',${i})">Remove</button></div>`;
+  fs.forEach(f=>{const v=esc(it[f.k]||"");const id=`r-${p.replace(/\./g,'_')}-${i}-${f.k}`;
+    if(f.area)h+=`<div class="f"><label for="${id}">${f.l}</label><textarea id="${id}" placeholder="${esc(f.p)}" oninput="setR('${p}',${i},'${f.k}',this.value)">${v}</textarea></div>`;
+    else if(f.select)h+=`<div class="f"><label for="${id}">${f.l}</label><select id="${id}" onchange="setR('${p}',${i},'${f.k}',this.value)">${f.select.map(o=>`<option value="${esc(o)}" ${it[f.k]===o?'selected':''}>${o||'Not set'}</option>`).join('')}</select></div>`;
+    else if(f.date)h+=`<div class="f"><label for="${id}">${f.l}</label><input type="date" id="${id}" value="${v}" onchange="setR('${p}',${i},'${f.k}',this.value)"></div>`;
+    else if(f.url)h+=`<div class="f"><label for="${id}">${f.l}</label><input type="url" id="${id}" value="${v}" placeholder="${esc(f.p)}" oninput="setR('${p}',${i},'${f.k}',this.value)">${v?`<a style="font-size:.85rem;font-weight:600;color:var(--teal);display:inline-block;margin-top:6px;" href="${v}" target="_blank" rel="noopener">Test this link</a>`:''}</div>`;
+    else h+=`<div class="f"><label for="${id}">${f.l}</label><input type="text" id="${id}" value="${v}" placeholder="${esc(f.p)}" oninput="setR('${p}',${i},'${f.k}',this.value)"></div>`;});
+  return h+`</div>`;
+}
+function addR(p){const a=get(p)||[];a.push({});set(p,a);render();}
+function delR(p,i){const a=get(p)||[];a.splice(i,1);set(p,a);render();}
+function setR(p,i,k,v){const a=get(p)||[];a[i]=a[i]||{};a[i][k]=v;set(p,a);}
+
+/* nav */
+let cur=0;
+function filled(s){const b=D[s.id];return b&&Object.values(b).some(v=>Array.isArray(v)?v.length>0:(typeof v==='string'&&v.trim()!==''));}
+function mark(){document.querySelectorAll('#sec-nav button').forEach((b,i)=>{b.classList.toggle('on',i===cur);b.classList.toggle('done',filled(S[i]));});}
+function nav(){document.getElementById('sec-nav').innerHTML=S.map((s,i)=>`<li><button type="button" onclick="go(${i})">${s.t}</button></li>`).join('');mark();}
+function render(){const s=S[cur];document.getElementById('sec-host').innerHTML=`<p class="kicker on-light">Part ${cur+1} of ${S.length}</p><h2>${s.t}</h2><div class="mp-why">${s.why}</div>${s.r()}`;mark();live();}
+function go(i){cur=i;render();showBuilder();window.scrollTo({top:0,behavior:'instant'});}
+function nextSec(){if(cur<S.length-1)go(cur+1);else buildDoc();}
+function prevSec(){if(cur>0)go(cur-1);}
+function live(){document.getElementById('bar-name').textContent=D.me.callMe||D.me.name||'not started';mark();}
+function showBuilder(){document.getElementById('builder').style.display='';document.querySelectorAll('.out').forEach(o=>o.classList.remove('on'));}
+
+/* storage */
+function save(){try{localStorage.setItem(STORE,JSON.stringify(D));const n=document.getElementById('save-note');if(n){n.textContent='Saved just now';clearTimeout(window._t);window._t=setTimeout(()=>n.textContent='Saved automatically on this device',2000);}}catch(e){}}
+function load(){try{const r=localStorage.getItem(STORE);D=r?Object.assign(blank(),JSON.parse(r)):blank();}catch(e){D=blank();}}
+function saveFile(){const n=(D.me.name||'my-personhood-profile').replace(/[^a-z0-9]/gi,'-').toLowerCase();
+  const b=new Blob([JSON.stringify(D,null,2)],{type:'application/json'});const a=document.createElement('a');
+  a.href=URL.createObjectURL(b);a.download=n+'-profile.json';a.click();URL.revokeObjectURL(a.href);}
+function loadFile(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{D=Object.assign(blank(),JSON.parse(r.result));save();render();showBuilder();}catch(x){alert('That file could not be read.');}};
+  r.readAsText(f);e.target.value='';}
+
+/* document */
+function has(v){return Array.isArray(v)?v.length>0:(typeof v==='string'&&v.trim()!=='');}
+function P(l,v){return has(v)?`<h3>${l}</h3><p>${esc(v).replace(/\n/g,'<br>')}</p>`:'';}
+function L(l,a){return (a&&a.length)?`<h3>${l}</h3><ul>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'';}
+
+function buildDoc(){
+  const nm=D.me.name||'Not recorded';
+  let h=`<div class="doc-head"><div class="doc-brand">ADHD<span>ementia</span> &middot; My Personhood Profile</div>
+    <h1>${esc(D.me.title?D.me.title+' ':'')}${esc(nm)}</h1>
+    <div class="sub">This is written in my own words, about me, by me. Please read it before you care for me.</div></div>`;
+
+  h+=`<div class="block"><h2>My name</h2>`;
+  if(has(D.me.callMe)) h+=`<div class="voice"><strong>Please call me ${esc(D.me.callMe)}.</strong>${(D.me.never&&D.me.never.length)?' Please never call me: '+D.me.never.map(esc).join(', ')+'.':''}</div>`;
+  h+=P('The story of my name',D.me.nameStory);
+  h+=`<dl class="kv">${D.me.pronouns?`<dt>My pronouns</dt><dd>${esc(D.me.pronouns)}</dd>`:''}${D.me.born?`<dt>Born</dt><dd>${esc(D.me.born)}</dd>`:''}</dl></div>`;
+
+  h+=`<div class="block"><h2>My life so far</h2>`;
+  (D.story.chapters||[]).forEach(c=>{if(!has(c.title)&&!has(c.detail))return;
+    h+=`<h3>${esc(c.title||'A chapter')}${c.when?' <span class="muted">('+esc(c.when)+')</span>':''}</h3>`;
+    if(has(c.detail))h+=`<p>${esc(c.detail).replace(/\n/g,'<br>')}</p>`;});
+  h+=P('The work I did',D.story.work)+P('What my work meant to me',D.story.workMeant)+P('What I am proudest of',D.story.proud)+P('The hardest thing I have lived through',D.story.hard)+`</div>`;
+
+  h+=`<div class="block"><h2>My people</h2>`;
+  (D.people.list||[]).forEach(p=>{if(!has(p.name))return;
+    h+=`<h3>${esc(p.name)}${p.who?' <span class="muted">'+esc(p.who)+'</span>':''}${p.status?' &middot; '+esc(p.status):''}</h3>`;
+    if(has(p.say))h+=`<div class="voice"><strong>If I ask for them:</strong> ${esc(p.say).replace(/\n/g,'<br>')}</div>`;});
+  h+=P('Who matters most to me',D.people.whoMatters)+P('How I like visits to go',D.people.visiting)+`</div>`;
+
+  if(has(D.mind.nd)||has(D.mind.ndNotes)||has(D.mind.howIThink)||has(D.mind.overwhelm)){
+    h+=`<div class="block"><h2>How my mind works</h2>`+L('This is me',D.mind.nd)+P('What that means day to day',D.mind.ndNotes)+P('How I think and get things done',D.mind.howIThink)+P('What overwhelms me',D.mind.overwhelm)+`</div>`;}
+
+  h+=`<div class="block"><h2>My senses</h2>`+L('These comfort me',D.senses.likes)+L('These distress me',D.senses.dislikes)
+    +P('Clothes',D.senses.clothes)+P('Food and drink',D.senses.food)+P('Sound',D.senses.sound)+P('Touch and personal care',D.senses.touch)+P('Smell',D.senses.smell)+`</div>`;
+
+  h+=`<div class="block"><h2>My days</h2><dl class="kv">${D.day.clock?`<dt>My body clock</dt><dd>${esc(D.day.clock)}</dd>`:''}${D.day.best?`<dt>At my best</dt><dd>${esc(D.day.best)}</dd>`:''}${D.day.worst?`<dt>At my worst</dt><dd>${esc(D.day.worst)}</dd>`:''}</dl>`
+    +P('My morning',D.day.morning)+P('My evening',D.day.evening)+P('Things I would hate to lose',D.day.musts)+`</div>`;
+
+  const mu=(D.music.items||[]).filter(m=>has(m.title));
+  if(mu.length){h+=`<div class="block"><h2>My music</h2>`;
+    mu.forEach(m=>{h+=`<h3>${esc(m.title)}${m.artist?' <span class="muted">'+esc(m.artist)+'</span>':''}</h3>`;
+      if(has(m.when))h+=`<p><strong>Play this:</strong> ${esc(m.when)}</p>`;
+      if(has(m.why))h+=`<p>${esc(m.why).replace(/\n/g,'<br>')}</p>`;
+      if(has(m.url))h+=`<p><a href="${esc(m.url)}" target="_blank" rel="noopener">${esc(m.url)}</a></p>`;});
+    h+=`</div>`;}
+
+  const dt=(D.dates.items||[]).filter(x=>has(x.what)||has(x.date));
+  if(dt.length){h+=`<div class="block"><h2>Dates that matter to me</h2>`;
+    dt.forEach(x=>{const d=x.date?new Date(x.date+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long'}):'Date not given';
+      h+=`<h3>${d} &middot; ${esc(x.what||'')}${x.who?' <span class="muted">'+esc(x.who)+'</span>':''}</h3>`;
+      if(has(x.want))h+=`<p>${esc(x.want).replace(/\n/g,'<br>')}</p>`;});
+    h+=`</div>`;}
+
+  h+=`<div class="block"><h2>How to talk to me</h2>`+P('How to approach me',D.talk.approach)+L('This helps',D.talk.works)+L('This does not',D.talk.avoid)
+    +`<dl class="kv">${D.talk.language?`<dt>My first language</dt><dd>${esc(D.talk.language)}</dd>`:''}${D.talk.humour?`<dt>My humour</dt><dd>${esc(D.talk.humour)}</dd>`:''}</dl></div>`;
+
+  h+=`<div class="block"><h2>When I am struggling</h2>`+P('How you will know',D.hard.signs)+L('This will make it worse',D.hard.worse)+L('This will help',D.hard.better)+P('How I come back from it',D.hard.recover);
+  if(has(D.hard.never))h+=`<div class="voice"><strong>Whatever happens, please never:</strong> ${esc(D.hard.never).replace(/\n/g,'<br>')}</div>`;
+  h+=`</div>`;
+
+  h+=`<div class="block"><h2>What matters to me</h2>`+P('Faith and belief',D.values.faith)+P('Modesty and personal care',D.values.modesty)+P('Strong views',D.values.politics)+P('Animals',D.values.animals);
+  if(has(D.values.dignity))h+=`<div class="voice"><strong>What dignity means to me:</strong> ${esc(D.values.dignity).replace(/\n/g,'<br>')}</div>`;
+  h+=`</div>`;
+
+  h+=`<div class="block"><h2>What I want, if I ever need care</h2>`+P('Where and how I want to be cared for',D.wishes.home)+P('My room',D.wishes.room)
+    +P('Food and drink',D.wishes.food)+P('My routine',D.wishes.routine)+P('What makes a day a good day',D.wishes.matters)+P('What frightens me',D.wishes.afraid)+P('If I become very unwell',D.wishes.end)+`</div>`;
+
+  h+=`<div class="block"><h2>Formal documents</h2><dl class="kv">
+    ${D.legal.gp?`<dt>My GP</dt><dd>${esc(D.legal.gp)}</dd>`:''}
+    ${D.legal.lpaHealth?`<dt>Health and welfare LPA</dt><dd>${esc(D.legal.lpaHealth)}${D.legal.lpaName?' &middot; '+esc(D.legal.lpaName):''}</dd>`:''}
+    ${D.legal.adrt?`<dt>Advance decision</dt><dd>${esc(D.legal.adrt)}${D.legal.adrtWhere?' &middot; kept at '+esc(D.legal.adrtWhere):''}</dd>`:''}
+  </dl></div>`;
+
+  h+=`<div class="sign"><h2 style="border:none;margin-top:0;">Signed</h2>
+    <p>I wrote this while I was able to say what I wanted, and I would like it read and followed by anyone caring for me.</p>
+    <div class="sig-row">
+      <div><div class="sig-line"></div><div class="sig-lab">Signed${D.legal.writtenBy?': '+esc(D.legal.writtenBy):''}</div></div>
+      <div><div class="sig-line"></div><div class="sig-lab">Date${D.legal.date?': '+new Date(D.legal.date+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):''}</div></div>
+    </div>
+    ${has(D.legal.helpedBy)?`<div class="sig-row"><div><div class="sig-line"></div><div class="sig-lab">Helped me to write this: ${esc(D.legal.helpedBy)}</div></div><div></div></div>`:''}
+  </div>`;
+
+  h+=`<div class="doc-legal"><p><strong>To whoever is reading this.</strong> This is an advance statement of my wishes, feelings, beliefs and values. Under the Mental Capacity Act 2005, if a decision is ever made on my behalf, the person making it must take what I have written here into account when deciding what is in my best interests.</p>
+    <p>This is not an Advance Decision to Refuse Treatment and does not refuse any medical treatment. It does not appoint anyone to make decisions for me. Where those documents exist they are listed above.</p>
+    <p>Please keep this with my care records, review it with me while I am able to take part, and record the date of any review. &copy; ADHDementia &middot; adhdementia.com</p></div>`;
+
+  document.getElementById('the-doc').innerHTML=h;
+  document.getElementById('builder').style.display='none';
+  document.querySelectorAll('.out').forEach(o=>o.classList.remove('on'));
+  document.getElementById('out-doc').classList.add('on');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+load();nav();render();
+</script>
+</body>
+</html>
