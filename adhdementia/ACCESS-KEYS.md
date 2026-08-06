@@ -92,14 +92,45 @@ to make the conversation happen, which is the actual point of a trial.
 
 ## Taking the money
 
-Stripe is the simplest route and does not need any of this to change:
+The Stripe Payment Links are live and wired into the site.
 
-1. Create a Stripe subscription product, "The Personhood Profile", £49 a month.
-2. Create a Payment Link for it.
-3. Put the Payment Link on the "Start the free trial" buttons, or keep those going
-   to the contact form and send the link by email after the trial call. The second
-   option converts better at this stage because it puts you in the conversation.
-4. When the first payment lands, issue the key.
+| Link | Price | Where it appears |
+| --- | --- | --- |
+| Care Home Membership | £84/month | Membership card on `training.html`, and the price note on `personhood-profile.html` |
+| The Personhood Profile | £49/month | Pricing card and two-versions card on `personhood-profile.html`, and inside the access gate on `care-home-profile.html` |
+| Open Webinar | £65 one-off | Webinar card on `training.html` |
 
-Do the same for Care Home Membership at £84, which includes the profile builder.
-Anyone on membership gets a key too, at no extra charge.
+The exact URLs live in the HTML. If you ever regenerate a link in Stripe, search
+the folder for `buy.stripe.com` and replace all occurrences of the old one.
+
+### Fulfilment is manual, and that is deliberate
+
+Stripe takes the money. It does not issue the access key. When a payment lands you
+will get a Stripe email, and you then:
+
+1. Issue a key from the spare list, or generate a new one.
+2. Put the home's name in the comment beside it in `care-home-profile.html`.
+3. Commit and push if it was a new key.
+4. Email the key with the link to `https://adhdementia.com/care-home-profile.html`.
+
+Aim to do this within a few hours. Nobody minds a short wait if the welcome email
+is warm and personal, and at this stage a human email from you is worth more than
+instant automated delivery. Automate it when the volume makes it a chore, not
+before.
+
+The same applies to **membership**: it includes the profile builder, so a
+membership payment means issuing a key too.
+
+The **webinar** needs no key. When a booking lands, reply with the date options and
+the joining link, and add them to the list for that session.
+
+### Two things that are not yet automated, so watch for them
+
+- **Cancellations.** Stripe will email you, but nothing removes the key. Delete the
+  line from `ACCESS` and push, or the home keeps access indefinitely.
+- **Failed payments.** Stripe retries a card automatically and emails you if it
+  gives up. Treat a final failure the same as a cancellation.
+
+Put a recurring monthly reminder in your calendar to reconcile the `ACCESS` list
+against the active subscriptions in Stripe. Ten minutes a month, and it stops the
+list quietly drifting out of step with who is actually paying.
