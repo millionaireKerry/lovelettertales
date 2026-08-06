@@ -140,10 +140,34 @@
   .cert .sig-label{font-size:.78rem;color:var(--ink-soft);}
   .cert .cert-id{font-size:.72rem;color:var(--ink-soft);margin-top:30px;letter-spacing:.06em;}
 
+  .gate-card{max-width:760px;margin:0 auto;background:var(--white);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);padding:40px;}
+  @media(max-width:640px){.gate-card{padding:26px 22px;}}
+  .gate-card p{color:var(--ink-soft);}
+  .gate-form{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-top:26px;}
+  .gate-form>div{flex:0 1 320px;}
+  .gate-form label{display:block;font-size:.85rem;font-weight:600;color:var(--black);margin-bottom:6px;}
+  .gate-form input{width:100%;font:inherit;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:12px 14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);}
+  .gate-form input:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+  .gate-msg{margin-top:14px;font-size:.92rem;font-weight:600;min-height:1.2em;}
+  .gate-msg.bad{color:#a3302a;}
+  .gate-msg.good{color:var(--teal);}
+  .cert-home{font-family:var(--font-body);font-size:.95rem;color:var(--ink-soft);margin-top:2px;}
+  .handover{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);
+    border-radius:var(--radius);padding:26px 30px;margin-top:30px;}
+  .handover h3{font-size:1.15rem;margin-bottom:10px;}
+  .handover p{color:var(--ink-soft);font-size:.94rem;}
+  .course-feedback{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 30px;margin-top:26px;}
+  .course-feedback h3{font-size:1.15rem;margin-bottom:10px;}
+  .course-feedback p{color:var(--ink-soft);font-size:.94rem;}
+  @media(max-width:640px){.handover,.course-feedback{padding:22px 20px;}}
+
   @media print{
     @page{size:A4 landscape;margin:12mm;}
     html,body{background:#fff;margin:0;padding:0;height:auto;}
-    .nav,.footer,.no-print,.course-progress,.hero{display:none !important;}
+    .nav,.footer,.no-print,.course-progress,.hero,#gate{display:none !important;}
     .course-wrap{max-width:none;margin:0;padding:0;}
     .course-card{border:none;box-shadow:none;padding:0;margin:0;background:none;}
     .screen{display:none !important;}
@@ -152,7 +176,7 @@
       display:flex !important;flex-direction:column;justify-content:center;
       min-height:165mm;
     }
-    #screen-cert .course-btn-row,#screen-cert .hintline{display:none !important;}
+    #screen-cert .course-btn-row,#screen-cert .hintline,.handover,.course-feedback{display:none !important;}
     .cert{
       margin:0;border-width:3px;
       page-break-inside:avoid;break-inside:avoid;
@@ -197,7 +221,91 @@
   </div>
 </header>
 
-<div class="course-wrap">
+<!-- ================= ACCESS GATE ================= -->
+<section class="section paper" id="gate" style="padding:70px 0;">
+  <div class="container">
+    <div class="gate-card">
+      <p class="kicker on-light">Care home membership</p>
+      <h2 style="font-size:1.9rem;">Enter your home's access key</h2>
+      <hr class="gold-rule">
+      <p>Ask your manager for the key. It is the same one your home uses for the training matrix and the Personhood Profile, it is entered once on this device and then remembered, and there is no account to create.</p>
+      <div class="gate-form">
+        <div>
+          <label for="gate-key">Access key</label>
+          <input type="text" id="gate-key" placeholder="PP-XXXX-XXXX" autocomplete="off" spellcheck="false"
+                 onkeydown="if(event.key==='Enter'){event.preventDefault();tryKey();}">
+        </div>
+        <button type="button" class="btn btn-dark" onclick="tryKey()">Unlock</button>
+      </div>
+      <p class="gate-msg" id="gate-msg" role="status"></p>
+      <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--line);">
+        <h3 style="font-size:1.05rem;margin-bottom:8px;">Manager, and your home is not a member?</h3>
+        <p>Care Home Membership is &pound;84 a month and covers unlimited completions for your whole team, the training matrix, and the Personhood Profile builder. New starters cost nothing extra.</p>
+        <div class="btn-row" style="margin-top:16px;">
+          <a class="btn btn-gold" href="training.html">See what is included</a>
+          <a class="btn btn-outline-dark" href="contact.html">Ask for a preview</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* =========================================================================
+   ACCESS KEYS
+   Keep this list identical to the one in care-home-profile.html and
+   training-matrix.html. When you issue or cancel a key, change all three.
+   See ACCESS-KEYS.md.
+   ========================================================================= */
+const ACCESS = [
+  'f0db80d4',   // PP-DEMO-2026   Kerry: demos, screenshots and sales calls
+  'f9cd3601',   // PP-XMMP-JYTM   unassigned
+  '5c74f153',   // PP-FNTA-QCCJ   unassigned
+  'c0b8d474',   // PP-WEXA-4RC9   unassigned
+  'c8641a5c',   // PP-CNT4-YRAN   unassigned
+  '5fea2b90',   // PP-7JFY-NPTU   unassigned
+  '6c63e5dd'    // PP-UMXY-9HY3   unassigned
+];
+
+function keyHash(s){
+  let x = 0x811c9dc5;
+  s = (s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  for (let i = 0; i < s.length; i++){ x ^= s.charCodeAt(i); x = Math.imul(x, 0x01000193) >>> 0; }
+  return x.toString(16).padStart(8, '0');
+}
+
+function unlock(){
+  const gate = document.getElementById('gate');
+  const app = document.getElementById('course-app');
+  if (!app){ document.addEventListener('DOMContentLoaded', unlock, { once:true }); return; }
+  if (gate) gate.hidden = true;
+  app.hidden = false;
+}
+
+function tryKey(){
+  const input = document.getElementById('gate-key');
+  const msg = document.getElementById('gate-msg');
+  const raw = input.value.trim();
+  if (!raw){ msg.className = 'gate-msg bad'; msg.textContent = 'Please enter the key your manager gave you.'; return; }
+  if (ACCESS.indexOf(keyHash(raw)) === -1){
+    msg.className = 'gate-msg bad';
+    msg.textContent = 'That key was not recognised. Check it with your manager, letter by letter.';
+    return;
+  }
+  try { localStorage.setItem('pp-access', raw.toUpperCase()); } catch(e){}
+  msg.className = 'gate-msg good';
+  msg.textContent = 'Unlocked. This device will remember the key.';
+  unlock();
+}
+
+(function(){
+  let saved = '';
+  try { saved = localStorage.getItem('pp-access') || ''; } catch(e){}
+  if (saved && ACCESS.indexOf(keyHash(saved)) !== -1) unlock();
+})();
+</script>
+
+<div class="course-wrap" id="course-app" hidden>
 
   <!-- ============ SCREEN: START ============ -->
   <section class="screen active" id="screen-start">
@@ -214,10 +322,17 @@
           <li>Understand how screening supports person-centred care planning</li>
         </ul>
       </div>
-      <div class="field" style="margin-top:26px;max-width:420px;">
-        <label for="learner-name">Your full name (as it should appear on your certificate)</label>
-        <input type="text" id="learner-name" autocomplete="name" placeholder="e.g. Jane Smith">
+      <div class="form-grid" style="margin-top:26px;max-width:640px;">
+        <div class="field">
+          <label for="learner-name">Your full name (as it should appear on your certificate)</label>
+          <input type="text" id="learner-name" autocomplete="name" placeholder="e.g. Jane Smith">
+        </div>
+        <div class="field">
+          <label for="learner-home">Your care home</label>
+          <input type="text" id="learner-home" autocomplete="organization" placeholder="e.g. Oakfield Care Home">
+        </div>
       </div>
+      <p style="font-size:.85rem;color:var(--ink-soft);margin-top:10px;max-width:640px;">Your name and your home go on your certificate and into the record your manager keeps. They stay on this device and are never sent to ADHDementia. There is no account to create and no email address to give.</p>
       <div class="course-btn-row" style="justify-content:flex-start;">
         <button type="button" class="btn btn-gold" onclick="startCourse()">Start the course</button>
         <button type="button" class="btn btn-outline-dark" id="btn-resume" style="display:none;" onclick="resumeCourse()">Resume where I left off</button>
@@ -292,6 +407,7 @@
           <div class="cert-brand">ADHD<span>ementia</span></div>
           <div class="cert-line">Certificate of Completion</div>
           <div class="cert-name" id="cert-name">Name</div>
+          <div class="cert-home" id="cert-home"></div>
           <div class="cert-course">has successfully completed the course<br>"ADHD Awareness in Dementia Care"</div>
           <div class="cert-detail">An interactive online course on recognising and supporting ADHD traits<br>in older adults living with dementia &middot; One hour of learning</div>
           <div class="cert-detail" id="cert-date"></div>
@@ -304,10 +420,55 @@
           <div class="cert-id" id="cert-id"></div>
         </div>
       </div>
-      <p class="hintline" style="font-size:.85rem;color:var(--ink-soft);margin-top:16px;">Tip: choose "Save as PDF" in the print window to keep a digital copy.</p>
-      <div class="course-btn-row no-print">
+      <p class="hintline no-print" style="font-size:.85rem;color:var(--ink-soft);margin-top:16px;">Tip: choose "Save as PDF" in the print window to keep a digital copy.</p>
+
+      <div class="handover no-print">
+        <h3>Give your manager the record</h3>
+        <p>Your home has to be able to show that you did this training. Press the button below and a small record file downloads. Email it to your manager, or drop it on the office computer, and they add it to the home's training matrix in one click. It contains your name, your home, the date and your score, and nothing else.</p>
+        <div class="course-btn-row" style="justify-content:flex-start;margin-top:18px;">
+          <button type="button" class="btn btn-gold" onclick="saveResult()">Save my record for my manager</button>
+          <button type="button" class="btn btn-dark" onclick="window.print()">Print / save certificate</button>
+        </div>
+        <p style="font-size:.85rem;color:var(--ink-soft);margin-top:16px;">No email address, no account, no copy held by us. If you would rather not send a file, your printed certificate carries the same Certificate ID and your manager can type it in by hand.</p>
+      </div>
+
+      <form class="course-feedback no-print" name="course-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="course-feedback">
+        <p style="display:none;"><label>Leave this empty: <input name="bot-field"></label></p>
+        <h3>Before you go, how was it?</h3>
+        <p>This is the only thing on this page that reaches ADHDementia, it is completely optional, and you do not have to give your name. It shapes how the course is improved and it is part of what an accrediting body looks at.</p>
+        <div class="form-grid" style="margin-top:20px;">
+          <div class="field">
+            <label for="fb-rating">Overall, how useful was this course?</label>
+            <select id="fb-rating" name="rating">
+              <option value="">Choose one</option>
+              <option>Extremely useful, it will change what I do</option>
+              <option>Very useful</option>
+              <option>Quite useful</option>
+              <option>Not very useful</option>
+              <option>Not useful at all</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fb-role">Your role (optional)</label>
+            <input type="text" id="fb-role" name="role" placeholder="e.g. Senior carer, activities, housekeeping">
+          </div>
+          <div class="field full">
+            <label for="fb-change">What is one thing you will do differently on your next shift?</label>
+            <textarea id="fb-change" name="change" style="min-height:90px;"></textarea>
+          </div>
+          <div class="field full">
+            <label for="fb-improve">What would have made this course better?</label>
+            <textarea id="fb-improve" name="improve" style="min-height:90px;"></textarea>
+          </div>
+        </div>
+        <div class="course-btn-row" style="justify-content:flex-start;margin-top:20px;">
+          <button type="submit" class="btn btn-teal">Send feedback</button>
+        </div>
+      </form>
+
+      <div class="course-btn-row no-print" style="margin-top:30px;">
         <button type="button" class="btn btn-outline-dark" onclick="resetCourse()">Restart course</button>
-        <button type="button" class="btn btn-dark" onclick="window.print()">Print / save certificate</button>
       </div>
     </div>
   </section>
@@ -537,7 +698,7 @@ const ASSESSMENT = [
 /* ================= state ================= */
 
 const STORE_KEY = "adhdementia-course-v1";
-let state = { name:"", completed:[], passed:false };
+let state = { name:"", home:"", completed:[], passed:false, score:0, date:"" };
 
 function load(){
   try{
@@ -570,6 +731,7 @@ function startCourse(){
     return;
   }
   state.name = name;
+  state.home = document.getElementById('learner-home').value.trim();
   save();
   showMap();
 }
@@ -718,6 +880,8 @@ function submitAssessment(){
   });
   if(score>=8){
     state.passed = true;
+    state.score = score;
+    state.date = new Date().toISOString().slice(0,10);
     save();
     resultEl.innerHTML = `<div class="assess-result pass"><strong>You passed, ${score} out of ${ASSESSMENT.length}.</strong> Well done. Read through the feedback above, then collect your certificate. <div style="margin-top:14px;"><button type="button" class="btn btn-gold" onclick="showCertificate()">View my certificate</button></div></div>`;
     document.getElementById('btn-submit-assess').style.display = 'none';
@@ -729,16 +893,95 @@ function submitAssessment(){
 
 /* ================= certificate ================= */
 
+/* -------------------------------------------------------------------------
+   Certificate identity.
+
+   Nothing about a completion is sent anywhere, so a manager needs some way
+   to tell a genuine record from one somebody typed out themselves. The
+   certificate ID is derived from the completion itself: name, home, date,
+   score and course. Change any of them and the ID no longer matches, which
+   the training matrix checks when the record is added.
+
+   Be honest about the limit of this. It is tamper evident, not tamper
+   proof: the mixing constant below sits in the page, so someone determined
+   and technical could forge an ID. It is exactly as strong as a paper
+   certificate, which anyone could photocopy, and that is what care homes
+   accept today. See TRAINING-RECORDS.md.
+   ------------------------------------------------------------------------- */
+const CERT_SALT = 'ADHDementia-2026-ADHD-Awareness-in-Dementia-Care-v1';
+const CERT_ALPHABET = 'ACDEFHJKLMNPQRTUVWXY3479';
+
+function certCanonical(rec){
+  return [rec.name, rec.home, rec.date, rec.score, rec.course]
+    .map(v => String(v == null ? '' : v).toLowerCase().replace(/\s+/g, ' ').trim())
+    .join('|');
+}
+
+function certSign(rec){
+  const s = CERT_SALT + '|' + certCanonical(rec) + '|' + CERT_SALT;
+  let a = 0x811c9dc5, b = 0x01000193, c = 0x9e3779b9;
+  for (let pass = 0; pass < 3; pass++){
+    for (let i = 0; i < s.length; i++){
+      const ch = s.charCodeAt(i);
+      a = Math.imul(a ^ ch, 0x01000193) >>> 0;
+      b = Math.imul(b + ch + pass, 0x85ebca6b) >>> 0;
+      c = ((c ^ Math.imul(a ^ b, 0xc2b2ae35)) >>> 0) + ch >>> 0;
+      a = ((a << 7) | (a >>> 25)) >>> 0;
+    }
+  }
+  let n = ((a ^ b) >>> 0) * 4294967296 + (c >>> 0);
+  let out = '';
+  for (let i = 0; i < 10; i++){
+    out += CERT_ALPHABET[n % CERT_ALPHABET.length];
+    n = Math.floor(n / CERT_ALPHABET.length);
+    if (n < CERT_ALPHABET.length){ n = (n + a + b + c + i * 2654435761) >>> 0; }
+  }
+  return out;
+}
+
+const COURSE_TITLE = 'ADHD Awareness in Dementia Care';
+
+function currentRecord(){
+  return {
+    name: state.name || '',
+    home: state.home || '',
+    date: state.date || new Date().toISOString().slice(0, 10),
+    score: state.score || 0,
+    total: ASSESSMENT.length,
+    course: COURSE_TITLE
+  };
+}
+
+function certId(rec){
+  return 'ADHD-' + rec.date.slice(0, 4) + '-' + certSign(rec);
+}
+
 function showCertificate(){
-  document.getElementById('cert-name').textContent = state.name || 'Name';
-  const d = new Date();
-  document.getElementById('cert-date').textContent = 'Completed on ' + d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
-  document.getElementById('cert-id').textContent = 'Certificate ID: ADHD-' + d.getFullYear() + '-' + Math.random().toString(36).slice(2,8).toUpperCase() + ' · Verify at adhdementia.com';
+  const rec = currentRecord();
+  const d = new Date(rec.date + 'T12:00:00');
+  document.getElementById('cert-name').textContent = rec.name || 'Name';
+  document.getElementById('cert-home').textContent = rec.home ? rec.home : '';
+  document.getElementById('cert-date').textContent =
+    'Completed on ' + d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) +
+    ' · Assessment score ' + rec.score + ' out of ' + rec.total;
+  document.getElementById('cert-id').textContent = 'Certificate ID: ' + certId(rec);
   showScreen('screen-cert');
 }
 
+function saveResult(){
+  const rec = currentRecord();
+  const payload = { type:'adhdementia-course-result', v:1, record: rec, id: certId(rec) };
+  const safe = (rec.name || 'result').replace(/[^a-z0-9]/gi, '-').toLowerCase();
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type:'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = safe + '-adhdementia-course-result.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
 function resetCourse(){
-  state = { name: state.name, completed:[], passed:false };
+  state = { name: state.name, home: state.home, completed:[], passed:false, score:0, date:"" };
   save();
   showScreen('screen-start');
 }

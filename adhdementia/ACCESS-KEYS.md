@@ -1,7 +1,8 @@
 # Access keys for the care home Personhood Profile
 
-`care-home-profile.html` is behind an access key. `my-profile.html` is not and
-never will be: the version a person writes about themselves is free.
+`care-home-profile.html`, `course.html` and `training-matrix.html` are behind an
+access key. `my-profile.html` and `screening-tool.html` are not and never will
+be: the version a person writes about themselves is free, and so is screening.
 
 ## Be clear-eyed about what this is
 
@@ -41,9 +42,17 @@ The alphabet deliberately leaves out `B`, `G`, `I`, `O`, `S`, `Z`, `0`, `1`, `2`
 `5`, `6` and `8`, so nobody ever rings you about a key that turns out to be an O
 where they typed a zero.
 
-**2. Paste the output** into the `ACCESS` array near the top of the second
-`<script>` block in `care-home-profile.html`, replacing `NAME OF HOME` with the
-home's name. Keep the last entry without a trailing comma.
+**2. Paste the output** into the `ACCESS` array in **all three** of these files,
+replacing `NAME OF HOME` with the home's name. Keep the last entry without a
+trailing comma.
+
+- `care-home-profile.html`
+- `course.html`
+- `training-matrix.html`
+
+The lists must stay identical. Miss one and a cancelled home keeps access to
+whichever file you forgot. One key unlocks all three tools on a device, which is
+deliberate: staff enter it once and everything works.
 
 **3. Deploy.** Commit and push. Netlify rebuilds in under a minute.
 
@@ -54,8 +63,8 @@ needs it typed in on the first day.
 
 ## Cancelling a subscriber
 
-Delete their line from `ACCESS`, commit and push. Their key stops working on the
-next visit, on every device.
+Delete their line from `ACCESS` in all three files, commit and push. Their key
+stops working on the next visit, on every device.
 
 Two things they keep, and you should say so plainly when they sign up, because it
 is a genuine reason to trust you rather than a risk to you:
@@ -110,7 +119,7 @@ will get a Stripe email, and you then:
 
 1. Issue a key from the spare list, or generate a new one.
 2. Put the home's name in the comment beside it in `care-home-profile.html`.
-3. Commit and push if it was a new key.
+3. Add the key to all three gated files, then commit and push.
 4. Email the key with the link to `https://adhdementia.com/care-home-profile.html`.
 
 Aim to do this within a few hours. Nobody minds a short wait if the welcome email
