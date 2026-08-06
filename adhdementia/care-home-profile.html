@@ -343,7 +343,7 @@ function tryKey(){
       <button type="button" onclick="buildProfileDoc()">Full profile</button>
       <button type="button" onclick="buildCareCard()">Care card</button>
       <button type="button" onclick="saveFile()">Save to file</button>
-      <button type="button" onclick="document.getElementById('load-file').click()">Open file</button>
+      <button type="button" onclick="document.getElementById('load-file').click()">Open or import a file</button>
       <input type="file" id="load-file" accept="application/json" style="display:none" onchange="loadFile(event)">
       <button type="button" class="primary" onclick="window.print()">Print</button>
     </div>
@@ -880,12 +880,183 @@ function saveFile(){
   a.href=URL.createObjectURL(blob); a.download=name+'-profile.json'; a.click();
   URL.revokeObjectURL(a.href);
 }
+/* =========================================================
+   IMPORT
+   Two kinds of file can arrive here:
+     1. A profile saved from this builder. Same shape, load it.
+     2. A My Personhood Profile, written by the person themselves
+        and emailed in before admission. Different shape, so it is
+        translated field by field below.
+   Anything else is refused rather than silently loaded, because
+   Object.assign over a mismatched file used to wipe the profile
+   that was already open.
+   ========================================================= */
+
+/* my-profile "when to play" and "type of date" wording differs from ours */
+const WHEN_MAP = {
+  "When I wake up":"Waking and getting up",
+  "During personal care":"Personal care",
+  "At mealtimes":"Mealtimes",
+  "In the afternoon":"Afternoon lull",
+  "In the evening":"Evening and settling",
+  "If I am upset":"When distressed",
+  "If I am looking for someone":"When looking for someone",
+  "Just because I love it":"Just for pleasure"
+};
+const KIND_MAP = {
+  "My birthday":"Birthday, theirs",
+  "Someone else's birthday":"Birthday, someone they love",
+  "Wedding anniversary":"Wedding anniversary",
+  "The day someone died":"Anniversary of a death",
+  "Religious or cultural":"Religious or cultural",
+  "Remembrance":"Remembrance or service",
+  "Another day that matters":"Other date that matters"
+};
+
+function isSelfProfile(o){ return !!(o && o.me && o.wishes && o.talk && !o.id); }
+function isOurProfile(o){ return !!(o && o.id && o.meta && o.distress); }
+
+function str(v){ return (typeof v === 'string') ? v : ''; }
+function arr(v){ return Array.isArray(v) ? v.slice() : []; }
+function joinParts(){
+  return [].slice.call(arguments).filter(x => str(x).trim() !== '').join('\n\n');
+}
+
+function fromSelfProfile(s){
+  const d = blank();
+  const me = s.me || {}, lg = s.legal || {}, st = s.story || {}, pe = s.people || {},
+        mi = s.mind || {}, se = s.senses || {}, dy = s.day || {}, tk = s.talk || {},
+        hd = s.hard || {}, vl = s.values || {}, wi = s.wishes || {};
+
+  d.meta.completedBy = str(lg.writtenBy) || 'The person themselves';
+  d.meta.role = 'Written by the person, imported from their My Personhood Profile';
+  d.meta.date = new Date().toISOString().slice(0, 10);
+  d.meta.sources = ['The person themselves'];
+
+  d.id.legalName = str(me.name);
+  d.id.callName = str(me.callMe);
+  d.id.title = str(me.title);
+  d.id.neverCall = arr(me.never);
+  d.id.nameStory = str(me.nameStory);
+  d.id.pronouns = str(me.pronouns);
+  d.id.addressPref = str(me.callMe) ? `They asked to be called ${me.callMe}.` : '';
+
+  d.life.born = str(me.born);
+  d.life.proudest = str(st.proud);
+  d.life.hardest = str(st.hard);
+  d.life.chapters = arr(st.chapters).map(c => ({
+    period: str(c.when), title: str(c.title), detail: str(c.detail), use: ''
+  }));
+
+  d.work.workStory = joinParts(st.work, st.workMeant);
+  d.work.statusNotes = str(st.workMeant);
+
+  d.roles.relationships = arr(pe.list).map(p => ({
+    name: str(p.name), rel: str(p.who), status: str(p.status),
+    notes: str(p.say) ? `They asked us to say: ${p.say}` : ''
+  }));
+  d.roles.rolePlayed = str(pe.whoMatters);
+  d.roles.whoTheyCareFor = str(pe.visiting);
+
+  d.nd.domains = arr(mi.nd);
+  d.nd.ndNotes = joinParts(mi.ndNotes, mi.howIThink, mi.overwhelm);
+
+  d.sensory.likes = arr(se.likes);
+  d.sensory.dislikes = arr(se.dislikes);
+  d.sensory.clothing = str(se.clothes);
+  d.sensory.food = str(se.food);
+  d.sensory.noise = str(se.sound);
+  d.sensory.touch = str(se.touch);
+  d.sensory.smell = str(se.smell);
+
+  d.rhythm.bodyClock = str(dy.clock);
+  d.rhythm.bestTime = str(dy.best);
+  d.rhythm.worstTime = str(dy.worst);
+  d.rhythm.morningRoutine = joinParts(dy.morning, dy.musts && `Things that must happen: ${dy.musts}`);
+  d.rhythm.eveningRoutine = str(dy.evening);
+
+  d.media.items = arr((s.music || {}).items).map(m => ({
+    title: str(m.title), artist: str(m.artist), url: str(m.url),
+    when: WHEN_MAP[str(m.when)] || '', story: str(m.why)
+  }));
+
+  d.dates.items = arr((s.dates || {}).items).map(x => ({
+    date: str(x.date), what: str(x.what), who: str(x.who),
+    kind: KIND_MAP[str(x.kind)] || '', mark: str(x.want)
+  }));
+
+  d.comms.approach = str(tk.approach);
+  d.comms.works = arr(tk.works);
+  d.comms.avoid = arr(tk.avoid);
+  d.comms.humour = str(tk.humour);
+  d.comms.firstLanguage = str(tk.language);
+
+  d.distress.earlySigns = str(hd.signs);
+  d.distress.escalators = arr(hd.worse);
+  d.distress.soothers = arr(hd.better);
+  d.distress.recovery = str(hd.recover);
+  d.distress.neverDo = str(hd.never);
+
+  d.values.faith = str(vl.faith);
+  d.values.politics = str(vl.politics);
+  d.values.modesty = str(vl.modesty);
+  d.values.animals = str(vl.animals);
+  d.values.valuesNotes = str(vl.dignity);
+
+  d.future.stillWants = joinParts(wi.matters, wi.routine);
+  d.future.goals = joinParts(wi.home, wi.room, wi.food);
+  d.future.worries = joinParts(wi.afraid, wi.end);
+
+  /* The legal position must never be lost in translation. */
+  const legal = joinParts(
+    str(lg.lpaHealth) && `Lasting Power of Attorney for health and welfare: ${lg.lpaHealth}${lg.lpaName ? ' (' + lg.lpaName + ')' : ''}`,
+    str(lg.adrt) && `Advance Decision to Refuse Treatment: ${lg.adrt}${lg.adrtWhere ? ' Kept: ' + lg.adrtWhere : ''}`,
+    str(lg.gp) && `GP: ${lg.gp}`,
+    str(lg.date) && `They wrote this profile on ${lg.date}.`
+  );
+  if (legal) d.future.legacy = legal;
+
+  return d;
+}
+
 function loadFile(ev){
-  const f=ev.target.files[0]; if(!f) return;
-  const r=new FileReader();
-  r.onload=()=>{ try{ D=Object.assign(blank(),JSON.parse(r.result)); save(); renderSec(); showBuilder(); }
-    catch(e){ alert('That file could not be read as a profile.'); } };
-  r.readAsText(f); ev.target.value='';
+  const f = ev.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    let parsed;
+    try { parsed = JSON.parse(r.result); }
+    catch(e){ alert('That file could not be read. It does not look like a saved profile.'); return; }
+
+    if (isSelfProfile(parsed)){
+      const who = str((parsed.me || {}).callMe) || str((parsed.me || {}).name) || 'this person';
+      if (!confirm(
+        'This is a My Personhood Profile, written by ' + who + ' themselves.\n\n' +
+        'It will be brought across into your builder, in their own words. ' +
+        'Anything currently open here will be replaced, so save that first if you need it.\n\n' +
+        'Continue?'
+      )) { ev.target.value = ''; return; }
+      D = fromSelfProfile(parsed);
+      save(); renderSec(); showBuilder();
+      alert(
+        'Imported.\n\n' +
+        'Every word came from ' + who + ', so treat it as their voice rather than a staff assessment. ' +
+        'Work through the sections and add what only the home will know: how they are settling, ' +
+        'what you are seeing on shift, and how each chapter is best used in care.'
+      );
+    } else if (isOurProfile(parsed)){
+      D = Object.assign(blank(), parsed);
+      save(); renderSec(); showBuilder();
+    } else {
+      alert(
+        'That file was not recognised.\n\n' +
+        'This builder opens two kinds of file: a profile saved from here, ' +
+        'and a My Personhood Profile saved by the person themselves. ' +
+        'Nothing has been changed.'
+      );
+    }
+    ev.target.value = '';
+  };
+  r.readAsText(f);
 }
 
 /* =========================================================

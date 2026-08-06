@@ -48,6 +48,16 @@
   .mp-nav button.done::after{content:"\2713";margin-left:auto;color:var(--teal);font-weight:700;}
   .mp-nav button.on.done::after{color:var(--gold-bright);}
 
+  .mp-share{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);
+    border-radius:var(--radius);padding:26px 30px;margin-top:34px;}
+  @media(max-width:640px){.mp-share{padding:22px 20px;}}
+  .mp-share h3{font-size:1.15rem;margin-bottom:10px;}
+  .mp-share p{color:var(--ink-soft);font-size:.94rem;}
+  .mp-share ol{margin:16px 0 16px 20px;font-size:.94rem;color:var(--ink-soft);}
+  .mp-share ol li{margin-bottom:12px;}
+  .mp-share ol li strong{color:var(--black);}
+  .mp-share .mp-share-note{font-size:.88rem;padding-top:14px;border-top:1px solid var(--line);}
+
   .mp-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px;}
   @media(max-width:640px){.mp-card{padding:24px 20px;}}
   .mp-why{background:var(--paper);border-left:3px solid var(--gold);border-radius:var(--radius);padding:14px 18px;margin:14px 0 22px;font-size:.94rem;color:var(--ink-soft);}
@@ -181,6 +191,7 @@
       <button type="button" onclick="showBuilder()">Edit</button>
       <button type="button" onclick="buildDoc()">See my profile</button>
       <button type="button" onclick="saveFile()">Save to file</button>
+      <button type="button" onclick="document.getElementById('share-help').scrollIntoView({behavior:'smooth'})">How do I share this?</button>
       <button type="button" onclick="document.getElementById('load-file').click()">Open file</button>
       <input type="file" id="load-file" accept="application/json" style="display:none" onchange="loadFile(event)">
       <button type="button" class="primary" onclick="window.print()">Print</button>
@@ -192,6 +203,16 @@
       <aside class="mp-nav no-print"><ol id="sec-nav"></ol></aside>
       <div class="mp-card" id="sec-host"></div>
     </div>
+    <div class="mp-share no-print" id="share-help">
+      <h3>Giving this to a care home</h3>
+      <p>Write as much or as little as you like, then get it to the people who will look after you. There are two ways, and doing both is best.</p>
+      <ol>
+        <li><strong>Email the file.</strong> Press <em>Save to file</em> above. A file downloads to your computer. Attach it to an email to the manager. If the home subscribes to the Personhood Profile, they open it in their system and everything you wrote appears in your own words, with nothing retyped and nothing summarised by a stranger.</li>
+        <li><strong>Print a copy.</strong> Press <em>Print</em> and take it to the pre-admission meeting. Ask for it to go in the care file, and ask for the summary page to go somewhere staff will actually see it. This works with any home, whatever system they use.</li>
+      </ol>
+      <p class="mp-share-note">If the home does not subscribe, print it and send them to <a href="personhood-profile.html">adhdementia.com/personhood-profile</a>. They are not charged to receive your profile, and a manager can start a free fortnight the same afternoon. Even if they never engage at all, the printed copy in your care file still carries weight in law as a statement of your wishes.</p>
+    </div>
+
     <div class="mp-actions no-print">
       <span class="save-note" id="save-note">Saved automatically on this device</span>
       <div class="btn-row">
