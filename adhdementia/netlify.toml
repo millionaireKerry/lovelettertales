@@ -1,0 +1,31 @@
+# Netlify configuration for the ADHDementia site.
+#
+# IMPORTANT: this repository also contains the Love Letter Tales site at its
+# root, which has its own netlify.toml and is already deployed. This file is
+# read only when the Netlify site has its Base directory set to "adhdementia".
+# Setting that is what keeps the two sites apart. See DEPLOY.md.
+
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Long cache for the brand assets, which never change under the same filename.
+[[headers]]
+  for = "/brand/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# The tools hold people's work in localStorage, so they must never be served
+# stale after an update.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
