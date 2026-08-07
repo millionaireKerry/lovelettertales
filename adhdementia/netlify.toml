@@ -1,9 +1,7 @@
 # Netlify configuration for the ADHDementia site.
 #
-# IMPORTANT: this repository also contains the Love Letter Tales site at its
-# root, which has its own netlify.toml and is already deployed. This file is
-# read only when the Netlify site has its Base directory set to "adhdementia".
-# Setting that is what keeps the two sites apart. See DEPLOY.md.
+# This lives at the root of the adhdementia repository, so there is no base
+# directory to set and no build step to run. See DEPLOY.md.
 
 [build]
   publish = "."

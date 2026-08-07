@@ -5,31 +5,21 @@ link. Neither needs anyone's password but your own.
 
 ---
 
-## Read this first
-
-**This repository already holds a live site.** The root of `lovelettertales`
-is the Love Letter Tales website, with its own `netlify.toml` publishing from the
-repository root, and it is already deployed on your Netlify account.
-
-ADHDementia lives in the `adhdementia` subfolder. So you are creating a
-**second, separate Netlify site from the same repository**, and the one setting
-that keeps them apart is the **Base directory**. Get that wrong and the new site
-will publish Love Letter Tales instead, or worse, the existing site's build
-settings get changed.
-
-**Do not edit the `netlify.toml` at the repository root.** That belongs to Love
-Letter Tales. The one in `adhdementia/netlify.toml` belongs to this site.
-
-Once this is earning, move ADHDementia into a repository of its own. It removes
-this whole class of mistake. It is not urgent, and it is not a weekend job.
-
----
-
 ## Part one: deploy to Netlify
 
-### The site already exists
+### Its own repository
 
-I created it for you through the Netlify connector:
+ADHDementia now lives in its own GitHub repository rather than inside the Love
+Letter Tales one. That was not a mistake you made: this working session was
+started against `lovelettertales`, so that is simply where the commits landed.
+Splitting it out means no base directory to get wrong, no risk to the Love
+Letter Tales site, and a history that only contains this project.
+
+The full ADHDementia history came across, so nothing is lost.
+
+### The Netlify site already exists
+
+I created it through the connector:
 
 - **Project name:** `adhdementia`
 - **Site ID:** `4311c5ec-d395-42a8-87b3-339410fd6cee`
@@ -37,45 +27,36 @@ I created it for you through the Netlify connector:
 - **Dashboard:** https://app.netlify.com/projects/adhdementia
 - **Forms:** already enabled
 
-It is empty. Nothing has been published to it yet, so that address will show a
-placeholder until you do the next step.
+It is empty until you link the repository. I could not upload the files myself
+because the environment I run in blocks outbound connections to Netlify, but
+linking the repository is the better route anyway: Netlify pulls the code itself
+and redeploys automatically on every push.
 
-**I could not upload the files myself.** The container I run in blocks outbound
-connections to Netlify's servers, so the direct upload fails with a 403 before
-it starts. That is a limit of my environment, not a problem with your account,
-and it does not matter, because connecting the site to GitHub is the better
-route anyway: Netlify pulls the code itself and redeploys automatically every
-time anything is pushed.
-
-### Link it to GitHub, which takes about two minutes
+### Link it, which takes about two minutes
 
 1. Open https://app.netlify.com/projects/adhdementia
 2. **Project configuration**, then **Build and deploy**, then **Continuous
    deployment**.
-3. Under **Repository**, choose **Link repository**, then GitHub, then the
-   `lovelettertales` repository. Netlify will note it is already connected to
-   another site. That is expected and fine.
-4. Set the build settings exactly as below, then save.
+3. **Link repository**, then GitHub, then the new **`adhdementia`** repository.
+   If Netlify cannot see it, use **Configure the Netlify app on GitHub** and
+   grant access to that repository.
+4. Settings:
 
 | Field | Value |
 | --- | --- |
-| **Branch to deploy** | `claude/adhdemensure-screening-tool-9lb5rv` |
-| **Base directory** | `adhdementia` |
-| **Build command** | *leave completely empty* |
-| **Publish directory** | `adhdementia` |
+| **Branch to deploy** | `main` |
+| **Base directory** | *leave empty* |
+| **Build command** | *leave empty* |
+| **Publish directory** | *leave empty, or a single dot* |
 
 There is no build step. It is plain HTML, CSS and JavaScript, which is why it is
 fast, cheap and hard to break.
 
-### Then check, before anything else
+### Check it worked
 
-Open `https://adhdementia.netlify.app` and confirm you see **the ADHDementia
-homepage, not Love Letter Tales**.
+Open `https://adhdementia.netlify.app`. You should see the ADHDementia homepage.
 
-If you see the wrong site, stop. The Base directory is not set. Fix it in
-**Build and deploy, Build settings** and redeploy.
-
-### Check the things that only work once hosted
+Then check the things that only work once hosted:
 
 - Submit the contact form and the waiting list form, then look in **Forms** in
   the sidebar. You should see `contact` and `course-waitlist`. Forms never work
@@ -97,11 +78,12 @@ join the waiting list and you never find out.
 in `DOMAINS.md`, which also covers the three Personhood Profile domains and the
 redirects. Wait for the certificate to show as active before you share any link.
 
-### Once it all works
+### The old copy
 
-Merge the branch into `main` and change Netlify's deploy branch to `main`, so
-you are not permanently deploying from a working branch. Say the word and I will
-open the pull request.
+The `adhdementia` folder still sits inside the `lovelettertales` repository. Once
+the new site is deploying happily, delete that folder there so there is only ever
+one copy to edit. Do not do it before, and do not touch anything else in that
+repository.
 
 ---
 
