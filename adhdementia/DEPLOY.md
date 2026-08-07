@@ -27,13 +27,35 @@ this whole class of mistake. It is not urgent, and it is not a weekend job.
 
 ## Part one: deploy to Netlify
 
-### 1. Create the site
+### The site already exists
 
-In Netlify, **Add new site**, then **Import an existing project**, then GitHub,
-then choose the `lovelettertales` repository. Netlify will notice it is already
-connected to another site. That is expected and fine.
+I created it for you through the Netlify connector:
 
-### 2. Build settings, and this is the part that matters
+- **Project name:** `adhdementia`
+- **Site ID:** `4311c5ec-d395-42a8-87b3-339410fd6cee`
+- **Temporary address:** `https://adhdementia.netlify.app`
+- **Dashboard:** https://app.netlify.com/projects/adhdementia
+- **Forms:** already enabled
+
+It is empty. Nothing has been published to it yet, so that address will show a
+placeholder until you do the next step.
+
+**I could not upload the files myself.** The container I run in blocks outbound
+connections to Netlify's servers, so the direct upload fails with a 403 before
+it starts. That is a limit of my environment, not a problem with your account,
+and it does not matter, because connecting the site to GitHub is the better
+route anyway: Netlify pulls the code itself and redeploys automatically every
+time anything is pushed.
+
+### Link it to GitHub, which takes about two minutes
+
+1. Open https://app.netlify.com/projects/adhdementia
+2. **Project configuration**, then **Build and deploy**, then **Continuous
+   deployment**.
+3. Under **Repository**, choose **Link repository**, then GitHub, then the
+   `lovelettertales` repository. Netlify will note it is already connected to
+   another site. That is expected and fine.
+4. Set the build settings exactly as below, then save.
 
 | Field | Value |
 | --- | --- |
@@ -45,41 +67,41 @@ connected to another site. That is expected and fine.
 There is no build step. It is plain HTML, CSS and JavaScript, which is why it is
 fast, cheap and hard to break.
 
-### 3. Deploy, then check before you go any further
+### Then check, before anything else
 
-Open the temporary `something-something.netlify.app` address Netlify gives you
-and confirm you see **the ADHDementia homepage**, not Love Letter Tales.
+Open `https://adhdementia.netlify.app` and confirm you see **the ADHDementia
+homepage, not Love Letter Tales**.
 
 If you see the wrong site, stop. The Base directory is not set. Fix it in
-**Site configuration, Build and deploy, Build settings** and redeploy.
+**Build and deploy, Build settings** and redeploy.
 
-### 4. Check the things that only work once hosted
+### Check the things that only work once hosted
 
-- Submit the contact form, then look in **Forms** in the Netlify sidebar. You
-  should see `contact` and `course-waitlist` listed. Forms do not work on a
-  local file, only on a deployed site.
+- Submit the contact form and the waiting list form, then look in **Forms** in
+  the sidebar. You should see `contact` and `course-waitlist`. Forms never work
+  from a file on your own computer, only from a deployed site.
 - Open `/screening-tool.html`, `/my-profile.html` and `/personhood-profile.html`.
 - Enter `PP-DEMO-2026` on `/care-home-profile.html` and confirm it unlocks.
 - Check `/profile` redirects to the Personhood Profile page. That proves the
   `_redirects` file is being read.
 
-### 5. Set up form notifications
+### Set up form notifications
 
-**Site configuration, Forms, Form notifications, Add notification, Email
+**Project configuration, Forms, Form notifications, Add notification, Email
 notification.** Send both forms to your business address. Without this, people
 join the waiting list and you never find out.
 
-### 6. Connect the domain
+### Connect the domain
 
 **Domain management, Add a domain**, then `adhdementia.com`. Follow the DNS steps
 in `DOMAINS.md`, which also covers the three Personhood Profile domains and the
 redirects. Wait for the certificate to show as active before you share any link.
 
-### 7. Only when it all works
+### Once it all works
 
 Merge the branch into `main` and change Netlify's deploy branch to `main`, so
-that you are not permanently deploying from a working branch. Say the word and I
-will open the pull request.
+you are not permanently deploying from a working branch. Say the word and I will
+open the pull request.
 
 ---
 
