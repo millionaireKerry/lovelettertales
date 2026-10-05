@@ -1,15 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-3819753512414775">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSR8VEQMJF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HSR8VEQMJF');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How It Works | Love Letter Tales</title>
@@ -18,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3819753512414775" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="brand.css">
   <script src="cookie-consent.js" defer></script>
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
@@ -26,8 +17,8 @@
   <meta property="og:title" content="How It Works | Love Letter Tales">
   <meta property="og:description" content="Choose your story, subscribe, and receive two beautifully written letters through the post every month. Letters posted on the 1st and 15th. Simple, magical, personal.">
   <meta property="og:image" content="https://lovelettertales.com/images/hero-background.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
   <meta property="og:site_name" content="Love Letter Tales">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -41,7 +32,6 @@
   "@type": "Organization",
   "name": "Love Letter Tales",
   "url": "https://lovelettertales.com",
-  "logo": "https://lovelettertales.com/images/logo.png",
   "description": "Love Letter Tales is a subscription service delivering serialised fiction as beautiful physical letters through the post. Choose from Regency romance or wartime drama and receive two letters every month.",
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61588597436075",
@@ -75,14 +65,16 @@
   ]
 }
 </script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- Mother's Day Promo Banner -->
   <div class="promo-banner" id="promoBanner">
     <div class="container">
-      <p>Your gift card is delivered straight to your inbox, ready to forward or print.</p>
-      <a href="mothers-day.html" class="btn-banner">Shop Gifts</a>
+      <p>Two story letters a month. A little time for another world.</p>
+      <a href="gift.html" class="btn-banner">Shop Gifts</a>
     </div>
     <button class="banner-close" id="bannerClose" aria-label="Dismiss banner">&times;</button>
   </div>
@@ -91,7 +83,7 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">Love Letter <span>Tales</span></a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
@@ -99,12 +91,12 @@
         <li><a href="how-it-works.html">How It Works</a></li>
         <li><a href="pricing.html">Pricing</a></li>
         <li><a href="gift.html">Gift</a></li>
-        <li><a href="mothers-day.html">Mother's Day</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="https://buy.stripe.com/28E00idAhgQ6dgw8gU1Nu03" target="_blank" rel="noopener" class="btn btn-primary">Subscribe Now</a></li>
+        <li><a href="pricing.html" class="btn btn-primary">Choose a plan</a></li>
       </ul>
     </div>
   </nav>
+  <main id="main-content">
 
   <!-- Page Hero -->
   <section class="page-hero">
@@ -145,7 +137,7 @@
       <div class="content-block">
         <h2>What's Inside Each Letter?</h2>
         <p>Every letter is a chapter in an unfolding story written in the voice of a fictional character from a carefully researched historical period. The letters are printed on beautiful, heavyweight paper with period-appropriate design details. They feel like genuine correspondence from another time.</p>
-        <p>Each letter is between 1,500 and 2,000 words long enough to lose yourself in, short enough to savour over a cup of tea. They arrive in a hand-lettered envelope, sealed and ready to be opened with anticipation.</p>
+        <p>Each letter is an instalment to savour over a cup of tea. Keep the letters as the story unfolds, and return to your favourite moments whenever you like.</p>
 
         <div class="highlight-box">
           <p><strong>You'll receive 2 letters per month</strong> delivered by Royal Mail on the 1st and 15th. Each letter picks up where the last one left off, so the story builds with every delivery.</p>
@@ -153,11 +145,11 @@
 
         <h2>A Story That Grows With You</h2>
         <p>Unlike a book you might read in a weekend, our stories unfold slowly the way real letters do. You live with the characters. You wait for the next instalment. You find yourself wondering what happened between the letters. It's a reading experience unlike anything else.</p>
-        <p>Each collection runs for 12 letters (6 months), after which the story reaches its conclusion. You can then choose a new collection or re-read your letters like the treasured keepsakes they are.</p>
+        <p>Rose Ashworth and Clara Wren each have 24 letters, unfolding over 12 months. Shorter gift plans introduce the recipient to the opening part of their chosen story; a 12-month plan includes the whole collection.</p>
 
         <h2>Gifting a Subscription</h2>
         <p>Love Letter Tales makes a truly unforgettable gift. You choose the collection, the plan, and the start date and we take care of the rest. We can include a personalised gift note with the first letter, so your loved one knows who sent this beautiful surprise.</p>
-        <p>Gift subscriptions are available in <a href="gift.html" style="color:#C17B74;">monthly and annual plans</a>, as well as <a href="mothers-day.html" style="color:#C17B74;">special Mother's Day gifts</a>.</p>
+        <p>Gift subscriptions are available as <a href="gift.html" style="color:#C17B74;">3, 6 or 12-month plans</a> with a one-off payment.</p>
 
         <div class="highlight-box">
           <p><strong>Perfect for:</strong> Birthdays, anniversaries, Mother's Day, Christmas, or simply because someone you love deserves something beautiful in their letterbox.</p>
@@ -177,6 +169,7 @@
       <a href="stories.html" class="btn">Explore Our Stories</a>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
@@ -210,10 +203,13 @@
         <div>
           <h4>Stay in the Story</h4>
           <p style="font-size:0.9rem;color:rgba(251,247,240,0.7);margin-bottom:0.8rem;">Join our mailing list for writing news, sneak peeks, and the occasional love letter.</p>
-          <form class="newsletter-form" onsubmit="event.preventDefault();">
-            <input type="email" placeholder="Your email address" aria-label="Email address" required>
-            <button type="submit">Join</button>
+          <form class="newsletter-form" name="newsletter" method="POST" action="/form-received.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="newsletter">
+            <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+            <input type="email" name="email" autocomplete="email" placeholder="Your email address" aria-label="Email address" required>
+            <button type="submit">Join the story</button>
           </form>
+          <p class="newsletter-note">By joining, you agree to receive story news by email. Unsubscribe at any time. <a href="privacy.html">Privacy policy</a>.</p>
         </div>
       </div>
       <div class="footer-bottom">
