@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You! | Love Letter Tales</title>
+  <title>Your Order Details | Love Letter Tales</title>
+  <meta name="robots" content="noindex, nofollow">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="brand.css">
   <style>
     .success-container {
       max-width: 600px;
@@ -59,6 +61,7 @@
       background: #4a3535;
     }
   </style>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
   <nav class="navbar">
@@ -66,19 +69,20 @@
       <a href="index.html" class="nav-logo">Love Letter <span>Tales</span></a>
     </div>
   </nav>
+  <main id="main-content">
 
   <div class="container">
     <div class="success-container">
       <div class="success-icon">💌</div>
       <h1>Thank You for Your Order!</h1>
-      <p>We've received your payment. We're getting your gift ready right now.</p>
+      <p>If you have just completed checkout, Stripe will email your payment receipt. Add your gift details below so we can match them to your order.</p>
 
       <div class="personalization-form">
         <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Personalise Your Gift</h2>
         <p style="font-size: 0.9rem; color: #666; margin-bottom: 25px;">Fill this in now and we'll include these details on the digital gift card we send you.</p>
         
-        <form name="personalization" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="personalization">
+        <form name="personalization" method="POST" action="/form-received.html" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="personalization"><p hidden><label>Leave empty <input name="bot-field"></label></p>
           
           <div class="form-group">
             <label for="buyer-email">Your Email (to match your order)</label>
@@ -101,10 +105,12 @@
     </div>
   </div>
 
+  </main>
   <footer class="footer">
     <div class="container">
       <p>&copy; 2026 Love Letter Tales</p>
     </div>
   </footer>
+<script src="script.js"></script>
 </body>
 </html>

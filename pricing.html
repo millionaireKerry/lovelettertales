@@ -1,15 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-3819753512414775">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSR8VEQMJF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HSR8VEQMJF');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subscription Prices | Love Letter Tales</title>
@@ -18,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="brand.css">
 
   <style>
     /* ── UK / International toggle ── */
@@ -63,7 +55,6 @@
       font-style: italic;
     }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3819753512414775" crossorigin="anonymous"></script>
   <script src="cookie-consent.js" defer></script>
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
@@ -71,8 +62,8 @@
   <meta property="og:title" content="Subscription Prices | Love Letter Tales">
   <meta property="og:description" content="Monthly and annual subscriptions from just £9.99. Beautifully written fiction delivered by post. UK and international shipping available. No AI, just great stories.">
   <meta property="og:image" content="https://lovelettertales.com/images/hero-background.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
   <meta property="og:site_name" content="Love Letter Tales">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -86,7 +77,6 @@
   "@type": "Organization",
   "name": "Love Letter Tales",
   "url": "https://lovelettertales.com",
-  "logo": "https://lovelettertales.com/images/logo.png",
   "description": "Love Letter Tales is a subscription service delivering serialised fiction as beautiful physical letters through the post. Choose from Regency romance or wartime drama and receive two letters every month.",
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61588597436075",
@@ -117,7 +107,7 @@
       "@type": "Offer",
       "name": "Monthly Subscription",
       "priceCurrency": "GBP",
-      "price": "9.99",
+      "price": "12.99",
       "availability": "https://schema.org/InStock",
       "url": "https://lovelettertales.com/pricing.html"
     },
@@ -125,16 +115,11 @@
       "@type": "Offer",
       "name": "Annual Subscription",
       "priceCurrency": "GBP",
-      "price": "89.99",
+      "price": "119.99",
       "availability": "https://schema.org/InStock",
       "url": "https://lovelettertales.com/pricing.html"
     }
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "reviewCount": "1"
-  }
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -157,14 +142,16 @@
   ]
 }
 </script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- Mother's Day Promo Banner -->
   <div class="promo-banner" id="promoBanner">
     <div class="container">
-      <p>Your gift card is delivered straight to your inbox, ready to forward or print.</p>
-      <a href="mothers-day.html" class="btn-banner">Shop Gifts</a>
+      <p>Two story letters a month. A little time for another world.</p>
+      <a href="gift.html" class="btn-banner">Shop Gifts</a>
     </div>
     <button class="banner-close" id="bannerClose" aria-label="Dismiss banner">&times;</button>
   </div>
@@ -173,7 +160,7 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">Love Letter <span>Tales</span></a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
@@ -181,12 +168,12 @@
         <li><a href="how-it-works.html">How It Works</a></li>
         <li><a href="pricing.html">Pricing</a></li>
         <li><a href="gift.html">Gift</a></li>
-        <li><a href="mothers-day.html">Mother's Day</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="#subscribe" class="btn btn-primary">Subscribe Now</a></li>
+        <li><a href="pricing.html" class="btn btn-primary">Choose a plan</a></li>
       </ul>
     </div>
   </nav>
+  <main id="main-content">
 
   <!-- Page Hero -->
   <section class="page-hero">
@@ -206,8 +193,8 @@
       <div class="delivery-toggle-wrap">
         <p>Where are we sending your letters?</p>
         <div class="delivery-toggle" id="deliveryToggle">
-          <button class="active" id="btn-uk" onclick="setDelivery('uk')">&#127468;&#127463; UK</button>
-          <button id="btn-intl" onclick="setDelivery('intl')">&#127758; International</button>
+          <button class="active" id="btn-uk" aria-pressed="true" onclick="setDelivery('uk')">&#127468;&#127463; UK</button>
+          <button id="btn-intl" aria-pressed="false" onclick="setDelivery('intl')">&#127758; International</button>
         </div>
       </div>
       <p class="intl-note" id="intl-note" style="display:none;">Airmail delivery included. Letters posted on the 1st and 15th of every month.</p>
@@ -242,8 +229,8 @@
 
         <!-- Gift 3 Months -->
         <div class="pricing-card highlighted">
-          <div class="ribbon-wrap"><div class="ribbon">Most Popular</div></div>
-          <span class="pricing-badge badge-popular">Most Popular Gift</span>
+          <div class="ribbon-wrap"><div class="ribbon">Start Here</div></div>
+          <span class="pricing-badge badge-popular">A Lovely First Chapter</span>
           <h3>Gift 3 Months</h3>
           <div class="price" id="price-gift3">&pound;34.99</div>
           <div class="price-period">one-off payment</div>
@@ -295,6 +282,7 @@
       <a href="stories.html" class="btn">Choose Your Story First</a>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
@@ -328,10 +316,13 @@
         <div>
           <h4>Stay in the Story</h4>
           <p style="font-size:0.9rem;color:rgba(251,247,240,0.7);margin-bottom:0.8rem;">Join our mailing list for writing news, sneak peeks, and the occasional love letter.</p>
-          <form class="newsletter-form" onsubmit="event.preventDefault();">
-            <input type="email" placeholder="Your email address" aria-label="Email address" required>
-            <button type="submit">Join</button>
+          <form class="newsletter-form" name="newsletter" method="POST" action="/form-received.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="newsletter">
+            <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+            <input type="email" name="email" autocomplete="email" placeholder="Your email address" aria-label="Email address" required>
+            <button type="submit">Join the story</button>
           </form>
+          <p class="newsletter-note">By joining, you agree to receive story news by email. Unsubscribe at any time. <a href="privacy.html">Privacy policy</a>.</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -341,23 +332,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    var ukLinks = { monthly:'https://buy.stripe.com/28E00idAhgQ6dgw8gU1Nu03', annual:'https://buy.stripe.com/4gM3cuao50R8foE2WA1Nu04', gift3:'https://buy.stripe.com/7sY9AS8fX2Zgdgw9kY1Nu02', gift6:'https://buy.stripe.com/eVqcN4gMtfM25O440E1Nu01', gift12:'https://buy.stripe.com/bJedR8bs9gQ6dgwdBe1Nu00' };
-    var intlLinks = { monthly:'https://buy.stripe.com/4gM4gy7bTarI90g1Sw1Nu05', annual:'https://buy.stripe.com/bJe6oGfIp57o4K07cQ1Nu06', gift3:'https://buy.stripe.com/fZu00i7bT43kfoE1Sw1Nu07', gift6:'https://buy.stripe.com/00wfZgbs97fwa4k40E1Nu08', gift12:'https://buy.stripe.com/cNi4gybs9arIb8odBe1Nu09' };
-    var ukPrices = { monthly:'&pound;12.99', annual:'&pound;119.99', gift3:'&pound;34.99', gift6:'&pound;64.99', gift12:'&pound;109.99' };
-    var intlPrices = { monthly:'&pound;17.99', annual:'&pound;179.99', gift3:'&pound;49.99', gift6:'&pound;94.99', gift12:'&pound;169.99' };
-    function setDelivery(zone) {
-      var links = zone==='uk' ? ukLinks : intlLinks;
-      var prices = zone==='uk' ? ukPrices : intlPrices;
-      document.getElementById('btn-uk').classList.toggle('active', zone==='uk');
-      document.getElementById('btn-intl').classList.toggle('active', zone==='intl');
-      ['monthly','annual','gift3','gift6','gift12'].forEach(function(k) {
-        var el = document.getElementById('link-'+k); if (el) el.href = links[k];
-        var pe = document.getElementById('price-'+k); if (pe) pe.innerHTML = prices[k];
-      });
-      var note = document.getElementById('intl-note');
-      if (note) note.style.display = zone==='intl' ? 'block' : 'none';
-    }
-  </script>
+  <script src="pricing.js"></script>
 </body>
 </html>

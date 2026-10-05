@@ -1,0 +1,86 @@
+/* A letter on a Regency writing desk. Motion is finite and optional. */
+.editorial-hero { background: #f7f1e7; overflow: hidden; }
+.editorial-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 650px; max-width: 1600px; margin: auto; }
+.editorial-copy { padding: 82px 9% 68px max(7%, calc((100vw - 1140px) / 2)); align-self: center; }
+.eyebrow { font: 500 11px/1.6 Arial, sans-serif; letter-spacing: .21em; text-transform: uppercase; color: #765748; }
+.editorial-copy h1 { font-weight: 400; font-size: clamp(2.9rem, 4.5vw, 4.65rem); letter-spacing: -.045em; line-height: 1.08; margin: 24px 0; max-width: 600px; }
+.editorial-copy h1 em { color: #7c3d43; font-weight: 400; }
+.hero-intro { color: #61544b; max-width: 420px; font-size: 1.03rem; line-height: 1.9; }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; margin: 30px 0 22px; }
+.text-link { border-bottom: 1px solid #9b7c69; padding-bottom: 3px; font-size: .9rem; }
+.hero-small { color: #6d5b50; font-size: .78rem; }
+.writing-scene { position: relative; min-width: 0; min-height: 600px; background: #372318; isolation: isolate; overflow: hidden; }
+.desk-image { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: 65% center; }
+.writing-scene::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, #21150b22, transparent 40%, #21150b88); z-index: -1; }
+.desk-image { z-index: -2; }
+.scene-label { position: absolute; top: 34px; right: 34px; color: #f5e8ce; font: 10px Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+.letter-sheet { position: absolute; width: 345px; max-width: 78%; left: 9%; top: 23%; padding: 35px 30px 25px; background: linear-gradient(115deg, #fbf4e4, #eadcc0); color: #493728; box-shadow: 0 18px 48px #170d0970; transform: rotate(-7deg); border: 1px solid #d9c69f; }
+.letter-sheet::before { content: ''; position: absolute; inset: 9px; border: 1px solid #ab90672b; pointer-events: none; }
+.letter-date { text-align: right; font: 11px/1.6 'Lora', Georgia, serif; color: #7d6852; margin-bottom: 24px; }
+.letter-words { font: italic 23px/1.65 'Cormorant Garamond', Georgia, serif; }
+.ink-line { display: block; width: fit-content; max-width: 100%; }
+.letter-signature { margin-top: 14px; font-size: 29px; }
+.letter-caption { position: absolute; left: 34px; bottom: 25px; color: #f1e5d0; font: 11px/1.6 Arial, sans-serif; letter-spacing: .04em; }
+.letter-nib { position: absolute; width: 125px; height: 125px; top: 130px; left: 210px; opacity: 0; pointer-events: none; filter: drop-shadow(4px 7px 3px #382c2e35); }
+.writing-scene.is-writing .ink-line { animation: ink-reveal .85s linear both; animation-delay: var(--ink-delay); }
+.writing-scene.is-writing .letter-nib { animation: nib-write 4.8s linear both; }
+.replay-letter { position: absolute; bottom: 22px; right: 22px; border: 1px solid #ddcaae88; border-radius: 30px; color: #fff6e7; background: #302016c9; padding: 9px 13px; font: 11px Arial, sans-serif; cursor: pointer; }
+.replay-letter[hidden] { display: none; }
+@keyframes ink-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes nib-write {
+  0% { opacity: 0; transform: translate(-180px, -24px) rotate(-5deg); }
+  3% { opacity: 1; }
+  17% { transform: translate(8px, -24px) rotate(0deg); }
+  19% { transform: translate(-180px, 14px) rotate(-5deg); }
+  35% { transform: translate(36px, 14px) rotate(0deg); }
+  37% { transform: translate(-180px, 52px) rotate(-5deg); }
+  53% { transform: translate(12px, 52px) rotate(0deg); }
+  55% { transform: translate(-180px, 90px) rotate(-5deg); }
+  71% { transform: translate(-10px, 90px) rotate(0deg); }
+  74% { transform: translate(-180px, 145px) rotate(-5deg); }
+  94% { opacity: 1; transform: translate(-115px, 145px) rotate(0deg); }
+  100% { opacity: 0; transform: translate(-95px, 122px) rotate(-10deg); }
+}
+.home-intro { text-align: center; max-width: 750px; margin: auto; }
+.home-intro h2 { font-weight: 400; margin: 14px 0 22px; }
+.home-intro p { color: #6d5b50; }
+.home-intro .text-link { color: #743b40; }
+.sample-letter { max-width: 740px; margin: auto; padding: 50px; background: #f2e8d7; border: 1px solid #dfceb5; }
+.sample-letter blockquote { font: italic 1.5rem/1.65 'Cormorant Garamond', Georgia, serif; margin: 22px 0; }
+.sample-letter summary { cursor: pointer; color: #743b40; padding: 12px 0; }
+.sample-letter details p { font-size: .95rem; }
+.sample-source { font-size: .8rem; color: #6d5b50; }
+.gift-feature { display: grid; grid-template-columns: 1fr 1.3fr; gap: 70px; align-items: center; }
+.gift-feature h2 { font-weight: 400; margin: 15px 0 20px; }
+.gift-feature p { color: #6d5b50; }
+.gift-feature img { aspect-ratio: 4/3; width: 100%; object-fit: cover; }
+.home-faq { max-width: 760px; margin: auto; }
+.home-faq details { border-bottom: 1px solid #dbcbbd; padding: 22px 0; }
+.home-faq summary { cursor: pointer; font-weight: 600; }
+.home-faq details p { margin: 15px 0 0; color: #6d5b50; }
+@media (max-width: 1000px) {
+  .editorial-copy { padding: 55px 8%; }
+  .editorial-grid { min-height: 590px; }
+  .writing-scene { min-height: 590px; }
+  .letter-sheet { left: 6%; width: 315px; padding: 30px 24px; }
+  .letter-words { font-size: 21px; }
+  .letter-caption { bottom: 72px; }
+}
+@media (max-width: 700px) {
+  .editorial-grid { grid-template-columns: 1fr; }
+  .editorial-copy { padding: 46px 6% 36px; }
+  .editorial-copy h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
+  .hero-actions { gap: 17px; }
+  .writing-scene { min-height: 475px; }
+  .letter-sheet { top: 15%; left: 15%; width: 300px; padding: 25px; }
+  .letter-date { margin-bottom: 14px; }
+  .letter-words { font-size: 21px; }
+  .letter-caption { left: 22px; bottom: 65px; }
+  .scene-label { top: 22px; right: 22px; }
+  .gift-feature { grid-template-columns: 1fr; gap: 30px; }
+  .sample-letter { padding: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .writing-scene.is-writing .ink-line, .writing-scene.is-writing .letter-nib { animation: none; }
+  .letter-nib, .replay-letter { display: none; }
+}

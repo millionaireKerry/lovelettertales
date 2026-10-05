@@ -1,0 +1,11 @@
+{
+  "name": "love-letter-tales",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node tools/build.cjs",
+    "test": "node tests/site.test.cjs",
+    "dev": "node tools/serve.cjs"
+  },
+  "engines": { "node": ">=22" }
+}
