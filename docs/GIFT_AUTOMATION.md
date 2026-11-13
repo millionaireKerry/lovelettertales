@@ -27,9 +27,18 @@ private redemption capabilities.
 
 Configure Stripe's event destination at `https://lovelettertales.com/api/stripe-webhook`
 for `checkout.session.completed` and `checkout.session.async_payment_succeeded`.
-Use the correct mode's endpoint signing secret. Configure Resend's endpoint at
+Use the correct mode's endpoint signing secret.
+
+Optional automatic delivery tracking uses Resend's endpoint at
 `https://lovelettertales.com/api/resend-webhook` for email delivered, delivery
-delayed, bounced, failed and complained events; save its signing secret.
+delayed, bounced, failed and complained events. Resend's webhook setup offers
+event selection, but no domain filter. This account also serves other brands:
+do not enable account-wide callbacks under permission limited to Love Letter
+Tales customer data. Until that wider transfer is explicitly authorised or a
+separate account is used, leave `RESEND_WEBHOOK_SECRET` unset and inspect gift
+delivery in the Resend dashboard during the daily check. Sending and durable
+send retries work without this optional callback; an accepted send is not proof
+of delivery.
 
 After a complete test purchase/redemption/delivery check, set the production
 activation time to the actual go-live time in UTC, then enable automation and
@@ -64,15 +73,17 @@ never proof of payment. Refunds or disputes prevent new automatic redemption.
 Netlify's `llt-orders-v1-live` Blobs store is the authoritative record. Use the
 dashboard only while signed in; it contains private customer details and codes.
 Order email state `accepted` means Resend accepted the send, not that a person
-read it. The `delivery` field comes from signed Resend events. `redeemed` details
+read it. The optional `delivery` field comes from signed Resend events; when the
+callback is not configured, check the provider's dashboard. `redeemed` details
 include a fulfilment status of `awaiting-preparation` until handled by the team.
 
 The retry function runs every ten minutes in production. Transient failures stay
 pending with a stable idempotency key and immutable email payload. A failed or
 ambiguous send older than 23 hours becomes `attention`, because Resend retains
 idempotency keys for only 24 hours. Check Resend before any manual reissue.
-Permanent provider rejections also require review. Bounced customer messages
-queue one owner alert. If the mail provider itself is unavailable, inspect the
+Permanent provider rejections also require review. When delivery callbacks are
+enabled, bounced customer messages queue one owner alert. Otherwise, review
+bounces in Resend during the daily check. If the mail provider itself is unavailable, inspect the
 Netlify records and Stripe webhook failures; do not assume silence means success.
 
 The separate Codex daily check runs at 9am Europe/London and requires the local
