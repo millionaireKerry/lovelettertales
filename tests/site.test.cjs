@@ -60,6 +60,12 @@ test('Forms declare real Netlify endpoints, field names, success destinations an
   for (const file of pages.filter(x => x !== 'gift-admin.html')) {
     for (const [form, attrs] of read(file).matchAll(/<form([^>]*)>[\s\S]*?<\/form>/g)) {
       assert.match(attrs, /method="POST"/i, file);
+      if (attrs.includes('data-gift-api')) {
+        assert.match(attrs, /action="\/api\/gifts"/, file);
+        assert.match(form, /name="bot-field"/, file);
+        assert.match(read(file), /src="gift-flow.js"/, file);
+        continue;
+      }
       assert.match(attrs, /data-netlify="true"/, file);
       assert.match(attrs, /action="\/form-received.html"/, file);
       assert.match(attrs, /netlify-honeypot="bot-field"/, file);
@@ -85,5 +91,5 @@ test('No unconditional tracking, unsupported testimonials or missing schema logo
 test('Production build does not expose the administration helper or development tools', () => {
   require('../tools/build.cjs');
   assert.ok(fs.existsSync(path.join(root, 'dist', 'index.html')));
-  for (const file of ['gift-admin.html','AGENTS.md','package.json','tools','tests']) assert.ok(!fs.existsSync(path.join(root, 'dist', file)), file);
+  for (const file of ['gift-admin.html','AGENTS.md','package.json','tools','tests','server','netlify','.env.example','docs']) assert.ok(!fs.existsSync(path.join(root, 'dist', file)), file);
 });

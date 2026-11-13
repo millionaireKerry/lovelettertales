@@ -4,8 +4,15 @@
   "private": true,
   "scripts": {
     "build": "node tools/build.cjs",
-    "test": "node tests/site.test.cjs",
+    "test": "node --test tests/*.test.cjs tests/*.test.mjs",
     "dev": "node tools/serve.cjs"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@netlify/blobs": "11.1.9",
+    "stripe": "23.1.0",
+    "svix": "2.10.0"
+  }
 }

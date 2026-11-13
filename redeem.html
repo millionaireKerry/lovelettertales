@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
   <title>Redeem Your Gift Code | Love Letter Tales</title>
   <meta name="description" content="Received a Love Letter Tales gift? Enter your unique gift code here, choose your story, and start your subscription. Your first letter will be on its way soon.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +12,6 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="brand.css">
 
-  <script src="cookie-consent.js" defer></script>
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lovelettertales.com/redeem.html">
@@ -100,10 +100,25 @@
   <main id="main-content">
 
   <section class="page-hero">
-    <div class="container"><h1>Your next chapter is a gift.</h1><p>Send us your gift code, chosen story and delivery details. We’ll check the purchase and email you to confirm your subscription.</p></div>
+    <div class="container"><h1>Your next chapter is a gift.</h1><p>Choose your story and tell us where to send your letters.</p></div>
   </section>
   <section class="section">
     <div class="container">
+      <form class="contact-form" id="redeem-gift" method="POST" action="/api/gifts" data-gift-api>
+        <p hidden><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="form-group"><label for="new-gift-code">Gift code</label><input id="new-gift-code" name="code" maxlength="48" required autocomplete="off" autocapitalize="characters" spellcheck="false"><p class="form-help">Use the full code on your gift card. Older, shorter codes can be submitted using the form below.</p></div>
+        <div class="form-group"><label for="new-name">Your full name</label><input id="new-name" name="name" maxlength="100" autocomplete="name" required></div>
+        <div class="form-group"><label for="new-email">Your email address</label><input id="new-email" name="email" type="email" maxlength="254" autocomplete="email" required></div>
+        <div class="form-group"><label for="new-story">Choose your story</label><select id="new-story" name="story" required><option value="">Choose a story</option><option>Rose Ashworth</option><option>Clara Wren</option></select></div>
+        <div class="form-group"><label for="new-address">Street address and town or city</label><textarea id="new-address" name="address" maxlength="600" autocomplete="street-address" required></textarea></div>
+        <div class="form-group"><label for="new-postcode">Postcode or ZIP code</label><input id="new-postcode" name="postcode" maxlength="24" autocomplete="postal-code" required></div>
+        <div class="form-group"><label for="new-country">Country</label><input id="new-country" name="country" maxlength="80" autocomplete="country-name" required></div>
+        <p class="form-help">Your gift must include delivery to this country. We use your details to fulfil your gift and email you about your letters. <a href="privacy.html">Privacy policy</a>.</p>
+        <button class="btn btn-primary" type="submit">Redeem my gift</button>
+        <p id="redemption-status" role="status" class="form-help"></p>
+        <noscript><p>Please enable JavaScript, or use the older gift code form below for help from our team.</p></noscript>
+      </form>
+      <details id="older-gift" style="max-width:700px;margin:3rem auto"><summary>Have an older, shorter gift code?</summary><p>Send it to our team for a manual purchase check.</p>
       <form class="contact-form" name="gift-redemption" method="POST" action="/form-received.html" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="gift-redemption">
         <p hidden><label>Leave empty <input name="bot-field"></label></p>
@@ -118,6 +133,7 @@
         <button type="submit" class="btn btn-primary">Send my gift request</button>
         <p class="form-help">Need help with a missing code? <a href="contact.html">Contact us</a>.</p>
       </form>
+      </details>
     </div>
   </section>
   </main>
@@ -170,6 +186,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="gift-flow.js"></script>
 
 
 </body>

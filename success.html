@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Order Details | Love Letter Tales</title>
   <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="brand.css">
@@ -74,12 +75,15 @@
   <div class="container">
     <div class="success-container">
       <div class="success-icon">💌</div>
-      <h1>Thank You for Your Order!</h1>
-      <p>If you have just completed checkout, Stripe will email your payment receipt. Add your gift details below so we can match them to your order.</p>
+      <h1>Thank you for giving a story.</h1>
+      <p id="order-status" role="status">If you have just paid, we’ll help you with your gift below.</p>
+      <div id="order-cards"></div>
+      <button type="button" id="check-order" class="btn-submit" hidden>Check my order again</button>
+      <noscript><p>Please enable JavaScript to view your gift here. Your gift email is sent separately after your payment is confirmed.</p></noscript>
 
-      <div class="personalization-form">
-        <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Personalise Your Gift</h2>
-        <p style="font-size: 0.9rem; color: #666; margin-bottom: 25px;">Fill this in now and we'll include these details on the digital gift card we send you.</p>
+      <div class="personalization-form" id="legacy-personalisation">
+        <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Need help with your order?</h2>
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 25px;">If your gift email has not arrived, check your junk folder or send us the details below. This form goes to our team for a manual check.</p>
         
         <form name="personalization" method="POST" action="/form-received.html" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="personalization"><p hidden><label>Leave empty <input name="bot-field"></label></p>
@@ -99,7 +103,7 @@
             <textarea id="personal-message" name="personal-message" rows="4" placeholder="e.g. Happy Mother's Day! With all our love, Kerry & family x"></textarea>
           </div>
 
-          <button type="submit" class="btn-submit">Save Personalisation</button>
+          <button type="submit" class="btn-submit">Send my order details</button>
         </form>
       </div>
     </div>
@@ -112,5 +116,6 @@
     </div>
   </footer>
 <script src="script.js"></script>
+<script src="gift-flow.js"></script>
 </body>
 </html>
