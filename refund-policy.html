@@ -1,16 +1,7 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-3819753512414775">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSR8VEQMJF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HSR8VEQMJF');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Refund Policy | Love Letter Tales</title>
@@ -19,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="brand.css">
   <style>
     .legal-content {
       padding: 80px 20px;
@@ -55,7 +47,6 @@
       text-decoration: underline;
     }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3819753512414775" crossorigin="anonymous"></script>
   <script src="cookie-consent.js" defer></script>
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
@@ -63,8 +54,8 @@
   <meta property="og:title" content="Refund Policy | Love Letter Tales">
   <meta property="og:description" content="Read the Love Letter Tales refund policy. We want you to be completely happy with your subscription. Find out how to request a refund or cancellation.">
   <meta property="og:image" content="https://lovelettertales.com/images/hero-background.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
   <meta property="og:site_name" content="Love Letter Tales">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -78,7 +69,6 @@
   "@type": "Organization",
   "name": "Love Letter Tales",
   "url": "https://lovelettertales.com",
-  "logo": "https://lovelettertales.com/images/logo.png",
   "description": "Love Letter Tales is a subscription service delivering serialised fiction as beautiful physical letters through the post. Choose from Regency romance or wartime drama and receive two letters every month.",
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61588597436075",
@@ -112,14 +102,16 @@
   ]
 }
 </script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">Love Letter <span>Tales</span></a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
@@ -127,14 +119,12 @@
         <li><a href="how-it-works.html">How It Works</a></li>
         <li><a href="pricing.html">Pricing</a></li>
         <li><a href="gift.html">Gift</a></li>
-        <li><a href="mothers-day.html">Mother's Day</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="https://buy.stripe.com/28E00idAhgQ6dgw8gU1Nu03" target="_blank" rel="noopener" class="btn btn-primary">Subscribe Now</a></li>
+        <li><a href="pricing.html" class="btn btn-primary">Choose a plan</a></li>
       </ul>
     </div>
   </nav>
-
-  <main class="legal-content">
+<main id="main-content" class="legal-content">
     <h1>Refund Policy</h1>
     <p><em>Last updated: 21 February 2026</em></p>
 
@@ -186,10 +176,13 @@
         <div>
           <h4>Stay in the Story</h4>
           <p style="font-size:0.9rem;color:rgba(251,247,240,0.7);margin-bottom:0.8rem;">Join our mailing list for writing news, sneak peeks, and the occasional love letter.</p>
-          <form class="newsletter-form" onsubmit="event.preventDefault();">
-            <input type="email" placeholder="Your email address" aria-label="Email address" required>
-            <button type="submit">Join</button>
+          <form class="newsletter-form" name="newsletter" method="POST" action="/form-received.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="newsletter">
+            <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+            <input type="email" name="email" autocomplete="email" placeholder="Your email address" aria-label="Email address" required>
+            <button type="submit">Join the story</button>
           </form>
+          <p class="newsletter-note">By joining, you agree to receive story news by email. Unsubscribe at any time. <a href="privacy.html">Privacy policy</a>.</p>
         </div>
       </div>
       <div class="footer-bottom">

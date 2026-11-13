@@ -1,111 +1,113 @@
-/* Love Letter Tales — JavaScript */
-
+/* Progressive enhancement; core content works without JavaScript. */
 (function () {
   'use strict';
-
-  // ---- Mobile Navigation Toggle ----
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var navToggle = document.getElementById('navToggle');
   var navLinks = document.getElementById('navLinks');
-
+  function closeMenu() {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', function () {
-      navToggle.classList.toggle('active');
-      navLinks.classList.toggle('open');
+      var open = navToggle.getAttribute('aria-expanded') !== 'true';
+      navToggle.classList.toggle('active', open);
+      navLinks.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
     });
-
-    // Close menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        navToggle.classList.remove('active');
-        navLinks.classList.remove('open');
-      });
+    navLinks.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && navLinks.classList.contains('open')) { closeMenu(); navToggle.focus(); }
     });
   }
-
-  // ---- Navbar scroll shadow ----
   var navbar = document.getElementById('navbar');
-
-  if (navbar) {
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 10) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+  if (navbar) window.addEventListener('scroll', function () { navbar.classList.toggle('scrolled', window.scrollY > 10); }, { passive: true });
+  var promo = document.getElementById('promoBanner');
+  var close = document.getElementById('bannerClose');
+  if (promo && close) {
+    try { if (sessionStorage.getItem('promoBannerDismissed') === 'true') promo.classList.add('hidden'); } catch (_) { /* Storage optional. */ }
+    close.addEventListener('click', function () {
+      promo.classList.add('hidden');
+      try { sessionStorage.setItem('promoBannerDismissed', 'true'); } catch (_) { /* Still dismiss. */ }
     });
   }
-
-  // ---- Dismissible Promo Banner ----
-  var promoBanner = document.getElementById('promoBanner');
-  var bannerClose = document.getElementById('bannerClose');
-
-  if (promoBanner && bannerClose) {
-    // Check if already dismissed this session
-    if (sessionStorage.getItem('promoBannerDismissed') === 'true') {
-      promoBanner.classList.add('hidden');
-    }
-
-    bannerClose.addEventListener('click', function () {
-      promoBanner.classList.add('hidden');
-      sessionStorage.setItem('promoBannerDismissed', 'true');
-    });
-  }
-
-  // ---- FAQ Accordion ----
-  document.querySelectorAll('.faq-question').forEach(function (button) {
+  document.querySelectorAll('.faq-question').forEach(function (button, index) {
+    var item = button.closest('.faq-item');
+    var answer = item.querySelector('.faq-answer');
+    if (!answer) return;
+    answer.id = 'faq-answer-' + index;
+    answer.hidden = !item.classList.contains('active');
+    button.setAttribute('aria-controls', answer.id);
+    button.setAttribute('aria-expanded', String(!answer.hidden));
     button.addEventListener('click', function () {
-      var item = this.closest('.faq-item');
-      var isOpen = item.classList.contains('active');
-
-      // Close all other items
-      document.querySelectorAll('.faq-item').forEach(function (el) {
-        el.classList.remove('active');
+      var open = !item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(function (other) {
+        other.classList.remove('active');
+        other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        other.querySelector('.faq-answer').hidden = true;
       });
-
-      // Toggle current
-      if (!isOpen) {
-        item.classList.add('active');
-      }
+      item.classList.toggle('active', open);
+      button.setAttribute('aria-expanded', String(open));
+      answer.hidden = !open;
     });
   });
-
-  // ---- Smooth scroll for anchor links ----
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var targetId = this.getAttribute('href');
-      if (targetId === '#' || targetId === '#stripe') return; // placeholder links
-      var target = document.querySelector(targetId);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-
-  // ---- Scroll Fade-Up Animations (Intersection Observer) ----
-  var fadeElements = document.querySelectorAll('.fade-up');
-
-  if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
-    var fadeObserver = new IntersectionObserver(function (entries) {
+  if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          fadeObserver.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
-    fadeElements.forEach(function (el) {
-      fadeObserver.observe(el);
-    });
-  } else {
-    // Fallback: show everything immediately if IntersectionObserver not supported
-    fadeElements.forEach(function (el) {
-      el.classList.add('visible');
-    });
+    }, { threshold: .05 });
+    document.querySelectorAll('.fade-up').forEach(function (element) { element.classList.add('will-reveal'); observer.observe(element); });
   }
-
+  var scene = document.getElementById('writing-scene');
+  var replay = document.getElementById('replay-letter');
+  if (scene && replay) {
+    var replayTimer;
+    function writeLetter() {
+      clearTimeout(replayTimer);
+      if (reducedMotion.matches) return;
+      replay.hidden = true;
+      scene.classList.remove('is-writing');
+      void scene.offsetWidth;
+      scene.classList.add('is-writing');
+      replayTimer = setTimeout(function () { replay.hidden = reducedMotion.matches; }, 4900);
+    }
+    writeLetter();
+    replay.addEventListener('click', writeLetter);
+    reducedMotion.addEventListener('change', function () { clearTimeout(replayTimer); scene.classList.remove('is-writing'); replay.hidden = reducedMotion.matches; });
+  }
+  // Show success only after the endpoint acknowledges a submission.
+  document.querySelectorAll('form[data-netlify], form[name="newsletter"], form[name="contact"], form[name="gift-redemption"], form[name="personalization"]').forEach(function (form) {
+    var status = document.createElement('p');
+    status.className = 'form-status';
+    status.setAttribute('role', 'status');
+    form.insertAdjacentElement('afterend', status);
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      var submit = form.querySelector('[type="submit"]');
+      if (!form.reportValidity() || submit.disabled) return;
+      submit.disabled = true;
+      status.textContent = 'Sending…';
+      try {
+        var response = await fetch(form.getAttribute('action') || '/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() });
+        if (!response.ok) throw new Error('Submission failed');
+        window.location.assign('/form-received.html');
+      } catch (_) {
+        status.textContent = 'We could not send this just now. Please try again, or email hello@lovelettertales.com. Your details are still here.';
+        submit.disabled = false;
+      }
+    });
+  });
+  var giftCode = document.getElementById('gift-code');
+  if (giftCode) {
+    var code = new URLSearchParams(window.location.search).get('code');
+    if (code) giftCode.value = code.toUpperCase().slice(0, 20);
+    giftCode.addEventListener('input', function () { this.value = this.value.toUpperCase(); });
+  }
+  var contactMessage = document.querySelector('#contactForm #message');
+  if (contactMessage) {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('action') === 'redeem') contactMessage.value = 'I would like to redeem my gift.\nGift code: ' + (params.get('code') || '').slice(0, 20) + '\nStory: ' + (params.get('story') || '').slice(0, 80) + '\n\nMy delivery address:\n';
+  }
 })();

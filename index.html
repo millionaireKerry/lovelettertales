@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-3819753512414775">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSR8VEQMJF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HSR8VEQMJF');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Letter Tales | Serialised Fiction Delivered By Post</title>
-  <meta name="description" content="Receive beautifully written story letters through the post every month. Regency romance and wartime drama, delivered to your door. Subscribe or give as a gift.">
+  <title>Love Letter Tales | Story Letters by Post &amp; Thoughtful Gifts</title>
+  <meta name="description" content="Two historical story letters delivered by post each month. Discover Regency romance and wartime fiction, or a thoughtful gift for Mum, Grandma and book lovers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="brand.css">
+  <link rel="stylesheet" href="hero.css">
 
   <style>
     .delivery-toggle-wrap { text-align:center; margin:0 auto 36px; }
@@ -27,16 +20,15 @@
     .delivery-toggle button.active { background:#2D2020; color:#FBF7F0; }
     .intl-note-idx { font-family:'Lora',serif; font-size:0.82rem; color:#8B6E5A; text-align:center; margin-top:-28px; margin-bottom:32px; font-style:italic; }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3819753512414775" crossorigin="anonymous"></script>
   <script src="cookie-consent.js" defer></script>
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lovelettertales.com/">
-  <meta property="og:title" content="Love Letter Tales | Serialised Fiction Delivered By Post">
-  <meta property="og:description" content="Receive beautifully written story letters through the post every month. Regency romance and wartime drama, delivered to your door. Subscribe or give as a gift.">
+  <meta property="og:title" content="Love Letter Tales | Story Letters by Post &amp; Thoughtful Gifts">
+  <meta property="og:description" content="Two historical story letters delivered by post each month. Discover Regency romance and wartime fiction, or a thoughtful gift for Mum, Grandma and book lovers.">
   <meta property="og:image" content="https://lovelettertales.com/images/hero-background.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
   <meta property="og:site_name" content="Love Letter Tales">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -50,7 +42,6 @@
   "@type": "Organization",
   "name": "Love Letter Tales",
   "url": "https://lovelettertales.com",
-  "logo": "https://lovelettertales.com/images/logo.png",
   "description": "Love Letter Tales is a subscription service delivering serialised fiction as beautiful physical letters through the post. Choose from Regency romance or wartime drama and receive two letters every month.",
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61588597436075",
@@ -70,24 +61,19 @@
   "@type": "WebSite",
   "name": "Love Letter Tales",
   "url": "https://lovelettertales.com",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://lovelettertales.com/stories.html?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
+  "description": "Historical fiction told through two physical story letters each month, with subscriptions and gift plans."
 }
 </script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- Mother's Day Promo Banner -->
   <div class="promo-banner" id="promoBanner">
     <div class="container">
-      <p>Your gift card is delivered straight to your inbox, ready to forward or print.</p>
-      <a href="mothers-day.html" class="btn-banner">Shop Gifts</a>
+      <p>Two story letters a month. A little time for another world.</p>
+      <a href="gift.html" class="btn-banner">Shop Gifts</a>
     </div>
     <button class="banner-close" id="bannerClose" aria-label="Dismiss banner">&times;</button>
   </div>
@@ -96,7 +82,7 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">Love Letter <span>Tales</span></a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
@@ -104,46 +90,42 @@
         <li><a href="how-it-works.html">How It Works</a></li>
         <li><a href="pricing.html">Pricing</a></li>
         <li><a href="gift.html">Gift</a></li>
-        <li><a href="mothers-day.html">Mother's Day</a></li>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="#subscribe" class="btn btn-primary">Subscribe Now</a></li>
+        <li><a href="pricing.html" class="btn btn-primary">Choose a plan</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ============ HERO Dark, Atmospheric ============ -->
-  <section class="hero" id="home">
-    <!-- Hero background image -->
-    <div class="hero-bg-image" aria-hidden="true"></div>
-
-    <!-- Falling rose petals -->
-    <div class="hero-petals" aria-hidden="true">
-      <div class="petal petal-1"></div>
-      <div class="petal petal-2"></div>
-      <div class="petal petal-3"></div>
-      <div class="petal petal-4"></div>
-      <div class="petal petal-5"></div>
-      <div class="petal petal-6"></div>
-      <div class="petal petal-7"></div>
-      <div class="petal petal-8"></div>
-      <div class="petal petal-9"></div>
-      <div class="petal petal-10"></div>
-      <div class="petal petal-11"></div>
-      <div class="petal petal-12"></div>
-      <div class="petal petal-13"></div>
-      <div class="petal petal-14"></div>
-      <div class="petal petal-15"></div>
-      <div class="petal petal-16"></div>
-      <div class="petal petal-17"></div>
-      <div class="petal petal-18"></div>
-    </div>
-
-    <!-- Hero content -->
-    <div class="container hero-content">
-      <h1>Stories That Arrive At Your Door</h1>
-      <p>Receive 2 beautifully written story letters every month. No screen. Just the magic of a real letter in your hands.</p>
-      <a href="#stories" class="btn btn-primary">Choose Your Story</a>
-      <a href="how-it-works.html" class="btn btn-outline-light">How It Works</a>
+  <main id="main-content">
+  <section class="editorial-hero" aria-labelledby="hero-title">
+    <div class="editorial-grid">
+      <div class="editorial-copy">
+        <p class="eyebrow">Historical fiction. Delivered by post.</p>
+        <h1 id="hero-title">A little anticipation.<br>A letter.<br><em>A whole other world.</em></h1>
+        <p class="hero-intro">Two story letters a month, unfolding a life in another time. Beautifully printed, posted to your door, and yours to keep.</p>
+        <div class="hero-actions">
+          <a href="gift.html" class="btn btn-primary">Give a story <span aria-hidden="true">&#8594;</span></a>
+          <a href="#stories" class="text-link">Find your own escape</a>
+        </div>
+        <p class="hero-small">Gifts from £34.99 &nbsp;·&nbsp; UK postage included</p>
+      </div>
+      <div class="writing-scene" id="writing-scene" aria-label="An excerpt from Rose Ashworth's first letter on a candlelit writing desk">
+        <img class="desk-image" src="images/hero-background.jpg" width="1920" height="1080" fetchpriority="high" alt="Candlelit writing desk with ink, a pen and bundles of letters">
+        <span class="scene-label">Bath, England &nbsp; / &nbsp; 1814</span>
+        <div class="letter-sheet">
+          <p class="letter-date">No. 14, Gay Street, Bath<br>6th October, 1814</p>
+          <p class="letter-words">
+            <span class="ink-line" style="--ink-delay:0s">My dearest Harriet,</span>
+            <span class="ink-line" style="--ink-delay:.9s">A letter arrived this morning,</span>
+            <span class="ink-line" style="--ink-delay:1.8s">quite unexpectedly.</span>
+            <span class="ink-line" style="--ink-delay:2.7s">It was not from you…</span>
+            <span class="ink-line letter-signature" style="--ink-delay:3.6s">Rose</span>
+          </p>
+          <svg class="letter-nib" viewBox="0 0 125 125" aria-hidden="true"><defs><linearGradient id="pen-metal"><stop stop-color="#e1c28c"/><stop offset=".5" stop-color="#a57b39"/><stop offset="1" stop-color="#f3deb1"/></linearGradient></defs><path d="M12 111 L25 77 L99 2 Q110 -4 115 9 L40 91Z" fill="#352b28"/><path d="M12 111 L20 81 L40 91Z" fill="url(#pen-metal)"/><path d="M12 111 L30 86" stroke="#493621"/><circle cx="30" cy="86" r="2" fill="#493621"/><path d="M27 75 L99 3" stroke="#89705a" stroke-width="3"/></svg>
+        </div>
+        <span class="letter-caption">A glimpse of Rose’s first letter.<br>One of two worlds waiting to be opened.</span>
+        <button type="button" class="replay-letter" id="replay-letter" hidden>Replay the writing <span aria-hidden="true">↻</span></button>
+      </div>
     </div>
   </section>
 
@@ -154,94 +136,23 @@
         <span class="trust-icon">&#9993;</span> Delivered Across the UK
       </div>
       <div class="trust-item">
-        <span class="trust-icon">&#10003;</span> Cancel Anytime
+        <span class="trust-icon">&#10003;</span> Flexible Monthly Plans
       </div>
       <div class="trust-item">
         <span class="trust-icon">&#9829;</span> Perfect Gift
       </div>
       <div class="trust-item">
-        <span class="trust-icon">&#9752;</span> Eco-Friendly Packaging
+        <span class="trust-icon">&#9752;</span> Two Letters Every Month
       </div>
     </div>
   </div>
 
-  <!-- ============ Gift Occasions Section ============ -->
-  <section class="section gift-occasions">
-    <div class="container">
-      <h2 class="section-title fade-up">The Perfect Gift For Anyone Who Loves a Story</h2>
-      <div class="occasions-grid">
-
-        <div class="occasion-card fade-up">
-          <div class="occasion-icon">
-            <svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="24" cy="32" r="14" fill="none" stroke="#C17B74" stroke-width="1.5"/>
-              <rect x="10" y="30" width="28" height="16" rx="3" fill="#FBF7F0" stroke="#C17B74" stroke-width="1.5"/>
-              <line x1="24" y1="30" x2="24" y2="46" stroke="#C17B74" stroke-width="1"/>
-              <line x1="10" y1="38" x2="38" y2="38" stroke="#C17B74" stroke-width="1"/>
-              <path d="M20 30 Q20 22 16 18 Q12 14 16 10 Q20 6 24 10 Q28 6 32 10 Q36 14 32 18 Q28 22 28 30" fill="#C17B74" opacity="0.2" stroke="#C17B74" stroke-width="1.5"/>
-              <path d="M22 30 Q22 24 24 20 Q26 24 26 30" fill="none" stroke="#C17B74" stroke-width="1"/>
-              <!-- Candle flames -->
-              <ellipse cx="16" cy="8" rx="2" ry="3" fill="#D4A574" opacity="0.6"/>
-              <ellipse cx="24" cy="6" rx="2" ry="3.5" fill="#D4A574" opacity="0.7"/>
-              <ellipse cx="32" cy="8" rx="2" ry="3" fill="#D4A574" opacity="0.6"/>
-              <line x1="16" y1="11" x2="16" y2="14" stroke="#8B6E5A" stroke-width="0.8"/>
-              <line x1="24" y1="9.5" x2="24" y2="14" stroke="#8B6E5A" stroke-width="0.8"/>
-              <line x1="32" y1="11" x2="32" y2="14" stroke="#8B6E5A" stroke-width="0.8"/>
-            </svg>
-          </div>
-          <h3>Birthdays</h3>
-          <p>A gift they'll think about long after the candles are blown out</p>
-        </div>
-
-        <div class="occasion-card fade-up">
-          <div class="occasion-icon">
-            <svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M24 42 Q10 32 6 24 Q2 16 8 10 Q14 4 24 14 Q34 4 40 10 Q46 16 42 24 Q38 32 24 42Z" fill="#C17B74" opacity="0.15" stroke="#C17B74" stroke-width="1.5"/>
-              <path d="M24 36 Q14 28 11 22 Q8 16 12 12 Q16 8 24 16 Q32 8 36 12 Q40 16 37 22 Q34 28 24 36Z" fill="#C17B74" opacity="0.12"/>
-              <circle cx="24" cy="22" r="3" fill="#D4A574" opacity="0.5"/>
-            </svg>
-          </div>
-          <h3>Just Because</h3>
-          <p>No occasion needed. Some people just deserve a little magic</p>
-        </div>
-
-        <div class="occasion-card fade-up">
-          <div class="occasion-icon">
-            <svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Flower / blossom -->
-              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(0 24 20)"/>
-              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(60 24 20)"/>
-              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(120 24 20)"/>
-              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(180 24 20)"/>
-              <ellipse cx="24" cy="16" rx="6" ry="9" fill="#C17B74" opacity="0.15" transform="rotate(240 24 20)"/>
-              <circle cx="24" cy="20" r="4" fill="#D4A574" opacity="0.4"/>
-              <!-- Stem -->
-              <path d="M24 28 Q24 35 22 42" fill="none" stroke="#8B6E5A" stroke-width="1.5" opacity="0.5"/>
-              <ellipse cx="18" cy="34" rx="6" ry="3" fill="#8B6E5A" opacity="0.15" transform="rotate(-30 18 34)"/>
-              <ellipse cx="30" cy="37" rx="5" ry="2.5" fill="#8B6E5A" opacity="0.15" transform="rotate(25 30 37)"/>
-            </svg>
-          </div>
-          <h3>Mother's Day</h3>
-          <p>Give Mum something she'll look forward to every single month</p>
-        </div>
-
-        <div class="occasion-card fade-up">
-          <div class="occasion-icon">
-            <svg viewBox="0 0 48 48" width="48" height="48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Envelope -->
-              <rect x="6" y="14" width="36" height="24" rx="3" fill="#FBF7F0" stroke="#C17B74" stroke-width="1.5"/>
-              <path d="M6 14 L24 28 L42 14" fill="none" stroke="#C17B74" stroke-width="1.5"/>
-              <path d="M6 38 L18 26" fill="none" stroke="#C17B74" stroke-width="1" opacity="0.4"/>
-              <path d="M42 38 L30 26" fill="none" stroke="#C17B74" stroke-width="1" opacity="0.4"/>
-              <!-- Heart seal -->
-              <path d="M24 22 Q21 18 22 16 Q23 14 24 16 Q25 14 26 16 Q27 18 24 22Z" fill="#C17B74" opacity="0.4"/>
-            </svg>
-          </div>
-          <h3>Thank You</h3>
-          <p>For the person who deserves more than a card</p>
-        </div>
-
-      </div>
+  <section class="section">
+    <div class="container home-intro">
+      <p class="eyebrow">Something lovely among the everyday</p>
+      <h2>For the person who still loves<br>to see their name on an envelope.</h2>
+      <p>Love Letter Tales is a historical fiction subscription told through real letters. Follow a Regency romance or a wartime story, two letters at a time. A thoughtful gift for Mum, Grandma, or anyone who loves getting lost in a good book.</p>
+      <a href="how-it-works.html" class="text-link">Discover how it works <span aria-hidden="true">&#8594;</span></a>
     </div>
   </section>
 
@@ -255,7 +166,7 @@
         <!-- Story 1: Rose Ashworth -->
         <div class="story-card fade-up">
           <div class="story-card-image">
-            <img src="images/rose-ashworth.jpg" alt="Rose Ashworth A Regency Romance" class="story-card-img">
+            <img src="images/rose-ashworth.jpg" alt="Rose Ashworth A Regency Romance" class="story-card-img" loading="lazy" decoding="async">
           </div>
           <div class="story-card-body">
             <span class="story-tag">Regency Romance</span>
@@ -274,7 +185,7 @@
         <!-- Story 2: Clara Wren -->
         <div class="story-card fade-up">
           <div class="story-card-image">
-            <img src="images/clara-wren.jpg" alt="Clara Wren Letters from Wartime Britain" class="story-card-img">
+            <img src="images/clara-wren.jpg" alt="Clara Wren Letters from Wartime Britain" class="story-card-img" loading="lazy" decoding="async">
           </div>
           <div class="story-card-body">
             <span class="story-tag">Wartime Britain</span>
@@ -296,7 +207,21 @@
 
   <div class="divider">&#10043; &#10043; &#10043;</div>
 
-  <!-- ============ Letter Reveal Animation ============ -->
+  <section class="section" id="read-a-letter" aria-labelledby="sample-title">
+    <div class="container">
+      <div class="sample-letter">
+        <p class="eyebrow">The story begins with a secret</p>
+        <h2 id="sample-title">A few words from Rose</h2>
+        <blockquote>“A letter arrived this morning, quite unexpectedly. It was not from you, nor from Aunt Cecily, nor from any hand I recognised.”</blockquote>
+        <p class="sample-source">From Letter 1 of Rose Ashworth · Bath, 6th October, 1814</p>
+        <details><summary>Read a little more</summary>
+          <p>It was addressed to me in a neat and careful script; the sort of hand, I think, that belongs to a person of patience and seriousness. It bore only a plain seal, with neither crest nor initial to reveal the writer.</p>
+          <p>I looked at it for some time before opening it, being equally curious and unwilling to bring the mystery too quickly to an end. At last I gave way to temptation and opened it at the breakfast table, whilst Mama was occupied with her toast and Edmund with the newspaper.</p>
+          <a href="stories.html" class="text-link">Meet Rose and Clara</a>
+        </details>
+      </div>
+    </div>
+  </section>
 
   <!-- How It Works -->
   <section class="section" id="how-it-works">
@@ -331,8 +256,8 @@
       <div class="delivery-toggle-wrap">
         <p>Where are we sending your letters?</p>
         <div class="delivery-toggle" id="deliveryToggle">
-          <button class="active" id="btn-uk" onclick="setDelivery('uk')">&#127468;&#127463; UK</button>
-          <button id="btn-intl" onclick="setDelivery('intl')">&#127758; International</button>
+          <button class="active" id="btn-uk" aria-pressed="true" onclick="setDelivery('uk')">&#127468;&#127463; UK</button>
+          <button id="btn-intl" aria-pressed="false" onclick="setDelivery('intl')">&#127758; International</button>
         </div>
       </div>
       <p class="intl-note-idx" id="intl-note" style="display:none;">Airmail delivery included. Letters posted on the 1st and 15th of every month.</p>
@@ -342,135 +267,77 @@
         <div class="pricing-card fade-up">
           <span class="pricing-badge badge-flexible">Most Flexible</span>
           <h3>Monthly</h3>
-          <div class="price">&pound;12.99</div>
+          <div class="price" id="price-monthly">&pound;12.99</div>
           <div class="price-period">per month</div>
           <p class="price-desc">2 letters posted on the 1st and 15th every month. Cancel anytime.</p>
-          <a href="https://buy.stripe.com/28E00idAhgQ6dgw8gU1Nu03" target="_blank" rel="noopener" class="btn btn-outline">Subscribe Monthly</a>
+          <a href="https://buy.stripe.com/28E00idAhgQ6dgw8gU1Nu03" id="link-monthly" target="_blank" rel="noopener" class="btn btn-outline">Subscribe Monthly</a>
         </div>
 
         <!-- Annual -->
         <div class="pricing-card fade-up">
           <span class="pricing-badge badge-value">Best Value</span>
           <h3>Annual</h3>
-          <div class="price">&pound;119.99</div>
+          <div class="price" id="price-annual">&pound;119.99</div>
           <div class="price-period">per year</div>
           <p class="price-desc">2 letters per month posted on the 1st and 15th. Save over &pound;35.</p>
-          <a href="https://buy.stripe.com/4gM3cuao50R8foE2WA1Nu04" target="_blank" rel="noopener" class="btn btn-primary">Subscribe Annually</a>
+          <a href="https://buy.stripe.com/4gM3cuao50R8foE2WA1Nu04" id="link-annual" target="_blank" rel="noopener" class="btn btn-primary">Subscribe Annually</a>
         </div>
 
         <!-- Gift 3 Months -->
         <div class="pricing-card highlighted fade-up">
-          <div class="ribbon-wrap"><div class="ribbon">Most Popular</div></div>
-          <span class="pricing-badge badge-popular">Most Popular Gift</span>
+          <div class="ribbon-wrap"><div class="ribbon">Start Here</div></div>
+          <span class="pricing-badge badge-popular">A Lovely First Chapter</span>
           <h3>Gift 3 Months</h3>
-          <div class="price">&pound;34.99</div>
+          <div class="price" id="price-gift3">&pound;34.99</div>
           <div class="price-period">one-off payment</div>
           <p class="price-desc">The perfect gift. 6 beautifully crafted letters.</p>
-          <a href="https://buy.stripe.com/7sY9AS8fX2Zgdgw9kY1Nu02" target="_blank" rel="noopener" class="btn btn-primary">Buy Gift</a>
+          <a href="https://buy.stripe.com/7sY9AS8fX2Zgdgw9kY1Nu02" id="link-gift3" target="_blank" rel="noopener" class="btn btn-primary">Buy Gift</a>
         </div>
 
         <!-- Gift 6 Months -->
         <div class="pricing-card fade-up">
           <span class="pricing-badge badge-gift">Gift</span>
           <h3>Gift 6 Months</h3>
-          <div class="price">&pound;64.99</div>
+          <div class="price" id="price-gift6">&pound;64.99</div>
           <div class="price-period">one-off payment</div>
           <p class="price-desc">Six months of stories. A truly memorable gift.</p>
-          <a href="https://buy.stripe.com/eVqcN4gMtfM25O440E1Nu01" target="_blank" rel="noopener" class="btn btn-outline">Buy Gift</a>
+          <a href="https://buy.stripe.com/eVqcN4gMtfM25O440E1Nu01" id="link-gift6" target="_blank" rel="noopener" class="btn btn-outline">Buy Gift</a>
         </div>
 
         <!-- Gift 12 Months -->
         <div class="pricing-card fade-up">
           <span class="pricing-badge badge-gift">Gift</span>
           <h3>Gift 12 Months</h3>
-          <div class="price">&pound;109.99</div>
+          <div class="price" id="price-gift12">&pound;109.99</div>
           <div class="price-period">one-off payment</div>
           <p class="price-desc">A full year of letters. The ultimate gift for someone special.</p>
-          <a href="https://buy.stripe.com/bJedR8bs9gQ6dgwdBe1Nu00" target="_blank" rel="noopener" class="btn btn-outline">Buy Gift</a>
+          <a href="https://buy.stripe.com/bJedR8bs9gQ6dgwdBe1Nu00" id="link-gift12" target="_blank" rel="noopener" class="btn btn-outline">Buy Gift</a>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Mother's Day Gift Section -->
-  <section class="section mothers-day-section" id="mothers-day">
-    <div class="container">
-      <h2 class="section-title fade-up">Give Mum Something She'll Look Forward To Every Month</h2>
-      <p class="section-subtitle fade-up">A Love Letter Tales gift subscription means she'll receive a beautiful letter in her post twice a month a little moment of magic, just for her.</p>
-
-      <div class="md-gift-grid">
-        <div class="md-gift-card md-featured fade-up">
-          <h3>3 Months</h3>
-          <div class="price">&pound;34.99</div>
-          <p class="price-desc">6 beautiful story letters. The perfect taster.</p>
-          <a href="https://buy.stripe.com/7sY9AS8fX2Zgdgw9kY1Nu02" target="_blank" rel="noopener" class="btn btn-primary">Gift 3 Months</a>
-        </div>
-        <div class="md-gift-card fade-up">
-          <h3>6 Months</h3>
-          <div class="price">&pound;64.99</div>
-          <p class="price-desc">12 letters. Half a year of stories.</p>
-          <a href="https://buy.stripe.com/eVqcN4gMtfM25O440E1Nu01" target="_blank" rel="noopener" class="btn btn-outline">Gift 6 Months</a>
-        </div>
-        <div class="md-gift-card fade-up">
-          <h3>12 Months</h3>
-          <div class="price">&pound;109.99</div>
-          <p class="price-desc">24 letters. A full year of magic in her letterbox.</p>
-          <a href="https://buy.stripe.com/bJedR8bs9gQ6dgwdBe1Nu00" target="_blank" rel="noopener" class="btn btn-outline">Gift 12 Months</a>
-        </div>
-      </div>
-
-      <!-- How the Gift Works -->
-      <h3 class="section-title fade-up" style="margin-top:2.5rem;">How the Gift Works</h3>
-      <div class="steps">
-        <div class="step fade-up">
-          <div class="step-number">1</div>
-          <h3>You Choose</h3>
-          <p>Pick a story and gift length 3, 6, or 12 months.</p>
-        </div>
-        <div class="step fade-up">
-          <div class="step-number">2</div>
-          <h3>We Email You</h3>
-          <p>We send you a printable gift card immediately something lovely to give on the day.</p>
-        </div>
-        <div class="step fade-up">
-          <div class="step-number">3</div>
-          <h3>Mum Receives Her Letters</h3>
-          <p>Her first letters arrive within 7 days, then two every month posted on the 1st and 15th.</p>
-        </div>
-      </div>
-
-      <div class="md-notice" style="margin-top:2rem;">
-        <p>Your gift card is delivered straight to your inbox the moment you order, ready to forward on or print out.</p>
+  <section class="section" style="background:#f2e9dd;">
+    <div class="container gift-feature">
+      <img src="images/rose-ashworth.jpg" alt="A glimpse into Rose Ashworth's Regency world" loading="lazy" width="800" height="600">
+      <div>
+        <p class="eyebrow">For Mum. For Grandma. For someone dear.</p>
+        <h2>A gift with more<br>than one lovely moment.</h2>
+        <p>The first envelope. The familiar handwriting. The wondering what happens next. Give them a story to look forward to, long after the occasion has passed.</p>
+        <p>Choose 3, 6 or 12 months of letters, with a printable gift card by email. Gift plans are a one-off payment.</p>
+        <a href="gift.html" class="btn btn-primary">Find their gift <span aria-hidden="true">&#8594;</span></a>
       </div>
     </div>
   </section>
-
-  <!-- ============ Testimonials Updated ============ -->
-  <section class="section testimonials-section">
-    <div class="container">
-      <h2 class="section-title fade-up">What Our Readers Say</h2>
-      <p class="section-subtitle fade-up">Don't just take our word for it here's what our subscribers think.</p>
-      <div class="testimonials-grid">
-        <div class="testimonial fade-up">
-          <div class="testimonial-quote">&ldquo;</div>
-          <p>I didn't expect to feel so much reading a letter addressed to someone else. By the second one, I felt like I was there.</p>
-          <div class="testimonial-line"></div>
-          <span class="testimonial-author">Sarah T., Monthly Subscriber</span>
-        </div>
-        <div class="testimonial fade-up">
-          <div class="testimonial-quote">&ldquo;</div>
-          <p>I bought the 3-month gift for my mum's birthday. She rang me when the first letter arrived. She was crying. In the best way.</p>
-          <div class="testimonial-line"></div>
-          <span class="testimonial-author">Gemma R., Gift Subscriber</span>
-        </div>
-        <div class="testimonial fade-up">
-          <div class="testimonial-quote">&ldquo;</div>
-          <p>I read mine with a cup of tea every fortnight. It's become my favourite thing. I actually look forward to the post.</p>
-          <div class="testimonial-line"></div>
-          <span class="testimonial-author">Diane W., Annual Subscriber</span>
-        </div>
-      </div>
+  <section class="section">
+    <div class="container home-faq">
+      <p class="eyebrow text-center">Before the first envelope</p>
+      <h2 class="section-title">A few things you might wonder</h2>
+      <details><summary>What is a story letter subscription?</summary><p>It is a fictional story told through physical letters posted to you. Love Letter Tales sends two letters a month, so you can follow the characters’ lives as their correspondence unfolds.</p></details>
+      <details><summary>Is this a suitable gift for Mum or Grandma?</summary><p>If she enjoys historical fiction, period dramas or beautiful stationery, it is a thoughtful way to give her something to look forward to. Choose a Regency romance with Rose Ashworth or wartime Britain with Clara Wren.</p></details>
+      <details><summary>How much does it cost?</summary><p>UK subscriptions start at £12.99 a month. UK gift plans cost £34.99 for 3 months, £64.99 for 6 months or £109.99 for 12 months, with UK postage included. See <a class="text-link" href="pricing.html">all prices and international options</a>.</p></details>
+      <details><summary>When are the letters posted?</summary><p>Letters are posted on the 1st and 15th of each month. Delivery times depend on the destination. <a class="text-link" href="contact.html">Contact us</a> if you need help with a gift date.</p></details>
     </div>
   </section>
 
@@ -483,7 +350,9 @@
     </div>
   </section>
 
-  <!-- ============ Footer Warmed Up ============ -->
+  </main>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-logo-area">
@@ -519,10 +388,13 @@
         <div>
           <h4>Stay in the Story</h4>
           <p style="font-size:0.9rem;color:rgba(251,247,240,0.7);margin-bottom:0.8rem;">Join our mailing list for writing news, sneak peeks, and the occasional love letter.</p>
-          <form class="newsletter-form" onsubmit="event.preventDefault();">
-            <input type="email" placeholder="Your email address" aria-label="Email address" required>
-            <button type="submit">Join the Story</button>
+          <form class="newsletter-form" name="newsletter" method="POST" action="/form-received.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="newsletter">
+            <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+            <input type="email" name="email" autocomplete="email" placeholder="Your email address" aria-label="Email address" required>
+            <button type="submit">Join the story</button>
           </form>
+          <p class="newsletter-note">By joining, you agree to receive story news by email. Unsubscribe at any time. <a href="privacy.html">Privacy policy</a>.</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -532,23 +404,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    var ukLinks = { monthly:'https://buy.stripe.com/28E00idAhgQ6dgw8gU1Nu03', annual:'https://buy.stripe.com/4gM3cuao50R8foE2WA1Nu04', gift3:'https://buy.stripe.com/7sY9AS8fX2Zgdgw9kY1Nu02', gift6:'https://buy.stripe.com/eVqcN4gMtfM25O440E1Nu01', gift12:'https://buy.stripe.com/bJedR8bs9gQ6dgwdBe1Nu00' };
-    var intlLinks = { monthly:'https://buy.stripe.com/4gM4gy7bTarI90g1Sw1Nu05', annual:'https://buy.stripe.com/bJe6oGfIp57o4K07cQ1Nu06', gift3:'https://buy.stripe.com/fZu00i7bT43kfoE1Sw1Nu07', gift6:'https://buy.stripe.com/00wfZgbs97fwa4k40E1Nu08', gift12:'https://buy.stripe.com/cNi4gybs9arIb8odBe1Nu09' };
-    var ukPrices = { monthly:'&pound;12.99', annual:'&pound;119.99', gift3:'&pound;34.99', gift6:'&pound;64.99', gift12:'&pound;109.99' };
-    var intlPrices = { monthly:'&pound;17.99', annual:'&pound;179.99', gift3:'&pound;49.99', gift6:'&pound;94.99', gift12:'&pound;169.99' };
-    function setDelivery(zone) {
-      var links = zone==='uk' ? ukLinks : intlLinks;
-      var prices = zone==='uk' ? ukPrices : intlPrices;
-      document.getElementById('btn-uk').classList.toggle('active', zone==='uk');
-      document.getElementById('btn-intl').classList.toggle('active', zone==='intl');
-      ['monthly','annual','gift3','gift6','gift12'].forEach(function(k) {
-        var el = document.getElementById('link-'+k); if (el) el.href = links[k];
-        var pe = document.getElementById('price-'+k); if (pe) pe.innerHTML = prices[k];
-      });
-      var note = document.getElementById('intl-note');
-      if (note) note.style.display = zone==='intl' ? 'block' : 'none';
-    }
-  </script>
+  <script src="pricing.js"></script>
 </body>
 </html>
